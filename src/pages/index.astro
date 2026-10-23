@@ -1,0 +1,695 @@
+---
+// Fusionedge landing page — wireframe version (images, icons and videos are placeholders)
+const nav = ["Apps", "Industries", "Community", "Pricing", "Help"];
+const cards = {
+  left: [
+    { t: "Open source", d: "Behind the technology is a community of developers collaborating worldwide, united by a common vision: to transform companies and empower employees.", extra: ["Community: Open Source, 100% free.", "Enterprise: extra apps, infrastructure and professional services."], btn: "Compare Editions" },
+    { t: "Open Source + AI", d: "Develop or vibe-code tailored modules. As we are open source, LLMs are already trained on our source code.", ph: "Code editor screenshot" },
+    { t: "Community apps", d: "Thanks to its open source model, Fusionedge grows into a large business apps store. Imagine getting an app for every business need.", btn: "Browse Community Apps" },
+    { t: "No corporate nonsense", q: "“With most systems, you get 70% of what you hoped. With Fusionedge, you get more than you expected.” — Anonymous competitor" },
+  ],
+  right: [
+    { t: "No vendor lock-in", d: "No proprietary data format, just PostgreSQL: you own your data. Get the source code, GitHub access, and the flexibility to host with us or on premise.", btn: "Follow us on GitHub" },
+    { t: "Fair pricing", d: "No usage-based pricing, no feature upselling, no long term contracts, no hosting limits, no surprises. Just a single price per user, all inclusive.", btn: "View Pricing" },
+    { t: "A unique value proposition", ph: "Positioning chart" },
+  ],
+};
+// Floating icon placeholders around the hero rings: [left %, top %]
+const orbs = [[22.4,19,"Slack"],[12.8,37,"Asana"],[26.1,48,"Meta Ads"],[8.7,57,"Mailchimp"],[27,71,"Google Ads"],[77.5,19,"Zapier"],[87,37,"AWS"],[74,48,"Monday"],[91.6,57,"ClickUp"],[80.6,72,"Airtable"]];
+const pattern = ["gray", "purple", "light", "gray", "green", "light", "gray", "purple", "light", "gray", "green", "light"];
+const faces = Array.from({ length: 36 }, (_, i) => {
+  const c = pattern[(i + Math.floor(i / 12) * 4) % 12];
+  return c + (c === "purple" || c === "green" ? (i % 2 ? " swap" : "") : "");
+});
+const footerCols = [
+  { h: "Product", l: ["Apps", "AI", "Integrations", "Pricing"] },
+  { h: "Solutions", l: ["Industries", "Accounting", "CRM", "Inventory"] },
+  { h: "Resources", l: ["Blog", "Guides", "Community", "Help"] },
+  { h: "Company", l: ["About", "Careers", "Contact", "Partners"] },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <title>Fusionedge — All your business on one platform</title>
+  </head>
+  <body>
+    <div class="wrap">
+      <!-- NAV -->
+      <header class="nav" id="site-nav">
+        <a class="logo" href="/"><img src="/logo.png" alt="Fusionedge" width="400" height="127" /></a>
+        <nav class="nav-links" id="nav-links" aria-label="Main">
+          {nav.map((n) => <a href="#">{n}</a>)}
+          <a class="nav-links-cta" href="#">Try it free</a>
+        </nav>
+        <div class="nav-cta">
+          <a class="signin" href="#">Sign in</a>
+          <a class="btn btn-primary" href="#">Try it free</a>
+          <button class="menu-btn" id="menu-btn" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>
+        </div>
+      </header>
+
+      <!-- HERO -->
+      <section class="hero">
+        <div class="rings" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+        {orbs.map(([l, t, n]) => (
+          <span class="orb" style={`left:${l}%;top:${t}%`} role="img" aria-label="Icon placeholder"><i class="ph-icon"></i><em class="orb-label">{n}</em></span>
+        ))}
+        <div class="hero-in">
+          <p class="ratings">
+            <span><i class="mini"></i>4.6 Google</span>
+            <span><i class="mini star"></i>4.9 Trustpilot</span>
+          </p>
+          <h1>All your business on one platform</h1>
+          <p class="hero-sub">Simple, efficient, yet affordable. Manage everything in one place and keep your whole team moving forward.</p>
+          <div class="btn-row">
+            <a class="btn btn-primary btn-lg" href="#">Start now - It's free</a>
+            <a class="btn btn-outline btn-lg" href="#">Meet an advisor</a>
+          </div>
+          <div class="hero-toggle">
+            <button class="toggle" data-without type="button" role="switch" aria-checked="false">
+              <span class="sparks" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="sw"></span> Imagine without Fusionedge
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIDEO 1 -->
+      <section class="section center">
+        <h2>Level up your quality of work</h2>
+        <div class="frame"><div class="ph ph-video">Video placeholder</div></div>
+        <div class="player"><span class="pbtn"></span><span class="bar"></span></div>
+      </section>
+
+      <!-- PRODUCTIVITY -->
+      <section class="section center">
+        <h2>Optimized for productivity</h2>
+        <div class="dash" id="dash">
+          <aside class="dside" id="d-side">
+            <div class="d-brand"><button type="button" class="d-collapse" id="d-collapse" aria-label="Collapse sidebar">⇤</button></div>
+            <p class="d-label">Main navigation</p>
+            <nav class="d-nav" id="d-nav">
+              <button type="button" class="on" data-nav="Overview"><i class="ic"></i><span>Overview</span></button>
+              <button type="button" data-nav="Tickets"><i class="ic"></i><span>Tickets</span></button>
+              <button type="button" data-nav="Clients"><i class="ic"></i><span>Clients</span></button>
+              <button type="button" data-nav="Agents &amp; Teams"><i class="ic"></i><span>Agents &amp; Teams</span></button>
+              <button type="button" data-nav="Knowledge Base"><i class="ic"></i><span>Knowledge Base</span></button>
+              <button type="button" data-nav="Integrations"><i class="ic"></i><span>Integrations</span></button>
+            </nav>
+            <p class="d-label">Analytics &amp; insights</p>
+            <nav class="d-nav" data-group>
+              <button type="button" data-nav="SLA Compliance"><i class="ic"></i><span>SLA Compliance</span></button>
+              <button type="button" data-nav="CSAT &amp; NPS"><i class="ic"></i><span>CSAT &amp; NPS</span></button>
+              <button type="button" data-nav="Workload Analytics"><i class="ic"></i><span>Workload Analytics</span></button>
+              <button type="button" data-nav="Reports"><i class="ic"></i><span>Reports</span></button>
+            </nav>
+            <div class="d-user"><span class="av a1">AM</span><div><strong>Alex Morgan</strong><small>alex@fusionedge.com</small></div></div>
+          </aside>
+          <div class="dmain-wrap">
+            <div class="d-top">
+              <p class="crumb"><span>Overview</span> / <b id="d-crumb">Dashboard</b></p>
+            </div>
+            <div class="d-head">
+              <div><h3>Hello, Alex Morgan 👋</h3><p>Here are the latest insights from your customer interactions.</p></div>
+              <select id="d-range" aria-label="Date range"><option value="week">Last week</option><option value="month">Last month</option></select>
+            </div>
+            <div class="dmain">
+              <div class="g-kpis" id="d-kpis"></div>
+              <section class="dbox g-chart">
+                <header><span>Ticket Volume Trend</span></header>
+                <div class="chart-top"><strong id="d-total">0</strong><small id="d-tdelta"></small></div>
+                <div class="plot"><div class="yax" id="d-yax"></div><div class="bars" id="d-bars"></div><div class="guide" id="d-guide"></div><div class="tip" id="d-tip"></div></div>
+                <div class="xax" id="d-xax"></div>
+              </section>
+              <section class="dbox g-upd">
+                <header><span>Latest Updates</span></header>
+                <div class="u-tabs" id="d-utabs"><button type="button" class="on" data-ut="today">Today</button><button type="button" data-ut="yesterday">Yesterday</button><button type="button" data-ut="week">This week</button></div>
+                <input id="d-usearch" type="search" placeholder="Search activities" aria-label="Search activities" />
+                <p class="u-count" id="d-ucount"></p>
+                <ul class="u-list" id="d-ulist"></ul>
+              </section>
+              <section class="dbox g-table">
+                <header><span>SLA Monitoring</span>
+                  <div class="t-tools"><input id="d-tsearch" type="search" placeholder="Search ticket" aria-label="Search ticket" /><select id="d-tfilter" aria-label="Filter priority"><option value="">All priorities</option><option>High</option><option>Medium</option><option>Low</option></select></div>
+                </header>
+                <div class="t-scroll"><table class="tbl"><thead id="d-thead"></thead><tbody id="d-tbody"></tbody></table></div>
+              </section>
+            </div>
+          </div>
+        </div>
+</section>
+
+      <!-- ENTERPRISE -->
+      <section class="section enterprise">
+        <h2>Enterprise software done right</h2>
+        <div class="ent-grid">
+          {[cards.left, cards.right].map((col) => (
+            <div class="ent-col">
+              {col.map((c) => (
+                <article class="card">
+                  <h3>{c.t}</h3>
+                  {c.d && <p>{c.d}</p>}
+                  {c.extra && <ul class="bul">{c.extra.map((e) => <li>{e}</li>)}</ul>}
+                  {c.q && <p class="q">{c.q}</p>}
+                  {c.ph && <div class="ph ph-card">{c.ph}</div>}
+                  {c.btn && <a class="btn btn-primary" href="#">{c.btn}</a>}
+                </article>
+              ))}
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- USERS -->
+      <section class="users">
+        <div class="mosaic">{faces.map((f, i) => <span class={`m ${f}`} style={`--i:${i}`}></span>)}</div>
+        <div class="users-card">
+          <h2>Join 28 million users</h2>
+          <p>who grow their business with Fusionedge</p>
+        </div>
+      </section>
+
+      <!-- TESTIMONIAL -->
+      <section class="testimonial">
+        <div class="t-text">
+          <span class="qm">“</span>
+          <p>The processing time for our documents has been noticeably reduced, in certain cases from 2 days to only 5 hours. As a result we can now focus on what matters.</p>
+        </div>
+        <div class="t-person">
+          <div class="ph ph-avatar">Photo</div>
+          <strong>Name Surname</strong>
+          <span>CEO, Company</span>
+          <div class="ph ph-logo">Logo</div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="cta">
+        <h2>Unleash your <span class="accent">growth potential</span></h2>
+        <a class="btn btn-primary btn-lg" href="#">Start now - It's free</a>
+        <p class="tiny">No credit card required<br />Instant access</p>
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="footer">
+        <div class="foot-top">
+          <div class="letter">
+            <a class="logo" href="/"><img src="/logo.png" alt="Fusionedge" width="400" height="127" /></a>
+            <h4>The Fusionedge letter</h4>
+            <p class="muted">Product updates and ideas from teams running their business on one platform. Once a month.</p>
+            <form class="subf" onsubmit="return false">
+              <input type="email" placeholder="you@company.com" aria-label="Email address" />
+              <button type="button">Subscribe</button>
+            </form>
+          </div>
+          <div class="cols">
+            {footerCols.map((c) => (
+              <div><p class="mono">{c.h}</p><ul>{c.l.map((l) => <li><a href="#">{l}</a></li>)}</ul></div>
+            ))}
+          </div>
+        </div>
+        <div class="foot-bottom">
+          <span>© 2026 Fusionedge. All rights reserved.</span>
+          <span class="socials"><i class="sq"></i><i class="sq"></i><i class="sq"></i><i class="sq"></i></span>
+        </div>
+      </footer>
+    </div>
+    <script is:inline>
+      (function () {
+        var root = document.getElementById("dash");
+        if (!root) return;
+        function $(id) { return document.getElementById(id); }
+        function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+        var range = "week", active = 2, utab = "today", uq = "", tq = "", tf = "", sortKey = "id", sortDir = 1, selected = {};
+        var data = {
+          week: {
+            kpis: [
+              { t: "Current Tickets", v: "3,484", d: 7.1, good: true, s: [8, 10, 7, 12, 18, 11, 16, 9, 14, 17, 12, 15] },
+              { t: "Daily Avg. Resolution", v: "486", u: " min", d: 2, good: true, s: [10, 9, 12, 11, 14, 10, 13, 17, 12, 15, 11, 14] },
+              { t: "SLA Compliance Rate", v: "92%", d: -1.3, good: false, s: [12, 17, 9, 15, 11, 18, 10, 14, 8, 13, 9, 11] }
+            ],
+            total: "4,790", td: 8, labels: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"], vals: [290, 570, 584, 440, 730, 640, 420]
+          },
+          month: {
+            kpis: [
+              { t: "Current Tickets", v: "14,210", d: 5.4, good: true, s: [6, 8, 9, 12, 11, 14, 13, 16, 15, 18, 17, 19] },
+              { t: "Daily Avg. Resolution", v: "472", u: " min", d: -3.1, good: true, s: [16, 15, 14, 15, 12, 13, 11, 12, 10, 11, 9, 10] },
+              { t: "SLA Compliance Rate", v: "94%", d: 1.1, good: true, s: [9, 10, 12, 11, 13, 12, 14, 15, 14, 16, 15, 17] }
+            ],
+            total: "18,940", td: 11, labels: ["D4", "D8", "D12", "D16", "D20", "D24", "D28", "D30"], vals: [1450, 1820, 2210, 1960, 2480, 2290, 2640, 2100]
+          }
+        };
+        var updates = {
+          today: [
+            ["#5D1F71", "Ticket Updated", "11:20 AM", "Ticket #2319 SLA updated"],
+            ["#00BE87", "New Client Added", "11:15 AM", "PT. Alpha Indonesia registered"],
+            ["#8a4fe0", "Agent Reassigned", "11:00 AM", "Ticket #2322 moved to Michael Wong"],
+            ["#e0384a", "SLA Breach Risk", "10:45 AM", "Ticket #2320 “Login issue”"],
+            ["#12a5b4", "Knowledge Base", "10:30 AM", "New article published: “Login Troubleshooting”"],
+            ["#f0a020", "Customer Feedback", "10:30 AM", "“Great support response, thanks Sarah!”"]
+          ],
+          yesterday: [
+            ["#3a6fd8", "Ticket Updated", "5:40 PM", "Ticket #2311 status set to Delivered"],
+            ["#e0384a", "SLA Breach Risk", "3:10 PM", "Ticket #2308 “Invoice mismatch”"],
+            ["#0a9a6a", "New Client Added", "1:25 PM", "Northwind Traders registered"],
+            ["#f0a020", "Customer Feedback", "10:05 AM", "“Quick fix, very helpful.”"]
+          ],
+          week: []
+        };
+        updates.week = updates.today.concat(updates.yesterday, [
+          ["#8a4fe0", "Agent Reassigned", "Mon", "Ticket #2301 moved to Sarah Lee"],
+          ["#12a5b4", "Knowledge Base", "Mon", "Article updated: “Exporting reports”"]
+        ]);
+        var tickets = [
+          { id: 2319, s: "Payment failed on invoice", p: "High", a: "John Doe", c: "a1", st: "Review", cr: "2025-08-18", dl: "2h left", dh: 2 },
+          { id: 2320, s: "Login issue", p: "Medium", a: "Sarah Lee", c: "a2", st: "Delivered", cr: "2025-08-19", dl: "1h left", dh: 1 },
+          { id: 2321, s: "Feature request export", p: "Low", a: "John Doe", c: "a1", st: "Progress", cr: "2025-08-19", dl: "1d left", dh: 24 },
+          { id: 2322, s: "Contract renewal issue", p: "Medium", a: "Michael Wong", c: "a3", st: "Progress", cr: "2025-08-20", dl: "9h left", dh: 9 },
+          { id: 2323, s: "Dashboard not loading", p: "High", a: "Sarah Lee", c: "a2", st: "Progress", cr: "2025-08-20", dl: "4h left", dh: 4 },
+          { id: 2324, s: "Update billing address", p: "Low", a: "Michael Wong", c: "a3", st: "Review", cr: "2025-08-21", dl: "2d left", dh: 48 },
+          { id: 2325, s: "API rate limit question", p: "Medium", a: "Priya Nair", c: "a4", st: "Progress", cr: "2025-08-21", dl: "6h left", dh: 6 }
+        ];
+        var stLabel = { Review: "In Review", Delivered: "Delivered", Progress: "In Progress" }, prank = { High: 3, Medium: 2, Low: 1 };
+
+        function spark(s, col) {
+          var w = 100, h = 36, mx = Math.max.apply(null, s), mn = Math.min.apply(null, s), pts = s.map(function (v, i) { return [(i / (s.length - 1)) * w, h - 3 - ((v - mn) / (mx - mn || 1)) * (h - 8)]; });
+          var line = pts.map(function (p, i) { return (i ? "L" : "M") + p[0].toFixed(1) + " " + p[1].toFixed(1); }).join(" ");
+          return '<svg class="spark" viewBox="0 0 100 36" preserveAspectRatio="none"><path d="' + line + ' L100 36 L0 36 Z" fill="' + col + '" opacity=".12"/><path d="' + line + '" fill="none" stroke="' + col + '" stroke-width="1.6" vector-effect="non-scaling-stroke"/></svg>';
+        }
+        function renderKpis() {
+          var h = "";
+          data[range].kpis.forEach(function (k) {
+            var col = k.good ? "#00BE87" : "#e0384a", sign = k.d >= 0 ? "+" : "";
+            h += '<div class="kpi"><span>' + k.t + '</span><div class="kpi-in"><div><strong>' + k.v + (k.u ? '<small>' + k.u + "</small>" : "") + '</strong><small><b class="' + (k.good ? "up" : "down") + '">' + sign + k.d + "%</b> vs last " + range + "</small></div>" + spark(k.s, col) + "</div></div>";
+          });
+          $("d-kpis").innerHTML = h;
+        }
+        var axMax = 800;
+        function renderChart() {
+          var d = data[range], mx = Math.max.apply(null, d.vals), step = mx > 1000 ? 1000 : 200;
+          axMax = Math.ceil(mx / step) * step;
+          $("d-total").textContent = d.total; $("d-tdelta").innerHTML = '<b class="up">+' + d.td + "%</b> vs last " + range;
+          var y = ""; for (var i = 4; i >= 0; i--) y += "<span>" + Math.round((axMax / 4) * i) + "</span>";
+          $("d-yax").innerHTML = y;
+          $("d-bars").innerHTML = d.vals.map(function (v, i) { return '<div class="bar' + (i === active ? " on" : "") + '" data-i="' + i + '" style="height:' + Math.round((v / axMax) * 100) + '%"></div>'; }).join("");
+          $("d-xax").innerHTML = d.labels.map(function (l) { return "<span>" + l + "</span>"; }).join("");
+          placeTip();
+        }
+        function placeTip() {
+          var d = data[range], bars = $("d-bars"), el = bars.children[active];
+          if (!el) return;
+          var b = (d.vals[active] / axMax) * bars.clientHeight;
+          $("d-guide").style.bottom = b + "px";
+          var tip = $("d-tip"); tip.textContent = d.labels[active] + " : " + d.vals[active];
+          tip.style.bottom = b + "px"; tip.style.left = bars.offsetLeft + el.offsetLeft - 6 + "px";
+        }
+        function setActive(i) {
+          active = i;
+          Array.prototype.forEach.call($("d-bars").children, function (b, j) { b.classList.toggle("on", j === i); });
+          placeTip();
+        }
+        function renderUpdates() {
+          var list = updates[utab].filter(function (u) { return (u[1] + " " + u[3]).toLowerCase().indexOf(uq) > -1; });
+          $("d-ucount").innerHTML = "<b>" + list.length + "</b> " + (uq ? "matching" : "new") + " activities " + (utab === "week" ? "this week" : utab);
+          $("d-ulist").innerHTML = list.length ? list.map(function (u) {
+            return '<li class="u-item"><span class="u-ic"><i style="background:' + u[0] + '"></i></span><div><strong>' + esc(u[1]) + "</strong><small>" + esc(u[3]) + "</small></div><time>" + u[2] + "</time></li>";
+          }).join("") : '<li class="u-empty">No activities found</li>';
+        }
+        var cols = [["id", "Ticket ID"], ["s", "Subject"], ["p", "Priority"], ["a", "Assigned To"], ["st", "Status"], ["cr", "Created Date"], ["dh", "SLA Due"]];
+        function renderTable() {
+          var rows = tickets.filter(function (t) {
+            return (!tf || t.p === tf) && (("#" + t.id + " " + t.s).toLowerCase().indexOf(tq) > -1);
+          });
+          rows.sort(function (a, b) {
+            var x = sortKey === "p" ? prank[a.p] : a[sortKey], y = sortKey === "p" ? prank[b.p] : b[sortKey];
+            return (x > y ? 1 : x < y ? -1 : 0) * sortDir;
+          });
+          var allSel = rows.length && rows.every(function (t) { return selected[t.id]; });
+          $("d-thead").innerHTML = "<tr><th><input type=\"checkbox\" id=\"d-all\" aria-label=\"Select all\"" + (allSel ? " checked" : "") + "></th>" + cols.map(function (c) {
+            return '<th data-sort="' + c[0] + '"' + (sortKey === c[0] ? ' class="sorted"' : "") + ">" + c[1] + '<span class="ar">' + (sortKey === c[0] ? (sortDir > 0 ? "↑" : "↓") : "↕") + "</span></th>";
+          }).join("") + "<th></th></tr>";
+          $("d-tbody").innerHTML = rows.length ? rows.map(function (t) {
+            return '<tr class="' + (selected[t.id] ? "sel" : "") + '" data-id="' + t.id + '"><td><input type="checkbox" data-sel' + (selected[t.id] ? " checked" : "") + ' aria-label="Select ticket"></td><td>#' + t.id + "</td><td>" + esc(t.s) + '</td><td><span class="pb ' + t.p + '"><i></i><i></i><i></i></span>' + t.p + '</td><td><span class="asg"><span class="av ' + t.c + '">' + t.a.split(" ").map(function (w) { return w[0]; }).join("") + "</span>" + esc(t.a) + '</span></td><td><span class="st ' + t.st + '"><i></i>' + stLabel[t.st] + "</span></td><td>" + t.cr + "</td><td>" + t.dl + '</td><td><button type="button" class="rowx" data-done title="Mark delivered">✓</button></td></tr>';
+          }).join("") : '<tr class="t-empty"><td colspan="9">No tickets match</td></tr>';
+        }
+
+        root.addEventListener("click", function (e) {
+          var t = e.target;
+          var nav = t.closest("[data-nav]");
+          if (nav) { root.querySelectorAll("[data-nav]").forEach(function (b) { b.classList.toggle("on", b === nav); }); $("d-crumb").textContent = nav.getAttribute("data-nav") === "Overview" ? "Dashboard" : nav.getAttribute("data-nav"); return; }
+          if (t.closest("#d-collapse")) { root.classList.toggle("collapsed"); return; }
+          var ut = t.closest("[data-ut]");
+          if (ut) { utab = ut.getAttribute("data-ut"); root.querySelectorAll("[data-ut]").forEach(function (b) { b.classList.toggle("on", b === ut); }); renderUpdates(); return; }
+          var th = t.closest("[data-sort]");
+          if (th) { var k = th.getAttribute("data-sort"); if (sortKey === k) sortDir = -sortDir; else { sortKey = k; sortDir = 1; } renderTable(); return; }
+          var dn = t.closest("[data-done]");
+          if (dn) { var id = +dn.closest("tr").getAttribute("data-id"); tickets.forEach(function (x) { if (x.id === id) x.st = "Delivered"; }); renderTable(); return; }
+          if (t.id === "d-all") {
+            var on = t.checked; tickets.forEach(function (x) { if ((!tf || x.p === tf) && (("#" + x.id + " " + x.s).toLowerCase().indexOf(tq) > -1)) selected[x.id] = on; });
+            renderTable(); return;
+          }
+          if (t.hasAttribute("data-sel")) { var rid = +t.closest("tr").getAttribute("data-id"); selected[rid] = t.checked; renderTable(); return; }
+        });
+        $("d-bars").addEventListener("mouseover", function (e) { var b = e.target.closest(".bar"); if (b) setActive(+b.getAttribute("data-i")); });
+        $("d-bars").addEventListener("click", function (e) { var b = e.target.closest(".bar"); if (b) setActive(+b.getAttribute("data-i")); });
+        $("d-range").addEventListener("change", function (e) { range = e.target.value; active = Math.min(active, data[range].vals.length - 1); renderKpis(); renderChart(); });
+        $("d-usearch").addEventListener("input", function (e) { uq = e.target.value.toLowerCase().trim(); renderUpdates(); });
+        $("d-tsearch").addEventListener("input", function (e) { tq = e.target.value.toLowerCase().replace("#", "").trim(); renderTable(); });
+        $("d-tfilter").addEventListener("change", function (e) { tf = e.target.value; renderTable(); });
+        window.addEventListener("resize", placeTip);
+        renderKpis(); renderChart(); renderUpdates(); renderTable();
+      })();
+      (function () {
+        var btns = document.querySelectorAll("[data-without]"), targets = document.querySelectorAll(".hero");
+        btns.forEach(function (t) {
+          t.addEventListener("click", function () {
+            var on = t.getAttribute("aria-checked") !== "true";
+            btns.forEach(function (b) { b.setAttribute("aria-checked", String(on)); });
+            targets.forEach(function (el) { el.classList.toggle("without", on); });
+          });
+        });
+      })();
+      (function () {
+        var nav = document.getElementById("site-nav"), btn = document.getElementById("menu-btn");
+        if (!nav || !btn) return;
+        function set(o) { nav.classList.toggle("open", o); btn.setAttribute("aria-expanded", String(o)); }
+        btn.addEventListener("click", function () { set(!nav.classList.contains("open")); });
+        document.getElementById("nav-links").addEventListener("click", function (e) { if (e.target.tagName === "A") set(false); });
+        document.addEventListener("click", function (e) { if (!nav.contains(e.target)) set(false); });
+        document.addEventListener("keydown", function (e) { if (e.key === "Escape") set(false); });
+        window.addEventListener("resize", function () { if (window.innerWidth > 900) set(false); });
+      })();
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --color-primary: #5D1F71; --color-primary-hover: #481658; --color-accent: #00BE87;
+    --ink: #1b1b26; --muted: #6B6670; --line: #e9e6ec; --gray: #f3f4f6;
+    --hl: #FDB132; --r: 14px; --pad: clamp(16px, 4vw, 24px); --sec: clamp(48px, 8vw, 80px);
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  /* Typography: Public Sans everywhere — light body, bold emphasis (matches reference image) */
+  body, button, input { font-family: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif; }
+  body { margin: 0; font-size: 16px; font-weight: 300; line-height: 1.5; color: var(--ink); background: #fff; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  strong, b { font-weight: 700; }
+  h1, h2, h3, h4 { font-family: "Public Sans", sans-serif; font-weight: 700; margin: 0; letter-spacing: -.02em; }
+  p { margin: 0; }
+  a { color: inherit; text-decoration: none; }
+  ul { list-style: none; margin: 0; padding: 0; }
+  img, svg { max-width: 100%; height: auto; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 var(--pad); }
+  :focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+
+  /* buttons */
+  .btn { display: inline-flex; align-items: center; justify-content: center; padding: 9px 16px; border-radius: 8px; font-weight: 600; font-size: 14px; border: 1px solid transparent; cursor: pointer; transition: background-color 200ms, box-shadow 200ms, transform 200ms; }
+  .btn-primary { background: var(--color-primary); color: #fff; }
+  .btn-primary:hover { background: var(--color-primary-hover); box-shadow: 0 6px 18px rgba(93,31,113,.2); }
+  .btn-soft { background: var(--gray); color: var(--color-primary); }
+  .btn-soft:hover { background: #e8eaee; }
+  .btn:active { transform: translateY(1px); }
+  .btn-lg { padding: 14px 24px; font-size: 15px; }
+  .btn-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .link { color: var(--color-primary); font-weight: 600; font-size: 14px; }
+
+  /* nav */
+  .nav { position: relative; display: flex; align-items: center; justify-content: space-between; padding: 10px 18px; margin: 16px 0 20px; gap: 16px; z-index: 30; background: #fff; border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 4px 20px rgba(20,20,40,.05); }
+  .logo img { display: block; height: 40px; width: auto; }
+  .nav-links { display: flex; gap: 32px; font-size: 14px; font-weight: 500; }
+  .nav-links-cta { display: none; }
+  .nav-links a:hover { color: var(--color-primary); }
+  .nav-cta { display: flex; align-items: center; gap: 16px; }
+  .signin { font-size: 14px; font-weight: 500; }
+  .menu-btn { display: none; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 10px; background: #fff; cursor: pointer; padding: 0; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
+  .menu-btn span { width: 18px; height: 2px; background: var(--color-primary); border-radius: 2px; transition: transform 200ms, opacity 200ms; }
+  .nav.open .menu-btn span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .nav.open .menu-btn span:nth-child(2) { opacity: 0; }
+  .nav.open .menu-btn span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+  /* placeholders */
+  .ph { display: grid; place-items: center; text-align: center; color: #9a9aa5; font-size: 13px; border: 1.5px dashed #cfcfd6; border-radius: 12px; background: repeating-linear-gradient(45deg, #fafafb, #fafafb 10px, #f3f3f5 10px, #f3f3f5 20px); }
+  .ph-icon { display: block; width: 50%; aspect-ratio: 1; border: 1.5px dashed #cfcfd6; border-radius: 10px; background: #f3f3f5; }
+  .ph-video { aspect-ratio: 16/9; min-height: 220px; }
+  .ph-app { min-height: clamp(260px, 46vw, 480px); margin-top: 24px; background-color: #fff; }
+  .ph-card { min-height: 180px; margin: 16px 0; }
+  .ph-avatar { width: 56px; height: 56px; border-radius: 50%; font-size: 10px; flex-shrink: 0; }
+  .ph-logo { width: 90px; height: 36px; font-size: 11px; border-radius: 8px; margin-top: 8px; }
+
+  /* hero */
+  .hero { position: relative; text-align: center; padding: clamp(40px, 6vw, 64px) 0 56px; min-height: 640px; }
+  .rings { position: absolute; top: 0; bottom: 0; left: 50%; width: 100vw; transform: translateX(-50%); overflow: hidden; pointer-events: none; -webkit-mask-image: linear-gradient(#000 65%, transparent); mask-image: linear-gradient(#000 65%, transparent); }
+  .rings span { position: absolute; left: 50%; top: 46%; border: 1px solid #e6e8ee; border-radius: 50%; transform: translate(-50%, -50%); }
+  .rings span:nth-child(1) { width: 600px; height: 600px; }
+  .rings span:nth-child(2) { width: 860px; height: 860px; }
+  .rings span:nth-child(3) { width: 1120px; height: 1120px; }
+  .rings span:nth-child(4) { width: 1380px; height: 1380px; }
+  .rings span:nth-child(5) { width: 1640px; height: 1640px; }
+  .orb { position: absolute; display: grid; place-items: center; width: 46px; height: 46px; margin: -23px 0 0 -23px; background: #fff; border-radius: 50%; box-shadow: 0 4px 16px rgba(20,20,40,.1); z-index: 1; }
+  .orb .ph-icon { width: 22px; }
+  .hero-in { position: relative; z-index: 2; max-width: 520px; margin: 0 auto; }
+  .ratings { display: flex; gap: 20px; justify-content: center; align-items: center; font-size: 13px; font-weight: 500; color: var(--muted); margin-bottom: 20px; }
+  .ratings span { display: inline-flex; align-items: center; gap: 6px; }
+  .mini { width: 14px; height: 14px; border-radius: 50%; background: #e0e2e8; border: 1px dashed #b9bcc6; }
+  .mini.star { background: var(--color-accent); border: 0; border-radius: 3px; }
+  .hero h1 { font-size: clamp(34px, 5.4vw, 56px); line-height: 1.08; letter-spacing: -.035em; margin: 0 auto 16px; }
+  .hero-sub { font-size: 15px; color: var(--muted); max-width: 400px; margin: 0 auto 24px; }
+  .hero-toggle { margin-top: 32px; padding-left: 34px; }
+  .orb-label { position: absolute; top: calc(100% + 6px); left: 50%; transform: translateX(-50%) scale(.85); font-style: normal; font-size: 13px; font-weight: 600; color: var(--color-primary); white-space: nowrap; opacity: 0; transition: opacity 300ms ease, transform 300ms ease; }
+  .hero.without .orb-label { opacity: 1; transform: translateX(-50%); }
+  .hero.without .orb { box-shadow: 0 4px 16px rgba(93,31,113,.22); }
+  .btn-outline { background: #fff; color: var(--ink); border-color: var(--line); }
+  .btn-outline:hover { background: var(--gray); }
+  .hero .btn-lg { padding: 11px 18px; font-size: 14px; }
+
+  .toggle { background: none; border: 0; padding: 0; font: inherit; position: relative; }
+  .toggle .sw { width: 42px; height: 24px; transition: background 250ms ease; }
+  .toggle .sw::after { top: 4px; left: 5px; width: 14px; height: 14px; transition: transform 250ms ease, background 250ms ease; }
+  .toggle[aria-checked="true"] .sw { background: var(--color-primary); border-color: var(--color-primary); }
+  .toggle[aria-checked="true"] .sw::after { transform: translateX(17px); background: #fff; }
+  .sparks { position: absolute; left: -34px; top: -14px; width: 30px; height: 26px; opacity: 0; transition: opacity 250ms ease; }
+  .sparks i { position: absolute; height: 3px; width: 14px; border-radius: 3px; background: var(--color-accent); }
+  .sparks i:nth-child(1) { left: 0; top: 14px; transform: rotate(18deg); }
+  .sparks i:nth-child(2) { left: 6px; top: 4px; transform: rotate(52deg); }
+  .sparks i:nth-child(3) { left: 18px; top: 0; transform: rotate(80deg); }
+  .toggle[aria-checked="true"] .sparks { opacity: 1; }
+  .toggle { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 500; color: var(--color-primary); cursor: pointer; }
+  .sw { width: 32px; height: 18px; border-radius: 99px; background: #fff; border: 1px solid var(--line); position: relative; }
+  .sw::after { content: ""; position: absolute; top: 3px; left: 4px; width: 10px; height: 10px; border-radius: 50%; background: var(--ink); }
+
+  /* sections */
+  .section { padding: var(--sec) 0; }
+  .section.center { text-align: center; }
+  h2 { font-size: clamp(28px, 4.4vw, 44px); line-height: 1.12; margin-bottom: 32px; }
+  .frame { background: #fff; border-radius: 18px; padding: 8px; box-shadow: 0 10px 40px rgba(93,31,113,.1); max-width: 720px; margin: 0 auto; }
+  .player { display: flex; align-items: center; gap: 12px; max-width: 360px; margin: 20px auto 0; }
+  .pbtn { width: 10px; height: 12px; border-left: 3px solid var(--color-primary); border-right: 3px solid var(--color-primary); }
+  .bar { flex: 1; height: 2px; background: #999; }
+
+  /* interactive dashboard */
+  .dash { --line: #ece7f0; display: grid; grid-template-columns: 220px minmax(0, 1fr); width: 100%; margin: 24px 0 0; text-align: left; background: #fff; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; box-shadow: 0 20px 60px rgba(93,31,113,.08); font-size: 13px; }
+  .dash.collapsed { grid-template-columns: 64px minmax(0, 1fr); }
+  .dash.collapsed .d-nav span, .dash.collapsed .d-label, .dash.collapsed .d-user div { display: none; }
+  .dash button { font-family: inherit; cursor: pointer; }
+  .dash [hidden] { display: none !important; }
+  .dside { background: #faf8fb; border-right: 1px solid var(--line); padding: 10px 10px; display: flex; flex-direction: column; gap: 4px; }
+  .d-brand { display: flex; justify-content: flex-end; padding: 0 4px 2px; }
+  .d-brand strong { font-size: 15px; }
+  .d-collapse { margin-left: auto; border: 0; background: transparent; color: var(--muted); font-size: 14px; }
+  .d-label { font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: #9a9aa5; margin: 8px 4px 2px; }
+  .d-nav { display: grid; gap: 2px; }
+  .d-nav button { display: flex; align-items: center; gap: 10px; border: 0; background: transparent; padding: 6px 10px; border-radius: 8px; font-size: 12.5px; font-weight: 500; color: #4a4a54; text-align: left; transition: background 150ms; }
+  .d-nav button:hover { background: rgba(93,31,113,.07); }
+  .d-nav button.on { background: #fff; color: var(--color-primary); box-shadow: 0 1px 3px rgba(93,31,113,.14), inset 3px 0 0 var(--color-primary); font-weight: 600; }
+  .ic { width: 14px; height: 14px; border-radius: 4px; border: 1.5px solid #a9acb6; flex-shrink: 0; }
+  .d-nav button.on .ic { border-color: var(--color-primary); background: rgba(93,31,113,.15); }
+  .d-user { margin-top: auto; display: flex; align-items: center; gap: 8px; padding: 6px; background: #fff; border: 1px solid var(--line); box-shadow: 0 1px 3px rgba(93,31,113,.08); border-radius: 10px; }
+  .d-user strong { display: block; font-size: 12.5px; }
+  .d-user small { font-size: 10.5px; color: var(--muted); }
+  .av { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; font-size: 10px; font-weight: 700; color: #fff; flex-shrink: 0; }
+  .a1 { background: #5D1F71; } .a2 { background: #00BE87; } .a3 { background: #e08a00; } .a4 { background: #3a6fd8; }
+  .dmain-wrap { padding: 10px clamp(12px, 2vw, 20px) 14px; background: #fff; min-width: 0; }
+  .d-top { padding-bottom: 8px; border-bottom: 1px solid var(--line); margin-bottom: 10px; }
+  .crumb { color: var(--muted); font-size: 13px; }
+  .crumb b { color: var(--ink); font-weight: 600; }
+  .d-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; }
+  .d-head h3 { font-size: clamp(17px, 2vw, 20px); font-weight: 700; letter-spacing: -.02em; color: var(--ink); }
+  .d-head p { color: var(--muted); font-size: 12px; margin-top: 2px; }
+  .dash select, .dash input[type="search"] { font: inherit; font-size: 13px; border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; background: #fff; color: var(--ink); min-width: 0; }
+  .dash input:focus, .dash select:focus { outline: 2px solid var(--color-primary); outline-offset: 1px; }
+  .dmain { display: grid; grid-template-columns: minmax(0, 1fr) clamp(260px, 26%, 320px); grid-template-areas: "kpis upd" "chart upd" "table table"; gap: 10px; align-items: stretch; }
+  .g-kpis { grid-area: kpis; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  .g-chart { grid-area: chart; } .g-upd { grid-area: upd; } .g-table { grid-area: table; }
+  .dbox { background: #f8f5fa; border: 1px solid var(--line); border-radius: 14px; padding: 6px; min-width: 0; }
+  .dbox > header { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 5px 10px; font-weight: 500; color: #4a4a54; flex-wrap: wrap; }
+  .kpi { background: #f8f5fa; border: 1px solid var(--line); border-radius: 14px; padding: 6px; }
+  .kpi > span { display: block; padding: 5px 10px; font-weight: 500; color: #4a4a54; }
+  .kpi-in { background: #fff; border-radius: 10px; padding: 8px 12px; display: flex; justify-content: space-between; align-items: flex-end; gap: 6px; box-shadow: 0 1px 2px rgba(0,0,0,.05); }
+  .kpi-in strong { font-size: clamp(18px, 2vw, 22px); font-weight: 500; letter-spacing: -.02em; display: block; }
+  .kpi-in small { font-size: 11px; color: var(--muted); }
+  .kpi-in small b { font-weight: 600; }
+  .up { color: #00875f; } .down { color: #e0384a; }
+  .spark { width: 46%; max-width: 110px; height: 30px; flex-shrink: 0; }
+  .chart-top, .plot, .xax { background: #fff; }
+  .chart-top { display: flex; align-items: baseline; gap: 10px; padding: 8px 16px 0; border-radius: 10px 10px 0 0; }
+  .chart-top strong { font-size: clamp(20px, 2.4vw, 26px); font-weight: 500; letter-spacing: -.02em; }
+  .chart-top small { color: var(--muted); font-size: 12px; }
+  .plot { position: relative; display: flex; align-items: stretch; height: 150px; padding: 10px 16px 0; }
+  .bars { flex: 1; display: flex; align-items: flex-end; gap: clamp(4px, 1.4%, 14px); position: relative; z-index: 1; }
+  .bar { flex: 1; min-width: 0; background: #efe9f3; border-radius: 8px 8px 0 0; cursor: pointer; transition: height 400ms ease, background 150ms; }
+  .bar:hover { background: #dfd0e8; }
+  .bar.on { background: linear-gradient(#7a2d96, #4a1759); }
+  .yax { order: 2; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; width: 40px; font-size: 11px; color: var(--muted); padding-left: 10px; }
+  .yax span { transform: translateY(-50%); }
+  .yax span:last-child { transform: translateY(50%); }
+  .guide { position: absolute; left: 16px; right: 56px; border-top: 1.5px dashed #b08cc0; z-index: 2; pointer-events: none; transition: bottom 300ms ease; }
+  .tip { position: absolute; z-index: 3; background: var(--color-primary); color: #fff; font-size: 12px; font-weight: 500; padding: 4px 9px; border-radius: 6px; white-space: nowrap; transform: translate(-100%, 50%); pointer-events: none; transition: bottom 300ms ease, left 300ms ease; }
+  .xax { display: flex; gap: clamp(4px, 1.4%, 14px); padding: 4px 56px 8px 16px; border-radius: 0 0 10px 10px; font-size: 12px; color: var(--muted); }
+  .xax span { flex: 1; text-align: center; min-width: 0; }
+  .u-tabs { display: flex; gap: 6px; padding: 2px 4px 6px; }
+  .u-tabs button { flex: 1; border: 1px solid var(--line); background: #fff; border-radius: 8px; padding: 5px 4px; font-size: 12px; font-weight: 500; color: #4a4a54; }
+  .u-tabs button.on { background: var(--color-primary); border-color: var(--color-primary); color: #fff; }
+  .g-upd input[type="search"] { width: calc(100% - 8px); margin: 0 4px; }
+  .u-count { padding: 8px 10px 6px; font-size: 12px; color: var(--muted); border-bottom: 1px dashed var(--line); margin-bottom: 4px; }
+  .u-count b { font-size: 15px; color: var(--ink); font-weight: 500; }
+  .u-list { display: grid; gap: 2px; background: #fff; border-radius: 10px; padding: 4px 10px; max-height: 190px; overflow-y: auto; }
+  .u-item { display: grid; grid-template-columns: 26px 1fr auto; gap: 8px; padding: 5px 0; align-items: start; }
+  .u-ic { width: 24px; height: 24px; border-radius: 8px; border: 1px solid var(--line); display: grid; place-items: center; }
+  .u-ic i { width: 10px; height: 10px; border-radius: 3px; }
+  .u-item strong { display: block; font-size: 12.5px; font-weight: 500; }
+  .u-item small { display: block; font-size: 11.5px; color: #9a9aa5; line-height: 1.35; }
+  .u-item time { font-size: 11px; color: #9a9aa5; white-space: nowrap; }
+  .u-empty { text-align: center; color: #9a9aa5; padding: 24px 0; }
+  .t-tools { display: flex; gap: 8px; }
+  .t-scroll { background: #fff; border-radius: 10px; overflow: auto; max-height: 150px; }
+  .tbl { width: 100%; border-collapse: collapse; min-width: 760px; font-size: 13px; }
+  .tbl th { text-align: left; font-weight: 500; color: #4a4a54; padding: 7px 12px; background: #f8f5fa; white-space: nowrap; cursor: pointer; position: sticky; top: 0; z-index: 1; user-select: none; }
+  .tbl th:first-child, .tbl td:first-child { width: 36px; cursor: default; }
+  .tbl th .ar { color: #b0b0ba; margin-left: 4px; font-size: 11px; }
+  .tbl th.sorted .ar { color: var(--color-primary); }
+  .tbl td { padding: 7px 12px; border-top: 1px solid var(--line); white-space: nowrap; }
+  .tbl tr.sel td { background: rgba(93,31,113,.05); }
+  .tbl tbody tr:hover td { background: #fafafb; }
+  .pb { display: inline-flex; align-items: flex-end; gap: 2px; height: 11px; margin-right: 6px; vertical-align: -1px; }
+  .pb i { width: 3px; border-radius: 1px; background: #d9dbe1; }
+  .pb i:nth-child(1) { height: 5px; } .pb i:nth-child(2) { height: 8px; } .pb i:nth-child(3) { height: 11px; }
+  .pb.High i { background: #e0384a; } .pb.Medium i:nth-child(-n+2) { background: #f08a24; } .pb.Low i:nth-child(1) { background: #f5c242; }
+  .asg { display: inline-flex; align-items: center; gap: 8px; }
+  .asg .av { width: 22px; height: 22px; font-size: 8px; }
+  .st { display: inline-flex; align-items: center; gap: 6px; }
+  .st i { width: 9px; height: 9px; border-radius: 50%; border: 2px solid; }
+  .st.Review i { color: #5D1F71; } .st.Delivered i { color: #00BE87; background: #00BE87; } .st.Progress i { color: #e08a00; }
+  .rowx { border: 0; background: transparent; font-size: 16px; color: #6b6b75; letter-spacing: 1px; }
+  .rowx:hover { color: #c0233a; }
+  .dash input[type="checkbox"] { accent-color: var(--color-primary); width: 15px; height: 15px; }
+  .t-empty td { text-align: center; color: #9a9aa5; padding: 28px; }
+  @media (max-width: 1000px) {
+    .dmain { grid-template-columns: minmax(0, 1fr); grid-template-areas: "kpis" "chart" "upd" "table"; }
+  }
+  @media (max-width: 760px) {
+    .dash, .dash.collapsed { grid-template-columns: minmax(0, 1fr); }
+    .dside { display: none; }
+    .g-kpis { grid-template-columns: minmax(0, 1fr); }
+    .plot { height: 140px; }
+    .t-tools { width: 100%; } .t-tools input { flex: 1; }
+  }
+
+  /* enterprise */
+  .enterprise { background: var(--gray); margin: 0 calc(var(--pad) * -1); padding-left: var(--pad); padding-right: var(--pad); border-radius: clamp(24px, 6vw, 80px) 0 clamp(24px, 6vw, 80px) 0; }
+  .enterprise h2 { max-width: 1100px; margin-inline: auto; }
+  .ent-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 1100px; margin: 0 auto; align-items: start; }
+  .ent-col { display: grid; gap: 24px; }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: var(--r); padding: 24px; }
+  .card h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+  .card p { color: #3d3d46; font-size: 15px; margin-bottom: 16px; }
+  .card .q { font-style: italic; margin-bottom: 0; }
+  .bul { margin-bottom: 16px; font-size: 15px; color: #3d3d46; }
+  .bul li::before { content: "• "; }
+
+  /* users */
+  .users { position: relative; padding: var(--sec) 0; }
+  .mosaic { display: grid; grid-template-columns: repeat(12, 1fr); gap: 8px; }
+  .m { aspect-ratio: 1; border-radius: 50%; animation: morph 6s ease-in-out infinite; animation-delay: calc(var(--i) * -.45s); transition: transform 250ms ease; }
+  .m:hover { transform: scale(1.12) rotate(8deg); }
+  .m.gray { background: #cfcfd6; }
+  .m.light { background: #e8eaee; }
+  .m.purple { background: #6f4a7d; }
+  .m.green { background: #00BE87; }
+  .m.purple.swap { animation: morph 6s ease-in-out infinite, tone-pg 9s ease-in-out infinite; animation-delay: calc(var(--i) * -.45s), calc(var(--i) * -.7s); }
+  .m.green.swap { animation: morph 6s ease-in-out infinite, tone-gp 9s ease-in-out infinite; animation-delay: calc(var(--i) * -.45s), calc(var(--i) * -.7s); }
+  @keyframes morph {
+    0%, 100% { border-radius: 50%; }
+    25% { border-radius: 14px 50% 14px 50%; }
+    50% { border-radius: 16px; }
+    75% { border-radius: 50% 14px 50% 14px; }
+  }
+  @keyframes tone-pg { 0%, 35%, 100% { background: #6f4a7d; } 55%, 80% { background: #00BE87; } }
+  @keyframes tone-gp { 0%, 35%, 100% { background: #00BE87; } 55%, 80% { background: #6f4a7d; } }
+  .users-card { position: absolute; inset: 50% auto auto 50%; transform: translate(-50%, -50%); background: #fff; padding: 28px clamp(24px, 6vw, 80px); border-radius: 18px; text-align: center; box-shadow: 0 8px 40px rgba(0,0,0,.08); width: min(86%, 560px); }
+  .users-card h2 { margin-bottom: 8px; font-size: clamp(24px, 4vw, 36px); }
+
+  /* testimonial */
+  .testimonial { display: flex; justify-content: space-between; gap: 32px; background: var(--gray); border-radius: 12px; padding: clamp(20px, 4vw, 40px); }
+  .t-text { max-width: 640px; }
+  .qm { font-size: 64px; line-height: .6; color: var(--hl); font-weight: 700; display: block; margin-bottom: 12px; }
+  .t-text p { font-size: clamp(16px, 2vw, 20px); font-weight: 600; line-height: 1.45; }
+  .t-person { display: grid; justify-items: center; text-align: center; gap: 2px; font-size: 13px; align-content: start; }
+  .t-person span { color: var(--muted); font-size: 12px; }
+  .t-person .ph-avatar { width: 64px; height: 64px; margin-bottom: 8px; }
+
+  /* cta */
+  .cta { text-align: center; padding: clamp(56px, 9vw, 90px) 0 40px; }
+  .cta h2 { margin-bottom: 24px; }
+  .accent { color: var(--color-accent); }
+  .tiny { font-size: 12px; color: var(--muted); margin-top: 14px; }
+
+  /* footer */
+  .footer { background: var(--gray); margin: 40px calc(var(--pad) * -1) 0; padding: 48px var(--pad) 24px; }
+  .foot-top { display: grid; grid-template-columns: 1fr 1.4fr; gap: 40px; max-width: 1152px; margin: 0 auto; }
+  .letter h4 { margin: 24px 0 8px; font-size: 16px; }
+  .letter .muted, .muted { color: var(--muted); max-width: 320px; font-size: 14px; }
+  .subf { display: flex; margin-top: 16px; max-width: 360px; border: 1px solid var(--line); border-radius: 10px; background: #fff; padding: 4px; }
+  .subf input { flex: 1; border: 0; padding: 8px; font: inherit; background: transparent; min-width: 0; }
+  .subf button { border: 0; background: var(--color-primary); color: #fff; border-radius: 7px; padding: 8px 14px; font-weight: 600; cursor: pointer; }
+  .mono { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+  .cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .cols ul { display: grid; gap: 12px; margin-top: 16px; font-size: 14px; }
+  .cols a:hover { color: var(--color-primary); }
+  .foot-bottom { max-width: 1152px; margin: 40px auto 0; padding-top: 20px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--muted); }
+  .socials { display: flex; gap: 14px; }
+  .sq { display: inline-block; width: 16px; height: 16px; border-radius: 4px; background: #d6d6dc; }
+
+  /* responsive */
+  @media (max-width: 900px) {
+    .nav { padding: 8px 12px; }
+    .logo img { height: 40px; }
+    .menu-btn { display: inline-flex; }
+    .signin { display: none; }
+    .nav-links { display: none; position: absolute; top: calc(100% - 4px); left: 0; right: 0; flex-direction: column; gap: 2px; padding: 8px; background: #fff; border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 16px 40px rgba(36,33,36,.14); }
+    .nav-links a { padding: 13px 14px; border-radius: 9px; }
+    .nav.open .nav-links { display: flex; }
+    .nav-links .nav-links-cta { display: flex; justify-content: center; background: var(--color-primary); color: #fff; font-weight: 600; margin-top: 6px; }
+    .ent-grid, .foot-top { grid-template-columns: minmax(0, 1fr); }
+    .mosaic { grid-template-columns: repeat(6, 1fr); }
+    .testimonial { flex-direction: column; }
+    .t-person { justify-items: start; text-align: left; }
+  }
+  @media (max-width: 640px) {
+    .orb { display: none; }
+    .hero { min-height: 0; }
+    .rings span:nth-child(n+4) { display: none; }
+    .nav-cta > .btn { display: none; }
+    .btn-row .btn-lg { flex: 1 1 100%; }
+    .cols { grid-template-columns: 1fr 1fr; row-gap: 28px; }
+    .foot-bottom { flex-direction: column; align-items: flex-start; gap: 14px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }
+</style>
