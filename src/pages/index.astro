@@ -1,5 +1,5 @@
 ---
-// Fusionedge landing page — wireframe version (images, icons and videos are placeholders)
+// Fusionedge landing page — wireframe version (images and videos are placeholders; hero module icons are real SVGs)
 const nav = ["Apps", "Industries", "Community", "Pricing", "Help"];
 const cards = {
   left: [
@@ -14,8 +14,7 @@ const cards = {
     { t: "A unique value proposition", ph: "Positioning chart" },
   ],
 };
-// Floating icon placeholders around the hero rings: [left %, top %, label, "without" note, note side]
-// Utilities moved lower (71 -> 79) so "Manual meter logs" no longer collides with "Email threads".
+// Hero modules: [left %, top %, module, "without" note, note side]
 const orbs = [
   [22.4, 19, "Asset Register", "Excel sheets", "left"], [12.8, 37, "Work Orders", "WhatsApp groups", "left"],
   [26.1, 48, "PPM", "Paper checklists", "left"], [8.7, 57, "Smart Ticketing", "Email threads", "below"],
@@ -23,6 +22,20 @@ const orbs = [
   [87, 37, "Room Booking", "Shared calendars", "right"], [74, 48, "Inbox", "Email approvals", "right"],
   [91.6, 57, "Inventory", "Stock registers", "below"], [80.6, 72, "ESG", "Consultant reports", "left"],
 ];
+// Two-tone brand icons (24x24 viewBox) for each hero module
+const P = "#5D1F71", G = "#00BE87";
+const icons = {
+  "Asset Register": `<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z" stroke="${P}"/><path d="M4 7.5l8 4.5 8-4.5" stroke="${G}"/><path d="M12 12v9" stroke="${P}"/>`,
+  "Work Orders": `<rect x="5" y="4" width="14" height="17" rx="2.5" stroke="${P}"/><path d="M9 4h6v3H9z" stroke="${P}"/><path d="M8.5 14l2.5 2.5 4.5-5" stroke="${G}"/>`,
+  "PPM": `<rect x="3.5" y="5" width="17" height="15" rx="2.5" stroke="${P}"/><path d="M3.5 10h17M8 3v4M16 3v4" stroke="${P}"/><path d="M9 15l2 2 4-4" stroke="${G}"/>`,
+  "Smart Ticketing": `<path d="M4 7h16v3a2 2 0 0 0 0 4v3H4v-3a2 2 0 0 0 0-4z" stroke="${P}"/><path d="M14 7v10" stroke="${G}" stroke-dasharray="2 2"/>`,
+  "Utilities": `<path d="M13 2.5L5 13.5h6l-1 8 8-11h-6z" stroke="${P}"/><path d="M19 3.5c1.2 1.6 1.8 2.6 1.8 3.4a1.8 1.8 0 0 1-3.6 0c0-.8.6-1.8 1.8-3.4z" stroke="${G}"/>`,
+  "Visitor Management": `<rect x="3" y="5" width="18" height="14" rx="2.5" stroke="${P}"/><circle cx="9" cy="11" r="2" stroke="${G}"/><path d="M6.5 16c.4-1.4 1.4-2 2.5-2s2.1.6 2.5 2M14.5 10h4M14.5 13.5h3" stroke="${P}"/>`,
+  "Room Booking": `<rect x="3.5" y="4" width="17" height="16" rx="2.5" stroke="${P}"/><path d="M3.5 9h17" stroke="${P}"/><rect x="7" y="12" width="4" height="4" rx="1" stroke="${G}"/>`,
+  "Inbox": `<path d="M3.5 13l2.7-7.5A2 2 0 0 1 8 4.2h8a2 2 0 0 1 1.9 1.3L20.5 13v4.5a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z" stroke="${P}"/><path d="M3.5 13h5l1.2 2.5h4.6l1.2-2.5h5" stroke="${G}"/>`,
+  "Inventory": `<path d="M3 8l9-4.5 9 4.5-9 4.5z" stroke="${P}"/><path d="M3 12.5l9 4.5 9-4.5" stroke="${G}"/><path d="M3 17l9 4.5 9-4.5" stroke="${P}"/>`,
+  "ESG": `<path d="M5 19c0-8 5-13 14-14 0 9-5 14-13 14z" stroke="${P}"/><path d="M5 19c3-4 6-6.5 9-8" stroke="${G}"/>`,
+};
 const groups = [
   { h: "Assets & Maintenance", m: ["Asset Register", "Asset Audit", "Asset Readings", "PPM", "Digital Checklists", "Work Orders", "Vendors"] },
   { h: "Service & Approvals", m: ["Tickets", "Smart Ticketing", "Inbox", "Incidents", "Mailroom", "Communication Studio"] },
@@ -91,11 +104,14 @@ const footerCols = [
       <section class="hero">
         <div class="rings" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
         {orbs.map(([l, t, n, alt, side]) => (
-          <span class="orb" style={`left:${l}%;top:${t}%`} role="img" aria-label="Icon placeholder"><i class="ph-icon"></i><em class="orb-label">{n}</em>
+          <span class="orb" style={`left:${l}%;top:${t}%`} role="img" aria-label={n}>
+            <svg class="oi" viewBox="0 0 24 24" aria-hidden="true" set:html={icons[n]}></svg>
+            <em class="orb-label">{n}</em>
             <span class={`note n-${side}`} aria-hidden="true">
               <em>{alt}</em>
               <svg class="arr" viewBox="0 0 40 28"><path d="M2 20 C14 6 26 6 36 13 M29 7 L37 13 L29 19" /></svg>
-            </span></span>
+            </span>
+          </span>
         ))}
         <div class="hero-in">
           <p class="ratings">
@@ -117,7 +133,7 @@ const footerCols = [
         </div>
         <!-- Tablet/mobile replacement for the floating orbs -->
         <ul class="mchips" aria-hidden="true">
-          {orbs.slice(0, 4).map(([l, t, n, alt]) => <li><i class="ph-icon"></i><span><b>{n}</b><em>{alt}</em></span></li>)}
+          {orbs.slice(0, 4).map(([l, t, n, alt]) => <li><svg class="oi" viewBox="0 0 24 24" aria-hidden="true" set:html={icons[n]}></svg><span><b>{n}</b><em>{alt}</em></span></li>)}
         </ul>
       </section>
 
@@ -504,7 +520,6 @@ const footerCols = [
 
   /* placeholders */
   .ph { display: grid; place-items: center; text-align: center; color: #9a9aa5; font-size: 13px; border: 1.5px dashed #cfcfd6; border-radius: 12px; background: repeating-linear-gradient(45deg, #fafafb, #fafafb 10px, #f3f3f5 10px, #f3f3f5 20px); }
-  .ph-icon { display: block; width: 50%; aspect-ratio: 1; border: 1.5px dashed #cfcfd6; border-radius: 10px; background: #f3f3f5; }
   .ph-video { aspect-ratio: 16/9; min-height: 220px; }
   .ph-card { min-height: 180px; margin: 16px 0; }
   .ph-avatar { width: 56px; height: 56px; border-radius: 50%; font-size: 10px; flex-shrink: 0; }
@@ -519,8 +534,13 @@ const footerCols = [
   .rings span:nth-child(3) { width: 1120px; height: 1120px; }
   .rings span:nth-child(4) { width: 1380px; height: 1380px; }
   .rings span:nth-child(5) { width: 1640px; height: 1640px; }
-  .orb { position: absolute; display: grid; place-items: center; width: 46px; height: 46px; margin: -23px 0 0 -23px; background: #fff; border-radius: 50%; box-shadow: 0 4px 16px rgba(20,20,40,.1); z-index: 1; }
-  .orb .ph-icon { width: 22px; }
+
+  /* hero module icons (orbs) */
+  .orb { position: absolute; display: grid; place-items: center; width: 52px; height: 52px; margin: -26px 0 0 -26px; background: #fff; border-radius: 50%; box-shadow: 0 4px 16px rgba(20,20,40,.1); z-index: 1; transition: transform 200ms ease; }
+  .orb:hover { transform: translateY(-2px); }
+  .orb-label { position: absolute; top: calc(100% + 6px); left: 50%; transform: translateX(-50%); font-style: normal; font-size: 12px; font-weight: 600; color: var(--ink); text-align: center; white-space: nowrap; pointer-events: none; }
+  .oi { width: 26px; height: 26px; flex-shrink: 0; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
   .hero-in { position: relative; z-index: 2; max-width: 520px; margin: 0 auto; }
   .ratings { display: flex; gap: 20px; justify-content: center; align-items: center; flex-wrap: wrap; font-size: 13px; font-weight: 500; color: var(--muted); margin-bottom: 20px; }
   .ratings span { display: inline-flex; align-items: center; gap: 6px; }
@@ -530,17 +550,16 @@ const footerCols = [
   .hero-sub { font-size: 15px; color: var(--muted); max-width: 400px; margin: 0 auto 24px; }
   .hero-toggle { margin-top: 32px; padding-left: 34px; }
   .hero .btn-lg { padding: 11px 18px; font-size: 14px; }
-  .orb-label { position: absolute; top: calc(100% + 6px); left: 50%; transform: translateX(-50%); font-style: normal; font-size: 12px; font-weight: 600; color: var(--ink); text-align: center; white-space: nowrap; pointer-events: none; }
 
-  /* "Imagine without" hand-drawn style notes (rule restored in full) */
+  /* "Imagine without" hand-drawn style notes */
   .note { position: absolute; display: flex; align-items: center; gap: 6px; width: max-content; white-space: nowrap; color: var(--color-primary); font-size: clamp(11px, 1vw, 13px); font-weight: 500; line-height: 1.15; opacity: 0; pointer-events: none; transition: opacity 350ms ease; z-index: 3; }
   .note em { font-style: normal; }
   .arr { width: 28px; height: 20px; flex-shrink: 0; fill: none; stroke: var(--color-primary); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
   .arr path { stroke-dasharray: 70; stroke-dashoffset: 70; transition: stroke-dashoffset 600ms ease .15s; }
   .hero.without .arr path { stroke-dashoffset: 0; }
   .hero.without .note { opacity: 1; }
-  .n-left { right: calc(100% + 6px); top: 0; text-align: right; }
-  .n-right { left: calc(100% + 6px); top: 0; flex-direction: row-reverse; text-align: left; }
+  .n-left { right: calc(100% + 6px); top: 50%; transform: translateY(-50%); text-align: right; }
+  .n-right { left: calc(100% + 6px); top: 50%; transform: translateY(-50%); flex-direction: row-reverse; text-align: left; }
   .n-right .arr { transform: scaleX(-1); }
   .n-below { top: calc(100% + 28px); left: 50%; transform: translateX(-50%); align-items: center; }
   .n-below .arr { order: -1; transform: rotate(-90deg); margin: -4px -2px -4px 0; }
@@ -548,7 +567,7 @@ const footerCols = [
   /* tablet/mobile module tiles (replace floating orbs) */
   .mchips { display: none; }
   .mchips li { display: flex; align-items: center; gap: 10px; min-height: 68px; padding: 10px 12px; text-align: left; background: #fff; border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 2px 10px rgba(20,20,40,.04); transition: border-color 250ms, background 250ms; }
-  .mchips .ph-icon { width: 28px; height: auto; flex-shrink: 0; border-radius: 8px; }
+  .mchips .oi { width: 30px; height: 30px; }
   .mchips span { display: grid; gap: 2px; min-width: 0; }
   .mchips b { font-size: 13px; font-weight: 600; line-height: 1.25; }
   .mchips em { font-style: normal; font-size: 11.5px; line-height: 1.25; color: var(--color-primary); text-decoration: line-through; text-decoration-thickness: 1px; opacity: 0; max-height: 0; overflow: hidden; transition: opacity 250ms, max-height 250ms; }
@@ -769,7 +788,7 @@ const footerCols = [
   .socials { display: flex; gap: 14px; }
   .sq { display: inline-block; width: 16px; height: 16px; border-radius: 4px; background: #d6d6dc; }
 
-  /* responsive: hero switches from floating orbs to chips below 1100px */
+  /* responsive: hero switches from floating icons to chips below 1100px */
   @media (max-width: 1100px) {
     .orb { display: none; }
     .hero { min-height: 0; padding-bottom: 40px; }
