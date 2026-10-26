@@ -94,6 +94,7 @@ const footerCols = [
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;500&display=swap" rel="stylesheet" />
+    <script is:inline>document.documentElement.classList.add("js");</script>
     <title>Fusionedge — All your business on one platform</title>
   </head>
   <body>
@@ -119,7 +120,7 @@ const footerCols = [
             <span><i class="mini"></i>4.6 Google</span>
             <span><i class="mini star"></i>4.9 Trustpilot</span>
           </p>
-          <h1>All your business on <span class="hl">one platform.</span></h1>
+          <h1>All your business on <span class="hl">one platform _</span></h1>
           <p class="h1-sub">Simple, efficient, yet <span class="ul-b">affordable!</span></p>
           <div class="btn-row">
             <a class="btn btn-primary btn-lg" href="#">Start now - It's free</a>
@@ -486,6 +487,60 @@ const footerCols = [
         document.addEventListener("keydown", function (e) { if (e.key === "Escape") set(false); });
         window.addEventListener("resize", function () { if (window.innerWidth > 900) set(false); });
       })();
+      /* hero text reveal: words slide up from a mask, highlight wipes in, other lines fade up */
+      (function () {
+        var hero = document.querySelector(".hero"), h1 = document.querySelector(".hero h1"), sub = document.querySelector(".hero .h1-sub");
+        if (!hero || !h1) return;
+        var n = 0;
+        function split(el) {
+          el.setAttribute("aria-label", el.textContent.replace(/\s+/g, " ").trim());
+          Array.prototype.slice.call(el.childNodes).forEach(function (node) {
+            if (node.nodeType === 3) {
+              var frag = document.createDocumentFragment();
+              node.textContent.split(/(\s+)/).forEach(function (part) {
+                if (!part) return;
+                if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(" ")); return; }
+                var w = document.createElement("span"), i = document.createElement("i");
+                w.className = "w"; w.setAttribute("aria-hidden", "true");
+                i.textContent = part; i.style.setProperty("--wi", n++);
+                w.appendChild(i); frag.appendChild(w);
+              });
+              el.replaceChild(frag, node);
+            } else if (node.nodeType === 1) {
+              node.classList.add("wu"); node.style.setProperty("--wi", n++);
+            }
+          });
+        }
+        split(h1); if (sub) split(sub);
+        // remaining hero lines fade up in sequence
+        var lines = [".ratings", ".btn-row", ".hero-toggle"];
+        lines.forEach(function (s, i) {
+          var el = document.querySelector(".hero " + s);
+          if (el) { el.classList.add("hr"); el.style.setProperty("--hd", (i === 0 ? 0 : 450 + i * 130) + "ms"); }
+        });
+        requestAnimationFrame(function () { requestAnimationFrame(function () { hero.classList.add("go"); }); });
+      })();
+      /* scroll-reveal: fade/slide each section in as it enters the viewport */
+      (function () {
+        var sel = ".flipgrid, .section > h2, .frame, .player, .dash, .ent-col > .card, .users, .testimonial, .cta > *, .footer";
+        var els = document.querySelectorAll(sel);
+        if (!els.length) return;
+        els.forEach(function (el) { el.classList.add("rv"); });
+        // stagger siblings (cards, cta items) slightly
+        document.querySelectorAll(".ent-col, .cta").forEach(function (p) {
+          Array.prototype.forEach.call(p.querySelectorAll(":scope > .rv"), function (c, i) { c.style.setProperty("--d", i * 90 + "ms"); });
+        });
+        var flip = document.querySelector(".flipgrid"); if (flip) flip.style.setProperty("--d", "120ms");
+        if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          els.forEach(function (el) { el.classList.add("in"); }); return;
+        }
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+          });
+        }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+        els.forEach(function (el) { io.observe(el); });
+      })();
     </script>
   </body>
 </html>
@@ -553,12 +608,12 @@ const footerCols = [
   .hero h1 { font-size: clamp(32px, 4.6vw, 52px); line-height: 1.08; letter-spacing: -.035em; margin: 0 0 16px; }
   /* headline treatments: marker highlight + hand-drawn underline + annotation */
   .hl { position: relative; display: inline-block; white-space: nowrap; z-index: 0; color: #fff; }
-  .hl::before, .hl::after { content: ""; position: absolute; background: var(--color-primary); z-index: -1; }
+  .hl::before, .hl::after { content: ""; position: absolute; background: var(--color-accent); z-index: -1; }
   .hl::before { left: -.1em; right: -.08em; top: .16em; bottom: .02em; border-radius: .2em .12em .24em .14em; transform: rotate(-1.2deg); }
   .hl::after { left: .35em; right: -.2em; top: .04em; height: .5em; border-radius: .14em .26em .12em .2em; transform: rotate(.9deg); }
   .h1-sub { font-size: clamp(22px, 2.9vw, 34px); font-weight: 300; line-height: 1.2; letter-spacing: -.02em; margin: 0 0 24px; }
   .ul-b { position: relative; display: inline-block; font-weight: 500; }
-  .ul-b::after { content: ""; position: absolute; left: -2%; right: -2%; bottom: -.2em; height: .2em; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'%3E%3Cpath d='M3 9 C45 2 110 2 197 7' fill='none' stroke='%231fb2ff' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E") center / 100% 100% no-repeat; }
+  .ul-b::after { content: ""; position: absolute; left: -2%; right: -2%; bottom: -.2em; height: .2em; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 14' preserveAspectRatio='none'%3E%3Cpath d='M3 9 C45 2 110 2 197 7' fill='none' stroke='%235d1f71' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E") center / 100% 100% no-repeat; }
   .hero .btn-row { position: relative; align-items: center; }
   .hero-toggle { margin-top: 20px; padding-left: 34px; }
   .hero .btn-row { justify-content: flex-start; }
@@ -948,5 +1003,38 @@ const footerCols = [
     .mods { max-height: 94vh; }
   }
 
+  /* ===== Appear-on-scroll animations ===== */
+  .js .rv { opacity: 0; transform: translateY(28px); transition: opacity 700ms cubic-bezier(.2, .7, .2, 1), transform 700ms cubic-bezier(.2, .7, .2, 1); transition-delay: var(--d, 0ms); will-change: opacity, transform; }
+  .js .rv.in { opacity: 1; transform: none; will-change: auto; }
+  /* variations */
+  .js .frame.rv, .js .dash.rv { transform: translateY(40px) scale(.97); }
+  .js .frame.rv.in, .js .dash.rv.in { transform: none; }
+  .js .ent-col:first-child > .card.rv { transform: translateX(-28px); }
+  .js .ent-col:last-child > .card.rv { transform: translateX(28px); }
+  .js .ent-col > .card.rv.in { transform: none; }
+  /* hero text reveal */
+  .js .hero .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .14em; margin-bottom: -.14em; }
+  .js .hero .w > i { display: inline-block; font-style: normal; transform: translateY(115%); transition: transform 850ms cubic-bezier(.2, .8, .2, 1); transition-delay: calc(var(--wi) * 70ms + 150ms); }
+  .js .hero.go .w > i { transform: none; }
+  .js .hero .wu { opacity: 0; transform: translateY(.45em); transition: opacity 700ms ease, transform 850ms cubic-bezier(.2, .8, .2, 1); transition-delay: calc(var(--wi) * 70ms + 150ms); }
+  .js .hero.go .wu { opacity: 1; transform: none; }
+  /* marker highlight and underline wipe in from the left */
+  .js .hero .hl::before, .js .hero .hl::after, .js .hero .ul-b::after { scale: 0 1; transform-origin: left center; transition: scale 650ms cubic-bezier(.3, .7, .2, 1); transition-delay: calc(var(--wi) * 70ms + 450ms); }
+  .js .hero.go .hl::before, .js .hero.go .hl::after, .js .hero.go .ul-b::after { scale: 1 1; }
+  .js .hero .hr { opacity: 0; transform: translateY(16px); transition: opacity 700ms ease, transform 700ms cubic-bezier(.2, .8, .2, 1); transition-delay: var(--hd, 0ms); }
+  .js .hero.go .hr { opacity: 1; transform: none; }
+  /* hero module cards pop in one after another */
+  .js .flipgrid.rv { opacity: 1; transform: none; }
+  .js .flipgrid.rv .fc { opacity: 0; transform: translateY(16px) scale(.96); }
+  .js .flipgrid.rv.in .fc { opacity: 1; transform: none; transition: opacity 500ms ease, transform 500ms cubic-bezier(.2, .7, .2, 1); transition-delay: calc(var(--i) * 70ms + 100ms); }
+  /* mosaic circles ripple in */
+  .js .users.rv .m { opacity: 0; scale: .5; }
+  .js .users.rv.in .m { opacity: 1; scale: 1; transition: opacity 500ms ease, scale 500ms cubic-bezier(.2, .7, .2, 1); transition-delay: calc(var(--i) * 25ms); }
+  /* on small screens use a gentler movement */
+  @media (max-width: 640px) {
+    .js .rv { transform: translateY(18px); }
+    .js .ent-col > .card.rv { transform: translateY(18px); }
+  }
+  @media (prefers-reduced-motion: reduce) { .js .rv, .js .rv .fc, .js .rv .m { opacity: 1 !important; transform: none !important; scale: 1 !important; } }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }
 </style>
