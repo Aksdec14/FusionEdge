@@ -120,7 +120,7 @@ const footerCols = [
             <span><i class="mini"></i>4.6 Google</span>
             <span><i class="mini star"></i>4.9 Trustpilot</span>
           </p>
-          <h1>All your business on <span class="hl">one platform _</span></h1>
+          <h1>All your business on <span class="hl">one platform.</span></h1>
           <p class="h1-sub">Simple, efficient, yet <span class="ul-b">affordable!</span></p>
           <div class="btn-row">
             <a class="btn btn-primary btn-lg" href="#">Start now - It's free</a>
@@ -608,7 +608,7 @@ const footerCols = [
   .hero h1 { font-size: clamp(32px, 4.6vw, 52px); line-height: 1.08; letter-spacing: -.035em; margin: 0 0 16px; }
   /* headline treatments: marker highlight + hand-drawn underline + annotation */
   .hl { position: relative; display: inline-block; white-space: nowrap; z-index: 0; color: #fff; }
-  .hl::before, .hl::after { content: ""; position: absolute; background: var(--color-accent); z-index: -1; }
+  .hl::before, .hl::after { content: ""; position: absolute; background: var(--color-primary); z-index: -1; }
   .hl::before { left: -.1em; right: -.08em; top: .16em; bottom: .02em; border-radius: .2em .12em .24em .14em; transform: rotate(-1.2deg); }
   .hl::after { left: .35em; right: -.2em; top: .04em; height: .5em; border-radius: .14em .26em .12em .2em; transform: rotate(.9deg); }
   .h1-sub { font-size: clamp(22px, 2.9vw, 34px); font-weight: 300; line-height: 1.2; letter-spacing: -.02em; margin: 0 0 24px; }
@@ -1016,13 +1016,16 @@ const footerCols = [
   .js .hero .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .14em; margin-bottom: -.14em; }
   .js .hero .w > i { display: inline-block; font-style: normal; transform: translateY(115%); transition: transform 850ms cubic-bezier(.2, .8, .2, 1); transition-delay: calc(var(--wi) * 70ms + 150ms); }
   .js .hero.go .w > i { transform: none; }
-  .js .hero .wu { opacity: 0; transform: translateY(.45em); transition: opacity 700ms ease, transform 850ms cubic-bezier(.2, .8, .2, 1); transition-delay: calc(var(--wi) * 70ms + 150ms); }
-  .js .hero.go .wu { opacity: 1; transform: none; }
+  /* hide headline text until JS has split it, so nothing flashes before the animation */
+  .js .hero:not(.go) h1, .js .hero:not(.go) .h1-sub { visibility: hidden; }
+  /* hidden states are plain CSS (not JS-added classes) so they apply from the very first paint on every reload */
+  .js .hero .wu, .js .hero .hl, .js .hero .ul-b { opacity: 0; transform: translateY(.45em); transition: opacity 700ms ease, transform 850ms cubic-bezier(.2, .8, .2, 1); transition-delay: calc(var(--wi, 0) * 70ms + 150ms); }
+  .js .hero.go .wu, .js .hero.go .hl, .js .hero.go .ul-b { opacity: 1; transform: none; }
   /* marker highlight and underline wipe in from the left */
   .js .hero .hl::before, .js .hero .hl::after, .js .hero .ul-b::after { scale: 0 1; transform-origin: left center; transition: scale 650ms cubic-bezier(.3, .7, .2, 1); transition-delay: calc(var(--wi) * 70ms + 450ms); }
   .js .hero.go .hl::before, .js .hero.go .hl::after, .js .hero.go .ul-b::after { scale: 1 1; }
-  .js .hero .hr { opacity: 0; transform: translateY(16px); transition: opacity 700ms ease, transform 700ms cubic-bezier(.2, .8, .2, 1); transition-delay: var(--hd, 0ms); }
-  .js .hero.go .hr { opacity: 1; transform: none; }
+  .js .hero .ratings, .js .hero .btn-row, .js .hero .hero-toggle { opacity: 0; transform: translateY(16px); transition: opacity 700ms ease, transform 700ms cubic-bezier(.2, .8, .2, 1); transition-delay: var(--hd, 0ms); }
+  .js .hero.go .ratings, .js .hero.go .btn-row, .js .hero.go .hero-toggle { opacity: 1; transform: none; }
   /* hero module cards pop in one after another */
   .js .flipgrid.rv { opacity: 1; transform: none; }
   .js .flipgrid.rv .fc { opacity: 0; transform: translateY(16px) scale(.96); }
