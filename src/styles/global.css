@@ -1,0 +1,26 @@
+/* Shared font and background. Values match the current site; do not restyle pages from here. */
+
+:root {
+  --bg: #fff;
+  --ink: #111;
+  --font: "Public Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+html {
+  color-scheme: light;
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
