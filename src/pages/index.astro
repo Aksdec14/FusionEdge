@@ -123,7 +123,6 @@ nav.top{padding-top:16px;padding-bottom:16px}
 .lbl small{display:block;margin-top:6px;font-size:12px;line-height:1.25;font-weight:500;color:#5D1F72}
 .lbl.green,.lbl.green small{color:#00BF88}
 @media (prefers-reduced-motion:reduce){.cat .hex{opacity:1;transform:scale(.96);transition:none}.gseg{opacity:1}.gseg .seg{stroke-dashoffset:0;transition:none}.lbl{opacity:1;transition:none}}
-@media (max-width:760px){.cat.stack{padding:8px 0 16px;overflow:visible}.cat.stack .hex{gap:2px}.cat.stack .hex span{max-width:84%;line-height:1.05}.cat.stack .lbl{font-size:13px;font-weight:700}.cat.stack .lbl small{font-size:10px;font-weight:500;margin-top:2px}}
 @media (max-width:760px){nav div a{display:none}}
 .hero{position:relative;max-width:none;display:flex;align-items:center;justify-content:center;padding:clamp(36px,5vh,56px) 24px clamp(28px,4vh,40px);background:#fff}
 .hero-copy{position:relative;z-index:1;max-width:1080px;margin:0 auto;text-align:center}
@@ -142,10 +141,67 @@ nav.top .btn:hover{background:#fff;color:#5D1F72;border-color:#5D1F72}
 nav.top{transition:transform .35s ease}
 nav.top.hide{transform:translateY(-110%)}
 @media (prefers-reduced-motion:reduce){nav.top{transition:none}}
+
+/* ===================== RESPONSIVE ADDITIONS ===================== */
+
+/* --- Base (mobile-first) --- */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+img{max-width:100%;height:auto}
+.burger{display:none}
+.menu-cta{display:none}
+.hero h1,.hero .tag{overflow-wrap:break-word}
+
+/* --- Tablet and below: hamburger menu (<=900px) --- */
+@media (max-width:900px){
+  nav.top{grid-template-columns:1fr auto!important;gap:12px;padding:12px 4vw}
+  .brand img{height:36px}
+  nav.top .nav-demo{display:none}
+  .menu-cta{display:block;list-style:none;padding-top:8px}
+  .menu-cta .btn{width:100%;min-height:48px;padding:0 18px;border-radius:8px;font-size:15px}
+  .burger{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border:1px solid #e3e7ec;border-radius:10px;background:#fff;cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .burger span,.burger span::before,.burger span::after{display:block;width:18px;height:2px;border-radius:2px;background:#5D1F72;transition:transform .25s ease,background .2s ease}
+  .burger span{position:relative}
+  .burger span::before,.burger span::after{content:"";position:absolute;left:0}
+  .burger span::before{top:-6px}
+  .burger span::after{top:6px}
+  nav.top.open .burger span{background:transparent}
+  nav.top.open .burger span::before{transform:translateY(6px) rotate(45deg)}
+  nav.top.open .burger span::after{transform:translateY(-6px) rotate(-45deg)}
+  nav.top .links{display:none!important;position:absolute;left:0;right:0;top:100%;flex-direction:column;gap:0;margin:0!important;padding:8px 4vw 12px;background:#fff;border-bottom:1px solid #eef1f3;box-shadow:0 12px 24px rgba(40,80,120,.12)}
+  nav.top.open .links{display:flex!important}
+  nav.top .links a{display:flex;align-items:center;min-height:48px;font-size:15px}
+}
+
+/* --- Stacked honeycomb for phones AND tablets (<=1100px) --- */
+@media (max-width:1100px){
+  .cat.stack{padding:8px 0 16px;overflow:visible}
+  .cat.stack .hex{gap:2px}
+  .cat.stack .hex span{max-width:84%;line-height:1.05}
+  .cat.stack .lbl{font-size:14px;font-weight:700;line-height:1.2}
+  .cat.stack .lbl small{font-size:10.5px;line-height:1.25;font-weight:500;margin-top:3px}
+}
+
+/* --- Phones (<=760px): touch-friendly hero buttons --- */
+@media (max-width:760px){
+  .hero .origin-btn{min-height:44px}
+}
+
+/* --- Small phones (<=480px) --- */
+@media (max-width:480px){
+  .hero{padding-left:16px;padding-right:16px}
+  .hero .ctas{width:100%;flex-direction:column;align-items:stretch}
+  .hero .origin-btn{width:100%;height:46px}
+  .hero .tag em{border-bottom-width:4px}
+}
+
+/* --- Large screens (>=1600px): keep content centered --- */
+@media (min-width:1600px){
+  .wrap{max-width:1800px;margin-left:auto;margin-right:auto}
+}
 </style>
 </head>
 <body>
-<nav class="top"><a class="brand" href="#"><img src="/logo.png" alt="Fusionedge"></a><ul class="links"><li><a href="#">Apps</a></li><li><a href="#">Industries</a></li><li><a href="#">Solutions</a></li><li><a href="#">Resources</a></li></ul><button class="btn">Book a Demo</button></nav>
+<nav class="top"><a class="brand" href="#"><img src="/logo.png" alt="Fusionedge"></a><ul class="links" id="menu"><li><a href="#">Apps</a></li><li><a href="#">Industries</a></li><li><a href="#">Solutions</a></li><li><a href="#">Resources</a></li><li class="menu-cta"><button class="btn">Book a Demo</button></li></ul><button class="btn nav-demo">Book a Demo</button><button class="burger" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="menu"><span></span></button></nav>
 <section class="copy hero">
 <div class="hero-copy">
 <h1>Digitize, Optimize and scale it all in <mark>one connected system.</mark></h1>
@@ -216,31 +272,41 @@ function reveal(gi){act=gi;cat.classList.add("focus");hexes.forEach((x,i)=>x.cla
 const el=svg.querySelector('.gseg[data-g="'+gi+'"]');if(el){el.classList.remove("on","drawn");void el.getBoundingClientRect();el.classList.add("on","drawn")}
 const lbl=wrap.querySelector('.lbl[data-g="'+gi+'"]');if(lbl)lbl.classList.add("on");if(kept.indexOf(gi)<0)kept.push(gi)}
 function restore(){kept.forEach(gi=>{const el=svg.querySelector('.gseg[data-g="'+gi+'"]');if(el)el.classList.add("on","drawn");const lbl=wrap.querySelector('.lbl[data-g="'+gi+'"]');if(lbl)lbl.classList.add("on")})}
+
+/* ---------- Stacked honeycomb (phones + tablets) ----------
+   One continuous honeycomb of 4 columns holding 6,5,6,5 hexagons.
+   Columns 0 and 2 start at the top, columns 1 and 3 are indented by half a hexagon,
+   so the top AND the bottom edge are a clean zig-zag.
+   Each group is a connected cluster of cells: [column,row]. */
+const LAY=[
+[[0,0],[1,0],[0,1],[1,1],[0,2],[1,2]],                                 /* CAFM */
+[[2,0],[3,0],[2,1],[3,1],[2,2],[3,2],[2,3],[3,3]],                     /* IWFM */
+[[0,3],[1,3],[0,4],[0,5]],                                             /* EAM  */
+[[2,4],[1,4],[3,4],[2,5]]                                              /* CAMS */
+];
+const LC=[.875,2.375,.875,2.375]; /* label centre, in hexagon widths */
 function placeMobile(drawLines,stagger){
-const avail=host.clientWidth,band=46,ncols=2;
-const w=Math.max(64,Math.min(avail/3.25,160)),h=w*.866,xR=1.5*w,lw=1.25*w;
-const nrows=GROUPS.map(g=>Math.ceil(g.m.length/ncols)),ch=gi=>nrows[gi]*h+h/2;
-const y0=band,y1=band,y2=y0+nrows[0]*h,y3=y1+nrows[1]*h,foot=Math.max(y2+ch(2),y3+ch(3));
-const ww=xR+1.75*w,hh=foot+band+4;
-const origins=[{x:0,y:y0,lx:(1.75*w-lw)/2,lw},{x:xR,y:y1,lx:xR+(1.75*w-lw)/2,lw},{x:0,y:y2,lx:(1.75*w-lw)/2,lw},{x:xR,y:y3,lx:xR+(1.75*w-lw)/2,lw}];
+const avail=host.clientWidth,band=66,bot=56;
+const w=Math.max(64,Math.min(avail/3.25,190)),h=w*.866,lw=1.5*w;
+const ww=3.25*w,foot=band+6*h,hh=foot+bot+4;
 wrap.style.width=ww+"px";wrap.style.height=hh+"px";svg.setAttribute("width",ww);svg.setAttribute("height",hh);
-const pos=[],key={};let base=0;
-origins.forEach((o,gi)=>{const n=GROUPS[gi].m.length,nr=nrows[gi];for(let i=0;i<n;i++){const c=Math.floor(i/nr),r=i%nr,idx=base+i;pos[idx]={c,r,nr,gi,x:o.x+c*.75*w,y:o.y+r*h+(c%2?h/2:0)};key[gi+","+c+","+r]=idx}base+=n});
-const cnt={p:0,n:0,w:0},col={};
-for(let slot=0;slot<N;slot++){const i=order[slot],P=pos[i],nb=[[P.c,P.r-1]].concat(P.c%2?[[P.c-1,P.r],[P.c-1,P.r+1]]:[[P.c-1,P.r-1],[P.c-1,P.r]]).filter(q=>q[0]>=0&&q[1]>=0&&q[1]<P.nr),bad=nb.map(q=>col[P.gi+","+q[0]+","+q[1]]),k=["p","n","w"].sort((a,b)=>((bad.filter(z=>z==a).length*100+cnt[a]*(a=="p"?1:2))-(bad.filter(z=>z==b).length*100+cnt[b]*(b=="p"?1:2))))[0];col[P.gi+","+P.c+","+P.r]=k;cnt[k]++;
+const pos=[],key={};let idx=0;
+LAY.forEach((g,gi)=>g.forEach(q=>{const c=q[0],r=q[1];pos[idx]={c,r,gi,x:c*.75*w,y:band+r*h+(c%2?h/2:0)};key[c+","+r]=idx;idx++}));
+const nbr=P=>{const c=P.c,r=P.r,o=c%2;return [[c,r-1],[c+1,o?r:r-1],[c+1,o?r+1:r],[c,r+1],[c-1,o?r+1:r],[c-1,o?r:r-1]].map(q=>{const k=key[q[0]+","+q[1]];return k==null?-1:k})};
+const cnt={p:0,n:0,w:0},col=[];
+for(let slot=0;slot<N;slot++){const i=order[slot],P=pos[i],bad=nbr(P).filter(j=>j>=0&&pos[j].gi===P.gi).map(j=>col[j]),k=["p","n","w"].sort((a,b)=>((bad.filter(z=>z==a).length*100+cnt[a]*(a=="p"?1:2))-(bad.filter(z=>z==b).length*100+cnt[b]*(b=="p"?1:2))))[0];col[i]=k;cnt[k]++;
 const el=hexes[i],st=el.style;el.firstChild.setAttribute("class","mod "+k);
 st.width=w+"px";st.height=h+"px";st.left=P.x+"px";st.top=P.y+"px";st.fontSize=Math.max(10,w*.065)+"px";st.transitionDelay=(stagger?slot*stagger:0)+"ms";
 const v=el.firstChild.style;v.width=v.height=w*.2+"px"}
 if(!drawLines)return;
-const at=(g,c,r,nr)=>{if(c<0||r<0||r>=nr)return -1;const k=key[g+","+c+","+r];return k==null?-1:k};
 const outs=["","","",""];
-for(let i=0;i<N;i++){const P=pos[i],x0=P.x,y0=P.y,V=[[.25,0],[.75,0],[1,.5],[.75,1],[.25,1],[0,.5]].map(q=>[x0+q[0]*w,y0+q[1]*h]),o=P.c%2,NB=[at(P.gi,P.c,P.r-1,P.nr),at(P.gi,P.c+1,o?P.r:P.r-1,P.nr),at(P.gi,P.c+1,o?P.r+1:P.r,P.nr),at(P.gi,P.c,P.r+1,P.nr),at(P.gi,P.c-1,o?P.r+1:P.r,P.nr),at(P.gi,P.c-1,o?P.r:P.r-1,P.nr)],g=cells[i].g;
-for(let e=0;e<6;e++){const j=NB[e];if(j>=0&&cells[j].g===g)continue;const A=V[e],B=V[(e+1)%6];outs[g]+='<line class="seg" pathLength="1" x1="'+A[0].toFixed(1)+'" y1="'+A[1].toFixed(1)+'" x2="'+B[0].toFixed(1)+'" y2="'+B[1].toFixed(1)+'"/>'}}
+for(let i=0;i<N;i++){const P=pos[i],x0=P.x,y0=P.y,V=[[.25,0],[.75,0],[1,.5],[.75,1],[.25,1],[0,.5]].map(q=>[x0+q[0]*w,y0+q[1]*h]),NB=nbr(P),g=P.gi;
+for(let e=0;e<6;e++){const j=NB[e];if(j>=0&&pos[j].gi===g)continue;const A=V[e],B=V[(e+1)%6];outs[g]+='<line class="seg" pathLength="1" x1="'+A[0].toFixed(1)+'" y1="'+A[1].toFixed(1)+'" x2="'+B[0].toFixed(1)+'" y2="'+B[1].toFixed(1)+'"/>'}}
 svg.innerHTML=outs.map((s,g)=>'<g class="gseg'+(g%2?' green':'')+'" data-g="'+g+'">'+s+"</g>").join("");
 wrap.querySelectorAll(".lbl").forEach(n=>n.remove());
-GROUPS.forEach((g,gi)=>{const o=origins[gi],d=document.createElement("div");d.className="lbl"+(gi%2?" green":"");d.style.left=(o.lx+o.lw/2)+"px";d.style.width=o.lw+"px";d.dataset.g=gi;const below=gi>1;d.style.bottom="auto";d.style.height=(band-4)+"px";d.style.display="flex";d.style.flexDirection="column";d.style.justifyContent=below?"flex-start":"flex-end";d.style.top=(below?foot+4:o.y-band)+"px";d.innerHTML='<span class="chip">'+g.k+'</span><small>'+g.full+'</small>';wrap.appendChild(d)});restore()}
+GROUPS.forEach((g,gi)=>{const d=document.createElement("div"),below=gi>1;d.className="lbl"+(gi%2?" green":"");d.style.left=LC[gi]*w+"px";d.style.width=lw+"px";d.dataset.g=gi;d.style.bottom="auto";d.style.height=(below?bot-12:band-12)+"px";d.style.display="flex";d.style.flexDirection="column";d.style.justifyContent=below?"flex-start":"flex-end";d.style.top=(below?foot+12:0)+"px";d.innerHTML='<span class="chip">'+g.k+'</span><small>'+g.full+'</small>';wrap.appendChild(d)});restore()}
 function place(drawLines,stagger){
-if(matchMedia("(max-width:760px)").matches){cat.classList.add("stack");placeMobile(drawLines,stagger);return}
+if(matchMedia("(max-width:1100px)").matches){cat.classList.add("stack");placeMobile(drawLines,stagger);return}
 cat.classList.remove("stack");
 const avail=host.clientWidth,w=Math.max(Math.min(avail/(.75*(cols-1)+1),170),90),h=w*.866,ww=.75*(cols-1)*w+w,hh=rows*h+h/2;
 wrap.style.width=ww+"px";wrap.style.height=hh+"px";svg.setAttribute("width",ww);svg.setAttribute("height",hh);
@@ -263,7 +329,9 @@ const c0=Math.min.apply(null,cs),c1=Math.max.apply(null,cs),x1=c0*.75*w,x2=c1*.7
 d.className="lbl"+(gi%2?" green":"");d.style.left=(x1+x2)/2+"px";d.style.width=(x2-x1)+"px";d.dataset.g=gi;
 d.innerHTML='<span class="chip">'+g.k+'</span><small>'+g.full+'</small>';wrap.appendChild(d)});restore()}
 function cycle(i){if(i===0)clearKept();reveal(i);timer=setTimeout(()=>cycle((i+1)%GROUPS.length),i===GROUPS.length-1?2600:1500)}
-place(true,35);addEventListener("resize",()=>place(true,0));
+place(true,35);
+let lastW=innerWidth;
+addEventListener("resize",()=>{if(innerWidth===lastW)return;lastW=innerWidth;place(true,0)});
 if("IntersectionObserver"in window){const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){cat.classList.add("in");io.disconnect();if(!matchMedia("(prefers-reduced-motion: reduce)").matches)setTimeout(()=>{hexes.forEach(x=>x.style.transitionDelay="0ms");cycle(0)},1500)}}),{threshold:.2});io.observe(cat)}else{cat.classList.add("in");cycle(0)}
 document.querySelectorAll(".origin-btn").forEach(b=>{
 b.innerHTML='<span class="fill"></span><span class="z">'+b.innerHTML+'</span>';
@@ -284,6 +352,15 @@ b.addEventListener("keyup",e=>{if(e.key==" "||e.key=="Enter"){b.classList.remove
 });
 let navY=scrollY;
 addEventListener("scroll",()=>{const y=scrollY,nav=document.querySelector("nav.top");if(!nav)return;if(y<=8)nav.classList.remove("hide");else if(y>navY+6)nav.classList.add("hide");else if(y<navY-6)nav.classList.remove("hide");navY=y},{passive:true});
+
+/* ---- Mobile menu ---- */
+const navEl=document.querySelector("nav.top"),burger=navEl.querySelector(".burger");
+const setMenu=o=>{navEl.classList.toggle("open",o);burger.setAttribute("aria-expanded",o)};
+burger.addEventListener("click",()=>setMenu(!navEl.classList.contains("open")));
+navEl.querySelectorAll(".links a").forEach(a=>a.addEventListener("click",()=>setMenu(false)));
+addEventListener("keydown",e=>{if(e.key==="Escape")setMenu(false)});
+addEventListener("resize",()=>{if(innerWidth>900)setMenu(false)});
+addEventListener("scroll",()=>{if(navEl.classList.contains("hide"))setMenu(false)},{passive:true});
 </script>
 </body>
 </html>
