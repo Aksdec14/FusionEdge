@@ -123,6 +123,7 @@ nav.top{padding-top:16px;padding-bottom:16px}
 .lbl small{display:block;margin-top:6px;font-size:12px;line-height:1.25;font-weight:500;color:#5D1F72}
 .lbl.green,.lbl.green small{color:#00BF88}
 @media (prefers-reduced-motion:reduce){.cat .hex{opacity:1;transform:scale(.96);transition:none}.gseg{opacity:1}.gseg .seg{stroke-dashoffset:0;transition:none}.lbl{opacity:1;transition:none}}
+@media (max-width:760px){.cat.stack{padding:8px 0 16px;overflow:visible}.cat.stack .hex{gap:2px}.cat.stack .hex span{max-width:84%;line-height:1.05}.cat.stack .lbl{font-size:13px;font-weight:700}.cat.stack .lbl small{font-size:10px;font-weight:500;margin-top:2px}}
 @media (max-width:760px){nav div a{display:none}}
 .hero{position:relative;max-width:none;display:flex;align-items:center;justify-content:center;padding:clamp(36px,5vh,56px) 24px clamp(28px,4vh,40px);background:#fff}
 .hero-copy{position:relative;z-index:1;max-width:1080px;margin:0 auto;text-align:center}
@@ -215,7 +216,32 @@ function reveal(gi){act=gi;cat.classList.add("focus");hexes.forEach((x,i)=>x.cla
 const el=svg.querySelector('.gseg[data-g="'+gi+'"]');if(el){el.classList.remove("on","drawn");void el.getBoundingClientRect();el.classList.add("on","drawn")}
 const lbl=wrap.querySelector('.lbl[data-g="'+gi+'"]');if(lbl)lbl.classList.add("on");if(kept.indexOf(gi)<0)kept.push(gi)}
 function restore(){kept.forEach(gi=>{const el=svg.querySelector('.gseg[data-g="'+gi+'"]');if(el)el.classList.add("on","drawn");const lbl=wrap.querySelector('.lbl[data-g="'+gi+'"]');if(lbl)lbl.classList.add("on")})}
+function placeMobile(drawLines,stagger){
+const avail=host.clientWidth,band=46,ncols=2;
+const w=Math.max(64,Math.min(avail/3.25,160)),h=w*.866,xR=1.5*w,lw=1.25*w;
+const nrows=GROUPS.map(g=>Math.ceil(g.m.length/ncols)),ch=gi=>nrows[gi]*h+h/2;
+const y0=band,y1=band,y2=y0+nrows[0]*h,y3=y1+nrows[1]*h,foot=Math.max(y2+ch(2),y3+ch(3));
+const ww=xR+1.75*w,hh=foot+band+4;
+const origins=[{x:0,y:y0,lx:(1.75*w-lw)/2,lw},{x:xR,y:y1,lx:xR+(1.75*w-lw)/2,lw},{x:0,y:y2,lx:(1.75*w-lw)/2,lw},{x:xR,y:y3,lx:xR+(1.75*w-lw)/2,lw}];
+wrap.style.width=ww+"px";wrap.style.height=hh+"px";svg.setAttribute("width",ww);svg.setAttribute("height",hh);
+const pos=[],key={};let base=0;
+origins.forEach((o,gi)=>{const n=GROUPS[gi].m.length,nr=nrows[gi];for(let i=0;i<n;i++){const c=Math.floor(i/nr),r=i%nr,idx=base+i;pos[idx]={c,r,nr,gi,x:o.x+c*.75*w,y:o.y+r*h+(c%2?h/2:0)};key[gi+","+c+","+r]=idx}base+=n});
+const cnt={p:0,n:0,w:0},col={};
+for(let slot=0;slot<N;slot++){const i=order[slot],P=pos[i],nb=[[P.c,P.r-1]].concat(P.c%2?[[P.c-1,P.r],[P.c-1,P.r+1]]:[[P.c-1,P.r-1],[P.c-1,P.r]]).filter(q=>q[0]>=0&&q[1]>=0&&q[1]<P.nr),bad=nb.map(q=>col[P.gi+","+q[0]+","+q[1]]),k=["p","n","w"].sort((a,b)=>((bad.filter(z=>z==a).length*100+cnt[a]*(a=="p"?1:2))-(bad.filter(z=>z==b).length*100+cnt[b]*(b=="p"?1:2))))[0];col[P.gi+","+P.c+","+P.r]=k;cnt[k]++;
+const el=hexes[i],st=el.style;el.firstChild.setAttribute("class","mod "+k);
+st.width=w+"px";st.height=h+"px";st.left=P.x+"px";st.top=P.y+"px";st.fontSize=Math.max(10,w*.065)+"px";st.transitionDelay=(stagger?slot*stagger:0)+"ms";
+const v=el.firstChild.style;v.width=v.height=w*.2+"px"}
+if(!drawLines)return;
+const at=(g,c,r,nr)=>{if(c<0||r<0||r>=nr)return -1;const k=key[g+","+c+","+r];return k==null?-1:k};
+const outs=["","","",""];
+for(let i=0;i<N;i++){const P=pos[i],x0=P.x,y0=P.y,V=[[.25,0],[.75,0],[1,.5],[.75,1],[.25,1],[0,.5]].map(q=>[x0+q[0]*w,y0+q[1]*h]),o=P.c%2,NB=[at(P.gi,P.c,P.r-1,P.nr),at(P.gi,P.c+1,o?P.r:P.r-1,P.nr),at(P.gi,P.c+1,o?P.r+1:P.r,P.nr),at(P.gi,P.c,P.r+1,P.nr),at(P.gi,P.c-1,o?P.r+1:P.r,P.nr),at(P.gi,P.c-1,o?P.r:P.r-1,P.nr)],g=cells[i].g;
+for(let e=0;e<6;e++){const j=NB[e];if(j>=0&&cells[j].g===g)continue;const A=V[e],B=V[(e+1)%6];outs[g]+='<line class="seg" pathLength="1" x1="'+A[0].toFixed(1)+'" y1="'+A[1].toFixed(1)+'" x2="'+B[0].toFixed(1)+'" y2="'+B[1].toFixed(1)+'"/>'}}
+svg.innerHTML=outs.map((s,g)=>'<g class="gseg'+(g%2?' green':'')+'" data-g="'+g+'">'+s+"</g>").join("");
+wrap.querySelectorAll(".lbl").forEach(n=>n.remove());
+GROUPS.forEach((g,gi)=>{const o=origins[gi],d=document.createElement("div");d.className="lbl"+(gi%2?" green":"");d.style.left=(o.lx+o.lw/2)+"px";d.style.width=o.lw+"px";d.dataset.g=gi;const below=gi>1;d.style.bottom="auto";d.style.height=(band-4)+"px";d.style.display="flex";d.style.flexDirection="column";d.style.justifyContent=below?"flex-start":"flex-end";d.style.top=(below?foot+4:o.y-band)+"px";d.innerHTML='<span class="chip">'+g.k+'</span><small>'+g.full+'</small>';wrap.appendChild(d)});restore()}
 function place(drawLines,stagger){
+if(matchMedia("(max-width:760px)").matches){cat.classList.add("stack");placeMobile(drawLines,stagger);return}
+cat.classList.remove("stack");
 const avail=host.clientWidth,w=Math.max(Math.min(avail/(.75*(cols-1)+1),170),90),h=w*.866,ww=.75*(cols-1)*w+w,hh=rows*h+h/2;
 wrap.style.width=ww+"px";wrap.style.height=hh+"px";svg.setAttribute("width",ww);svg.setAttribute("height",hh);
 const col=[],cnt={p:0,n:0,w:0};
