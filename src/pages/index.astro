@@ -223,6 +223,83 @@ img{max-width:100%;height:auto}
 @keyframes logo-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media (max-width:760px){.customers{padding-left:16px;padding-right:16px}.logo-row{gap:36px;padding:0 18px}.logo-row svg{height:32px}}
 @media (prefers-reduced-motion:reduce){.logo-track{animation:none;flex-wrap:wrap;justify-content:center;width:auto}.marquee{width:auto;margin-left:auto;margin-right:auto;overflow:visible}}
+.industries{padding:clamp(28px,5vh,56px) 5vw clamp(56px,8vh,96px);background:#fff}
+.industries h2{margin:0 auto;max-width:1080px;text-align:center;font-family:"Public Sans",system-ui,sans-serif;font-style:italic;font-weight:600;font-size:clamp(28px,3vw,40px);line-height:1.2;letter-spacing:-.03em;color:#1a1424}
+.industries > p{margin:10px auto 0;max-width:520px;text-align:center;font-size:14px;line-height:1.5;color:#6b7280}
+.ind-grid{display:grid;grid-template-columns:repeat(3,1fr);max-width:1180px;margin:clamp(36px,6vh,64px) auto 0}
+.ind-card{position:relative;min-height:280px;overflow:hidden;background:#fff}
+.ind-ph{position:absolute;inset:0;background:linear-gradient(145deg,#f7f2fa,#e4d4ef);clip-path:polygon(0 0,100% 0,100% 52%,0 8%)}
+.ind-body{position:absolute;left:0;right:22%;bottom:0;padding:18px 18px 20px;z-index:1}
+.ind-num{display:block;font-size:28px;font-weight:500;letter-spacing:.04em;color:#c5c9d0;line-height:1}
+.ind-card h3{margin:6px 0 0;font-family:"Public Sans",system-ui,sans-serif;font-style:normal;font-weight:600;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#1a1424;line-height:1.3}
+.ind-card p{margin:4px 0 0;max-width:none;font-size:12px;line-height:1.4;color:#8b919a}
+.ind-card .origin-btn{height:36px;margin-top:12px;padding:0 14px;border-radius:8px;font-size:13px}
+@media (max-width:760px){.industries{padding-left:16px;padding-right:16px}.ind-grid{grid-template-columns:1fr}.ind-card{min-height:260px}}
+.signup{background:#5D1F72;padding:clamp(80px,12vh,140px) 5vw}
+.signup-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,400px);gap:clamp(28px,5vw,72px);align-items:center}
+.signup h2{margin:0;max-width:520px;font-family:"Public Sans",system-ui,sans-serif;font-style:italic;font-weight:600;font-size:clamp(32px,3.6vw,48px);line-height:1.15;letter-spacing:-.03em;color:#fff}
+.signup-lead{margin:16px 0 0;max-width:420px;font-size:16px;line-height:1.5;color:rgba(255,255,255,.86)}
+.signup-card{background:#fff;border-radius:16px;padding:22px 22px 16px;box-shadow:0 12px 32px rgba(40,80,120,.18)}
+.signup-card label{display:block;margin:0 0 8px;font-size:13px;font-weight:600;color:#1a1424}
+.signup-card input{width:100%;height:46px;border:1px solid #e3e7ec;border-radius:10px;padding:0 14px;font:inherit;font-size:14px;color:#1a1424;background:#fff;outline:0}
+.signup-card input:focus{border-color:#5D1F72}
+.signup-card .origin-btn{width:100%;height:46px;margin-top:12px;border-radius:10px}
+.signup-meta{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0 0;max-width:none;font-size:12px;line-height:1.4;color:#8b919a}
+.signup-meta a{color:#5D1F72;font-weight:600;text-decoration:none;white-space:nowrap}
+.signup-meta a:hover{text-decoration:underline}
+@media (max-width:760px){.signup{padding-left:16px;padding-right:16px}.signup-inner{grid-template-columns:1fr;gap:28px}.signup-meta{flex-wrap:wrap}}
+.reviews{padding:clamp(48px,8vh,88px) 0 clamp(64px,9vh,104px);background:#f6f3f8}
+.reviews h2{margin:0 auto;max-width:720px;padding:0 5vw;text-align:center;font-family:"Public Sans",system-ui,sans-serif;font-style:italic;font-weight:600;font-size:clamp(32px,4vw,52px);line-height:1.15;letter-spacing:-.03em;color:#1a1424}
+.rev-score{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px;margin:18px auto 0;padding:0 5vw;max-width:none;font-size:14px;line-height:1.4;color:#6b7280}
+.rev-score b{color:#1a1424;font-weight:600}
+.rev-star{color:#00BF88;font-size:16px;line-height:1}
+.rev-score strong{color:#1a1424;font-weight:700}
+.rev-row{display:grid;grid-template-columns:minmax(200px,260px) minmax(0,1fr);gap:36px;align-items:center;margin-top:clamp(40px,6vh,72px);padding-left:max(5vw,32px)}
+.rev-mark{display:block;font-family:"Public Sans",system-ui,sans-serif;font-size:84px;line-height:.7;font-weight:700;color:#c5c9d0}
+.rev-aside h3{margin:22px 0 0;max-width:190px;font-family:"Public Sans",system-ui,sans-serif;font-style:normal;font-weight:700;font-size:clamp(26px,2.4vw,34px);line-height:1.15;letter-spacing:-.03em;color:#1a1424}
+.rev-nav{display:flex;align-items:center;gap:14px;margin-top:28px;max-width:210px}
+.rev-nav button{width:32px;height:32px;border:0;background:none;padding:0;cursor:pointer;color:#1a1424;font-size:20px;line-height:1}
+.rev-nav button:disabled{color:#c5c9d0;cursor:default}
+.rev-track{position:relative;flex:1;height:2px;background:#e3e5ea}
+.rev-fill{position:absolute;left:0;top:0;height:100%;width:36%;background:#1a1424}
+.rev-scroller{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 5vw 28px 0;scrollbar-width:none}
+.rev-scroller::-webkit-scrollbar{display:none}
+.rev-card{flex:0 0 clamp(260px,38%,380px);scroll-snap-align:start;position:relative;display:flex;flex-direction:column;min-height:250px;background:#fff;border-radius:22px;padding:24px 22px 20px;box-shadow:0 10px 28px rgba(40,80,120,.1)}
+.rev-card::after{content:"";position:absolute;left:36px;bottom:-7px;width:16px;height:16px;background:#fff;transform:rotate(45deg);border-radius:2px}
+.rev-card p{margin:0;max-width:none;font-size:14px;line-height:1.55;color:#3d4450}
+.rev-stars{margin:16px 0 0;color:#00BF88;letter-spacing:3px;font-size:15px;line-height:1}
+.rev-who{display:flex;align-items:center;gap:10px;margin-top:auto;padding-top:18px}
+.rev-ph{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;flex:none;background:linear-gradient(145deg,#f7f2fa,#e4d4ef);color:#5D1F72;font-size:13px;font-weight:600}
+.rev-ph.g{background:linear-gradient(145deg,#f3fbf7,#C4EEDF);color:#00A276}
+.rev-ph.y{background:linear-gradient(145deg,#FCFDD8,#F6F7A9);color:#5D1F72}
+.rev-who strong{display:block;font-size:14px;font-weight:600;color:#1a1424;line-height:1.2}
+.rev-who span{display:block;margin-top:2px;font-size:12px;line-height:1.2;color:#8b919a}
+@media (max-width:760px){
+  .reviews h2{padding:0 16px}
+  .rev-row{grid-template-columns:1fr;gap:22px;padding-left:16px}
+  .rev-aside h3{max-width:240px}
+  .rev-card{flex-basis:min(320px,78vw)}
+  .rev-scroller{padding-right:16px}
+}
+@media (prefers-reduced-motion:reduce){.rev-scroller{scroll-behavior:auto}}
+.site-foot{background:#fff}
+.foot-main{display:grid;grid-template-columns:minmax(200px,260px) repeat(4,minmax(0,1fr));gap:28px 36px;padding:clamp(44px,6vh,68px) max(5vw,32px) clamp(36px,5vh,56px)}
+.foot-brand{display:flex;flex-direction:column;align-items:flex-start;gap:16px}
+.foot-logo img{height:48px;width:auto;display:block;mix-blend-mode:multiply;margin-left:calc(48px * -114 / 636)}
+.foot-contact{display:flex;align-items:center;gap:10px;color:#5D1F72;font-size:14px;font-weight:500;line-height:1;text-decoration:none}
+.foot-contact svg{width:1.5em;height:1.15em;flex:none;display:block}
+.foot-contact:hover{text-decoration:underline}
+.foot-col{display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+.foot-col h2{margin:0 0 4px;font-family:"Public Sans",system-ui,sans-serif;font-style:normal;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#1a1424}
+.foot-col a{color:#5D1F72;font-size:14px;line-height:1.45;text-decoration:none}
+.foot-col a:hover{text-decoration:underline}
+.foot-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;background:#3E1450;padding:16px max(5vw,32px)}
+.foot-social{display:flex;align-items:center;gap:10px;margin-right:16px}
+.foot-bar p{margin:0;max-width:none;font-size:13px;line-height:1.4;color:rgba(255,255,255,.92)}
+.foot-in{width:36px;height:36px;border-radius:50%;background:#fff;color:#3E1450;display:grid;place-items:center;text-decoration:none;flex:none}
+.foot-in svg{width:16px;height:16px;display:block}
+@media (max-width:900px){.foot-main{grid-template-columns:1fr 1fr;padding-left:16px;padding-right:16px}.foot-brand{grid-column:1 / -1}.foot-bar{padding-left:16px;padding-right:16px}}
+@media (max-width:480px){.foot-main{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -262,6 +339,98 @@ img{max-width:100%;height:auto}
 </ul>
 </div></div>
 </section>
+<section class="industries" aria-labelledby="industries-title">
+<h2 id="industries-title">Industries we serve</h2>
+<p>One connected system for the sites you run.</p>
+<div class="ind-grid">
+<article class="ind-card"><div class="ind-ph" aria-hidden="true"></div><div class="ind-body"><span class="ind-num">01</span><h3>Real Estate</h3><p>Offices, towers, and mixed-use</p><button class="origin-btn primary" type="button">Explore More</button></div></article>
+<article class="ind-card"><div class="ind-ph" aria-hidden="true"></div><div class="ind-body"><span class="ind-num">02</span><h3>Manufacturing</h3><p>Plants and production sites</p><button class="origin-btn primary" type="button">Explore More</button></div></article>
+<article class="ind-card"><div class="ind-ph" aria-hidden="true"></div><div class="ind-body"><span class="ind-num">03</span><h3>Corporate</h3><p>Headquarters and campuses</p><button class="origin-btn primary" type="button">Explore More</button></div></article>
+<article class="ind-card"><div class="ind-ph" aria-hidden="true"></div><div class="ind-body"><span class="ind-num">04</span><h3>Hospitality</h3><p>Hotels, venues, and resorts</p><button class="origin-btn primary" type="button">Explore More</button></div></article>
+<article class="ind-card"><div class="ind-ph" aria-hidden="true"></div><div class="ind-body"><span class="ind-num">05</span><h3>Retail</h3><p>Stores and shopping centres</p><button class="origin-btn primary" type="button">Explore More</button></div></article>
+<article class="ind-card"><div class="ind-ph" aria-hidden="true"></div><div class="ind-body"><span class="ind-num">06</span><h3>Healthcare</h3><p>Hospitals and care campuses</p><button class="origin-btn primary" type="button">Explore More</button></div></article>
+</div>
+</section>
+<section class="signup" aria-labelledby="signup-title">
+<div class="signup-inner">
+<div>
+<h2 id="signup-title">Run your whole business on one platform.</h2>
+<p class="signup-lead">Start free in minutes. No credit card, no setup fees.</p>
+</div>
+<form class="signup-card" action="#" onsubmit="return false">
+<label for="work-email">Work email</label>
+<input id="work-email" type="email" name="email" placeholder="you@company.com" autocomplete="email">
+<button class="origin-btn primary" type="submit">Start free</button>
+<p class="signup-meta"><span>Free plan · Cancel anytime</span><a href="#">Prefer a demo? Book one →</a></p>
+</form>
+</div>
+</section>
+<section class="reviews" aria-labelledby="reviews-title">
+<h2 id="reviews-title">Read reviews,<br>operate with confidence.</h2>
+<p class="rev-score"><b>4.2/5</b> <span class="rev-star" aria-hidden="true">★</span> <strong>Trustpilot</strong> <span>Based on 5210 reviews</span></p>
+<div class="rev-row">
+<div class="rev-aside">
+<span class="rev-mark" aria-hidden="true">“</span>
+<h3>What our customers are saying</h3>
+<div class="rev-nav">
+<button class="rev-prev" type="button" aria-label="Previous reviews">←</button>
+<span class="rev-track" aria-hidden="true"><span class="rev-fill"></span></span>
+<button class="rev-next" type="button" aria-label="Next reviews">→</button>
+</div>
+</div>
+<div class="rev-scroller" tabindex="0" aria-label="Customer reviews">
+<article class="rev-card"><p>Work across our sites finally sits in one place. Requests, assets, and vendors are visible to the people who need them, and the team actually uses it.</p><div class="rev-stars" aria-label="5 out of 5">★★★★★</div><div class="rev-who"><span class="rev-ph" aria-hidden="true">K</span><div><strong>Karan</strong><span>1 week ago</span></div></div></article>
+<article class="rev-card"><p>Facilities and maintenance hand over cleanly now. We stopped chasing status through spreadsheets and long email threads.</p><div class="rev-stars" aria-label="5 out of 5">★★★★★</div><div class="rev-who"><span class="rev-ph g" aria-hidden="true">C</span><div><strong>Catherine</strong><span>10 days ago</span></div></div></article>
+<article class="rev-card"><p>We brought the campus onto it without a long rollout. The views match how our teams already run the buildings.</p><div class="rev-stars" aria-label="5 out of 5">★★★★★</div><div class="rev-who"><span class="rev-ph y" aria-hidden="true">P</span><div><strong>Peter</strong><span>2 weeks ago</span></div></div></article>
+<article class="rev-card"><p>Inspections, work orders, and vendor visits are on the same record. That removed a meeting we used to need every week.</p><div class="rev-stars" aria-label="5 out of 5">★★★★★</div><div class="rev-who"><span class="rev-ph" aria-hidden="true">A</span><div><strong>Aisha</strong><span>3 weeks ago</span></div></div></article>
+</div>
+</div>
+</section>
+<footer class="site-foot">
+<div class="foot-main">
+<div class="foot-brand">
+<a class="foot-logo" href="#"><img src="/Logo-yellow-color.jpg" alt="Fusionedge"></a>
+<a class="foot-contact" href="mailto:hello@fusionedge.com"><svg viewBox="2 4 20 16" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>hello@fusionedge.com</a>
+<a class="foot-contact" href="#"><svg viewBox="3.6 2.5 18 17.6" aria-hidden="true"><path d="M7 3.5h3.2l1.4 3.4-2 1.2a12 12 0 006.3 6.3l1.2-2 3.4 1.4V17a2 2 0 01-2.2 2A15.5 15.5 0 015 6.7 2 2 0 017 3.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>Book a demo</a>
+</div>
+<div class="foot-col">
+<h2>Quick links</h2>
+<a href="#">Apps</a>
+<a href="#">Solutions</a>
+<a href="#">Resources</a>
+<a href="#">Book a Demo</a>
+</div>
+<div class="foot-col">
+<h2>Products</h2>
+<a href="#">CAFM</a>
+<a href="#">IWFM</a>
+<a href="#">EAM</a>
+<a href="#">CAMS</a>
+</div>
+<div class="foot-col">
+<h2>Solutions</h2>
+<a href="#">Facility Management</a>
+<a href="#">Workplace</a>
+<a href="#">Asset Management</a>
+</div>
+<div class="foot-col">
+<h2>Industries we serve</h2>
+<a href="#">Real Estate</a>
+<a href="#">Manufacturing</a>
+<a href="#">Corporate</a>
+<a href="#">Hospitality</a>
+<a href="#">Retail</a>
+<a href="#">Healthcare</a>
+</div>
+</div>
+<div class="foot-bar">
+<p>© 2026 Fusionedge</p>
+<div class="foot-social">
+<a class="foot-in" href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="3.6" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></svg></a>
+<a class="foot-in" href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.5 9H4V20h2.5V9zM5.2 4A1.6 1.6 0 103.6 5.6 1.6 1.6 0 005.2 4zM20 20h-2.5v-5.6c0-1.6-.6-2.6-2-2.6a2.2 2.2 0 00-2 1.5 2.7 2.7 0 00-.1 1v5.7H11V9h2.4v1.5a3.4 3.4 0 013-1.7c2.2 0 3.6 1.4 3.6 4.5V20z"/></svg></a>
+</div>
+</div>
+</footer>
 <script is:inline>
 var r=function(x,y,w,h,q,k){return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="'+q+'" class="'+k+'"/>'},
 c=function(x,y,q,k){return '<circle cx="'+x+'" cy="'+y+'" r="'+q+'" class="'+k+'"/>'},
@@ -411,6 +580,19 @@ navEl.querySelectorAll(".links a").forEach(a=>a.addEventListener("click",()=>set
 addEventListener("keydown",e=>{if(e.key==="Escape")setMenu(false)});
 addEventListener("resize",()=>{if(innerWidth>900)setMenu(false)});
 addEventListener("scroll",()=>{if(navEl.classList.contains("hide"))setMenu(false)},{passive:true});
+(function(){
+const scroller=document.querySelector(".rev-scroller");
+if(!scroller)return;
+const prev=document.querySelector(".rev-prev"),next=document.querySelector(".rev-next"),fill=document.querySelector(".rev-fill");
+const step=()=>{const card=scroller.querySelector(".rev-card");return card?card.getBoundingClientRect().width+18:300};
+const sync=()=>{const max=scroller.scrollWidth-scroller.clientWidth,p=max<=1?1:scroller.scrollLeft/max;
+fill.style.width=(36+p*64)+"%";prev.disabled=scroller.scrollLeft<=1;next.disabled=scroller.scrollLeft>=max-1};
+prev.addEventListener("click",()=>scroller.scrollBy({left:-step(),behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"}));
+next.addEventListener("click",()=>scroller.scrollBy({left:step(),behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"}));
+scroller.addEventListener("scroll",sync,{passive:true});
+addEventListener("resize",sync);
+sync();
+})();
 </script>
 </body>
 </html>
