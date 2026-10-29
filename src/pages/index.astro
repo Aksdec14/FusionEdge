@@ -176,7 +176,7 @@ img{max-width:100%;height:auto}
 @media (max-width:1100px){
   .cat.stack{padding:8px 0 16px;overflow:visible}
   .cat.stack .hex{gap:2px}
-  .cat.stack .hex span{max-width:84%;line-height:1.05}
+  .cat.stack .hex span{max-width:80%;line-height:1.12;letter-spacing:-.005em;font-weight:500}
   .cat.stack .lbl{font-size:14px;font-weight:700;line-height:1.2}
   .cat.stack .lbl small{font-size:10.5px;line-height:1.25;font-weight:500;margin-top:3px}
 }
@@ -296,8 +296,8 @@ const nbr=P=>{const c=P.c,r=P.r,o=c%2;return [[c,r-1],[c+1,o?r:r-1],[c+1,o?r+1:r
 const cnt={p:0,n:0,w:0},col=[];
 for(let slot=0;slot<N;slot++){const i=order[slot],P=pos[i],bad=nbr(P).filter(j=>j>=0&&pos[j].gi===P.gi).map(j=>col[j]),k=["p","n","w"].sort((a,b)=>((bad.filter(z=>z==a).length*100+cnt[a]*(a=="p"?1:2))-(bad.filter(z=>z==b).length*100+cnt[b]*(b=="p"?1:2))))[0];col[i]=k;cnt[k]++;
 const el=hexes[i],st=el.style;el.firstChild.setAttribute("class","mod "+k);
-st.width=w+"px";st.height=h+"px";st.left=P.x+"px";st.top=P.y+"px";st.fontSize=Math.max(10,w*.065)+"px";st.transitionDelay=(stagger?slot*stagger:0)+"ms";
-const v=el.firstChild.style;v.width=v.height=w*.2+"px"}
+st.width=w+"px";st.height=h+"px";st.left=P.x+"px";st.top=P.y+"px";st.fontSize=Math.max(9,w*.056)+"px";st.transitionDelay=(stagger?slot*stagger:0)+"ms";
+const v=el.firstChild.style;v.width=v.height=(w*.2+7)+"px"}
 if(!drawLines)return;
 const outs=["","","",""];
 for(let i=0;i<N;i++){const P=pos[i],x0=P.x,y0=P.y,V=[[.25,0],[.75,0],[1,.5],[.75,1],[.25,1],[0,.5]].map(q=>[x0+q[0]*w,y0+q[1]*h]),NB=nbr(P),g=P.gi;
@@ -314,7 +314,7 @@ const col=[],cnt={p:0,n:0,w:0};
 for(let slot=0;slot<N;slot++){const c=Math.floor(slot/rows),r=slot%rows,nb=[[c,r-1]].concat(c%2?[[c-1,r],[c-1,r+1]]:[[c-1,r-1],[c-1,r]]).filter(q=>q[0]>=0&&q[1]>=0&&q[1]<rows),bad=nb.map(q=>col[q[0]*rows+q[1]]),k=["p","n","w"].sort((a,b)=>((bad.filter(z=>z==a).length*100+cnt[a]*(a=="p"?1:2))-(bad.filter(z=>z==b).length*100+cnt[b]*(b=="p"?1:2))))[0];col[slot]=k;cnt[k]++;
 const x=hexes[order[slot]],st=x.style;x.firstChild.setAttribute("class","mod "+k);
 st.width=w+"px";st.height=h+"px";st.left=c*.75*w+"px";st.top=r*h+(c%2?h/2:0)+"px";st.fontSize=Math.max(10,w*.07)+"px";st.transitionDelay=(stagger?slot*stagger:0)+"ms";
-const v=x.firstChild.style;v.width=v.height=w*.24+"px"}
+const v=x.firstChild.style;v.width=v.height=(w*.24+10)+"px"}
 if(!drawLines)return;
 const at=(c,r)=>{if(c<0||r<0||r>=rows)return -1;const i=c*rows+r;return i<N?i:-1};
 const outs=["","","",""];
