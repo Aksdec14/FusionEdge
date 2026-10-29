@@ -138,6 +138,9 @@ nav.top{padding-top:16px;padding-bottom:16px}
 .hero .origin-btn.secondary .fill{background:#fff}
 .hero .origin-btn.secondary.on,.hero .origin-btn.secondary:hover{background:#fff;color:#5D1F72;border-color:#5D1F72}
 nav.top .btn:hover{background:#fff;color:#5D1F72;border-color:#5D1F72}
+nav.top{transition:transform .35s ease}
+nav.top.hide{transform:translateY(-110%)}
+@media (prefers-reduced-motion:reduce){nav.top{transition:none}}
 </style>
 </head>
 <body>
@@ -253,6 +256,8 @@ b.addEventListener("blur",()=>b.classList.remove("on","down"));
 b.addEventListener("keydown",e=>{if((e.key==" "||e.key=="Enter")&&!e.repeat){ctr();b.classList.add("on","down")}});
 b.addEventListener("keyup",e=>{if(e.key==" "||e.key=="Enter"){b.classList.remove("down");if(!b.matches(":focus-visible"))b.classList.remove("on")}});
 });
+let navY=scrollY;
+addEventListener("scroll",()=>{const y=scrollY,nav=document.querySelector("nav.top");if(!nav)return;if(y<=8)nav.classList.remove("hide");else if(y>navY+6)nav.classList.add("hide");else if(y<navY-6)nav.classList.remove("hide");navY=y},{passive:true});
 </script>
 </body>
 </html>
