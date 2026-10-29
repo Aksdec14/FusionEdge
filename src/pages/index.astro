@@ -193,13 +193,23 @@ img{max-width:100%;height:auto}
   .hero{padding-left:16px;padding-right:16px}
   .hero .ctas{width:100%;flex-direction:column;align-items:stretch}
   .hero .origin-btn{width:100%;height:46px}
-  .hero .tag em{border-bottom-width:4px}
+  .hero .tag em,.video h2 em{border-bottom-width:4px}
 }
 
 /* --- Large screens (>=1600px): keep content centered --- */
 @media (min-width:1600px){
   .wrap{max-width:1800px;margin-left:auto;margin-right:auto}
 }
+.wrap{padding-bottom:clamp(8px,2vh,20px)}
+.video{padding:clamp(20px,3vh,36px) 5vw clamp(40px,6vh,72px);background:#fff}
+@media (min-width:761px){.video{padding-top:clamp(56px,7vh,96px)}}
+.video h2{margin:0 auto clamp(16px,2.5vh,24px);max-width:1080px;text-align:center;font-family:"Public Sans",system-ui,sans-serif;font-style:italic;font-weight:600;font-size:clamp(22px,2.1vw + 12px,48px);line-height:1.2;letter-spacing:-.03em;color:#1a1424;overflow-wrap:break-word;text-wrap:balance}
+.video h2 em{font-style:inherit;text-decoration:none;border-bottom:5px solid #00BF88;padding-bottom:1px}
+.video-frame{position:relative;max-width:1080px;margin:0 auto;aspect-ratio:2.4/1;border-radius:16px;background:#f6f3f8;border:1px solid #eadff0;display:flex;align-items:center;justify-content:center}
+.video-play{width:72px;height:72px;border-radius:50%;background:#5D1F72;display:grid;place-items:center;box-shadow:0 8px 24px rgba(93,31,114,.22)}
+.video-play span{width:0;height:0;margin-left:4px;border-style:solid;border-width:11px 0 11px 18px;border-color:transparent transparent transparent #fff}
+@media (max-width:760px){.video-frame{aspect-ratio:1.7/1}}
+@media (max-width:480px){.video{padding-left:16px;padding-right:16px}.video-play{width:56px;height:56px}.video-play span{border-width:9px 0 9px 14px}}
 </style>
 </head>
 <body>
@@ -214,6 +224,7 @@ img{max-width:100%;height:auto}
 </div>
 </section>
 <section class="wrap" aria-label="Modules by system"><div id="grid"></div></section>
+<section class="video" aria-label="Product video"><h2>Your whole business, beautifully <em>connected</em>.</h2><div class="video-frame" role="img" aria-label="Video placeholder"><div class="video-play" aria-hidden="true"><span></span></div></div></section>
 <script is:inline>
 var r=function(x,y,w,h,q,k){return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="'+q+'" class="'+k+'"/>'},
 c=function(x,y,q,k){return '<circle cx="'+x+'" cy="'+y+'" r="'+q+'" class="'+k+'"/>'},
