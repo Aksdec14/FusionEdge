@@ -205,11 +205,24 @@ img{max-width:100%;height:auto}
 @media (min-width:761px){.video{padding-top:clamp(56px,7vh,96px)}}
 .video h2{margin:0 auto clamp(16px,2.5vh,24px);max-width:1080px;text-align:center;font-family:"Public Sans",system-ui,sans-serif;font-style:italic;font-weight:600;font-size:clamp(22px,2.1vw + 12px,48px);line-height:1.2;letter-spacing:-.03em;color:#1a1424;overflow-wrap:break-word;text-wrap:balance}
 .video h2 em{font-style:inherit;text-decoration:none;border-bottom:5px solid #00BF88;padding-bottom:1px}
+.video-break{display:none}
+@media (max-width:760px){.video-break{display:initial}.video h2{font-size:clamp(28px,7.4vw,34px)}}
 .video-frame{position:relative;max-width:1080px;margin:0 auto;aspect-ratio:2.4/1;border-radius:16px;background:#f6f3f8;border:1px solid #eadff0;display:flex;align-items:center;justify-content:center}
 .video-play{width:72px;height:72px;border-radius:50%;background:#5D1F72;display:grid;place-items:center;box-shadow:0 8px 24px rgba(93,31,114,.22)}
 .video-play span{width:0;height:0;margin-left:4px;border-style:solid;border-width:11px 0 11px 18px;border-color:transparent transparent transparent #fff}
 @media (max-width:760px){.video-frame{aspect-ratio:1.7/1}}
 @media (max-width:480px){.video{padding-left:16px;padding-right:16px}.video-play{width:56px;height:56px}.video-play span{border-width:9px 0 9px 14px}}
+.customers{padding:clamp(36px,6vh,72px) 5vw clamp(48px,8vh,88px);background:#fff;text-align:center}
+.customers h2{margin:0;font-family:"Public Sans",system-ui,sans-serif;font-style:italic;font-weight:600;font-size:clamp(28px,3vw,40px);line-height:1.2;letter-spacing:-.03em;color:#1a1424}
+.customers p{margin:10px auto 0;max-width:520px;font-size:14px;line-height:1.5;color:#6b7280}
+.marquee{overflow:hidden;width:100vw;margin:clamp(28px,4vh,44px) calc(50% - 50vw) 0}
+.logo-track{display:flex;width:max-content;animation:logo-marquee 28s linear infinite}
+.logo-row{display:flex;align-items:center;gap:52px;list-style:none;margin:0;padding:0 26px;flex:none}
+.logo-row li{display:flex;align-items:center;color:#8b939e}
+.logo-row svg{display:block;height:38px;width:auto}
+@keyframes logo-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (max-width:760px){.customers{padding-left:16px;padding-right:16px}.logo-row{gap:36px;padding:0 18px}.logo-row svg{height:32px}}
+@media (prefers-reduced-motion:reduce){.logo-track{animation:none;flex-wrap:wrap;justify-content:center;width:auto}.marquee{width:auto;margin-left:auto;margin-right:auto;overflow:visible}}
 </style>
 </head>
 <body>
@@ -224,7 +237,31 @@ img{max-width:100%;height:auto}
 </div>
 </section>
 <section class="wrap" aria-label="Modules by system"><div id="grid"></div></section>
-<section class="video" aria-label="Product video"><h2>Your whole business, beautifully <em>connected</em>.</h2><div class="video-frame" role="img" aria-label="Video placeholder"><div class="video-play" aria-hidden="true"><span></span></div></div></section>
+<section class="video" aria-label="Product video"><h2>Your whole business,<br class="video-break">beautifully <em>connected</em>.</h2><div class="video-frame" role="img" aria-label="Video placeholder"><div class="video-play" aria-hidden="true"><span></span></div></div></section>
+<section class="customers" aria-labelledby="customers-title">
+<h2 id="customers-title">Our Customers</h2>
+<p>Teams that run their operations in one connected system.</p>
+<div class="marquee"><div class="logo-track">
+<ul class="logo-row">
+<li><svg viewBox="0 0 118 28" role="img" aria-label="Unsplash"><rect x="1" y="6" width="16" height="16" rx="3" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M5 16l3.2-3.4 2.2 2.2 2.4-3.2L16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><text x="24" y="19" fill="currentColor" font-family="Public Sans,sans-serif" font-size="14" font-weight="600">Unsplash</text></svg></li>
+<li><svg viewBox="0 0 108 28" role="img" aria-label="Webflow"><path d="M2 20l4.2-12h3.2l2.4 7.2L14.4 8H18l-4.6 12h-3.2l-2.5-7.4L5.2 20H2z" fill="currentColor"/><text x="24" y="19" fill="currentColor" font-family="Public Sans,sans-serif" font-size="14" font-weight="600">webflow</text></svg></li>
+<li><svg viewBox="0 0 92 28" role="img" aria-label="Asana"><circle cx="6" cy="8" r="3" fill="currentColor"/><circle cx="6" cy="18" r="3" fill="currentColor"/><circle cx="14" cy="13" r="3" fill="currentColor"/><text x="24" y="19" fill="currentColor" font-family="Public Sans,sans-serif" font-size="14" font-weight="600">asana</text></svg></li>
+<li><svg viewBox="0 0 78 28" role="img" aria-label="Block"><rect x="2" y="6" width="16" height="16" rx="3" fill="currentColor"/><text x="24" y="19" fill="currentColor" font-family="Public Sans,sans-serif" font-size="14" font-weight="600">block</text></svg></li>
+<li><svg viewBox="0 0 128 28" role="img" aria-label="Atlassian"><path d="M10 4l6 14.5c.4 1-.4 2-1.4 2H5.4c-1 0-1.8-1-1.4-2L10 4z" fill="currentColor"/><text x="24" y="19" fill="currentColor" font-family="Public Sans,sans-serif" font-size="13" font-weight="700" letter-spacing="0.4">ATLASSIAN</text></svg></li>
+<li><svg viewBox="0 0 62 28" role="img" aria-label="Jira"><path d="M10 4l7 8.2a6 6 0 010 7.6L10 24 3 19.8a6 6 0 010-7.6L10 4z" fill="currentColor"/><text x="24" y="19" fill="currentColor" font-family="Public Sans,sans-serif" font-size="14" font-weight="700">Jira</text></svg></li>
+<li><svg viewBox="0 0 132 28" role="img" aria-label="Confluence"><path d="M3 17c2.2-4 6.2-5 9.2-2.2M17 11c-2.2 4-6.2 5-9.2 2.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><text x="26" y="19" fill="currentColor" font-family="Public Sans,sans-serif" font-size="14" font-weight="600">Confluence</text></svg></li>
+</ul>
+<ul class="logo-row" aria-hidden="true">
+<li><svg viewBox="0 0 118 28" role="img" aria-label="Unsplash"><rect x="1" y="6" width="16" height="16" rx="3" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M5 16l3.2-3.4 2.2 2.2 2.4-3.2L16 16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><text x="24" y="19" fill="currentColor" font-family="Public Sans,sans-serif" font-size="14" font-weight="600">Unsplash</text></svg></li>
+<li><svg viewBox="0 0 108 28" role="img" aria-label="Webflow"><path d="M2 20l4.2-12h3.2l2.4 7.2L14.4 8H18l-4.6 12h-3.2l-2.5-7.4L5.2 20H2z" fill="currentColor"/><text x="24" y="19" fill="currentColor" font-family="Public Sans,sans-serif" font-size="14" font-weight="600">webflow</text></svg></li>
+<li><svg viewBox="0 0 92 28" role="img" aria-label="Asana"><circle cx="6" cy="8" r="3" fill="currentColor"/><circle cx="6" cy="18" r="3" fill="currentColor"/><circle cx="14" cy="13" r="3" fill="currentColor"/><text x="24" y="19" fill="currentColor" font-family="Public Sans,sans-serif" font-size="14" font-weight="600">asana</text></svg></li>
+<li><svg viewBox="0 0 78 28" role="img" aria-label="Block"><rect x="2" y="6" width="16" height="16" rx="3" fill="currentColor"/><text x="24" y="19" fill="currentColor" font-family="Public Sans,sans-serif" font-size="14" font-weight="600">block</text></svg></li>
+<li><svg viewBox="0 0 128 28" role="img" aria-label="Atlassian"><path d="M10 4l6 14.5c.4 1-.4 2-1.4 2H5.4c-1 0-1.8-1-1.4-2L10 4z" fill="currentColor"/><text x="24" y="19" fill="currentColor" font-family="Public Sans,sans-serif" font-size="13" font-weight="700" letter-spacing="0.4">ATLASSIAN</text></svg></li>
+<li><svg viewBox="0 0 62 28" role="img" aria-label="Jira"><path d="M10 4l7 8.2a6 6 0 010 7.6L10 24 3 19.8a6 6 0 010-7.6L10 4z" fill="currentColor"/><text x="24" y="19" fill="currentColor" font-family="Public Sans,sans-serif" font-size="14" font-weight="700">Jira</text></svg></li>
+<li><svg viewBox="0 0 132 28" role="img" aria-label="Confluence"><path d="M3 17c2.2-4 6.2-5 9.2-2.2M17 11c-2.2 4-6.2 5-9.2 2.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><text x="26" y="19" fill="currentColor" font-family="Public Sans,sans-serif" font-size="14" font-weight="600">Confluence</text></svg></li>
+</ul>
+</div></div>
+</section>
 <script is:inline>
 var r=function(x,y,w,h,q,k){return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="'+q+'" class="'+k+'"/>'},
 c=function(x,y,q,k){return '<circle cx="'+x+'" cy="'+y+'" r="'+q+'" class="'+k+'"/>'},
