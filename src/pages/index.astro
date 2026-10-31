@@ -9,7 +9,7 @@ import Layout from "../layouts/Layout.astro";
 </div>
 </section>
 <section class="wrap" aria-label="Modules by system"><div id="grid"></div></section>
-<section class="video" aria-label="Product video"><h2>Your whole business,<br class="video-break">beautifully <em>connected</em>.</h2><div class="video-frame" role="img" aria-label="Video placeholder"><div class="video-play" aria-hidden="true"><span></span></div></div></section>
+<section class="video" aria-label="Product video"><h2><span>Your whole business,</span> <span>beautifully <em>connected</em>.</span></h2><video class="video-frame" autoplay muted loop playsinline preload="auto" disablepictureinpicture aria-label="Your whole business, beautifully connected"><source src="/Fusionedge_hero_30s_v7.mp4" type="video/mp4"></video></section>
 <section class="customers" aria-labelledby="customers-title">
 <h2 id="customers-title">Our Customers</h2>
 <p>Teams that run their operations in one connected system.</p>
@@ -34,16 +34,22 @@ import Layout from "../layouts/Layout.astro";
 </ul>
 </div></div>
 </section>
-<section class="industries" aria-labelledby="industries-title">
-<h2 id="industries-title">Industries we serve</h2>
-<p>One connected system for the sites you run.</p>
-<div class="ind-grid">
-<article class="ind-card"><div class="ind-ph" aria-hidden="true"></div><div class="ind-body"><span class="ind-num">01</span><h3>Real Estate</h3><p>Offices, towers, and mixed-use</p><button class="origin-btn primary" type="button">Explore More</button></div></article>
-<article class="ind-card"><div class="ind-ph" aria-hidden="true"></div><div class="ind-body"><span class="ind-num">02</span><h3>Manufacturing</h3><p>Plants and production sites</p><button class="origin-btn primary" type="button">Explore More</button></div></article>
-<article class="ind-card"><div class="ind-ph" aria-hidden="true"></div><div class="ind-body"><span class="ind-num">03</span><h3>Corporate</h3><p>Headquarters and campuses</p><button class="origin-btn primary" type="button">Explore More</button></div></article>
-<article class="ind-card"><div class="ind-ph" aria-hidden="true"></div><div class="ind-body"><span class="ind-num">04</span><h3>Hospitality</h3><p>Hotels, venues, and resorts</p><button class="origin-btn primary" type="button">Explore More</button></div></article>
-<article class="ind-card"><div class="ind-ph" aria-hidden="true"></div><div class="ind-body"><span class="ind-num">05</span><h3>Retail</h3><p>Stores and shopping centres</p><button class="origin-btn primary" type="button">Explore More</button></div></article>
-<article class="ind-card"><div class="ind-ph" aria-hidden="true"></div><div class="ind-body"><span class="ind-num">06</span><h3>Healthcare</h3><p>Hospitals and care campuses</p><button class="origin-btn primary" type="button">Explore More</button></div></article>
+<section class="usecases" aria-labelledby="usecases-title">
+<div class="uc-top">
+<h2 id="usecases-title">Use cases for the sites you run</h2>
+<p class="uc-lead">One connected system for facilities, assets, and the teams on site.</p>
+<div class="uc-nav">
+<button class="uc-prev" type="button" aria-label="Previous stories">←</button>
+<button class="uc-next" type="button" aria-label="Next stories">→</button>
+</div>
+</div>
+<div class="uc-row">
+<article class="uc-card"><h3>Real Estate</h3><p>A property team was running three towers from inboxes and a shared sheet. Requests, vendor visits, and the asset list never sat on the same building.</p><a class="uc-more" href="/stories/real-estate">Read more <i aria-hidden="true"></i></a></article>
+<article class="uc-card"><h3>Manufacturing</h3><p>Maintenance at the plant was split between the floor and the office. The people beside the line could not see the status the planner had already updated.</p><a class="uc-more" href="/stories/manufacturing">Read more <i aria-hidden="true"></i></a></article>
+<article class="uc-card"><h3>Healthcare</h3><p>Inspections for clinical rooms and the plant rooms were tracked apart. A check that failed in the morning was hard to find by the afternoon round.</p><a class="uc-more" href="/stories/healthcare">Read more <i aria-hidden="true"></i></a></article>
+<article class="uc-card"><h3>Corporate</h3><p>Desk bookings, visitors, and workplace requests lived in separate tools. Reception and the workplace team were looking at two different days.</p><a class="uc-more" href="/stories/corporate">Read more <i aria-hidden="true"></i></a></article>
+<article class="uc-card"><h3>Hospitality</h3><p>Guest requests and the engineering list were kept apart. A room marked ready in one place was still waiting on a repair in the other.</p><a class="uc-more" href="/stories/hospitality">Read more <i aria-hidden="true"></i></a></article>
+<article class="uc-card"><h3>Retail</h3><p>Store faults went into a group chat, and vendor visits sat on a head-office sheet. A repeat fault never showed the last visit.</p><a class="uc-more" href="/stories/retail">Read more <i aria-hidden="true"></i></a></article>
 </div>
 </section>
 <section class="signup" aria-labelledby="signup-title">
@@ -212,6 +218,19 @@ next.addEventListener("click",()=>scroller.scrollBy({left:step(),behavior:matchM
 scroller.addEventListener("scroll",sync,{passive:true});
 addEventListener("resize",sync);
 sync();
+})();
+(function(){
+const row=document.querySelector(".uc-row");
+if(!row)return;
+const cards=[...row.querySelectorAll(".uc-card")];
+const prev=document.querySelector(".uc-prev"),next=document.querySelector(".uc-next");
+let page=0;
+const per=()=>matchMedia("(max-width:760px)").matches?1:3;
+const show=()=>{const n=per(),max=Math.max(0,Math.ceil(cards.length/n)-1);if(page>max)page=max;cards.forEach((card,i)=>card.classList.toggle("is-off",i<page*n||i>=page*n+n));prev.disabled=page===0;next.disabled=page>=max};
+prev.addEventListener("click",()=>{page--;show()});
+next.addEventListener("click",()=>{page++;show()});
+addEventListener("resize",show);
+show();
 })();
 </script>
 </Layout>
