@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 ---
 <Layout>
-<section class="copy hero">
+<section class="hero">
 <div class="hero-copy">
 <h1>Digitize, Optimize and scale</h1>
 <p class="tag">One platform. <em>One source of truth.</em></p>
@@ -139,9 +139,9 @@ const cat=host.firstChild,wrap=cat.firstChild,svg=wrap.firstChild;
 const cells=[];GROUPS.forEach((g,gi)=>g.m.forEach(n=>cells.push({n,g:gi})));
 const hexes=cells.map(m=>{const d=document.createElement("div");d.className="hex";d.title=m.n;d.innerHTML='<svg class="mod p" viewBox="2 2.5 45 44" aria-hidden="true">'+byName[m.n][1]+'</svg><span>'+m.n+'</span>';wrap.appendChild(d);return d});
 const N=hexes.length,rows=2,cols=Math.ceil(N/2);
-let act=-1,timer,order=cells.map((_,i)=>i),kept=[];
-function clearKept(){kept=[];act=-1;svg.querySelectorAll(".gseg").forEach(el=>el.classList.remove("on","drawn"));wrap.querySelectorAll(".lbl").forEach(el=>el.classList.remove("on"))}
-function reveal(gi){act=gi;cat.classList.add("focus");hexes.forEach((x,i)=>x.classList.toggle("act",cells[i].g===gi));
+let timer,order=cells.map((_,i)=>i),kept=[];
+function clearKept(){kept=[];svg.querySelectorAll(".gseg").forEach(el=>el.classList.remove("on","drawn"));wrap.querySelectorAll(".lbl").forEach(el=>el.classList.remove("on"))}
+function reveal(gi){
 const el=svg.querySelector('.gseg[data-g="'+gi+'"]');if(el){el.classList.remove("on","drawn");void el.getBoundingClientRect();el.classList.add("on","drawn")}
 const lbl=wrap.querySelector('.lbl[data-g="'+gi+'"]');if(lbl)lbl.classList.add("on");if(kept.indexOf(gi)<0)kept.push(gi)}
 function restore(){kept.forEach(gi=>{const el=svg.querySelector('.gseg[data-g="'+gi+'"]');if(el)el.classList.add("on","drawn");const lbl=wrap.querySelector('.lbl[data-g="'+gi+'"]');if(lbl)lbl.classList.add("on")})}
@@ -177,7 +177,7 @@ for(let i=0;i<N;i++){const P=pos[i],x0=P.x,y0=P.y,V=[[.25,0],[.75,0],[1,.5],[.75
 for(let e=0;e<6;e++){const j=NB[e];if(j>=0&&pos[j].gi===g)continue;const A=V[e],B=V[(e+1)%6];outs[g]+='<line class="seg" pathLength="1" x1="'+A[0].toFixed(1)+'" y1="'+A[1].toFixed(1)+'" x2="'+B[0].toFixed(1)+'" y2="'+B[1].toFixed(1)+'"/>'}}
 svg.innerHTML=outs.map((s,g)=>'<g class="gseg'+(g%2?' green':'')+'" data-g="'+g+'">'+s+"</g>").join("");
 wrap.querySelectorAll(".lbl").forEach(n=>n.remove());
-GROUPS.forEach((g,gi)=>{const d=document.createElement("div"),below=gi>1;d.className="lbl"+(gi%2?" green":"");d.style.left=LC[gi]*w+"px";d.style.width=lw+"px";d.dataset.g=gi;d.style.bottom="auto";d.style.height=(below?bot-12:band-12)+"px";d.style.display="flex";d.style.flexDirection="column";d.style.justifyContent=below?"flex-start":"flex-end";d.style.top=(below?foot+12:0)+"px";d.innerHTML='<span class="chip">'+g.k+'</span><small>'+g.full+'</small>';wrap.appendChild(d)});restore()}
+GROUPS.forEach((g,gi)=>{const d=document.createElement("div"),below=gi>1;d.className="lbl"+(gi%2?" green":"");d.style.left=LC[gi]*w+"px";d.style.width=lw+"px";d.dataset.g=gi;d.style.bottom="auto";d.style.height=(below?bot-12:band-12)+"px";d.style.display="flex";d.style.flexDirection="column";d.style.justifyContent=below?"flex-start":"flex-end";d.style.top=(below?foot+12:0)+"px";d.innerHTML='<span>'+g.k+'</span><small>'+g.full+'</small>';wrap.appendChild(d)});restore()}
 function place(drawLines,stagger){
 if(matchMedia("(max-width:1100px)").matches){cat.classList.add("stack");placeMobile(drawLines,stagger);return}
 cat.classList.remove("stack");
@@ -200,7 +200,7 @@ wrap.querySelectorAll(".lbl").forEach(n=>n.remove());
 GROUPS.forEach((g,gi)=>{const cs=[];order.forEach((cell,slot)=>{if(cells[cell].g===gi)cs.push(Math.floor(slot/rows))});
 const c0=Math.min.apply(null,cs),c1=Math.max.apply(null,cs),x1=c0*.75*w,x2=c1*.75*w+w,d=document.createElement("div");
 d.className="lbl"+(gi%2?" green":"");d.style.left=(x1+x2)/2+"px";d.style.width=(x2-x1)+"px";d.dataset.g=gi;
-d.innerHTML='<span class="chip">'+g.k+'</span><small>'+g.full+'</small>';wrap.appendChild(d)});restore()}
+d.innerHTML='<span>'+g.k+'</span><small>'+g.full+'</small>';wrap.appendChild(d)});restore()}
 function cycle(i){if(i===0)clearKept();reveal(i);timer=setTimeout(()=>cycle((i+1)%GROUPS.length),i===GROUPS.length-1?2600:1500)}
 place(true,35);
 let lastW=innerWidth;
