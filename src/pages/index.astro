@@ -108,22 +108,103 @@ import Layout from "../layouts/Layout.astro";
 </form>
 </div>
 </section>
-<section class="reviews" aria-labelledby="reviews-aside-title">
-<div class="rev-row">
-<div class="rev-aside">
-<span class="rev-mark" aria-hidden="true">“</span>
-<h3 id="reviews-aside-title">What our customers are saying</h3>
-<div class="rev-nav">
-<button class="rev-prev" type="button" aria-label="Previous reviews">←</button>
-<span class="rev-track" aria-hidden="true"><span class="rev-fill"></span></span>
-<button class="rev-next" type="button" aria-label="Next reviews">→</button>
+<section class="reviews" aria-labelledby="reviews-title">
+<div class="rev-board">
+<div class="rev-col">
+<article class="rev-c rev-good">
+<span class="rev-dot rev-hang"></span>
+<h3>Good Services!</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<svg class="rev-arrow" viewBox="0 0 28 12" aria-hidden="true"><path d="M1 6h22M18 1.5 24.5 6 18 10.5" fill="none" stroke="#1a1a1a" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<svg class="rev-stars rev-stars-out" viewBox="0 0 80 14" aria-label="5 stars"><path fill="#F5B400" d="M7 1.2 8.4 4.6 12 4.9 9.2 7.3 10.1 10.8 7 9.1 3.9 10.8 4.8 7.3 2 4.9 5.6 4.6ZM23 1.2 24.4 4.6 28 4.9 25.2 7.3 26.1 10.8 23 9.1 19.9 10.8 20.8 7.3 18 4.9 21.6 4.6ZM39 1.2 40.4 4.6 44 4.9 41.2 7.3 42.1 10.8 39 9.1 35.9 10.8 36.8 7.3 34 4.9 37.6 4.6ZM55 1.2 56.4 4.6 60 4.9 57.2 7.3 58.1 10.8 55 9.1 51.9 10.8 52.8 7.3 50 4.9 53.6 4.6ZM71 1.2 72.4 4.6 76 4.9 73.2 7.3 74.1 10.8 71 9.1 67.9 10.8 68.8 7.3 66 4.9 69.6 4.6Z"/></svg>
+</article>
+<div class="rev-pair">
+<article class="rev-c rev-app">
+<div class="rev-app-top">
+<span class="rev-dot d-md"></span>
+<span class="rev-q" aria-hidden="true">”</span>
+<div><strong>Victoria Wotton</strong><span class="rev-co">Fermentum Odio Co.</span></div>
 </div>
+<h3>I really appreciate!!</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<svg class="rev-stars" viewBox="0 0 80 14" aria-label="5 stars"><path fill="#F5B400" d="M7 1.2 8.4 4.6 12 4.9 9.2 7.3 10.1 10.8 7 9.1 3.9 10.8 4.8 7.3 2 4.9 5.6 4.6ZM23 1.2 24.4 4.6 28 4.9 25.2 7.3 26.1 10.8 23 9.1 19.9 10.8 20.8 7.3 18 4.9 21.6 4.6ZM39 1.2 40.4 4.6 44 4.9 41.2 7.3 42.1 10.8 39 9.1 35.9 10.8 36.8 7.3 34 4.9 37.6 4.6ZM55 1.2 56.4 4.6 60 4.9 57.2 7.3 58.1 10.8 55 9.1 51.9 10.8 52.8 7.3 50 4.9 53.6 4.6ZM71 1.2 72.4 4.6 76 4.9 73.2 7.3 74.1 10.8 71 9.1 67.9 10.8 68.8 7.3 66 4.9 69.6 4.6Z"/></svg>
+</article>
+<article class="rev-c rev-mini">
+<p>Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+<div class="rev-mini-who"><span class="rev-dot d-sm"></span><div><strong>Victoria Wotton</strong><span class="rev-co">Fermentum Odio Co.</span></div></div>
+<svg class="rev-stars" viewBox="0 0 80 14" aria-label="5 stars"><path fill="#F5B400" d="M7 1.2 8.4 4.6 12 4.9 9.2 7.3 10.1 10.8 7 9.1 3.9 10.8 4.8 7.3 2 4.9 5.6 4.6ZM23 1.2 24.4 4.6 28 4.9 25.2 7.3 26.1 10.8 23 9.1 19.9 10.8 20.8 7.3 18 4.9 21.6 4.6ZM39 1.2 40.4 4.6 44 4.9 41.2 7.3 42.1 10.8 39 9.1 35.9 10.8 36.8 7.3 34 4.9 37.6 4.6ZM55 1.2 56.4 4.6 60 4.9 57.2 7.3 58.1 10.8 55 9.1 51.9 10.8 52.8 7.3 50 4.9 53.6 4.6ZM71 1.2 72.4 4.6 76 4.9 73.2 7.3 74.1 10.8 71 9.1 67.9 10.8 68.8 7.3 66 4.9 69.6 4.6Z"/></svg>
+</article>
 </div>
-<div class="rev-scroller" tabindex="0" aria-label="Customer reviews">
-<article class="rev-card"><p>Work across our sites finally sits in one place. Requests, assets, and vendors are visible to the people who need them, and the team actually uses it.</p><div class="rev-stars" aria-label="5 out of 5">★★★★★</div><div class="rev-who"><span class="rev-ph" aria-hidden="true">K</span><div><strong>Karan</strong><span>1 week ago</span></div></div></article>
-<article class="rev-card"><p>Facilities and maintenance hand over cleanly now. We stopped chasing status through spreadsheets and long email threads.</p><div class="rev-stars" aria-label="5 out of 5">★★★★★</div><div class="rev-who"><span class="rev-ph g" aria-hidden="true">C</span><div><strong>Catherine</strong><span>10 days ago</span></div></div></article>
-<article class="rev-card"><p>We brought the campus onto it without a long rollout. The views match how our teams already run the buildings.</p><div class="rev-stars" aria-label="5 out of 5">★★★★★</div><div class="rev-who"><span class="rev-ph y" aria-hidden="true">P</span><div><strong>Peter</strong><span>2 weeks ago</span></div></div></article>
-<article class="rev-card"><p>Inspections, work orders, and vendor visits are on the same record. That removed a meeting we used to need every week.</p><div class="rev-stars" aria-label="5 out of 5">★★★★★</div><div class="rev-who"><span class="rev-ph" aria-hidden="true">A</span><div><strong>Aisha</strong><span>3 weeks ago</span></div></div></article>
+<article class="rev-c rev-reed">
+<div class="rev-cluster">
+<span class="rev-dot d-xl"></span>
+<span class="rev-dot d-xs a"></span>
+<span class="rev-dot d-xs b"></span>
+</div>
+<div>
+<span class="rev-q" aria-hidden="true">”</span>
+<p>Since 1985 Reed has pioneered specialist recruitment. Sourcing knowledgeable, skilled professionals pioneered Specialist recruitment, sourcing.</p>
+<div class="rev-by"><strong>Victoria Wotton</strong><span class="rev-co">Fermentum Odio Co.</span></div>
+</div>
+</article>
+<article class="rev-c rev-note">
+<p>Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.</p>
+<div class="rev-note-side">
+<span class="rev-q" aria-hidden="true">”</span>
+<span class="rev-dot d-md"></span>
+<div class="rev-by"><strong>Victoria Wotton</strong><span class="rev-co">Fermentum Odio Co.</span></div>
+</div>
+</article>
+</div>
+<div class="rev-col">
+<article class="rev-c rev-tall">
+<span class="rev-like"><svg viewBox="0 0 16 14" aria-hidden="true"><path fill="none" stroke="#1a1a1a" stroke-width="1.2" d="M8 12.2S2.2 8.6 2.2 5.2A2.7 2.7 0 018 3.4 2.7 2.7 0 0113.8 5.2C13.8 8.6 8 12.2 8 12.2z"/></svg>01 Like</span>
+<span class="rev-dot d-hero"></span>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<span class="rev-q rev-q-lg" aria-hidden="true">”</span>
+<div class="rev-tall-foot"><div class="rev-by"><strong>Victoria Wotton</strong><span class="rev-co">Fermentum Odio Co.</span></div><svg class="rev-scrib" viewBox="0 0 78 22" aria-hidden="true"><path d="M2 14c6-9 10 7 18 2s8-12 16-7 7 10 14 5 8-8 14-4 6 6 12 2" fill="none" stroke="#c8c8c8" stroke-width="1.4" stroke-linecap="round"/></svg></div>
+</article>
+<article class="rev-c rev-soft">
+<span class="rev-dot d-md"></span>
+<svg class="rev-stars" viewBox="0 0 80 14" aria-label="5 stars"><path fill="#F5B400" d="M7 1.2 8.4 4.6 12 4.9 9.2 7.3 10.1 10.8 7 9.1 3.9 10.8 4.8 7.3 2 4.9 5.6 4.6ZM23 1.2 24.4 4.6 28 4.9 25.2 7.3 26.1 10.8 23 9.1 19.9 10.8 20.8 7.3 18 4.9 21.6 4.6ZM39 1.2 40.4 4.6 44 4.9 41.2 7.3 42.1 10.8 39 9.1 35.9 10.8 36.8 7.3 34 4.9 37.6 4.6ZM55 1.2 56.4 4.6 60 4.9 57.2 7.3 58.1 10.8 55 9.1 51.9 10.8 52.8 7.3 50 4.9 53.6 4.6ZM71 1.2 72.4 4.6 76 4.9 73.2 7.3 74.1 10.8 71 9.1 67.9 10.8 68.8 7.3 66 4.9 69.6 4.6Z"/></svg>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+<svg class="rev-scrib" viewBox="0 0 78 22" aria-hidden="true"><path d="M2 14c6-9 10 7 18 2s8-12 16-7 7 10 14 5 8-8 14-4 6 6 12 2" fill="none" stroke="#c8c8c8" stroke-width="1.4" stroke-linecap="round"/></svg>
+</article>
+<article class="rev-c rev-direct">
+<span class="rev-dot d-lg"></span>
+<div>
+<h3>Direct yet Friendly Tone</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<span class="rev-role">Merry vane — CEO</span>
+</div>
+</article>
+</div>
+<div class="rev-col">
+<article class="rev-c rev-team">
+<span class="rev-like"><svg viewBox="0 0 16 14" aria-hidden="true"><path fill="none" stroke="#1a1a1a" stroke-width="1.2" d="M8 12.2S2.2 8.6 2.2 5.2A2.7 2.7 0 018 3.4 2.7 2.7 0 0113.8 5.2C13.8 8.6 8 12.2 8 12.2z"/></svg>01 Like</span>
+<h3>Tremendous Job Team</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<strong class="rev-center">Marthe Walim</strong>
+<div class="rev-faces"><span class="rev-dot"></span><span class="rev-dot"></span><span class="rev-dot"></span></div>
+</article>
+<article class="rev-c rev-side">
+<span class="rev-q rev-q-lg" aria-hidden="true">”</span>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.</p>
+<span class="rev-dot d-lg"></span>
+<span class="rev-pill"><strong>Victoria Wotton</strong><span class="rev-co">Fermentum Odio Co.</span></span>
+<svg class="rev-stars" viewBox="0 0 80 14" aria-label="5 stars"><path fill="#F5B400" d="M7 1.2 8.4 4.6 12 4.9 9.2 7.3 10.1 10.8 7 9.1 3.9 10.8 4.8 7.3 2 4.9 5.6 4.6ZM23 1.2 24.4 4.6 28 4.9 25.2 7.3 26.1 10.8 23 9.1 19.9 10.8 20.8 7.3 18 4.9 21.6 4.6ZM39 1.2 40.4 4.6 44 4.9 41.2 7.3 42.1 10.8 39 9.1 35.9 10.8 36.8 7.3 34 4.9 37.6 4.6ZM55 1.2 56.4 4.6 60 4.9 57.2 7.3 58.1 10.8 55 9.1 51.9 10.8 52.8 7.3 50 4.9 53.6 4.6ZM71 1.2 72.4 4.6 76 4.9 73.2 7.3 74.1 10.8 71 9.1 67.9 10.8 68.8 7.3 66 4.9 69.6 4.6Z"/></svg>
+</article>
+<article class="rev-bubble">
+<div class="rev-kicker">
+<svg viewBox="0 0 40 36" aria-hidden="true"><path fill="#1a1a1a" d="M8 3h18a7 7 0 017 7v8a7 7 0 01-7 7h-7l-7 7v-7H8a7 7 0 01-7-7V10a7 7 0 017-7z"/><path fill="#fff" d="M13 12.2c0-1.6 1.1-2.6 2.6-2.6 1.6 0 2.6 1.1 2.6 2.7 0 2.4-1.7 4.2-4 5.2l.7-1.8c1.1-.6 1.7-1.4 1.7-2.4 0-.5-.3-.9-.8-.9-.6 0-1 .5-1 1.2H13zm9.2 0c0-1.6 1.1-2.6 2.6-2.6 1.6 0 2.6 1.1 2.6 2.7 0 2.4-1.7 4.2-4 5.2l.7-1.8c1.1-.6 1.7-1.4 1.7-2.4 0-.5-.3-.9-.8-.9-.6 0-1 .5-1 1.2h-1.8z"/></svg>
+<span id="reviews-title">What people say</span>
+</div>
+<p>When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.</p>
+<div class="rev-foot">
+<div class="rev-who"><span class="rev-dot d-sm"></span><strong>Charli Hapan</strong></div>
+<span class="rev-sign">dribbble</span>
+</div>
+</article>
 </div>
 </div>
 </section>
@@ -248,19 +329,6 @@ place(true,35);
 let lastW=innerWidth;
 addEventListener("resize",()=>{if(innerWidth===lastW)return;lastW=innerWidth;place(true,0)});
 if("IntersectionObserver"in window){const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){cat.classList.add("in");io.disconnect();if(!matchMedia("(prefers-reduced-motion: reduce)").matches)setTimeout(()=>{hexes.forEach(x=>x.style.transitionDelay="0ms");cycle(0)},1500)}}),{threshold:.2});io.observe(cat)}else{cat.classList.add("in");cycle(0)}
-(function(){
-const scroller=document.querySelector(".rev-scroller");
-if(!scroller)return;
-const prev=document.querySelector(".rev-prev"),next=document.querySelector(".rev-next"),fill=document.querySelector(".rev-fill");
-const step=()=>{const card=scroller.querySelector(".rev-card");return card?card.getBoundingClientRect().width+18:300};
-const sync=()=>{const max=scroller.scrollWidth-scroller.clientWidth,p=max<=1?1:scroller.scrollLeft/max;
-fill.style.width=(36+p*64)+"%";prev.disabled=scroller.scrollLeft<=1;next.disabled=scroller.scrollLeft>=max-1};
-prev.addEventListener("click",()=>scroller.scrollBy({left:-step(),behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"}));
-next.addEventListener("click",()=>scroller.scrollBy({left:step(),behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"}));
-scroller.addEventListener("scroll",sync,{passive:true});
-addEventListener("resize",sync);
-sync();
-})();
 (function(){
 const row=document.querySelector(".uc-row");
 if(!row)return;
