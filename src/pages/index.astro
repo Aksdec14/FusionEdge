@@ -44,9 +44,54 @@ import Layout from "../layouts/Layout.astro";
 </div>
 </div>
 <div class="uc-row">
-<article class="uc-card"><h3>Asset Management &amp; Asset Audit</h3><p>A leading global organization had no idea which assets were in its offices, which were in storage, or which invoice each one belonged to. Its only record was the finance system.</p><a class="uc-more" href="/stories/asset-management">Read more <i aria-hidden="true"></i></a></article>
-<article class="uc-card"><h3>Facility Operations, Readings &amp; Logs, PPM</h3><p>A fast-growing co-working operator had no clear view of what was happening across its campuses. FusionEdge gave every campus the same processes, tracked 32,000+ assets, and measured electricity by time of day so tenants are billed for what they use.</p><a class="uc-more" href="/stories/facility-operations">Read more <i aria-hidden="true"></i></a></article>
-<article class="uc-card"><h3>Pantry Management &amp; QR Ordering</h3><p>A global logistics leader’s pantry was flooded with 300+ phone orders a day, and many arrived late. FusionEdge replaced the calls with a QR scan, added automatic escalation for late orders, and set up a different menu for each meeting room.</p><a class="uc-more" href="/stories/pantry">Read more <i aria-hidden="true"></i></a></article>
+<article class="uc-card">
+<h3><span class="uc-p">50,000+</span> assets traced. A full audit<br>now takes <span class="uc-g">30 minutes.</span></h3>
+<ul class="uc-points">
+<li>The only record was the finance system, built from purchase orders and invoices, not from what was on the ground.</li>
+<li>An on-site check found ghost assets, duplicate invoices, and equipment that had never been recorded.</li>
+<li>Every asset was mapped to one purchase order and invoice, then tagged with RFID.</li>
+<li>A handheld reader now sweeps the register in one pass, and warehouse rent is 60% lower.</li>
+</ul>
+<dl class="uc-stats">
+<div><dt class="uc-p">50,000+</dt><dd>assets digitized and RFID-tagged</dd></div>
+<div><dt class="uc-g">30 min</dt><dd>full audit, down from 15 days</dd></div>
+<div><dt class="uc-p">60%</dt><dd>lower warehouse rental</dd></div>
+<div><dt class="uc-g">4,120</dt><dd>ghost assets removed from the books</dd></div>
+</dl>
+<a class="uc-more" href="/stories/asset-management">Read the full case study →</a>
+</article>
+<article class="uc-card">
+<h3><span class="uc-p">14 campuses.</span> One way of working,<br>and more of the <span class="uc-g">power cost recovered.</span></h3>
+<ul class="uc-points">
+<li>Each campus had its own cleaning routine, and almost half of planned maintenance was late or missed.</li>
+<li>Breakdowns were often fixed locally, with the central team never told.</li>
+<li>Meter readings were on paper, so tenant power used after hours was never billed.</li>
+<li>FusionEdge put the same SOPs, asset history, and timed readings on every campus.</li>
+</ul>
+<dl class="uc-stats">
+<div><dt class="uc-p">96%</dt><dd>PPM tasks done on time, up from 52%</dd></div>
+<div><dt class="uc-g">45%</dt><dd>fewer unplanned breakdowns</dd></div>
+<div><dt class="uc-p">18%</dt><dd>more electricity cost recovered</dd></div>
+<div><dt class="uc-g">5 days</dt><dd>to set up a new campus, down from 3 weeks</dd></div>
+</dl>
+<a class="uc-more" href="/stories/facility-operations">Read the full case study →</a>
+</article>
+<article class="uc-card">
+<h3>Pantry orders that took <span class="uc-p">22 minutes</span><br>now arrive in <span class="uc-g">8.</span></h3>
+<ul class="uc-points">
+<li>More than 300 orders a day came in by phone, and almost a third arrived late.</li>
+<li>Nobody could see which order was waiting, so complaints went straight to senior managers.</li>
+<li>A QR code at each pantry and meeting room replaced the call. No app to download.</li>
+<li>Late orders escalate on their own, and each room level shows its own menu.</li>
+</ul>
+<dl class="uc-stats">
+<div><dt class="uc-p">8 min</dt><dd>average delivery, down from 22 minutes</dd></div>
+<div><dt class="uc-g">97%</dt><dd>orders delivered on time, up from 68%</dd></div>
+<div><dt class="uc-p">92%</dt><dd>fewer escalations to management</dd></div>
+<div><dt class="uc-g">4.6</dt><dd>employee satisfaction, up from 3.1 out of 5</dd></div>
+</dl>
+<a class="uc-more" href="/stories/pantry">Read the full case study →</a>
+</article>
 </div>
 </section>
 <section class="signup" aria-labelledby="signup-title">
@@ -221,9 +266,21 @@ const row=document.querySelector(".uc-row");
 if(!row)return;
 const cards=[...row.querySelectorAll(".uc-card")];
 const prev=document.querySelector(".uc-prev"),next=document.querySelector(".uc-next");
-let page=0;
-const per=()=>matchMedia("(max-width:760px)").matches?1:3;
-const show=()=>{const n=per(),max=Math.max(0,Math.ceil(cards.length/n)-1);if(page>max)page=max;cards.forEach((card,i)=>card.classList.toggle("is-off",i<page*n||i>=page*n+n));prev.disabled=page===0;next.disabled=page>=max};
+let page=0,shown=-1;
+const per=()=>1;
+const reduce=matchMedia("(prefers-reduced-motion: reduce)");
+function count(dt){
+if(!dt.dataset.n)dt.dataset.n=dt.textContent.trim();
+const m=dt.dataset.n.match(/^(.*?)([\d,.]+)(.*)$/);
+if(!m||reduce.matches){dt.textContent=dt.dataset.n;return}
+if(dt._raf)cancelAnimationFrame(dt._raf);
+const raw=m[2].replace(/,/g,""),decimals=(raw.split(".")[1]||"").length,target=parseFloat(raw),commas=m[2].includes(","),start=performance.now();
+const text=v=>{const num=decimals?v.toFixed(decimals):(commas?Math.round(v).toLocaleString("en-US"):String(Math.round(v)));return m[1]+num+m[3]};
+const tick=now=>{const t=Math.min(1,(now-start)/900),eased=1-Math.pow(1-t,3);dt.textContent=t<1?text(target*eased):dt.dataset.n;if(t<1)dt._raf=requestAnimationFrame(tick)};
+dt.textContent=text(0);
+dt._raf=requestAnimationFrame(tick);
+}
+const show=()=>{const n=per(),max=Math.max(0,Math.ceil(cards.length/n)-1);if(page>max)page=max;const fresh=page!==shown;shown=page;cards.forEach((card,i)=>{const on=i>=page*n&&i<page*n+n;card.classList.toggle("is-off",!on);if(on&&fresh)card.querySelectorAll("dt").forEach(count)});prev.disabled=page===0;next.disabled=page>=max};
 prev.addEventListener("click",()=>{page--;show()});
 next.addEventListener("click",()=>{page++;show()});
 addEventListener("resize",show);
