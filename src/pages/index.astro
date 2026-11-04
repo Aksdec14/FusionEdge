@@ -8,7 +8,16 @@ import Layout from "../layouts/Layout.astro";
 <p class="tag">One platform. <em>One source of truth.</em></p>
 </div>
 </section>
-<section class="wrap" aria-label="Modules by system"><div id="grid"></div></section>
+<section class="wrap" id="modules" aria-label="Modules by system">
+  <div id="tabs" role="tablist">
+    <button type="button" role="tab" data-view="products" aria-selected="true">Software</button>
+    <button type="button" role="tab" data-view="industries" aria-selected="false">Industries</button>
+    <button type="button" role="tab" data-view="roles" aria-selected="false">Roles</button>
+  </div>
+  <div id="chips"></div>
+  <div id="cap" aria-live="polite"></div>
+  <div id="stage"></div>
+</section>
 <section class="video" aria-label="Product video"><h2><span>Your whole business,</span> <span>beautifully <em>connected</em>.</span></h2><video class="video-frame" autoplay muted loop playsinline preload="auto" disablepictureinpicture aria-label="Your whole business, beautifully connected"><source src="/Fusionedge_hero_30s_v7.mp4" type="video/mp4"></video></section>
 <section class="customers" aria-labelledby="customers-title">
 <h2 id="customers-title">Our Customers</h2>
@@ -100,11 +109,10 @@ import Layout from "../layouts/Layout.astro";
 <article class="rev-c rev-good">
 <span class="rev-dot rev-hang"></span>
 <h3>Good Services!</h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
 <svg class="rev-arrow" viewBox="0 0 28 12" aria-hidden="true"><path d="M1 6h22M18 1.5 24.5 6 18 10.5" fill="none" stroke="#1a1a1a" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
 <svg class="rev-stars rev-stars-out" viewBox="0 0 80 14" aria-label="5 stars"><path fill="#F5B400" d="M7 1.2 8.4 4.6 12 4.9 9.2 7.3 10.1 10.8 7 9.1 3.9 10.8 4.8 7.3 2 4.9 5.6 4.6ZM23 1.2 24.4 4.6 28 4.9 25.2 7.3 26.1 10.8 23 9.1 19.9 10.8 20.8 7.3 18 4.9 21.6 4.6ZM39 1.2 40.4 4.6 44 4.9 41.2 7.3 42.1 10.8 39 9.1 35.9 10.8 36.8 7.3 34 4.9 37.6 4.6ZM55 1.2 56.4 4.6 60 4.9 57.2 7.3 58.1 10.8 55 9.1 51.9 10.8 52.8 7.3 50 4.9 53.6 4.6ZM71 1.2 72.4 4.6 76 4.9 73.2 7.3 74.1 10.8 71 9.1 67.9 10.8 68.8 7.3 66 4.9 69.6 4.6Z"/></svg>
 </article>
-<div class="rev-pair">
 <article class="rev-c rev-app">
 <div class="rev-app-top">
 <span class="rev-dot d-md"></span>
@@ -112,16 +120,10 @@ import Layout from "../layouts/Layout.astro";
 <div><strong>Victoria Wotton</strong><span class="rev-co">Fermentum Odio Co.</span></div>
 </div>
 <h3>I really appreciate!!</h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
 <svg class="rev-stars" viewBox="0 0 80 14" aria-label="5 stars"><path fill="#F5B400" d="M7 1.2 8.4 4.6 12 4.9 9.2 7.3 10.1 10.8 7 9.1 3.9 10.8 4.8 7.3 2 4.9 5.6 4.6ZM23 1.2 24.4 4.6 28 4.9 25.2 7.3 26.1 10.8 23 9.1 19.9 10.8 20.8 7.3 18 4.9 21.6 4.6ZM39 1.2 40.4 4.6 44 4.9 41.2 7.3 42.1 10.8 39 9.1 35.9 10.8 36.8 7.3 34 4.9 37.6 4.6ZM55 1.2 56.4 4.6 60 4.9 57.2 7.3 58.1 10.8 55 9.1 51.9 10.8 52.8 7.3 50 4.9 53.6 4.6ZM71 1.2 72.4 4.6 76 4.9 73.2 7.3 74.1 10.8 71 9.1 67.9 10.8 68.8 7.3 66 4.9 69.6 4.6Z"/></svg>
 </article>
-<article class="rev-c rev-mini">
-<p>Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum has been the industry's standard dummy text ever since the 1500s.</p>
-<div class="rev-mini-who"><span class="rev-dot d-sm"></span><div><strong>Victoria Wotton</strong><span class="rev-co">Fermentum Odio Co.</span></div></div>
-<svg class="rev-stars" viewBox="0 0 80 14" aria-label="5 stars"><path fill="#F5B400" d="M7 1.2 8.4 4.6 12 4.9 9.2 7.3 10.1 10.8 7 9.1 3.9 10.8 4.8 7.3 2 4.9 5.6 4.6ZM23 1.2 24.4 4.6 28 4.9 25.2 7.3 26.1 10.8 23 9.1 19.9 10.8 20.8 7.3 18 4.9 21.6 4.6ZM39 1.2 40.4 4.6 44 4.9 41.2 7.3 42.1 10.8 39 9.1 35.9 10.8 36.8 7.3 34 4.9 37.6 4.6ZM55 1.2 56.4 4.6 60 4.9 57.2 7.3 58.1 10.8 55 9.1 51.9 10.8 52.8 7.3 50 4.9 53.6 4.6ZM71 1.2 72.4 4.6 76 4.9 73.2 7.3 74.1 10.8 71 9.1 67.9 10.8 68.8 7.3 66 4.9 69.6 4.6Z"/></svg>
-</article>
-</div>
-<article class="rev-c rev-reed">
+<article class="rev-c rev-reed rev-m-hide">
 <div class="rev-cluster">
 <span class="rev-dot d-xl"></span>
 <span class="rev-dot d-xs a"></span>
@@ -129,15 +131,7 @@ import Layout from "../layouts/Layout.astro";
 </div>
 <div>
 <span class="rev-q" aria-hidden="true">”</span>
-<p>Since 1985 Reed has pioneered specialist recruitment. Sourcing knowledgeable, skilled professionals pioneered Specialist recruitment, sourcing.</p>
-<div class="rev-by"><strong>Victoria Wotton</strong><span class="rev-co">Fermentum Odio Co.</span></div>
-</div>
-</article>
-<article class="rev-c rev-note">
-<p>Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.</p>
-<div class="rev-note-side">
-<span class="rev-q" aria-hidden="true">”</span>
-<span class="rev-dot d-md"></span>
+<p>Since 1985 Reed has pioneered specialist recruitment and sourced skilled professionals.</p>
 <div class="rev-by"><strong>Victoria Wotton</strong><span class="rev-co">Fermentum Odio Co.</span></div>
 </div>
 </article>
@@ -146,21 +140,17 @@ import Layout from "../layouts/Layout.astro";
 <article class="rev-c rev-tall">
 <span class="rev-like"><svg viewBox="0 0 16 14" aria-hidden="true"><path fill="none" stroke="#1a1a1a" stroke-width="1.2" d="M8 12.2S2.2 8.6 2.2 5.2A2.7 2.7 0 018 3.4 2.7 2.7 0 0113.8 5.2C13.8 8.6 8 12.2 8 12.2z"/></svg>01 Like</span>
 <span class="rev-dot d-hero"></span>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<div class="rev-tall-copy">
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
 <span class="rev-q rev-q-lg" aria-hidden="true">”</span>
+</div>
 <div class="rev-tall-foot"><div class="rev-by"><strong>Victoria Wotton</strong><span class="rev-co">Fermentum Odio Co.</span></div><svg class="rev-scrib" viewBox="0 0 78 22" aria-hidden="true"><path d="M2 14c6-9 10 7 18 2s8-12 16-7 7 10 14 5 8-8 14-4 6 6 12 2" fill="none" stroke="#c8c8c8" stroke-width="1.4" stroke-linecap="round"/></svg></div>
 </article>
-<article class="rev-c rev-soft">
-<span class="rev-dot d-md"></span>
-<svg class="rev-stars" viewBox="0 0 80 14" aria-label="5 stars"><path fill="#F5B400" d="M7 1.2 8.4 4.6 12 4.9 9.2 7.3 10.1 10.8 7 9.1 3.9 10.8 4.8 7.3 2 4.9 5.6 4.6ZM23 1.2 24.4 4.6 28 4.9 25.2 7.3 26.1 10.8 23 9.1 19.9 10.8 20.8 7.3 18 4.9 21.6 4.6ZM39 1.2 40.4 4.6 44 4.9 41.2 7.3 42.1 10.8 39 9.1 35.9 10.8 36.8 7.3 34 4.9 37.6 4.6ZM55 1.2 56.4 4.6 60 4.9 57.2 7.3 58.1 10.8 55 9.1 51.9 10.8 52.8 7.3 50 4.9 53.6 4.6ZM71 1.2 72.4 4.6 76 4.9 73.2 7.3 74.1 10.8 71 9.1 67.9 10.8 68.8 7.3 66 4.9 69.6 4.6Z"/></svg>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
-<svg class="rev-scrib" viewBox="0 0 78 22" aria-hidden="true"><path d="M2 14c6-9 10 7 18 2s8-12 16-7 7 10 14 5 8-8 14-4 6 6 12 2" fill="none" stroke="#c8c8c8" stroke-width="1.4" stroke-linecap="round"/></svg>
-</article>
-<article class="rev-c rev-direct">
+<article class="rev-c rev-direct rev-m-hide">
 <span class="rev-dot d-lg"></span>
 <div>
 <h3>Direct yet Friendly Tone</h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<p>Lorem ipsum dolor sit amet, consectetur.</p>
 <span class="rev-role">Merry vane — CEO</span>
 </div>
 </article>
@@ -169,23 +159,16 @@ import Layout from "../layouts/Layout.astro";
 <article class="rev-c rev-team">
 <span class="rev-like"><svg viewBox="0 0 16 14" aria-hidden="true"><path fill="none" stroke="#1a1a1a" stroke-width="1.2" d="M8 12.2S2.2 8.6 2.2 5.2A2.7 2.7 0 018 3.4 2.7 2.7 0 0113.8 5.2C13.8 8.6 8 12.2 8 12.2z"/></svg>01 Like</span>
 <h3>Tremendous Job Team</h3>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
 <strong class="rev-center">Marthe Walim</strong>
 <div class="rev-faces"><span class="rev-dot"></span><span class="rev-dot"></span><span class="rev-dot"></span></div>
-</article>
-<article class="rev-c rev-side">
-<span class="rev-q rev-q-lg" aria-hidden="true">”</span>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.</p>
-<span class="rev-dot d-lg"></span>
-<span class="rev-pill"><strong>Victoria Wotton</strong><span class="rev-co">Fermentum Odio Co.</span></span>
-<svg class="rev-stars" viewBox="0 0 80 14" aria-label="5 stars"><path fill="#F5B400" d="M7 1.2 8.4 4.6 12 4.9 9.2 7.3 10.1 10.8 7 9.1 3.9 10.8 4.8 7.3 2 4.9 5.6 4.6ZM23 1.2 24.4 4.6 28 4.9 25.2 7.3 26.1 10.8 23 9.1 19.9 10.8 20.8 7.3 18 4.9 21.6 4.6ZM39 1.2 40.4 4.6 44 4.9 41.2 7.3 42.1 10.8 39 9.1 35.9 10.8 36.8 7.3 34 4.9 37.6 4.6ZM55 1.2 56.4 4.6 60 4.9 57.2 7.3 58.1 10.8 55 9.1 51.9 10.8 52.8 7.3 50 4.9 53.6 4.6ZM71 1.2 72.4 4.6 76 4.9 73.2 7.3 74.1 10.8 71 9.1 67.9 10.8 68.8 7.3 66 4.9 69.6 4.6Z"/></svg>
 </article>
 <article class="rev-bubble">
 <div class="rev-kicker">
 <svg viewBox="0 0 40 36" aria-hidden="true"><path fill="#1a1a1a" d="M8 3h18a7 7 0 017 7v8a7 7 0 01-7 7h-7l-7 7v-7H8a7 7 0 01-7-7V10a7 7 0 017-7z"/><path fill="#fff" d="M13 12.2c0-1.6 1.1-2.6 2.6-2.6 1.6 0 2.6 1.1 2.6 2.7 0 2.4-1.7 4.2-4 5.2l.7-1.8c1.1-.6 1.7-1.4 1.7-2.4 0-.5-.3-.9-.8-.9-.6 0-1 .5-1 1.2H13zm9.2 0c0-1.6 1.1-2.6 2.6-2.6 1.6 0 2.6 1.1 2.6 2.7 0 2.4-1.7 4.2-4 5.2l.7-1.8c1.1-.6 1.7-1.4 1.7-2.4 0-.5-.3-.9-.8-.9-.6 0-1 .5-1 1.2h-1.8z"/></svg>
 <span id="reviews-title">What people say</span>
 </div>
-<p>When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.</p>
+<p>A printer scrambled a galley of type into a specimen book.</p>
 <div class="rev-foot">
 <div class="rev-who"><span class="rev-dot d-sm"></span><strong>Charli Hapan</strong></div>
 <span class="rev-sign">dribbble</span>
@@ -250,85 +233,242 @@ M=[
 ["Tenants",r(6,8,22,32,2,'W sD')+r(6,8,22,6,2,'D')+r(10,18,5,4,1,'M')+r(19,18,5,4,1,'M')+r(10,25,5,4,1,'M')+r(19,25,5,4,1,'M')+r(14,33,6,7,1,'D')+r(28,20,10,20,2,'L sD')+B(c(35,34.5,2.2,'N sG')+p('M36.5 36l4 4M39 38l1.5-1.5','N sG'))],
 ["Cafeteria Management",c(23,24,11.500,'W sD')+c(23,24,7,'L')+c(23,24,2.4,'D')+p('M5 8v7a3 3 0 006 0V8M8 17v21','N sD')+p('M40 8c-3 2.500-4 7-4 12h4v18','N sD')]
 ];
-const GROUPS=[
-{k:"CAFM",full:"Computer-Aided Facility Management",m:["Smart Ticketing","Preventive Maintenance","Digital Checklist","Inspect","Incident Reporting","Asset Reading & Logs","Compliance","SLA"]},
-{k:"IWFM",full:"Integrated Workplace & Facility Management",m:["Desk Booking","Visitor Management","Mailroom","Attendance Management","Pantry Management","Shops","Feedback & Survey Module","CXO Dashboard","Tenants","Cafeteria Management"]},
-{k:"EAM",full:"Enterprise Asset Management",m:["Digital Asset Register","Asset Audit","Asset AMC Tracker","Asset Health Monitoring"]},
-{k:"CAMS",full:"Computerized Asset Maintenance System",m:["Dashboard","Purchase Orders","Inventory Management","Vendor"]}];
 const byName={};M.forEach(x=>byName[x[0]]=x);
-const host=document.getElementById("grid");
-host.innerHTML='<div class="cat"><div class="hexwrap"><svg class="lines" aria-hidden="true"></svg></div></div>';
-const cat=host.firstChild,wrap=cat.firstChild,svg=wrap.firstChild;
-const cells=[];GROUPS.forEach((g,gi)=>g.m.forEach(n=>cells.push({n,g:gi})));
-const hexes=cells.map(m=>{const d=document.createElement("div");d.className="hex";d.title=m.n;d.innerHTML='<svg class="mod p" viewBox="2 2.5 45 44" aria-hidden="true">'+byName[m.n][1]+'</svg><span>'+m.n+'</span>';wrap.appendChild(d);return d});
-const N=hexes.length,rows=2,cols=Math.ceil(N/2);
-let timer,order=cells.map((_,i)=>i),kept=[];
-function clearKept(){kept=[];svg.querySelectorAll(".gseg").forEach(el=>el.classList.remove("on","drawn"));wrap.querySelectorAll(".lbl").forEach(el=>el.classList.remove("on"))}
-function reveal(gi){
-const el=svg.querySelector('.gseg[data-g="'+gi+'"]');if(el){el.classList.remove("on","drawn");void el.getBoundingClientRect();el.classList.add("on","drawn")}
-const lbl=wrap.querySelector('.lbl[data-g="'+gi+'"]');if(lbl)lbl.classList.add("on");if(kept.indexOf(gi)<0)kept.push(gi)}
-function restore(){kept.forEach(gi=>{const el=svg.querySelector('.gseg[data-g="'+gi+'"]');if(el)el.classList.add("on","drawn");const lbl=wrap.querySelector('.lbl[data-g="'+gi+'"]');if(lbl)lbl.classList.add("on")})}
-
-/* ---------- Stacked honeycomb (phones + tablets) ----------
-   One continuous honeycomb of 4 columns holding 7,6,7,6 hexagons (26 in total).
-   Columns 0 and 2 start at the top, columns 1 and 3 are indented by half a hexagon,
-   so the top AND the bottom edge are a clean zig-zag.
-   Each group is a connected cluster of cells: [column,row]. */
-const LAY=[
-[[0,0],[1,0],[0,1],[1,1],[0,2],[1,2],[0,3],[1,3]],                                 /* CAFM (8)  */
-[[2,0],[3,0],[2,1],[3,1],[2,2],[3,2],[2,3],[3,3],[2,4],[3,4]],                     /* IWFM (10) */
-[[0,4],[1,4],[0,5],[0,6]],                                                         /* EAM  (4)  */
-[[2,5],[1,5],[3,5],[2,6]]                                                          /* CAMS (4)  */
+const VIEWS = {"industries": [{"name": "Construction", "full": "If you run a construction company", "color": "p", "mods": ["Attendance Management", "Visitor Management", "Incident Reporting", "Compliance", "Inspect", "Digital Checklist", "Digital Asset Register", "Asset Audit", "Inventory Management", "Purchase Orders", "Vendor", "Smart Ticketing"]}, {"name": "Office Spaces", "full": "If you own or manage office space", "color": "g", "mods": ["Desk Booking", "Visitor Management", "Mailroom", "Attendance Management", "Pantry Management", "Cafeteria Management", "Smart Ticketing", "Feedback & Survey Module", "SLA", "CXO Dashboard"]}, {"name": "Co-working", "full": "If you run a co-working space", "color": "p", "mods": ["Desk Booking", "Visitor Management", "Mailroom", "Pantry Management", "Cafeteria Management", "Tenants", "Feedback & Survey Module", "Smart Ticketing", "Shops", "Dashboard"]}, {"name": "Hospitals & Healthcare", "full": "If you run a hospital or clinic", "color": "g", "mods": ["Compliance", "SLA", "Preventive Maintenance", "Asset Health Monitoring", "Asset AMC Tracker", "Inventory Management", "Digital Checklist", "Inspect", "Incident Reporting", "Visitor Management", "Cafeteria Management"]}, {"name": "Manufacturing", "full": "If you run a factory or plant", "color": "p", "mods": ["Preventive Maintenance", "Asset Reading & Logs", "Asset Health Monitoring", "Digital Asset Register", "Asset Audit", "Asset AMC Tracker", "Inventory Management", "Purchase Orders", "Vendor", "Compliance", "Incident Reporting", "Attendance Management"]}, {"name": "Warehousing & Logistics", "full": "If you run warehouses or logistics hubs", "color": "g", "mods": ["Inventory Management", "Purchase Orders", "Vendor", "Digital Asset Register", "Asset Audit", "Attendance Management", "Visitor Management", "Incident Reporting", "Preventive Maintenance", "Dashboard"]}, {"name": "Retail & Malls", "full": "If you own a mall or retail chain", "color": "p", "mods": ["Tenants", "Shops", "Smart Ticketing", "Feedback & Survey Module", "Visitor Management", "SLA", "Vendor", "Incident Reporting", "Dashboard", "Preventive Maintenance"]}, {"name": "Hotels & Hospitality", "full": "If you run hotels or resorts", "color": "g", "mods": ["Smart Ticketing", "Pantry Management", "Cafeteria Management", "Feedback & Survey Module", "Preventive Maintenance", "Inspect", "Digital Checklist", "Inventory Management", "Purchase Orders", "Vendor", "SLA"]}, {"name": "Education & Campuses", "full": "If you run a school, college or campus", "color": "p", "mods": ["Attendance Management", "Visitor Management", "Cafeteria Management", "Mailroom", "Smart Ticketing", "Preventive Maintenance", "Inspect", "Digital Asset Register", "Feedback & Survey Module", "Compliance"]}, {"name": "Residential & Real Estate", "full": "If you manage residential or commercial property", "color": "g", "mods": ["Tenants", "Visitor Management", "Mailroom", "Smart Ticketing", "SLA", "Preventive Maintenance", "Feedback & Survey Module", "Asset AMC Tracker", "Vendor", "CXO Dashboard"]}, {"name": "IT & Tech Parks", "full": "If you run an IT park or tech campus", "color": "p", "mods": ["Desk Booking", "Visitor Management", "Attendance Management", "Tenants", "Cafeteria Management", "Shops", "Smart Ticketing", "SLA", "Asset Health Monitoring", "CXO Dashboard"]}], "roles": [{"name": "Facility Manager", "full": "If you're a facility manager", "color": "p", "mods": ["Smart Ticketing", "Preventive Maintenance", "Digital Checklist", "Inspect", "Incident Reporting", "Asset Reading & Logs", "Compliance", "SLA", "Asset AMC Tracker", "Vendor"]}, {"name": "Warehouse Manager", "full": "If you're a warehouse manager", "color": "g", "mods": ["Inventory Management", "Purchase Orders", "Vendor", "Digital Asset Register", "Asset Audit", "Attendance Management", "Incident Reporting", "Dashboard"]}, {"name": "Pantry Manager", "full": "If you're a pantry manager", "color": "p", "mods": ["Pantry Management", "Inventory Management", "Purchase Orders", "Vendor", "Feedback & Survey Module", "Digital Checklist"]}, {"name": "Cafeteria Manager", "full": "If you run the cafeteria", "color": "g", "mods": ["Cafeteria Management", "Pantry Management", "Inventory Management", "Purchase Orders", "Vendor", "Feedback & Survey Module", "Compliance"]}, {"name": "Front Desk & Reception", "full": "If you're at the front desk", "color": "p", "mods": ["Visitor Management", "Mailroom", "Desk Booking", "Smart Ticketing", "Attendance Management"]}, {"name": "Admin & Workplace Manager", "full": "If you manage the workplace", "color": "g", "mods": ["Desk Booking", "Visitor Management", "Mailroom", "Attendance Management", "Pantry Management", "Cafeteria Management", "Feedback & Survey Module", "Smart Ticketing", "SLA"]}, {"name": "HR Manager", "full": "If you're in HR", "color": "p", "mods": ["Attendance Management", "Desk Booking", "Feedback & Survey Module", "Visitor Management", "Cafeteria Management"]}, {"name": "Maintenance Engineer", "full": "If you're a maintenance engineer", "color": "g", "mods": ["Preventive Maintenance", "Smart Ticketing", "Digital Checklist", "Inspect", "Asset Reading & Logs", "Asset Health Monitoring", "Incident Reporting"]}, {"name": "Asset Manager", "full": "If you manage company assets", "color": "p", "mods": ["Digital Asset Register", "Asset Audit", "Asset AMC Tracker", "Asset Health Monitoring", "Asset Reading & Logs", "Inventory Management", "Dashboard"]}, {"name": "Procurement Manager", "full": "If you handle procurement", "color": "g", "mods": ["Purchase Orders", "Vendor", "Inventory Management", "Asset AMC Tracker", "Dashboard"]}, {"name": "Property & Leasing Manager", "full": "If you manage tenants and leases", "color": "p", "mods": ["Tenants", "Shops", "Smart Ticketing", "SLA", "Feedback & Survey Module", "Mailroom", "Dashboard"]}, {"name": "Safety & Compliance Officer", "full": "If you own safety and compliance", "color": "g", "mods": ["Compliance", "Incident Reporting", "Inspect", "Digital Checklist", "SLA", "Attendance Management", "Visitor Management"]}, {"name": "CXO & Leadership", "full": "If you lead the business", "color": "p", "mods": ["CXO Dashboard", "Dashboard", "SLA", "Compliance", "Feedback & Survey Module", "Asset Health Monitoring", "Tenants"]}]};
+VIEWS.products = [
+  {name:'CMMS', full:'Computerized Maintenance Management System', color:'p', pos:'top',    group:'cafm'},
+  {name:'IWMS', full:'Integrated Workplace Management System',     color:'g', pos:'bottom', group:'iwfm'},
+  {name:'EAM',  full:'Enterprise Asset Management',                color:'p', pos:'top',    group:'eam'},
+  {name:'CAMS', full:'Computer-Aided Maintenance System',          color:'g', pos:'bottom', group:'cams'}
 ];
-const LC=[.875,2.375,.875,2.375]; /* label centre, in hexagon widths */
-function placeMobile(drawLines,stagger){
-const avail=host.clientWidth,band=66,bot=56;
-const w=Math.max(64,Math.min(avail/3.25,190)),h=w*.866,lw=1.5*w;
-const ww=3.25*w,foot=band+7*h,hh=foot+bot+4;
-wrap.style.width=ww+"px";wrap.style.height=hh+"px";svg.setAttribute("width",ww);svg.setAttribute("height",hh);
-const pos=[],key={};let idx=0;
-LAY.forEach((g,gi)=>g.forEach(q=>{const c=q[0],r=q[1];pos[idx]={c,r,gi,x:c*.75*w,y:band+r*h+(c%2?h/2:0)};key[c+","+r]=idx;idx++}));
-const nbr=P=>{const c=P.c,r=P.r,o=c%2;return [[c,r-1],[c+1,o?r:r-1],[c+1,o?r+1:r],[c,r+1],[c-1,o?r+1:r],[c-1,o?r:r-1]].map(q=>{const k=key[q[0]+","+q[1]];return k==null?-1:k})};
-const cnt={p:0,n:0,w:0},col=[];
-for(let slot=0;slot<N;slot++){const i=order[slot],P=pos[i],bad=nbr(P).filter(j=>j>=0&&pos[j].gi===P.gi).map(j=>col[j]),k=["p","n","w"].sort((a,b)=>((bad.filter(z=>z==a).length*100+cnt[a]*(a=="p"?1:2))-(bad.filter(z=>z==b).length*100+cnt[b]*(b=="p"?1:2))))[0];col[i]=k;cnt[k]++;
-const el=hexes[i],st=el.style;el.firstChild.setAttribute("class","mod "+k);
-st.width=w+"px";st.height=h+"px";st.left=P.x+"px";st.top=P.y+"px";st.fontSize=Math.max(9,w*.056)+"px";st.transitionDelay=(stagger?slot*stagger:0)+"ms";
-const v=el.firstChild.style;v.width=v.height=(w*.2+7)+"px"}
-if(!drawLines)return;
-const outs=["","","",""];
-for(let i=0;i<N;i++){const P=pos[i],x0=P.x,y0=P.y,V=[[.25,0],[.75,0],[1,.5],[.75,1],[.25,1],[0,.5]].map(q=>[x0+q[0]*w,y0+q[1]*h]),NB=nbr(P),g=P.gi;
-for(let e=0;e<6;e++){const j=NB[e];if(j>=0&&pos[j].gi===g)continue;const A=V[e],B=V[(e+1)%6];outs[g]+='<line class="seg" pathLength="1" x1="'+A[0].toFixed(1)+'" y1="'+A[1].toFixed(1)+'" x2="'+B[0].toFixed(1)+'" y2="'+B[1].toFixed(1)+'"/>'}}
-svg.innerHTML=outs.map((s,g)=>'<g class="gseg'+(g%2?' green':'')+'" data-g="'+g+'">'+s+"</g>").join("");
-wrap.querySelectorAll(".lbl").forEach(n=>n.remove());
-GROUPS.forEach((g,gi)=>{const d=document.createElement("div"),below=gi>1;d.className="lbl"+(gi%2?" green":"");d.style.left=LC[gi]*w+"px";d.style.width=lw+"px";d.dataset.g=gi;d.style.bottom="auto";d.style.height=(below?bot-12:band-12)+"px";d.style.display="flex";d.style.flexDirection="column";d.style.justifyContent=below?"flex-start":"flex-end";d.style.top=(below?foot+12:0)+"px";d.innerHTML='<span>'+g.k+'</span><small>'+g.full+'</small>';wrap.appendChild(d)});restore()}
-function place(drawLines,stagger){
-if(matchMedia("(max-width:1100px)").matches){cat.classList.add("stack");placeMobile(drawLines,stagger);return}
-cat.classList.remove("stack");
-const avail=host.clientWidth,w=Math.max(Math.min(avail/(.75*(cols-1)+1),170),90),h=w*.866,ww=.75*(cols-1)*w+w,hh=rows*h+h/2;
-wrap.style.width=ww+"px";wrap.style.height=hh+"px";svg.setAttribute("width",ww);svg.setAttribute("height",hh);
-const col=[],cnt={p:0,n:0,w:0};
-for(let slot=0;slot<N;slot++){const c=Math.floor(slot/rows),r=slot%rows,nb=[[c,r-1]].concat(c%2?[[c-1,r],[c-1,r+1]]:[[c-1,r-1],[c-1,r]]).filter(q=>q[0]>=0&&q[1]>=0&&q[1]<rows),bad=nb.map(q=>col[q[0]*rows+q[1]]),k=["p","n","w"].sort((a,b)=>((bad.filter(z=>z==a).length*100+cnt[a]*(a=="p"?1:2))-(bad.filter(z=>z==b).length*100+cnt[b]*(b=="p"?1:2))))[0];col[slot]=k;cnt[k]++;
-const x=hexes[order[slot]],st=x.style;x.firstChild.setAttribute("class","mod "+k);
-st.width=w+"px";st.height=h+"px";st.left=c*.75*w+"px";st.top=r*h+(c%2?h/2:0)+"px";st.fontSize=Math.max(10,w*.07)+"px";st.transitionDelay=(stagger?slot*stagger:0)+"ms";
-const v=x.firstChild.style;v.width=v.height=(w*.24+10)+"px"}
-if(!drawLines)return;
-const at=(c,r)=>{if(c<0||r<0||r>=rows)return -1;const i=c*rows+r;return i<N?i:-1};
-const outs=["","","",""];
-for(let slot=0;slot<N;slot++){const c=Math.floor(slot/rows),r=slot%rows,x0=c*.75*w,y0=r*h+(c%2?h/2:0),V=[[.25,0],[.75,0],[1,.5],[.75,1],[.25,1],[0,.5]].map(q=>[x0+q[0]*w,y0+q[1]*h]),o=c%2,
-NB=[at(c,r-1),at(c+1,o?r:r-1),at(c+1,o?r+1:r),at(c,r+1),at(c-1,o?r+1:r),at(c-1,o?r:r-1)],g=cells[order[slot]].g;
-for(let e=0;e<6;e++){const j=NB[e];if(j>=0&&cells[order[j]].g===g)continue;
-const A=V[e],B=V[(e+1)%6];outs[g]+='<line class="seg" pathLength="1" x1="'+A[0].toFixed(1)+'" y1="'+A[1].toFixed(1)+'" x2="'+B[0].toFixed(1)+'" y2="'+B[1].toFixed(1)+'"/>'}}
-svg.innerHTML=outs.map((s,g)=>'<g class="gseg'+(g%2?' green':'')+'" data-g="'+g+'">'+s+"</g>").join("");
-wrap.querySelectorAll(".lbl").forEach(n=>n.remove());
-GROUPS.forEach((g,gi)=>{const cs=[];order.forEach((cell,slot)=>{if(cells[cell].g===gi)cs.push(Math.floor(slot/rows))});
-const c0=Math.min.apply(null,cs),c1=Math.max.apply(null,cs),x1=c0*.75*w,x2=c1*.75*w+w,d=document.createElement("div");
-d.className="lbl"+(gi%2?" green":"");d.style.left=(x1+x2)/2+"px";d.style.width=(x2-x1)+"px";d.dataset.g=gi;
-d.innerHTML='<span>'+g.k+'</span><small>'+g.full+'</small>';wrap.appendChild(d)});restore()}
-function cycle(i){if(i===0)clearKept();reveal(i);timer=setTimeout(()=>cycle((i+1)%GROUPS.length),i===GROUPS.length-1?2600:1500)}
-place(true,35);
-let lastW=innerWidth;
-addEventListener("resize",()=>{if(innerWidth===lastW)return;lastW=innerWidth;place(true,0)});
-if("IntersectionObserver"in window){const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){cat.classList.add("in");io.disconnect();if(!matchMedia("(prefers-reduced-motion: reduce)").matches)setTimeout(()=>{hexes.forEach(x=>x.style.transitionDelay="0ms");cycle(0)},1500)}}),{threshold:.2});io.observe(cat)}else{cat.classList.add("in");cycle(0)}
+const TILES = [
+  ['Smart Ticketing','p','cafm',0,0],['Preventive Maintenance','g','cafm',0,1],['Digital Checklist','g','cafm',1,0],
+  ['Inspect','p','cafm',1,1],['Incident Reporting','p','cafm',2,0],['Asset Reading & Logs','g','cafm',2,1],
+  ['Compliance','g','cafm',3,0],['SLA','p','cafm',3,1],
+  ['Desk Booking','p','iwfm',4,0],['Visitor Management','p','iwfm',4,1],['Mailroom','g','iwfm',5,0],
+  ['Attendance Management','p','iwfm',5,1],['Pantry Management','g','iwfm',6,0],['Shops','g','iwfm',6,1],
+  ['Feedback & Survey Module','p','iwfm',7,0],['CXO Dashboard','p','iwfm',7,1],['Tenants','p','iwfm',8,0],
+  ['Cafeteria Management','p','iwfm',8,1],
+  ['Digital Asset Register','p','eam',9,0],['Asset Audit','p','eam',9,1],
+  ['Asset AMC Tracker','p','eam',10,0],['Asset Health Monitoring','g','eam',10,1],
+  ['Dashboard','p','cams',11,0],['Purchase Orders','p','cams',11,1],['Inventory Management','p','cams',12,0],
+  ['Vendor','g','cams',12,1]
+];
+VIEWS.products.forEach(p=>p.mods=TILES.filter(t=>t[2]===p.group).map(t=>t[0]));
+
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const modules=document.getElementById('modules');
+const stage=document.getElementById('stage');
+let entered=false,mode=null,view='products',current=null,board=null,geo=null;
+
+let gAlt=0;const icMemo={};
+function icSet(t){if(t[1]==='p')return'p';if(!(t[0] in icMemo))icMemo[t[0]]=(gAlt++%2)?'g2':'g1';return icMemo[t[0]];}
+
+function hexVerts(c,R){return[0,60,120,180,240,300].map(a=>{const r=a*Math.PI/180;return[c.x+R*Math.cos(r),c.y+R*Math.sin(r)];});}
+function outlinePath(centers,R){
+  const k=p=>p[0].toFixed(1)+','+p[1].toFixed(1);const edges=new Map();
+  centers.forEach(c=>{const v=hexVerts(c,R);for(let i=0;i<6;i++){const a=v[i],b=v[(i+1)%6];
+    const key=[k(a),k(b)].sort().join('|');const e=edges.get(key);if(e)e.n++;else edges.set(key,{a,b,n:1});}});
+  const outer=[...edges.values()].filter(e=>e.n===1);const adj=new Map();
+  outer.forEach((e,i)=>[k(e.a),k(e.b)].forEach(key=>{if(!adj.has(key))adj.set(key,[]);adj.get(key).push(i);}));
+  const used=new Set();let d='';
+  outer.forEach((e,i)=>{if(used.has(i))return;used.add(i);let cur=e.b;d+=`M${e.a[0]},${e.a[1]}L${cur[0]},${cur[1]}`;
+    for(;;){const n=(adj.get(k(cur))||[]).find(j=>!used.has(j));if(n===undefined)break;used.add(n);
+      const ne=outer[n];cur=k(ne.a)===k(cur)?ne.b:ne.a;d+=`L${cur[0]},${cur[1]}`;}d+='Z';});
+  return d;
+}
+
+function build(){
+    const m=innerWidth<=760?'mobile':'desktop';
+  if(m!==mode){
+    mode=m;stage.innerHTML='';
+    const R=m==='desktop'?84:76,gap=m==='desktop'?12:8,rS=R,hS=Math.sqrt(3)*rS,pitch=rS+gap/Math.sqrt(3),dx=1.5*pitch,row=Math.sqrt(3)*pitch,LH=46,GAP=10,TOP=m==='desktop'?132:24,BOT=m==='desktop'?150:24;
+    modules.classList.toggle('compact',m!=='desktop');
+    const MC=[];[7,6,7,6].forEach((n,c)=>{for(let r=0;r<n;r++)MC.push([c,r]);});
+    MC.sort((a,b)=>(a[1]+(a[0]%2?.5:0))-(b[1]+(b[0]%2?.5:0))||a[0]-b[0]);
+    const pos=(t,i)=>m==='desktop'?[t[3],t[4]]:MC[i];
+    const wrap=document.createElement('div');wrap.className='board-wrap';
+    board=document.createElement('div');board.className='board';
+    let W=0,H=0;
+    TILES.forEach((t,i)=>{
+      const[c,r]=pos(t,i);const cx=c*dx+rS,cy=TOP+r*row+(c%2?row/2:0)+hS/2;
+      W=Math.max(W,cx+rS);H=Math.max(H,cy+hS/2+BOT);
+      const el=document.createElement('div');el.className='tile';el.dataset.name=t[0];el._c={x:cx,y:cy};
+      el.style.cssText+=`left:${cx-rS}px;top:${cy-hS/2}px;width:${2*rS}px;height:${hS}px`;
+      el.innerHTML=`<div class="hex"></div><svg class="ic ${icSet(t)}" viewBox="2 2.5 45 44" aria-hidden="true">${byName[t[0]][1]}</svg><span>${t[0]}</span>`;
+      board.appendChild(el);
+    });
+    board.style.width=W+'px';board.style.height=H+'px';
+    const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('class','outline');
+    svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.setAttribute('width',W);svg.setAttribute('height',H);
+    board.appendChild(svg);
+    LAYERS=[...VIEWS.products.map((_,i)=>'s'+i),'pick'].map(id=>{
+      const p=document.createElementNS('http://www.w3.org/2000/svg','path');p.setAttribute('pathLength','1');svg.appendChild(p);
+      const l=document.createElement('div');l.className='label';board.appendChild(l);
+      return {id,p,l};});
+    geo={R:rS,h:hS,W,labelTop:8,labelBottom:H-BOT+36,lift:LH+6};
+    wrap.appendChild(board);stage.appendChild(wrap);
+    wrap._fit=()=>{
+      const video=document.querySelector('.video-frame');
+      const vw=video?video.getBoundingClientRect().width:0;
+      const box=stage.clientWidth||1;
+      const byWidth=m==='desktop'?(vw>0?vw/W:box/W):Math.min(1,box/W);
+      const tabs=document.getElementById('tabs');
+      const s=byWidth;
+      const px=v=>(v/s).toFixed(2)+'px';
+      const hexV=2*rS*s;
+      const icoV=hexV*(m==='desktop'?0.36:0.32);
+      board.style.zoom='';
+      board.style.transform=`scale(${s})`;
+      board.style.setProperty('--name',px(hexV*(m==='desktop'?0.1:0.108)));
+      board.style.setProperty('--title',px(16));
+      board.style.setProperty('--sub',px(14));
+      board.style.setProperty('--name-w',px(hexV*(m==='desktop'?0.46:0.5)));
+      board.style.setProperty('--ico',px(icoV));
+      board.style.setProperty('--ico-h',px(icoV));
+      board.style.setProperty('--gap-in',px(hexV*0.012));
+      board.style.setProperty('--tile-pad',(hS*0.1).toFixed(2)+'px');
+      board.style.setProperty('--tile-side',(rS*0.22).toFixed(2)+'px');
+      wrap.style.width=W*s+'px';wrap.style.height=H*s+'px';
+      if(tabs)tabs.style.width=m==='desktop'?W*s+'px':'';
+    };
+    if(entered)board.querySelectorAll('.tile').forEach(t=>t.classList.add('in'));
+    redraw();
+  }
+  if(stage.firstChild)stage.firstChild._fit();
+}
+
+function markHot(item){
+  if(!board)return;
+  board.classList.toggle('marking',!!item);
+  board.querySelectorAll('.tile').forEach(t=>t.classList.toggle('hot',!!item&&item.mods.includes(t.dataset.name)));
+}
+let LAYERS=[];
+function drawLayer(L,item,animate){
+  const pick=L===pickL();
+  L.p.getAnimations().forEach(a=>a.cancel());
+  L.p.classList.remove('dim');
+  if(pick&&L.l.classList.contains('on')){L.l.style.transition='none';L.l.classList.remove('on','dim');void L.l.offsetWidth;}
+  else L.l.classList.remove('on','dim');
+  if(!item){L.p.setAttribute('d','');L.l.innerHTML='';return;}
+  const cs=[...board.querySelectorAll('.tile')].filter(t=>item.mods.includes(t.dataset.name)).map(t=>t._c);
+  L.p.setAttribute('d',outlinePath(cs,geo.R));
+  L.p.setAttribute('stroke',item.color==='p'?'#5D1F72':'#00BF88');
+  if(reduced||!animate)L.p.style.strokeDashoffset=0;
+  else{L.p.style.strokeDashoffset=1;L.p.animate([{strokeDashoffset:1},{strokeDashoffset:0}],{duration:2000,easing:'ease-in-out',fill:'forwards'});}
+  const xs=cs.map(c=>c.x),below=item.pos?item.pos==='bottom':item.color==='g';
+  let x=(Math.min(...xs)+Math.max(...xs))/2;x=Math.max(210,Math.min(geo.W-210,x));
+  L.l.className='label '+item.color;L.l.innerHTML=`<b>${item.name}</b><small>${item.full}</small>`;
+  L.l.style.left=x+'px';
+  L.l.style.top=(below?geo.labelBottom:geo.labelTop)+'px';
+  L.l.style.transition='none';
+  if(!(animate&&!reduced)){L.l.classList.add('on');requestAnimationFrame(()=>L.l.style.transition='');return;}
+  if(pick){void L.l.offsetWidth;L.l.style.transition='opacity .35s ease';L.l.classList.add('on');return;}
+  requestAnimationFrame(()=>{L.l.style.transition='';requestAnimationFrame(()=>L.l.classList.add('on'));});
+}
+const suites=()=>LAYERS.slice(0,4), pickL=()=>LAYERS[4];
+let state={mode:'idle',step:-1};
+function redraw(){
+  markHot(state.mode==='pick'?VIEWS[view][current]:state.mode==='intro'?VIEWS.products[state.step]:null);
+  if(state.mode==='pick'){drawLayer(pickL(),VIEWS[view][current],false);return;}
+  suites().forEach((L,i)=>{const show=state.mode==='done'||i<=state.step;drawLayer(L,show?VIEWS.products[i]:null,false);
+    if(state.mode==='intro'&&i<state.step){L.p.classList.add('dim');L.l.classList.add('dim');}});
+}
+function showAllSuites(animate){
+  state={mode:'done',step:3};current=null;
+  drawLayer(pickL(),null);
+  suites().forEach((L,i)=>drawLayer(L,VIEWS.products[i],animate));markHot(null);
+  syncUI(null);
+}
+function spotlight(i){
+  current=i;state={mode:'pick',step:-1};
+  suites().forEach(L=>drawLayer(L,null));
+  drawLayer(pickL(),VIEWS[view][i],true);markHot(VIEWS[view][i]);
+  syncUI(VIEWS[view][i]);
+}
+const chipsEl=document.getElementById('chips'), tabs=[...document.querySelectorAll('#tabs button')];
+function renderChips(){
+  chipsEl.innerHTML=VIEWS[view].map((g,i)=>`<button type="button" class="${g.color}" data-i="${i}">${g.name}</button>`).join('');
+  chipsEl.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{run++;spotlight(+b.dataset.i);}));
+}
+const capEl=document.getElementById('cap');
+function updateCaption(){
+  let html='';
+  if(state.mode==='done') html='<div class="legend">'+VIEWS.products.map(p=>`<span class="${p.color}"><i></i>${p.name}</span>`).join('')+'</div>';
+  else{const it=state.mode==='intro'?VIEWS.products[state.step]:state.mode==='pick'?VIEWS[view][current]:null;
+    if(it)html=`<div class="one ${it.color}"><b>${it.name}</b><small>${it.full}</small></div>`;}
+  if(capEl.innerHTML!==html)capEl.innerHTML=html;
+}
+function syncUI(item){
+  updateCaption();
+  const all=state.mode==='done';
+  chipsEl.querySelectorAll('button').forEach(b=>b.classList.toggle('on',all||(+b.dataset.i===current&&item!=null)||(state.mode==='intro'&&+b.dataset.i<=state.step)));
+}
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+let run=0;
+async function runView(v,me,delay){
+  view=v;current=null;
+  tabs.forEach(t=>t.setAttribute('aria-selected',t.dataset.view===v));
+  renderChips();
+  LAYERS.forEach(L=>drawLayer(L,null));
+  state={mode:'idle',step:-1};markHot(null);syncUI(null);
+  if(v==='products'){
+    if(reduced){showAllSuites(false);return me===run;}
+    await wait(delay);
+    for(let i=0;i<4;i++){
+      if(me!==run)return false;
+      state={mode:'intro',step:i};
+      suites().slice(0,i).forEach(L=>{L.p.classList.add('dim');L.l.classList.add('dim');});
+      drawLayer(suites()[i],VIEWS.products[i],true);markHot(VIEWS.products[i]);syncUI(null);
+      await wait(2000);
+    }
+    if(me!==run)return false;
+    await wait(2000);
+    if(me!==run)return false;
+    state={mode:'done',step:3};
+    suites().forEach(L=>{L.p.classList.remove('dim');L.l.style.transition='opacity .6s ease';L.l.classList.remove('dim');});
+    markHot(null);syncUI(null);
+    await wait(2000);
+    return me===run;
+  }
+  if(reduced){spotlight(0);return me===run;}
+  await wait(delay);
+  for(let i=0;i<VIEWS[v].length;i++){
+    if(me!==run)return false;
+    current=i;state={mode:'pick',step:-1};
+    drawLayer(pickL(),VIEWS[v][i],true);markHot(VIEWS[v][i]);syncUI(VIEWS[v][i]);
+    await wait(2000);
+  }
+  return me===run;
+}
+async function play(v,delay=0){
+  const me=++run;
+  await runView(v,me,delay);
+}
+async function tour(delay){
+  const me=++run;
+  const order=['products','industries','roles'];
+  let step=0,gap=delay;
+  while(me===run){
+    if(!await runView(order[step],me,gap)||me!==run)return;
+    gap=400;
+    step=(step+1)%order.length;
+  }
+}
+tabs.forEach(t=>t.addEventListener('click',()=>{ if(!entered)enter(true); play(t.dataset.view,200); }));
+
+function enter(noLoop){
+  if(entered)return;entered=true;
+  const tiles=board.querySelectorAll('.tile');
+  if(reduced){tiles.forEach(t=>{t.style.transition='none';t.classList.add('in');});if(!noLoop)play('products');return;}
+  tiles.forEach((t,i)=>setTimeout(()=>t.classList.add('in'),i*35));
+  if(!noLoop)tour(1300);
+}
+
+build();
+addEventListener('resize',build);
+new IntersectionObserver((ents,obs)=>{if(ents.some(e=>e.isIntersecting)){enter();obs.disconnect();}},{threshold:.2})
+  .observe(modules);
 (function(){
 const row=document.querySelector(".uc-row");
 if(!row)return;
