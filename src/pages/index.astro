@@ -282,7 +282,7 @@ function build(){
     const m=innerWidth<=760?'mobile':'desktop';
   if(m!==mode){
     mode=m;stage.innerHTML='';
-    const R=m==='desktop'?84:76,gap=m==='desktop'?12:8,rS=R,hS=Math.sqrt(3)*rS,pitch=rS+gap/Math.sqrt(3),dx=1.5*pitch,row=Math.sqrt(3)*pitch,LH=46,GAP=10,TOP=m==='desktop'?132:24,BOT=m==='desktop'?150:24;
+    const R=m==='desktop'?84:76,gap=m==='desktop'?16:10,rS=R,hS=Math.sqrt(3)*rS,pitch=rS+gap/Math.sqrt(3),dx=1.5*pitch,row=Math.sqrt(3)*pitch,LH=46,GAP=10,TOP=m==='desktop'?132:24,BOT=m==='desktop'?150:24;
     modules.classList.toggle('compact',m!=='desktop');
     const MC=[];[7,6,7,6].forEach((n,c)=>{for(let r=0;r<n;r++)MC.push([c,r]);});
     MC.sort((a,b)=>(a[1]+(a[0]%2?.5:0))-(b[1]+(b[0]%2?.5:0))||a[0]-b[0]);
