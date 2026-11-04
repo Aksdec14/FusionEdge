@@ -9,14 +9,14 @@ import Layout from "../layouts/Layout.astro";
 </div>
 </section>
 <section class="wrap" id="modules" aria-label="Modules by system">
+  <div id="chips"></div>
+  <div id="cap" aria-live="polite"></div>
+  <div id="stage"></div>
   <div id="tabs" role="tablist">
     <button type="button" role="tab" data-view="products" aria-selected="true">Software</button>
     <button type="button" role="tab" data-view="industries" aria-selected="false">Industries</button>
     <button type="button" role="tab" data-view="roles" aria-selected="false">Roles</button>
   </div>
-  <div id="chips"></div>
-  <div id="cap" aria-live="polite"></div>
-  <div id="stage"></div>
 </section>
 <section class="video" aria-label="Product video"><h2><span>Your whole business,</span> <span>beautifully <em>connected</em>.</span></h2><video class="video-frame" autoplay muted loop playsinline preload="auto" disablepictureinpicture aria-label="Your whole business, beautifully connected"><source src="/Fusionedge_hero_30s_v7.mp4" type="video/mp4"></video></section>
 <section class="customers" aria-labelledby="customers-title">
@@ -330,7 +330,17 @@ function build(){
       board.style.setProperty('--tile-pad',(hS*0.1).toFixed(2)+'px');
       board.style.setProperty('--tile-side',(rS*0.22).toFixed(2)+'px');
       wrap.style.width=W*s+'px';wrap.style.height=H*s+'px';
-      if(tabs)tabs.style.width=m==='desktop'?W*s+'px':'';
+      if(tabs){
+        if(m==='desktop'){
+          tabs.style.width='fit-content';
+          tabs.style.marginLeft=((stage.clientWidth-W*s)/2)+'px';
+          tabs.style.marginRight='auto';
+        }else{
+          tabs.style.width='';
+          tabs.style.marginLeft='';
+          tabs.style.marginRight='';
+        }
+      }
     };
     if(entered)board.querySelectorAll('.tile').forEach(t=>t.classList.add('in'));
     redraw();

@@ -18,8 +18,8 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:"Public Sans",sy
 .btn{border-radius:99px;font:inherit;cursor:pointer}
 p{font-size:14px;line-height:1.6;color:var(--muted);max-width:480px;margin:0 auto 30px}
 .wrap{max-width:none;margin:0 auto}
-#modules{--purple:#5D1F72;--green:#00BF88;padding:8px 16px 12px;overflow:hidden;font-family:"Public Sans",sans-serif;font-style:normal}
-#tabs{display:flex;justify-content:flex-end;gap:8px;width:min(1080px,calc(100vw - 10vw));max-width:100%;margin:84px auto 10px;flex-wrap:wrap}
+#modules{--purple:#5D1F72;--green:#00BF88;padding:56px 16px;overflow:hidden;font-family:"Public Sans",sans-serif;font-style:normal}
+#tabs{display:flex;justify-content:flex-start;gap:8px;width:fit-content;max-width:100%;margin:16px auto 0;flex-wrap:wrap}
 #tabs button{border:1px solid #d9cce1;background:#fff;font:500 14px "Public Sans",sans-serif;letter-spacing:-.02em;color:#5D1F72;padding:8px 16px;border-radius:4px;cursor:pointer;transition:background .25s,color .25s,border-color .25s}
 #tabs button:hover{border-color:#5D1F72}
 #tabs button[aria-selected="true"]{background:#5D1F72;border-color:#5D1F72;color:#fff}
@@ -74,7 +74,7 @@ svg.outline path.dim{opacity:.3}
 @media (max-width:600px){
   #tabs{display:grid;grid-template-columns:repeat(3,1fr);width:100%;gap:6px}
   #tabs button{padding:8px 6px;font-size:12px}
-  #modules{padding:10px 12px 24px}
+  #modules{padding:32px 12px}
 }
 @media (prefers-reduced-motion:reduce){
   .tile,.tile .ic,svg.outline path,.board .label{transition:none}
