@@ -1,5 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Friction from "../components/Friction.astro";
+import Connect from "../components/Connect.astro";
 ---
 <Layout>
 <section class="hero">
@@ -18,7 +20,6 @@ import Layout from "../layouts/Layout.astro";
     <button type="button" role="tab" data-view="roles" aria-selected="false">Roles</button>
   </div>
 </section>
-<section class="video" aria-label="Product video"><h2><span>Your whole business,</span> <span>beautifully <em>connected</em>.</span></h2><video class="video-frame" autoplay muted loop playsinline preload="auto" disablepictureinpicture aria-label="Your whole business, beautifully connected"><source src="/Fusionedge_hero_30s_v7.mp4" type="video/mp4"></video></section>
 <section class="customers" aria-labelledby="customers-title">
 <h2 id="customers-title">Our Customers</h2>
 <p>Teams that run their operations in one connected system.</p>
@@ -43,6 +44,9 @@ import Layout from "../layouts/Layout.astro";
 </ul>
 </div></div>
 </section>
+<Friction />
+<Connect />
+<section class="video" aria-label="Product video"><h2><span>Your whole business,</span> <span>beautifully <em>connected</em>.</span></h2><video class="video-frame" autoplay muted loop playsinline preload="auto" disablepictureinpicture aria-label="Your whole business, beautifully connected"><source src="/Fusionedge_hero_30s_v7.mp4" type="video/mp4"></video></section>
 <section class="usecases" aria-labelledby="usecases-title">
 <div class="uc-top">
 <h2 id="usecases-title">Use cases for the sites you run</h2>

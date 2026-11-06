@@ -1,0 +1,161 @@
+<section id="fe-connect" aria-labelledby="fc-title">
+  <h2 class="fc-h" id="fc-title">One hub for modules, devices and apps.</h2>
+  <div class="fc-stage">
+    <svg class="fc-lines" id="fcLines" viewBox="0 0 900 560" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <marker id="fcArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1l7 4-7 4" fill="none" stroke="#e0855f" stroke-width="1.4" stroke-linecap="round"/></marker>
+      </defs>
+    </svg>
+
+    <div class="fc-ask" style="left:17%;top:50%">
+      <img src="/logo.png" alt="Fusionedge">
+    </div>
+
+    <div id="fcTiles"></div>
+  </div>
+
+  <ul class="fc-legend" aria-label="Legend">
+    <li><i class="m"></i>Fusionedge modules</li>
+    <li><i class="d"></i>IoT devices &amp; sensors</li>
+    <li><i class="a"></i>Business apps &amp; channels</li>
+  </ul>
+</section>
+
+<style is:global>
+  #fe-connect{--fc-ink:#1d1b26;--fc-line:#e0855f;--fc-p:#6B2288;--fc-g:#00BF88;--fc-b:#2f6fe4;
+    font-family:"Public Sans",system-ui,sans-serif;background:#fff;padding:24px 16px;overflow:hidden}
+  #fe-connect *{box-sizing:border-box}
+  #fe-connect .fc-h{margin:0 0 24px;text-align:center;font-family:"Public Sans",system-ui,sans-serif;font-style:italic;font-weight:600;font-size:clamp(28px,3vw,40px);line-height:1.2;letter-spacing:-.03em;color:#1a1424}
+  #fe-connect .fc-stage{position:relative;max-width:980px;margin:0;aspect-ratio:900/560}
+  #fe-connect .fc-lines{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+  #fe-connect .fc-line{fill:none;stroke:var(--fc-line);stroke-width:1.2;stroke-linecap:round;opacity:.7;vector-effect:non-scaling-stroke}
+  #fe-connect .fc-pulse{fill:none;stroke:var(--fc-line);stroke-width:2.4;stroke-linecap:round;vector-effect:non-scaling-stroke;
+    stroke-dasharray:40 1400;stroke-dashoffset:40;animation:fcPulse 3.2s linear infinite;animation-delay:var(--d)}
+  @keyframes fcPulse{to{stroke-dashoffset:-1400}}
+
+  #fe-connect .fc-ask{position:absolute;transform:translate(-50%,-50%);display:flex;align-items:center;gap:12px;white-space:nowrap;
+    padding:12px 18px;border-radius:12px;background:#fff;border:1px solid #e7e5ec;color:var(--fc-ink);font-size:clamp(12px,2vw,19px);font-weight:500;
+    box-shadow:0 4px 14px -6px rgba(30,20,50,.14);z-index:4}
+  #fe-connect .fc-ask img{height:44px;width:auto;display:block;mix-blend-mode:multiply}
+
+  #fe-connect .fc-tile{position:absolute;transform:translate(-50%,-50%);aspect-ratio:1;border-radius:20%;z-index:2}
+  #fe-connect .fc-tile.on{background:#fff;border:1px solid #e9e7ee;display:grid;place-items:center;cursor:default;
+    box-shadow:0 6px 14px -8px rgba(30,20,50,.25);transition:transform .25s,box-shadow .25s}
+  #fe-connect .fc-tile.on svg{width:54%;height:54%}
+  #fe-connect .fc-tile.on:hover{transform:translate(-50%,-50%) translateY(-3px);box-shadow:0 12px 22px -10px rgba(30,20,50,.35);z-index:5}
+  #fe-connect .fc-tile.dev::after{content:"";position:absolute;top:10%;right:10%;width:14%;aspect-ratio:1;border-radius:50%;background:var(--fc-g);
+    box-shadow:0 0 0 0 rgba(0,191,136,.5);animation:fcLive 2s ease-out infinite}
+  @keyframes fcLive{70%{box-shadow:0 0 0 5px rgba(0,191,136,0)}100%{box-shadow:0 0 0 0 rgba(0,191,136,0)}}
+  #fe-connect .fc-tile.on span{position:absolute;top:calc(100% + 4px);left:50%;transform:translateX(-50%);white-space:nowrap;
+    font-size:clamp(8px,1vw,10.5px);font-weight:500;color:#55536a;pointer-events:none;letter-spacing:-.01em}
+  #fe-connect .fc-tile.on:hover span{color:var(--fc-ink)}
+  #fe-connect .fc-tile.ghost{border:1px solid #e8e6ec}
+  #fe-connect .fc-tile.ghost.f1{opacity:.8}
+  #fe-connect .fc-tile.ghost.f2{opacity:.45}
+  #fe-connect .fc-tile.ghost.f3{opacity:.22}
+  #fe-connect .fc-stage::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:3;
+    background:linear-gradient(90deg,transparent 84%,#fff 99%),linear-gradient(180deg,#fff 2%,transparent 14%,transparent 86%,#fff 98%)}
+
+  #fe-connect .fc-legend{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:8px 22px;font-size:13px;color:#5d5b6c}
+  #fe-connect .fc-legend li{display:flex;align-items:center;gap:7px}
+  #fe-connect .fc-legend i{width:10px;height:10px;border-radius:3px}
+  #fe-connect .fc-legend .m{background:var(--fc-p)} #fe-connect .fc-legend .d{background:var(--fc-g);border-radius:50%} #fe-connect .fc-legend .a{background:var(--fc-b)}
+
+  @media (max-width:640px){
+    #fe-connect{padding:16px}
+    #fe-connect .fc-stage{max-width:440px;margin:0}
+    #fe-connect.fc-vert .fc-stage::after{background:linear-gradient(180deg,transparent 84%,#fff 99%),linear-gradient(90deg,#fff 2%,transparent 14%,transparent 86%,#fff 98%)}
+    #fe-connect .fc-ask{padding:6px 9px;gap:5px;border-radius:8px}
+    #fe-connect .fc-ask img{height:28px}
+    #fe-connect .fc-tile.on span{font-size:6.5px}
+    #fe-connect .fc-legend{padding:0;font-size:12px}
+  }
+  @media (prefers-reduced-motion:reduce){#fe-connect .fc-pulse,#fe-connect .fc-tile.dev::after{animation:none}#fe-connect .fc-pulse{opacity:0}}
+</style>
+
+<script is:inline>
+(function(){
+  const root=document.getElementById('fe-connect'); if(!root) return;
+  const wrap=root.querySelector('#fcTiles'), svg=root.querySelector('#fcLines'), NS='http://www.w3.org/2000/svg';
+  const ic=(c,p)=>`<svg viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
+  const P='#6B2288', G='#00BF88', B='#2f6fe4';
+  const I={
+    asset:['m','Assets',ic(P,'<rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 9h18M8 13h3M8 16h6"/>')],
+    ticket:['m','Ticketing',ic(P,'<path d="M3 8a2 2 0 012-2h14a2 2 0 012 2v2a2 2 0 000 4v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2a2 2 0 000-4z"/><path d="M14 7v10" stroke-dasharray="2 2"/>')],
+    ppm:['m','PPM',ic(P,'<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>')],
+    visitor:['m','Visitors',ic(P,'<circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-4 3-6 7-6s7 2 7 6"/>')],
+    inventory:['m','Inventory',ic(P,'<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/>')],
+    incident:['m','Incidents',ic(P,'<path d="M10.3 4.2a2 2 0 013.4 0l7.4 12.8a2 2 0 01-1.7 3H4.6a2 2 0 01-1.7-3z"/><path d="M12 9.5v4M12 16.8v.1"/>')],
+    dash:['m','Dashboards',ic(P,'<path d="M4 20V10M10 20V4M16 20v-7M21 20H3"/>')],
+    cctv:['d','CCTV',ic(G,'<path d="M3 7l13 4-1.5 4L2 11z"/><path d="M16 11l4-1v5l-5-1M7 13v4H4"/>')],
+    temp:['d','Temp sensor',ic(G,'<path d="M10 14V5a2 2 0 014 0v9a4 4 0 11-4 0z"/><path d="M12 9v6"/>')],
+    meter:['d','Energy meter',ic(G,'<rect x="4" y="3" width="16" height="18" rx="3"/><path d="M13 7l-3 5h4l-3 5"/>')],
+    leak:['d','Leak sensor',ic(G,'<path d="M12 3c3 4.5 6 7.5 6 11a6 6 0 01-12 0c0-3.5 3-6.5 6-11z"/><path d="M9.5 15a2.5 2.5 0 002.5 2.5"/>')],
+    access:['d','Access control',ic(G,'<rect x="6" y="2.5" width="12" height="19" rx="2.5"/><circle cx="12" cy="10" r="3"/><path d="M10 16h4"/>')],
+    bio:['d','Biometric',ic(G,'<path d="M12 4a7 7 0 017 7v2M5 13v-2a7 7 0 013-5.7M9 20a10 10 0 001-5v-4a2 2 0 014 0v3M15 20.5c.4-1.5.6-3 .6-4.5M12 11v4a13 13 0 01-1 5"/>')],
+    hvac:['d','HVAC',ic(G,'<circle cx="12" cy="12" r="1.6"/><path d="M12 10.4c0-3 1-6 4-6 2 0 2 3 0 4.5M13.6 12c3 0 6 1 6 4 0 2-3 2-4.5 0M12 13.6c0 3-1 6-4 6-2 0-2-3 0-4.5M10.4 12c-3 0-6-1-6-4 0-2 3-2 4.5 0"/>')],
+    air:['d','Air quality',ic(G,'<path d="M3 8h10a3 3 0 10-3-3M3 12h15a3 3 0 11-3 3M3 16h7"/>')],
+    occ:['d','Occupancy',ic(G,'<circle cx="12" cy="12" r="2"/><path d="M8 8a5.7 5.7 0 000 8M16 8a5.7 5.7 0 010 8M5 5a10 10 0 000 14M19 5a10 10 0 010 14"/>')],
+    lift:['d','Lift IoT',ic(G,'<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M12 3v18M8.5 9l1.5-2 1.5 2M12.5 15l1.5 2 1.5-2"/>')],
+    dg:['d','DG set',ic(G,'<rect x="3" y="7" width="18" height="11" rx="2"/><path d="M7 18v2M17 18v2M12.5 9.5l-2 3h3l-2 3"/>')],
+    erp:['a','ERP / SAP',ic(B,'<ellipse cx="12" cy="6" rx="7" ry="2.5"/><path d="M5 6v6c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12v6c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-6"/>')],
+    hrms:['a','HRMS',ic(B,'<circle cx="9" cy="8" r="3"/><path d="M3 19c0-3.3 2.7-5 6-5s6 1.7 6 5M16 5a3 3 0 010 6M18 14c2 .5 3 2 3 5"/>')],
+    mail:['a','Email',ic(B,'<rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6"/>')],
+    chatapp:['a','Chat',ic(B,'<path d="M21 12a8 8 0 01-11.6 7.1L4 20l1-4.5A8 8 0 1121 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/>')],
+    sms:['a','SMS',ic(B,'<rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10 18.5h4M9 7h6M9 10h4"/>')],
+    cal:['a','Calendar',ic(B,'<rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/>')],
+    api:['a','API',ic(B,'<path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 5l-3 14"/>')],
+    qr:['a','QR app',ic(B,'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M21 14v.01M14 21h3M20 18v3"/>')],
+  };
+  const step=72;
+  const rows=[
+    {y:52,  ghost:true, xs:[380,452,524,596,668,740,812], f:'f3'},
+    {y:120, xs:[452,524,596,668,740], keys:['cctv','temp','meter','leak','air'], end:812},
+    {y:200, xs:[416,488,560,632,704,776], keys:['asset','ticket','access','bio','erp','mail'], end:848},
+    {y:280, xs:[380,452,524,596,668,740,812], keys:['ppm','hvac','inventory','occ','hrms','chatapp','api'], end:884, center:true},
+    {y:360, xs:[416,488,560,632,704,776], keys:['visitor','lift','incident','dg','sms','cal'], end:848},
+    {y:440, xs:[452,524,596,668,740], keys:['dash','qr','meter','temp','cctv'].slice(0,3).concat(['access','air']), end:812},
+    {y:508, ghost:true, xs:[380,452,524,596,668,740,812], f:'f3'},
+  ];
+  rows[5].keys=['dash','qr','dg','lift','hvac'];
+
+  const ask=root.querySelector('.fc-ask'), stage=root.querySelector('.fc-stage');
+  const mq=matchMedia('(max-width:640px)');
+  function build(){
+    const V=mq.matches;
+    const W=V?560:900, H=V?900:560;
+    root.classList.toggle('fc-vert',V);
+    stage.style.aspectRatio=W+'/'+H;
+    svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+    svg.querySelectorAll('path:not(marker path)').forEach(p=>{if(!p.closest('marker'))p.remove();});
+    wrap.innerHTML='';
+    const pt=(x,y)=>V?[y,x]:[x,y];
+    const P2=(x,y)=>pt(x,y).join(' ');
+    const [ax,ay]=pt(153,280); ask.style.left=(ax/W*100)+'%'; ask.style.top=(ay/H*100)+'%';
+    const add=(x,y,cls,html,label)=>{
+      if(!html && x<330) return;
+      const [px,py]=pt(x,y);
+      const d=document.createElement('div'); d.className='fc-tile '+cls;
+      d.style.left=(px/W*100)+'%'; d.style.top=(py/H*100)+'%'; d.style.width=(48/W*100)+'%';
+      if(html){d.innerHTML=html+`<span>${label}</span>`; d.setAttribute('aria-label',label);}
+      wrap.appendChild(d);
+    };
+    const path=(d,cls,delay)=>{const p=document.createElementNS(NS,'path');p.setAttribute('d',d);p.setAttribute('class',cls);
+      if(cls==='fc-line')p.setAttribute('marker-end','url(#fcArrow)'); if(delay!=null)p.style.setProperty('--d',delay+'s'); svg.appendChild(p);};
+    const HX=258, HY=280, BX=300, R=12; let n=0;
+    rows.forEach(r=>{
+      if(r.ghost){ r.xs.forEach(x=>add(x,r.y,'ghost '+r.f)); return; }
+      add(r.xs[0]-step,r.y,'ghost f1'); add(r.xs[0]-step*2,r.y,'ghost f2');
+      add(r.end,r.y,'ghost f1'); add(r.end+step,r.y,'ghost f2');
+      r.keys.forEach((k,i)=>{const [t,l,ic]=I[k]; add(r.xs[i],r.y,'on '+(t==='d'?'dev':''),ic,l);});
+      let d;
+      if(r.y===HY) d=`M${P2(HX,HY)} L ${P2(r.end-14,HY)}`;
+      else { const sg=r.y<HY?-1:1;
+        d=`M${P2(HX,HY)} L ${P2(BX-R,HY)} Q ${P2(BX,HY)} ${P2(BX,HY+sg*R)} L ${P2(BX,r.y-sg*R)} Q ${P2(BX,r.y)} ${P2(BX+R,r.y)} L ${P2(r.end-14,r.y)}`; }
+      path(d,'fc-line'); path(d,'fc-pulse',(n++)*0.5);
+    });
+  }
+  build();
+  mq.addEventListener('change',build);
+})();
+</script>
