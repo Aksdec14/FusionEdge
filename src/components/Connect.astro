@@ -2,7 +2,7 @@
   <h2 class="fc-h" id="fc-title">One hub for modules, devices and apps.</h2>
 
   <div class="fc-stage">
-    <svg class="fc-lines" id="fcLines" viewBox="0 0 1200 560" preserveAspectRatio="none" aria-hidden="true">
+    <svg class="fc-lines" id="fcLines" viewBox="0 0 1200 500" preserveAspectRatio="none" aria-hidden="true">
       <defs>
         <marker id="fcArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
           <path d="M1 1l7 4-7 4" fill="none" stroke="#8a4aa6" stroke-width="1.4" stroke-linecap="round"/>
@@ -26,14 +26,14 @@
     --ink:#1d1b26;--muted:#5d5b6c;--line:#8a4aa6;--cat:#6B2288;
     --p:#6B2288;--g:#00BF88;--border:#ebe9f0;
     font-family:"Public Sans",system-ui,sans-serif;background:#fff;
-    padding:clamp(32px,5vw,72px) clamp(16px,3vw,40px);overflow:hidden}
+    padding:clamp(24px,4vw,56px) clamp(16px,3vw,40px);overflow:hidden}
   #fe-connect *{box-sizing:border-box}
 
-  #fe-connect .fc-h{margin:0 auto clamp(24px,3vw,48px);max-width:900px;text-align:center;
+  #fe-connect .fc-h{margin:0 auto clamp(16px,2vw,32px);max-width:900px;text-align:center;
     font-family:"Public Sans",system-ui,sans-serif;font-style:italic;font-weight:600;font-size:clamp(28px,3vw,40px);line-height:1.2;letter-spacing:-.03em;color:#1a1424}
 
   /* Stage: wide + centered, grows on big screens */
-  #fe-connect .fc-stage{position:relative;width:100%;max-width:1180px;margin:0 auto;aspect-ratio:1200/560}
+  #fe-connect .fc-stage{position:relative;width:100%;max-width:1180px;margin:0 auto;aspect-ratio:1200/500}
   @media (min-width:1440px){#fe-connect .fc-stage{max-width:1320px}}
   @media (min-width:1800px){#fe-connect .fc-stage{max-width:1480px}}
 
@@ -62,7 +62,7 @@
   #fe-connect .fc-tile.ghost{border:1px dashed #e4e1ea;opacity:.6}
 
   /* Legend */
-  #fe-connect .fc-legend{list-style:none;margin:clamp(20px,2.5vw,36px) 0 0;padding:0;display:flex;flex-wrap:wrap;
+  #fe-connect .fc-legend{list-style:none;margin:clamp(40px,4.5vw,64px) 0 0;padding:0;display:flex;flex-wrap:wrap;
     justify-content:center;gap:10px 28px;font-size:13px;color:var(--muted)}
   #fe-connect .fc-legend li{display:flex;align-items:center;gap:8px}
   #fe-connect .fc-legend i{width:10px;height:10px;border-radius:3px}
@@ -73,7 +73,7 @@
 
   /* Mobile / small tablet: vertical layout */
   @media (max-width:900px){
-    #fe-connect{padding:28px 8px 36px}
+    #fe-connect{padding:20px 8px 28px}
     #fe-connect.fc-vert .fc-stage{max-width:none;aspect-ratio:auto}
     #fe-connect.fc-vert .fc-hub{padding:8px 12px;border-radius:12px}
     #fe-connect.fc-vert .fc-hub img{height:30px}
@@ -179,7 +179,7 @@
   function buildWide(){
     root.classList.remove('fc-vert');
     stage.style.height=''; stage.style.aspectRatio='';
-    const W=1200,H=560, HX=150, HY=280, BUS=330, R=14, X0=480, STEP=112, T=66, ROWH=112;
+    const W=1200,H=500, HX=150, HY=250, BUS=330, R=14, X0=480, STEP=112, T=66, ROWH=100;
     svg.setAttribute('viewBox',`0 0 ${W} ${H}`); clear();
     const pct=(v,m)=>(v/m*100)+'%';
     hub.style.left=pct(HX,W); hub.style.top=pct(HY,H);
@@ -205,7 +205,7 @@
     const W=Math.max(stage.clientWidth,300);
     const SIDE=6, colW=(W-SIDE*2)/n;
     const T=Math.min(46,Math.round(colW*.56));
-    const LABEL_H=34, GAP=22;
+    const LABEL_H=30, GAP=16;
     const ROWH=T+LABEL_H+GAP, TOP=116;
     const H=TOP+maxRows*ROWH+12;
     stage.style.height=H+'px';
