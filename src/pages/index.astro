@@ -260,11 +260,37 @@ const TILES = [
   ['Dashboard','p','rt',11,0],['Purchase Orders','p','rb',11,1],['Inventory Management','p','rt',12,0],
   ['Vendor','g','rb',12,1]
 ];
+const HELP={
+  'Construction':['Check crews in and log who is on site before work starts.','Raise a ticket, run the inspection, and close the safety check on the same asset.','Order materials and tie each delivery to the vendor and the job.'],
+  'Office Spaces':['Book a desk, sign in a visitor, and take in the mail from one workplace record.','Pantry and cafeteria orders sit with the service tickets, not in a separate chat.','Missed SLAs and the building numbers reach the people who run the office.'],
+  'Co-working':['Members book desks, bring guests, and use the pantry without a second system.','Tenant requests, shop sales, and feedback stay on the same member.','The floor team sees which space is busy and which request is still open.'],
+  'Hospitals & Healthcare':['Planned maintenance and asset health stay on the equipment that care depends on.','Inspections, incidents, and compliance close against the same record.','Visitors, stock, and the cafeteria are tracked without a side register.'],
+  'Manufacturing':['Readings, health, and the AMC sit on the machine, not in a spreadsheet.','A breakdown opens a ticket and keeps the spare parts and the vendor with it.','Attendance, incidents, and compliance stay visible to the plant team.'],
+  'Warehousing & Logistics':['Stock, purchase orders, and vendors stay on one trail.','The asset register and the audit match what is actually in the shed.','Gate entry, attendance, and incidents are recorded where the shift can see them.'],
+  'Retail & Malls':['Tenant and shop requests become tickets with an SLA, not a phone call.','Visitor entry and incident reports stay with the store they belong to.','Planned maintenance and vendor work show on the same mall record.'],
+  'Hotels & Hospitality':['A guest request becomes a ticket and is visible until it is closed.','Room checks, pantry, and cafeteria orders use the same list.','Stock, purchase orders, and vendors stay tied to the outlet that needed them.'],
+  'Education & Campuses':['Student and staff attendance and visitor entry share one gate record.','A broken desk or a missed check becomes a ticket with the asset on it.','Mail, cafeteria, and compliance sit with the campus team, not in separate books.'],
+  'Residential & Real Estate':['Tenant requests open a ticket and carry the SLA for that property.','Visitors, mail, and feedback stay on the building they came from.','AMC, vendors, and planned maintenance are visible before a renewal is due.'],
+  'IT & Tech Parks':['Desks, visitors, and attendance run as one campus operation.','Tenant tickets carry an SLA, and the shops and cafeteria stay on the same system.','Asset health and the park numbers reach the team that has to act.'],
+  'Facility Manager':['Every request lands as a ticket instead of a call or a chat message.','Planned work, checklists, and inspections stay on the asset they belong to.','SLA breaches, incidents, and vendor AMC are visible before the day slips.'],
+  'Warehouse Manager':['Stock, purchase orders, and vendors move together, so a shortage is obvious.','The register and the audit show what is on the floor, not only what was bought.','Attendance and incidents at the gate stay with the shift that was on.'],
+  'Pantry Manager':['Orders come in on a list the pantry can work, instead of by phone.','Stock and purchase orders show what to refill before the item runs out.','Vendor buys and guest feedback stay attached to the order.'],
+  'Cafeteria Manager':['Counter orders and pantry stock sit on one list.','Purchase orders and vendors are raised from what the kitchen actually used.','Food safety checks and diner feedback close on the same day.'],
+  'Front Desk & Reception':['Visitors are signed in, the mail is logged, and a desk is booked without leaving the desk.','A request raised at reception becomes a ticket the right team can see.','Attendance for the lobby team stays with the same shift record.'],
+  'Admin & Workplace Manager':['Desks, visitors, mail, pantry, and cafeteria run as one workplace.','Staff feedback and tickets show which service is failing.','SLAs tell you which request has waited too long.'],
+  'HR Manager':['Attendance is recorded once and stays with the person.','Desk booking and visitor entry show who was in the building.','Cafeteria use and staff feedback sit beside the people record.'],
+  'Maintenance Engineer':['The ticket, the checklist, and the inspection are the same job.','Asset readings and health are on the machine before you reach it.','An incident stays linked to the asset and the work that followed.'],
+  'Asset Manager':['The register, the audit, and the AMC describe one asset.','Health and readings show which machine needs work next.','Stock and the dashboard show what that fleet is costing.'],
+  'Procurement Manager':['A purchase order starts from the stock or the asset that needs it.','Vendors and AMC renewals are visible before they lapse.','The dashboard shows open orders against what has already been received.'],
+  'Property & Leasing Manager':['Tenant and shop requests become tickets with the SLA on them.','Mail, feedback, and the dashboard stay on that property.','You can see which building is quiet and which one is waiting on you.'],
+  'Safety & Compliance Officer':['Inspections and checklists close against the site, not a shared folder.','An incident stays open until the corrective ticket is done.','Visitor entry, attendance, and the SLA show who was there and what was late.'],
+  'CXO & Leadership':['One dashboard shows tickets, SLAs, and asset health without a fresh spreadsheet.','Tenant issues and staff feedback surface before they become a complaint.','You see the few items that need a decision, not every open task.']
+};
 
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const modules=document.getElementById('modules');
 const stage=document.getElementById('stage');
-let entered=false,mode=null,view='products',current=null,board=null,geo=null;
+let entered=false,mode=null,view='products',current=null,board=null,geo=null,detail=null;
 
 let gAlt=0;const icMemo={};
 function icSet(t){if(t[1]==='p')return'p';if(!(t[0] in icMemo))icMemo[t[0]]=(gAlt++%2)?'g2':'g1';return icMemo[t[0]];}
@@ -299,6 +325,7 @@ function build(){
       const[c,r]=pos(t,i);const cx=c*dx+rS,cy=TOP+r*row+(c%2?row/2:0)+hS/2;
       W=Math.max(W,cx+rS);H=Math.max(H,cy+hS/2+BOT);
       const el=document.createElement('div');el.className='tile';el.dataset.name=t[0];el._c={x:cx,y:cy};
+      el._home={left:(cx-rS)+'px',top:(cy-hS/2)+'px',x:cx,y:cy};
       el.style.cssText+=`left:${cx-rS}px;top:${cy-hS/2}px;width:${2*rS}px;height:${hS}px`;
       el.innerHTML=`<div class="hex"></div><svg class="ic ${icSet(t)}" viewBox="2 2.5 45 44" aria-hidden="true">${byName[t[0]][1]}</svg><span>${t[0]}</span>`;
       board.appendChild(el);
@@ -311,7 +338,8 @@ function build(){
       const p=document.createElementNS('http://www.w3.org/2000/svg','path');p.setAttribute('pathLength','1');svg.appendChild(p);
       const l=document.createElement('div');l.className='label';board.appendChild(l);
       return {id,p,l};});
-    geo={R:rS,h:hS,W,labelTop:8,labelBottom:H-BOT+36,lift:LH+6};
+    geo={R:rS,h:hS,W,H,dx,row,rS,top:TOP,labelTop:8,labelBottom:H-BOT+36,lift:LH+6};
+    detail=document.createElement('div');detail.className='detail';board.appendChild(detail);
     wrap.appendChild(board);stage.appendChild(wrap);
     wrap._fit=()=>{
       const video=document.querySelector('.video-frame');
@@ -335,6 +363,11 @@ function build(){
       board.style.setProperty('--tile-pad',(hS*0.1).toFixed(2)+'px');
       board.style.setProperty('--tile-side',(rS*0.22).toFixed(2)+'px');
       wrap.style.width=W*s+'px';wrap.style.height=H*s+'px';
+      if(board.classList.contains('gather')&&state.mode==='pick'&&VIEWS[view]&&VIEWS[view][current]&&m==='mobile'){
+        const box=packTiles(VIEWS[view][current].mods);
+        wrap.style.overflow='hidden';
+        wrap.style.height=(box.bottom+10)*s+'px';
+      }
       if(tabs){
         if(m==='desktop'){
           tabs.style.width='fit-content';
@@ -357,6 +390,55 @@ function markHot(item){
   if(!board)return;
   board.classList.toggle('marking',!!item);
   board.querySelectorAll('.tile').forEach(t=>t.classList.toggle('hot',!!item&&item.mods.includes(t.dataset.name)));
+}
+function releaseTiles(snap){
+  if(!board)return;
+  board.classList.remove('gather');
+  board.querySelectorAll('.tile').forEach(el=>{
+    if(!el._home)return;
+    if(snap&&!reduced)el.style.transition='none';
+    el.style.left=el._home.left;el.style.top=el._home.top;el._c={x:el._home.x,y:el._home.y};
+    if(snap&&!reduced){void el.offsetWidth;el.style.transition='';}
+  });
+  if(detail){detail.classList.remove('on');detail.innerHTML='';}
+  const wrap=board.parentElement;
+  if(wrap){wrap.style.overflow='';if(wrap._fit)wrap._fit();}
+}
+function showDetail(item,box){
+  if(!detail)return;
+  const lines=HELP[item.name]||[];
+  detail.className='detail '+item.color;
+  detail.innerHTML=`<div class="head"><b>${item.name}</b><span class="lead">${item.full}</span></div><ul>${lines.map(l=>`<li>${l}</li>`).join('')}</ul>`;
+  const gap=geo.dx*0.4;
+  detail.style.top=box.top+'px';
+  detail.style.height=(box.bottom-box.top)+'px';
+  detail.style.left=(box.right+gap)+'px';
+  detail.style.width=Math.max(160,geo.W-box.right-gap-12)+'px';
+  if(reduced){detail.classList.add('on');return;}
+  requestAnimationFrame(()=>detail.classList.add('on'));
+}
+function packTiles(names){
+  const hot=[...board.querySelectorAll('.tile')].filter(t=>names.includes(t.dataset.name));
+  const cols=mode==='mobile'?Math.min(4,Math.max(1,hot.length)):Math.max(2,Math.ceil(hot.length/2));
+  let top=Infinity,bottom=0,right=0;
+  hot.forEach((el,i)=>{
+    const c=i%cols,r=Math.floor(i/cols);
+    const cx=c*geo.dx+geo.rS,cy=geo.top+r*geo.row+(c%2?geo.row/2:0)+geo.h/2;
+    el.style.left=(cx-geo.rS)+'px';el.style.top=(cy-geo.h/2)+'px';el._c={x:cx,y:cy};
+    top=Math.min(top,cy-geo.h/2);bottom=Math.max(bottom,cy+geo.h/2);right=Math.max(right,cx+geo.rS);
+  });
+  return {top,bottom,right};
+}
+function compile(item){
+  if(!board||!item)return;
+  board.classList.add('gather');
+  const box=packTiles(item.mods);
+  const wrap=board.parentElement;
+  if(mode==='mobile'&&wrap){
+    const s=parseFloat((board.style.transform.match(/scale\(([^)]+)\)/)||[])[1])||1;
+    wrap.style.overflow='hidden';
+    wrap.style.height=(box.bottom+10)*s+'px';
+  }else showDetail(item,box);
 }
 let LAYERS=[];
 function drawLayer(L,item,animate,line){
@@ -389,7 +471,12 @@ const suites=()=>LAYERS.slice(0,-1), pickL=()=>LAYERS[LAYERS.length-1];
 let state={mode:'idle',step:-1};
 function redraw(){
   markHot(state.mode==='pick'?VIEWS[view][current]:state.mode==='intro'?VIEWS.products[state.step]:null);
-  if(state.mode==='pick'){drawLayer(pickL(),VIEWS[view][current],false);return;}
+  if(state.mode==='pick'){
+    suites().forEach(L=>drawLayer(L,null));
+    drawLayer(pickL(),null);
+    if(VIEWS[view]&&VIEWS[view][current])compile(VIEWS[view][current]);
+    return;
+  }
   suites().forEach((L,i)=>{const show=state.mode==='done'||i<=state.step;drawLayer(L,show?VIEWS.products[i]:null,false);
     if(state.mode==='intro'&&i<state.step){L.p.classList.add('dim');L.l.classList.add('dim');}});
 }
@@ -402,7 +489,8 @@ function showAllSuites(){
 function spotlight(i){
   current=i;state={mode:'pick',step:-1};
   suites().forEach(L=>drawLayer(L,null));
-  drawLayer(pickL(),VIEWS[view][i],true);markHot(VIEWS[view][i]);
+  drawLayer(pickL(),null);
+  markHot(VIEWS[view][i]);compile(VIEWS[view][i]);
   syncUI(VIEWS[view][i]);
 }
 const chipsEl=document.getElementById('chips'), tabs=[...document.querySelectorAll('#tabs button')];
@@ -415,7 +503,7 @@ function updateCaption(){
   let html='';
   if(state.mode==='done') html='<div class="legend">'+VIEWS.products.map(p=>`<span class="${p.color}"><i></i>${p.name}</span>`).join('')+'</div>';
   else{const it=state.mode==='intro'?VIEWS.products[state.step]:state.mode==='pick'?VIEWS[view][current]:null;
-    if(it)html=`<div class="one ${it.color}"><b>${it.name}</b><small>${it.full}</small></div>`;}
+    if(it){const lines=HELP[it.name]||[];html=`<div class="one ${it.color}"><b>${it.name}</b><small>${it.full}</small>${lines.length?`<ul>${lines.map(l=>`<li>${l}</li>`).join('')}</ul>`:''}</div>`;}}
   if(capEl.innerHTML!==html)capEl.innerHTML=html;
 }
 function syncUI(item){
@@ -429,6 +517,7 @@ async function runView(v,me,delay){
   view=v;current=null;
   tabs.forEach(t=>t.setAttribute('aria-selected',t.dataset.view===v));
   renderChips();
+  releaseTiles(true);
   LAYERS.forEach(L=>drawLayer(L,null));
   state={mode:'idle',step:-1};markHot(null);syncUI(null);
   if(v==='products'){
@@ -456,8 +545,10 @@ async function runView(v,me,delay){
   for(let i=0;i<VIEWS[v].length;i++){
     if(me!==run)return false;
     current=i;state={mode:'pick',step:-1};
-    drawLayer(pickL(),VIEWS[v][i],true);markHot(VIEWS[v][i]);syncUI(VIEWS[v][i]);
-    await wait(2000);
+    suites().forEach(L=>drawLayer(L,null));
+    drawLayer(pickL(),null);
+    markHot(VIEWS[v][i]);compile(VIEWS[v][i]);syncUI(VIEWS[v][i]);
+    await wait(2200);
   }
   return me===run;
 }
