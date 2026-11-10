@@ -1,85 +1,110 @@
 <section id="fe-connect" aria-labelledby="fc-title">
   <h2 class="fc-h" id="fc-title">One hub for modules, devices and apps.</h2>
+
   <div class="fc-stage">
-    <svg class="fc-lines" id="fcLines" viewBox="0 0 900 560" preserveAspectRatio="none" aria-hidden="true">
+    <svg class="fc-lines" id="fcLines" viewBox="0 0 1200 560" preserveAspectRatio="none" aria-hidden="true">
       <defs>
-        <marker id="fcArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M1 1l7 4-7 4" fill="none" stroke="#e0855f" stroke-width="1.4" stroke-linecap="round"/></marker>
+        <marker id="fcArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+          <path d="M1 1l7 4-7 4" fill="none" stroke="#8a4aa6" stroke-width="1.4" stroke-linecap="round"/>
+        </marker>
       </defs>
     </svg>
 
-    <div class="fc-ask" style="left:17%;top:50%">
-      <img src="/logo.png" alt="Fusionedge">
-    </div>
-
-    <div id="fcTiles"></div>
+    <div class="fc-hub"><img src="/logo.png" alt="Fusionedge"></div>
+    <div id="fcTiles" role="list"></div>
   </div>
 
   <ul class="fc-legend" aria-label="Legend">
-    <li><i class="m"></i>Fusionedge modules</li>
-    <li><i class="d"></i>IoT devices &amp; sensors</li>
-    <li><i class="a"></i>Business apps &amp; channels</li>
+    <li><i class="m"></i><span class="lg-full">Fusionedge modules</span><span class="lg-short">Modules</span></li>
+    <li><i class="d"></i><span class="lg-full">IoT devices &amp; sensors</span><span class="lg-short">IoT devices</span></li>
+    <li><i class="a"></i><span class="lg-full">Business apps &amp; channels</span><span class="lg-short">Business apps</span></li>
   </ul>
 </section>
 
 <style is:global>
-  #fe-connect{--fc-ink:#1d1b26;--fc-line:#e0855f;--fc-p:#6B2288;--fc-g:#00BF88;--fc-b:#2f6fe4;
-    font-family:"Public Sans",system-ui,sans-serif;background:#fff;padding:24px 16px;overflow:hidden}
+  #fe-connect{
+    --ink:#1d1b26;--muted:#5d5b6c;--line:#8a4aa6;--cat:#6B2288;
+    --p:#6B2288;--g:#00BF88;--border:#ebe9f0;
+    font-family:"Public Sans",system-ui,sans-serif;background:#fff;
+    padding:clamp(32px,5vw,72px) clamp(16px,3vw,40px);overflow:hidden}
   #fe-connect *{box-sizing:border-box}
-  #fe-connect .fc-h{margin:0 0 24px;text-align:center;font-family:"Public Sans",system-ui,sans-serif;font-style:italic;font-weight:600;font-size:clamp(28px,3vw,40px);line-height:1.2;letter-spacing:-.03em;color:#1a1424}
-  #fe-connect .fc-stage{position:relative;max-width:980px;margin:0;aspect-ratio:900/560}
-  #fe-connect .fc-lines{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-  #fe-connect .fc-line{fill:none;stroke:var(--fc-line);stroke-width:1.2;stroke-linecap:round;opacity:.7;vector-effect:non-scaling-stroke}
-  #fe-connect .fc-pulse{fill:none;stroke:var(--fc-line);stroke-width:2.4;stroke-linecap:round;vector-effect:non-scaling-stroke;
-    stroke-dasharray:40 1400;stroke-dashoffset:40;animation:fcPulse 3.2s linear infinite;animation-delay:var(--d)}
-  @keyframes fcPulse{to{stroke-dashoffset:-1400}}
 
-  #fe-connect .fc-ask{position:absolute;transform:translate(-50%,-50%);display:flex;align-items:center;gap:12px;white-space:nowrap;
-    padding:12px 18px;border-radius:12px;background:#fff;border:1px solid #e7e5ec;color:var(--fc-ink);font-size:clamp(12px,2vw,19px);font-weight:500;
-    box-shadow:0 4px 14px -6px rgba(30,20,50,.14);z-index:4}
-  #fe-connect .fc-ask img{height:44px;width:auto;display:block;mix-blend-mode:multiply}
+  #fe-connect .fc-h{margin:0 auto clamp(24px,3vw,48px);max-width:900px;text-align:center;
+    font-family:"Public Sans",system-ui,sans-serif;font-style:italic;font-weight:600;font-size:clamp(28px,3vw,40px);line-height:1.2;letter-spacing:-.03em;color:#1a1424}
 
-  #fe-connect .fc-tile{position:absolute;transform:translate(-50%,-50%);aspect-ratio:1;border-radius:20%;z-index:2}
-  #fe-connect .fc-tile.on{background:#fff;border:1px solid #e9e7ee;display:grid;place-items:center;cursor:default;
-    box-shadow:0 6px 14px -8px rgba(30,20,50,.25);transition:transform .25s,box-shadow .25s}
-  #fe-connect .fc-tile.on svg{width:54%;height:54%}
-  #fe-connect .fc-tile.on:hover{transform:translate(-50%,-50%) translateY(-3px);box-shadow:0 12px 22px -10px rgba(30,20,50,.35);z-index:5}
-  #fe-connect .fc-tile.dev::after{content:"";position:absolute;top:10%;right:10%;width:14%;aspect-ratio:1;border-radius:50%;background:var(--fc-g);
-    box-shadow:0 0 0 0 rgba(0,191,136,.5);animation:fcLive 2s ease-out infinite}
-  @keyframes fcLive{70%{box-shadow:0 0 0 5px rgba(0,191,136,0)}100%{box-shadow:0 0 0 0 rgba(0,191,136,0)}}
-  #fe-connect .fc-tile.on span{position:absolute;top:calc(100% + 4px);left:50%;transform:translateX(-50%);white-space:nowrap;
-    font-size:clamp(8px,1vw,10.5px);font-weight:500;color:#55536a;pointer-events:none;letter-spacing:-.01em}
-  #fe-connect .fc-tile.on:hover span{color:var(--fc-ink)}
-  #fe-connect .fc-tile.ghost{border:1px solid #e8e6ec}
-  #fe-connect .fc-tile.ghost.f1{opacity:.8}
-  #fe-connect .fc-tile.ghost.f2{opacity:.45}
-  #fe-connect .fc-tile.ghost.f3{opacity:.22}
-  #fe-connect .fc-stage::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:3;
-    background:linear-gradient(90deg,transparent 84%,#fff 99%),linear-gradient(180deg,#fff 2%,transparent 14%,transparent 86%,#fff 98%)}
+  /* Stage: wide + centered, grows on big screens */
+  #fe-connect .fc-stage{position:relative;width:100%;max-width:1180px;margin:0 auto;aspect-ratio:1200/560}
+  @media (min-width:1440px){#fe-connect .fc-stage{max-width:1320px}}
+  @media (min-width:1800px){#fe-connect .fc-stage{max-width:1480px}}
 
-  #fe-connect .fc-legend{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:8px 22px;font-size:13px;color:#5d5b6c}
-  #fe-connect .fc-legend li{display:flex;align-items:center;gap:7px}
+  #fe-connect .fc-lines{position:absolute;inset:0;width:100%;height:100%;overflow:visible;z-index:1}
+  #fe-connect .fc-line{fill:none;stroke:var(--line);stroke-width:1.2;stroke-linecap:round;opacity:.45;vector-effect:non-scaling-stroke}
+  #fe-connect .fc-pulse{fill:none;stroke:var(--p);stroke-width:2.2;stroke-linecap:round;vector-effect:non-scaling-stroke;
+    stroke-dasharray:36 1600;stroke-dashoffset:36;animation:fcPulse 3.6s linear infinite;animation-delay:var(--d)}
+  @keyframes fcPulse{to{stroke-dashoffset:-1600}}
+  #fe-connect .fc-cat text{font-weight:600;fill:var(--cat);letter-spacing:-.01em}
+
+  /* Hub */
+  #fe-connect .fc-hub{position:absolute;transform:translate(-50%,-50%);z-index:4;display:flex;align-items:center;
+    padding:clamp(10px,1.2vw,18px) clamp(14px,1.8vw,26px);border-radius:16px;background:#fff;border:1px solid var(--border);
+    box-shadow:0 10px 30px -14px rgba(30,20,50,.22)}
+  #fe-connect .fc-hub img{height:clamp(30px,3.4vw,48px);width:auto;display:block;mix-blend-mode:multiply}
+
+  /* Tiles */
+  #fe-connect .fc-tile{position:absolute;transform:translate(-50%,-50%);aspect-ratio:1;border-radius:22%;z-index:3}
+  #fe-connect .fc-tile.on{background:#fff;border:1px solid var(--border);display:grid;place-items:center;
+    box-shadow:0 6px 16px -10px rgba(30,20,50,.28);transition:transform .25s,box-shadow .25s}
+  #fe-connect .fc-tile.on svg{width:50%;height:50%}
+  #fe-connect .fc-tile.on:hover{transform:translate(-50%,-50%) translateY(-3px);box-shadow:0 14px 26px -12px rgba(30,20,50,.35);z-index:5}
+  #fe-connect .fc-tile.on span{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);white-space:nowrap;
+    font-size:clamp(10px,.95vw,13px);font-weight:500;color:var(--muted);pointer-events:none}
+  #fe-connect .fc-tile.on:hover span{color:var(--ink)}
+  #fe-connect .fc-tile.ghost{border:1px dashed #e4e1ea;opacity:.6}
+
+  /* Legend */
+  #fe-connect .fc-legend{list-style:none;margin:clamp(20px,2.5vw,36px) 0 0;padding:0;display:flex;flex-wrap:wrap;
+    justify-content:center;gap:10px 28px;font-size:13px;color:var(--muted)}
+  #fe-connect .fc-legend li{display:flex;align-items:center;gap:8px}
   #fe-connect .fc-legend i{width:10px;height:10px;border-radius:3px}
-  #fe-connect .fc-legend .m{background:var(--fc-p)} #fe-connect .fc-legend .d{background:var(--fc-g);border-radius:50%} #fe-connect .fc-legend .a{background:var(--fc-b)}
+  #fe-connect .fc-legend .m{background:var(--p)}
+  #fe-connect .fc-legend .d{background:var(--g);border-radius:50%}
+  #fe-connect .fc-legend .a{background:transparent;border:2px solid var(--p)}
+  #fe-connect .fc-legend .lg-short{display:none}
 
-  @media (max-width:760px){
-    #fe-connect{padding:20px 12px 32px}
-    #fe-connect .fc-h{font-size:clamp(22px,6vw,28px);margin-bottom:12px}
-    #fe-connect.fc-vert .fc-stage{max-width:none;width:100%;aspect-ratio:auto;margin:0}
-    #fe-connect.fc-vert .fc-stage::after{background:none}
-    #fe-connect.fc-vert .fc-ask{padding:6px 8px;gap:6px;border-radius:10px}
-    #fe-connect.fc-vert .fc-ask img{height:28px}
-    #fe-connect.fc-vert .fc-tile.on span{white-space:normal;width:max-content;max-width:58px;font-size:11px;line-height:1.15;text-align:center}
-    #fe-connect .fc-legend{font-size:12px;gap:8px 14px}
+  /* Mobile / small tablet: vertical layout */
+  @media (max-width:900px){
+    #fe-connect{padding:28px 8px 36px}
+    #fe-connect.fc-vert .fc-stage{max-width:none;aspect-ratio:auto}
+    #fe-connect.fc-vert .fc-hub{padding:8px 12px;border-radius:12px}
+    #fe-connect.fc-vert .fc-hub img{height:30px}
+    #fe-connect.fc-vert .fc-tile.on span{
+      white-space:normal;width:var(--lw,64px);max-width:none;
+      font-size:10.5px;line-height:1.25;text-align:center;
+      overflow-wrap:normal;word-break:keep-all;hyphens:none;
+      top:calc(100% + 8px)}
+    #fe-connect .fc-legend{flex-wrap:nowrap;white-space:nowrap;justify-content:center;gap:14px;font-size:12px}
+    #fe-connect .fc-legend li{gap:6px;flex-shrink:0}
+    #fe-connect .fc-legend i{width:9px;height:9px}
   }
-  @media (prefers-reduced-motion:reduce){#fe-connect .fc-pulse,#fe-connect .fc-tile.dev::after{animation:none}#fe-connect .fc-pulse{opacity:0}}
+  @media (max-width:520px){
+    #fe-connect .fc-legend .lg-full{display:none}
+    #fe-connect .fc-legend .lg-short{display:inline}
+    #fe-connect .fc-legend{gap:12px;font-size:11.5px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    #fe-connect .fc-pulse{display:none}
+    #fe-connect .fc-tile.on{transition:none}
+  }
 </style>
 
 <script is:inline>
 (function(){
   const root=document.getElementById('fe-connect'); if(!root) return;
-  const wrap=root.querySelector('#fcTiles'), svg=root.querySelector('#fcLines'), NS='http://www.w3.org/2000/svg';
+  const wrap=root.querySelector('#fcTiles'), svg=root.querySelector('#fcLines'),
+        hub=root.querySelector('.fc-hub'), stage=root.querySelector('.fc-stage'), NS='http://www.w3.org/2000/svg';
   const ic=(c,p)=>`<svg viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
-  const P='#6B2288', G='#00BF88', B='#2f6fe4';
+  const P='#6B2288', G='#00BF88';
+
   const I={
     asset:['m','Assets',ic(P,'<rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 9h18M8 13h3M8 16h6"/>')],
     ticket:['m','Ticketing',ic(P,'<path d="M3 8a2 2 0 012-2h14a2 2 0 012 2v2a2 2 0 000 4v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2a2 2 0 000-4z"/><path d="M14 7v10" stroke-dasharray="2 2"/>')],
@@ -99,94 +124,105 @@
     occ:['d','Occupancy',ic(G,'<circle cx="12" cy="12" r="2"/><path d="M8 8a5.7 5.7 0 000 8M16 8a5.7 5.7 0 010 8M5 5a10 10 0 000 14M19 5a10 10 0 010 14"/>')],
     lift:['d','Lift IoT',ic(G,'<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M12 3v18M8.5 9l1.5-2 1.5 2M12.5 15l1.5 2 1.5-2"/>')],
     dg:['d','DG set',ic(G,'<rect x="3" y="7" width="18" height="11" rx="2"/><path d="M7 18v2M17 18v2M12.5 9.5l-2 3h3l-2 3"/>')],
-    erp:['a','ERP / SAP',ic(B,'<ellipse cx="12" cy="6" rx="7" ry="2.5"/><path d="M5 6v6c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12v6c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-6"/>')],
-    hrms:['a','HRMS',ic(B,'<circle cx="9" cy="8" r="3"/><path d="M3 19c0-3.3 2.7-5 6-5s6 1.7 6 5M16 5a3 3 0 010 6M18 14c2 .5 3 2 3 5"/>')],
-    mail:['a','Email',ic(B,'<rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6"/>')],
-    chatapp:['a','Chat',ic(B,'<path d="M21 12a8 8 0 01-11.6 7.1L4 20l1-4.5A8 8 0 1121 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/>')],
-    sms:['a','SMS',ic(B,'<rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10 18.5h4M9 7h6M9 10h4"/>')],
-    cal:['a','Calendar',ic(B,'<rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/>')],
-    api:['a','API',ic(B,'<path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 5l-3 14"/>')],
-    qr:['a','QR app',ic(B,'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M21 14v.01M14 21h3M20 18v3"/>')],
+    erp:['a','ERP / SAP',ic(P,'<ellipse cx="12" cy="6" rx="7" ry="2.5"/><path d="M5 6v6c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6M5 12v6c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-6"/>')],
+    hrms:['a','HRMS',ic(P,'<circle cx="9" cy="8" r="3"/><path d="M3 19c0-3.3 2.7-5 6-5s6 1.7 6 5M16 5a3 3 0 010 6M18 14c2 .5 3 2 3 5"/>')],
+    mail:['a','Email',ic(P,'<rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6"/>')],
+    chatapp:['a','Chat',ic(P,'<path d="M21 12a8 8 0 01-11.6 7.1L4 20l1-4.5A8 8 0 1121 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/>')],
+    sms:['a','SMS',ic(P,'<rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10 18.5h4M9 7h6M9 10h4"/>')],
+    cal:['a','Calendar',ic(P,'<rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/>')],
+    api:['a','API',ic(P,'<path d="M8 7l-5 5 5 5M16 7l5 5-5 5M13.5 5l-3 14"/>')],
+    qr:['a','QR app',ic(P,'<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M21 14v.01M14 21h3M20 18v3"/>')],
   };
-  const step=72;
-  const rows=[
-    {y:52,  ghost:true, xs:[380,452,524,596,668,740,812], f:'f3'},
-    {y:120, xs:[452,524,596,668,740], keys:['cctv','temp','meter','leak','air'], end:812},
-    {y:200, xs:[416,488,560,632,704,776], keys:['asset','ticket','access','bio','erp','mail'], end:848},
-    {y:280, xs:[380,452,524,596,668,740,812], keys:['ppm','hvac','inventory','occ','hrms','chatapp','api'], end:884, center:true},
-    {y:360, xs:[416,488,560,632,704,776], keys:['visitor','lift','incident','dg','sms','cal'], end:848},
-    {y:440, xs:[452,524,596,668,740], keys:['dash','qr','meter','temp','cctv'].slice(0,3).concat(['access','air']), end:812},
-    {y:508, ghost:true, xs:[380,452,524,596,668,740,812], f:'f3'},
-  ];
-  rows[5].keys=['dash','qr','dg','lift','hvac'];
 
-  const ask=root.querySelector('.fc-ask'), stage=root.querySelector('.fc-stage');
-  const mq=matchMedia('(max-width:760px)');
-  const clearPaths=()=>svg.querySelectorAll('path').forEach(p=>{if(!p.closest('marker'))p.remove();});
-  const draw=(d,cls,delay)=>{const p=document.createElementNS(NS,'path');p.setAttribute('d',d);p.setAttribute('class',cls);
-    if(cls==='fc-line')p.setAttribute('marker-end','url(#fcArrow)'); if(delay!=null)p.style.setProperty('--d',delay+'s'); svg.appendChild(p);};
-  function buildNarrow(){
-    root.classList.add('fc-vert');
-    const active=rows.filter(r=>r.keys&&r.keys.length);
-    const nCols=active.length, maxRows=Math.max(...active.map(r=>r.keys.length));
-    const tile=44, rowH=84, topPad=86, height=topPad+maxRows*rowH+8;
-    stage.style.aspectRatio='auto';
-    stage.style.height=height+'px';
-    const sw=Math.max(stage.clientWidth,280);
-    svg.setAttribute('viewBox',`0 0 ${sw} ${height}`);
-    clearPaths(); wrap.innerHTML='';
-    ask.style.left='50%'; ask.style.top='36px';
-    const xOf=i=>((i+.5)/nCols)*sw;
-    const busY=64;
-    draw(`M  ${sw/2} 50 L ${sw/2} ${busY}`,'fc-line');
-    draw(`M ${xOf(0)} ${busY} L ${xOf(nCols-1)} ${busY}`,'fc-line');
-    active.forEach((r,ci)=>{
-      const x=xOf(ci);
-      const yLast=topPad+(r.keys.length-1)*rowH+tile/2;
-      const d=`M ${x} ${busY} L ${x} ${yLast+18}`;
-      draw(d,'fc-line'); draw(d,'fc-pulse',ci*0.45);
-      r.keys.forEach((k,ri)=>{
-        const [t,label,icon]=I[k];
-        const el=document.createElement('div');
-        el.className='fc-tile on'+(t==='d'?' dev':'');
-        el.style.left=(x/sw*100)+'%';
-        el.style.top=(topPad+ri*rowH+tile/2)+'px';
-        el.style.width=tile+'px';
-        el.innerHTML=icon+`<span>${label}</span>`;
-        el.setAttribute('aria-label',label);
-        wrap.appendChild(el);
-      });
-    });
-  }
+  /* Each item used once. Middle group sits on the hub line. */
+  const groups=[
+    {cat:'Sensors',      keys:['cctv','temp','meter','leak','air']},
+    {cat:'Building',     keys:['hvac','lift','dg','access','bio']},
+    {cat:'Operations',   keys:['asset','ticket','ppm','inventory','incident']},
+    {cat:'Workplace',    keys:['visitor','occ','dash','qr','cal']},
+    {cat:'Integrations', keys:['erp','hrms','mail','chatapp','sms','api']},
+  ];
+
+  /* Shorter names used only on mobile */
+  const SHORT={temp:'Temp',meter:'Energy',leak:'Leak',access:'Access',air:'Air',
+    ticket:'Tickets',dash:'Dashboard',erp:'ERP',occ:'Occupancy',bio:'Biometric'};
+  const SHORT_CAT={Integrations:'Apps',Operations:'Ops'};
+
+  const mq=matchMedia('(max-width:900px)');
+
+  const clear=()=>{ [...svg.children].forEach(n=>{ if(n.tagName!=='defs') n.remove(); }); wrap.innerHTML=''; };
+  const path=(d,cls,delay)=>{ const p=document.createElementNS(NS,'path'); p.setAttribute('d',d); p.setAttribute('class',cls);
+    if(cls==='fc-line') p.setAttribute('marker-end','url(#fcArrow)');
+    if(delay!=null) p.style.setProperty('--d',delay+'s'); svg.appendChild(p); };
+  const label=(text,x,y,{anchor='start',size=13,pad=6}={})=>{
+    const g=document.createElementNS(NS,'g'); g.setAttribute('class','fc-cat');
+    const t=document.createElementNS(NS,'text');
+    Object.entries({x,y,'text-anchor':anchor,'dominant-baseline':'middle','font-size':size}).forEach(([k,v])=>t.setAttribute(k,v));
+    t.textContent=text; g.appendChild(t); svg.appendChild(g);
+    const b=t.getBBox(), r=document.createElementNS(NS,'rect');
+    Object.entries({x:b.x-pad,y:b.y-2,width:b.width+pad*2,height:b.height+4,rx:4,fill:'#fff'}).forEach(([k,v])=>r.setAttribute(k,v));
+    g.insertBefore(r,t);
+  };
+  const tile=(key,left,top,width,short,lw)=>{
+    const [,name,icon]=I[key], el=document.createElement('div');
+    el.className='fc-tile on'; el.setAttribute('role','listitem'); el.setAttribute('aria-label',name);
+    Object.assign(el.style,{left,top,width});
+    if(lw) el.style.setProperty('--lw',lw+'px');
+    el.innerHTML=icon+`<span>${short?(SHORT[key]||name):name}</span>`;
+    wrap.appendChild(el);
+  };
+  const ghost=(left,top,width)=>{
+    const el=document.createElement('div'); el.className='fc-tile ghost'; el.setAttribute('aria-hidden','true');
+    Object.assign(el.style,{left,top,width}); wrap.appendChild(el);
+  };
+
   function buildWide(){
     root.classList.remove('fc-vert');
-    stage.style.height='';
-    stage.style.aspectRatio='';
-    const W=900,H=560;
-    svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
-    clearPaths(); wrap.innerHTML='';
-    ask.style.left=(153/W*100)+'%'; ask.style.top=(280/H*100)+'%';
-    const add=(x,y,cls,html,label)=>{
-      if(!html && x<330) return;
-      const d=document.createElement('div'); d.className='fc-tile '+cls;
-      d.style.left=(x/W*100)+'%'; d.style.top=(y/H*100)+'%'; d.style.width=(48/W*100)+'%';
-      if(html){d.innerHTML=html+`<span>${label}</span>`; d.setAttribute('aria-label',label);}
-      wrap.appendChild(d);
-    };
-    const HX=258, HY=280, BX=300, R=12; let n=0;
-    rows.forEach(r=>{
-      if(r.ghost){ r.xs.forEach(x=>add(x,r.y,'ghost '+r.f)); return; }
-      add(r.xs[0]-step,r.y,'ghost f1'); add(r.xs[0]-step*2,r.y,'ghost f2');
-      add(r.end,r.y,'ghost f1'); add(r.end+step,r.y,'ghost f2');
-      r.keys.forEach((k,i)=>{const [t,l,icon]=I[k]; add(r.xs[i],r.y,'on '+(t==='d'?'dev':''),icon,l);});
+    stage.style.height=''; stage.style.aspectRatio='';
+    const W=1200,H=560, HX=150, HY=280, BUS=330, R=14, X0=480, STEP=112, T=66, ROWH=112;
+    svg.setAttribute('viewBox',`0 0 ${W} ${H}`); clear();
+    const pct=(v,m)=>(v/m*100)+'%';
+    hub.style.left=pct(HX,W); hub.style.top=pct(HY,H);
+    const mid=Math.floor(groups.length/2);
+
+    groups.forEach((g,i)=>{
+      const y=HY+(i-mid)*ROWH, endX=X0+g.keys.length*STEP;
       let d;
-      if(r.y===HY) d=`M${HX} ${HY} L ${r.end-14} ${HY}`;
-      else { const sg=r.y<HY?-1:1;
-        d=`M${HX} ${HY} L ${BX-R} ${HY} Q ${BX} ${HY} ${BX} ${HY+sg*R} L ${BX} ${r.y-sg*R} Q ${BX} ${r.y} ${BX+R} ${r.y} L ${r.end-14} ${r.y}`; }
-      draw(d,'fc-line'); draw(d,'fc-pulse',(n++)*0.5);
+      if(y===HY) d=`M${HX+90} ${HY} L ${endX-30} ${HY}`;
+      else{ const s=y<HY?-1:1;
+        d=`M${HX+90} ${HY} L ${BUS-R} ${HY} Q ${BUS} ${HY} ${BUS} ${HY+s*R} L ${BUS} ${y-s*R} Q ${BUS} ${y} ${BUS+R} ${y} L ${endX-30} ${y}`; }
+      path(d,'fc-line'); path(d,'fc-pulse',i*0.55);
+      label(g.cat, BUS+22, y);
+      g.keys.forEach((k,j)=>tile(k,pct(X0+j*STEP,W),pct(y,H),pct(T,W)));
+      ghost(pct(endX+10,W),pct(y,H),pct(T*.8,W));
     });
   }
-  function build(){ if(mq.matches) buildNarrow(); else buildWide(); }
+
+  function buildNarrow(){
+    root.classList.add('fc-vert');
+    const n=groups.length, maxRows=Math.max(...groups.map(g=>g.keys.length));
+    stage.style.aspectRatio='auto';
+    const W=Math.max(stage.clientWidth,300);
+    const SIDE=6, colW=(W-SIDE*2)/n;
+    const T=Math.min(46,Math.round(colW*.56));
+    const LABEL_H=34, GAP=22;
+    const ROWH=T+LABEL_H+GAP, TOP=116;
+    const H=TOP+maxRows*ROWH+12;
+    stage.style.height=H+'px';
+    svg.setAttribute('viewBox',`0 0 ${W} ${H}`); clear();
+    hub.style.left='50%'; hub.style.top='28px';
+    const BUS=70, xOf=i=>SIDE+(i+.5)*colW;
+    path(`M ${W/2} 50 L ${W/2} ${BUS}`,'fc-line');
+    path(`M ${xOf(0)} ${BUS} L ${xOf(n-1)} ${BUS}`,'fc-line');
+    groups.forEach((g,i)=>{
+      const x=xOf(i), last=TOP+(g.keys.length-1)*ROWH+T/2, d=`M ${x} ${BUS} L ${x} ${last}`;
+      path(d,'fc-line'); path(d,'fc-pulse',i*0.45);
+      label(SHORT_CAT[g.cat]||g.cat,x,BUS+20,{anchor:'middle',size:10,pad:3});
+      g.keys.forEach((k,j)=>tile(k,(x/W*100)+'%',(TOP+j*ROWH+T/2)+'px',T+'px',true,colW-2));
+    });
+  }
+
+  const build=()=> mq.matches ? buildNarrow() : buildWide();
   build();
   mq.addEventListener('change',build);
   let rid; addEventListener('resize',()=>{ clearTimeout(rid); rid=setTimeout(build,120); });
