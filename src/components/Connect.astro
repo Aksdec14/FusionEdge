@@ -61,14 +61,15 @@
   #fe-connect .fc-legend i{width:10px;height:10px;border-radius:3px}
   #fe-connect .fc-legend .m{background:var(--fc-p)} #fe-connect .fc-legend .d{background:var(--fc-g);border-radius:50%} #fe-connect .fc-legend .a{background:var(--fc-b)}
 
-  @media (max-width:640px){
-    #fe-connect{padding:16px}
-    #fe-connect .fc-stage{max-width:440px;margin:0}
-    #fe-connect.fc-vert .fc-stage::after{background:linear-gradient(180deg,transparent 84%,#fff 99%),linear-gradient(90deg,#fff 2%,transparent 14%,transparent 86%,#fff 98%)}
-    #fe-connect .fc-ask{padding:6px 9px;gap:5px;border-radius:8px}
-    #fe-connect .fc-ask img{height:28px}
-    #fe-connect .fc-tile.on span{font-size:6.5px}
-    #fe-connect .fc-legend{padding:0;font-size:12px}
+  @media (max-width:760px){
+    #fe-connect{padding:20px 12px 32px}
+    #fe-connect .fc-h{font-size:clamp(22px,6vw,28px);margin-bottom:12px}
+    #fe-connect.fc-vert .fc-stage{max-width:none;width:100%;aspect-ratio:auto;margin:0}
+    #fe-connect.fc-vert .fc-stage::after{background:none}
+    #fe-connect.fc-vert .fc-ask{padding:6px 8px;gap:6px;border-radius:10px}
+    #fe-connect.fc-vert .fc-ask img{height:28px}
+    #fe-connect.fc-vert .fc-tile.on span{white-space:normal;width:max-content;max-width:58px;font-size:11px;line-height:1.15;text-align:center}
+    #fe-connect .fc-legend{font-size:12px;gap:8px 14px}
   }
   @media (prefers-reduced-motion:reduce){#fe-connect .fc-pulse,#fe-connect .fc-tile.dev::after{animation:none}#fe-connect .fc-pulse{opacity:0}}
 </style>
@@ -120,42 +121,74 @@
   rows[5].keys=['dash','qr','dg','lift','hvac'];
 
   const ask=root.querySelector('.fc-ask'), stage=root.querySelector('.fc-stage');
-  const mq=matchMedia('(max-width:640px)');
-  function build(){
-    const V=mq.matches;
-    const W=V?560:900, H=V?900:560;
-    root.classList.toggle('fc-vert',V);
-    stage.style.aspectRatio=W+'/'+H;
+  const mq=matchMedia('(max-width:760px)');
+  const clearPaths=()=>svg.querySelectorAll('path').forEach(p=>{if(!p.closest('marker'))p.remove();});
+  const draw=(d,cls,delay)=>{const p=document.createElementNS(NS,'path');p.setAttribute('d',d);p.setAttribute('class',cls);
+    if(cls==='fc-line')p.setAttribute('marker-end','url(#fcArrow)'); if(delay!=null)p.style.setProperty('--d',delay+'s'); svg.appendChild(p);};
+  function buildNarrow(){
+    root.classList.add('fc-vert');
+    const active=rows.filter(r=>r.keys&&r.keys.length);
+    const nCols=active.length, maxRows=Math.max(...active.map(r=>r.keys.length));
+    const tile=44, rowH=84, topPad=86, height=topPad+maxRows*rowH+8;
+    stage.style.aspectRatio='auto';
+    stage.style.height=height+'px';
+    const sw=Math.max(stage.clientWidth,280);
+    svg.setAttribute('viewBox',`0 0 ${sw} ${height}`);
+    clearPaths(); wrap.innerHTML='';
+    ask.style.left='50%'; ask.style.top='36px';
+    const xOf=i=>((i+.5)/nCols)*sw;
+    const busY=64;
+    draw(`M  ${sw/2} 50 L ${sw/2} ${busY}`,'fc-line');
+    draw(`M ${xOf(0)} ${busY} L ${xOf(nCols-1)} ${busY}`,'fc-line');
+    active.forEach((r,ci)=>{
+      const x=xOf(ci);
+      const yLast=topPad+(r.keys.length-1)*rowH+tile/2;
+      const d=`M ${x} ${busY} L ${x} ${yLast+18}`;
+      draw(d,'fc-line'); draw(d,'fc-pulse',ci*0.45);
+      r.keys.forEach((k,ri)=>{
+        const [t,label,icon]=I[k];
+        const el=document.createElement('div');
+        el.className='fc-tile on'+(t==='d'?' dev':'');
+        el.style.left=(x/sw*100)+'%';
+        el.style.top=(topPad+ri*rowH+tile/2)+'px';
+        el.style.width=tile+'px';
+        el.innerHTML=icon+`<span>${label}</span>`;
+        el.setAttribute('aria-label',label);
+        wrap.appendChild(el);
+      });
+    });
+  }
+  function buildWide(){
+    root.classList.remove('fc-vert');
+    stage.style.height='';
+    stage.style.aspectRatio='';
+    const W=900,H=560;
     svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
-    svg.querySelectorAll('path:not(marker path)').forEach(p=>{if(!p.closest('marker'))p.remove();});
-    wrap.innerHTML='';
-    const pt=(x,y)=>V?[y,x]:[x,y];
-    const P2=(x,y)=>pt(x,y).join(' ');
-    const [ax,ay]=pt(153,280); ask.style.left=(ax/W*100)+'%'; ask.style.top=(ay/H*100)+'%';
+    clearPaths(); wrap.innerHTML='';
+    ask.style.left=(153/W*100)+'%'; ask.style.top=(280/H*100)+'%';
     const add=(x,y,cls,html,label)=>{
       if(!html && x<330) return;
-      const [px,py]=pt(x,y);
       const d=document.createElement('div'); d.className='fc-tile '+cls;
-      d.style.left=(px/W*100)+'%'; d.style.top=(py/H*100)+'%'; d.style.width=(48/W*100)+'%';
+      d.style.left=(x/W*100)+'%'; d.style.top=(y/H*100)+'%'; d.style.width=(48/W*100)+'%';
       if(html){d.innerHTML=html+`<span>${label}</span>`; d.setAttribute('aria-label',label);}
       wrap.appendChild(d);
     };
-    const path=(d,cls,delay)=>{const p=document.createElementNS(NS,'path');p.setAttribute('d',d);p.setAttribute('class',cls);
-      if(cls==='fc-line')p.setAttribute('marker-end','url(#fcArrow)'); if(delay!=null)p.style.setProperty('--d',delay+'s'); svg.appendChild(p);};
     const HX=258, HY=280, BX=300, R=12; let n=0;
     rows.forEach(r=>{
       if(r.ghost){ r.xs.forEach(x=>add(x,r.y,'ghost '+r.f)); return; }
       add(r.xs[0]-step,r.y,'ghost f1'); add(r.xs[0]-step*2,r.y,'ghost f2');
       add(r.end,r.y,'ghost f1'); add(r.end+step,r.y,'ghost f2');
-      r.keys.forEach((k,i)=>{const [t,l,ic]=I[k]; add(r.xs[i],r.y,'on '+(t==='d'?'dev':''),ic,l);});
+      r.keys.forEach((k,i)=>{const [t,l,icon]=I[k]; add(r.xs[i],r.y,'on '+(t==='d'?'dev':''),icon,l);});
       let d;
-      if(r.y===HY) d=`M${P2(HX,HY)} L ${P2(r.end-14,HY)}`;
+      if(r.y===HY) d=`M${HX} ${HY} L ${r.end-14} ${HY}`;
       else { const sg=r.y<HY?-1:1;
-        d=`M${P2(HX,HY)} L ${P2(BX-R,HY)} Q ${P2(BX,HY)} ${P2(BX,HY+sg*R)} L ${P2(BX,r.y-sg*R)} Q ${P2(BX,r.y)} ${P2(BX+R,r.y)} L ${P2(r.end-14,r.y)}`; }
-      path(d,'fc-line'); path(d,'fc-pulse',(n++)*0.5);
+        d=`M${HX} ${HY} L ${BX-R} ${HY} Q ${BX} ${HY} ${BX} ${HY+sg*R} L ${BX} ${r.y-sg*R} Q ${BX} ${r.y} ${BX+R} ${r.y} L ${r.end-14} ${r.y}`; }
+      draw(d,'fc-line'); draw(d,'fc-pulse',(n++)*0.5);
     });
   }
+  function build(){ if(mq.matches) buildNarrow(); else buildWide(); }
   build();
   mq.addEventListener('change',build);
+  let rid; addEventListener('resize',()=>{ clearTimeout(rid); rid=setTimeout(build,120); });
 })();
 </script>
