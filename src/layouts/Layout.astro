@@ -71,6 +71,16 @@ svg.outline path.dim{opacity:.3}
 .board .detail li:before{content:"";position:absolute;left:0;top:.5em;width:6px;height:6px;border-radius:50%;background:#5D1F72}
 .board .detail.g li:before{background:#00BF88}
 #modules.compact .detail{display:none}
+.pointer{position:absolute;z-index:6;max-width:400px;color:#444;font-family:"Public Sans",sans-serif;font-weight:500;font-size:var(--sub,14px);line-height:1.35;text-align:center;pointer-events:none;opacity:0}
+.pointer.on{opacity:1;transition:opacity .4s ease}
+.pointer.top{max-width:none;white-space:nowrap}
+.pointer b{display:block;font-weight:600;font-size:calc(var(--title,16px) * 1.6);line-height:1.1;letter-spacing:-.03em;color:#5D1F72;margin:0;white-space:nowrap}
+.pointer.g b{color:#00BF88}
+.pointer.left{text-align:right}
+.pointer.right{text-align:left}
+svg.pointers{position:absolute;inset:0;overflow:visible;pointer-events:none;z-index:4}
+svg.pointers path{fill:none;stroke-width:2px;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;stroke-dasharray:1;stroke-dashoffset:1}
+#modules.compact .pointer,#modules.compact svg.pointers{display:none}
 #cap{display:none}
 #modules.compact #cap{display:flex;justify-content:center;align-items:center;min-height:62px;margin:2px 0 6px;text-align:center}
 #modules.compact .label{display:none}
