@@ -80,11 +80,12 @@ svg.pointers{position:absolute;inset:0;overflow:visible;pointer-events:none;z-in
 svg.pointers path{fill:none;stroke-width:2px;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke;stroke-dasharray:1;stroke-dashoffset:1}
 #modules.compact .pointer,#modules.compact svg.pointers{display:none}
 #cap{display:none}
-#modules.compact #cap{display:flex;justify-content:center;align-items:center;min-height:62px;margin:2px 0 6px;text-align:center}
+#modules.compact #cap{display:flex;justify-content:flex-start;align-items:flex-start;min-height:62px;margin:2px 0 6px;text-align:left}
 #modules.compact .label{display:none}
+#cap .one{width:100%;text-align:left}
 #cap .one b{display:block;font-weight:400;font-size:20px;color:#222;margin:0 0 3px}
 #cap .one small{font-size:14px;font-weight:500}
-#cap .one ul{display:inline-block;max-width:320px;margin:8px auto 0;padding:0;list-style:none;text-align:left}
+#cap .one ul{display:block;max-width:none;margin:8px 0 0;padding:0;list-style:none;text-align:left}
 #cap .one li{margin:0 0 4px;font-size:13px;line-height:1.35;font-weight:400;color:#444}
 #cap .one.p small{color:var(--purple)}
 #cap .one.g b,#cap .one.g small{color:var(--green)}
@@ -167,6 +168,7 @@ img{max-width:100%;height:auto}
 /* --- Phones (<=760px): touch-friendly hero buttons --- */
 @media (max-width:760px){
   .hero{padding-top:24px;padding-bottom:0}
+  .hero-copy,.hero .tag{text-align:left}
   .hero h1{margin-top:16px;padding-top:8px;font-size:clamp(30px,8vw,40px)}
   .hero .tag{margin-bottom:0;padding-bottom:6px;font-size:clamp(20px,5.2vw,28px)}
   .wrap{padding-top:28px}
@@ -223,7 +225,7 @@ img{max-width:100%;height:auto}
 .esg-banner .v-card{position:relative;width:100%;aspect-ratio:600/1620;background:#fff;color:#5D1F72;font-size:3.1cqw;border:1px solid #e3e7ec;border-radius:16px;box-shadow:0 16px 40px rgba(40,80,120,.18);overflow:hidden}
 .esg-banner .v-card>svg{position:absolute;inset:0;width:100%;height:100%}
 .esg-banner .v-line{stroke-dasharray:4000;stroke-dashoffset:4000}
-.esg-banner .v-top{position:absolute;left:0;right:0;top:3%;text-align:center;padding:0 8%}
+.esg-banner .v-top{position:absolute;left:0;right:0;top:3%;text-align:left;padding:0 8%}
 .esg-banner .v-esg{font-size:3.4em;font-weight:600;letter-spacing:.12em;color:#00BF88;line-height:1}
 .esg-banner .v-kicker{margin-top:.9em;font-size:.8em;font-weight:500;letter-spacing:.3em;color:#5D1F72}
 .esg-banner .v-h1{margin-top:.5em;font-size:1.85em;font-weight:400;line-height:1.2;letter-spacing:-.02em;color:#5D1F72}
@@ -359,6 +361,11 @@ img{max-width:100%;height:auto}
 @media (max-width:760px){
   .touch{padding-left:16px;padding-right:16px}
   .touch-grid,.touch-faq,.touch-row{grid-template-columns:1fr}
+  .touch-row{gap:0}
+  .touch-form p{margin-bottom:8px}
+  .touch-form input,.touch-form select,.touch-form textarea{padding:10px 0}
+  .touch-form textarea{min-height:56px}
+  .touch-form button{align-self:flex-start;margin-top:14px}
   .touch-side{border-left:0;border-top:1px solid #e3e7ec;padding:28px 0 0}
 }
 .reviews{padding:clamp(44px,6vh,64px) 28px clamp(40px,5vh,52px);background:#f3f3f3}

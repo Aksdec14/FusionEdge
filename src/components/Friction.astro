@@ -1,7 +1,7 @@
 <section id="fe-friction" aria-label="Without and with Fusionedge">
   <div class="ff-card">
     <h2 class="ff-h">
-      <span>Your facility team's 8-hour day,</span><br>
+      <span>Your facility team's <span class="ff-keep">8-hour day,</span></span><br>
       <em class="ff-swap" data-before="dissected." data-after="simplified.">dissected.</em>
     </h2>
     <p class="ff-sub ff-swap" data-before="Every disconnected tool adds friction. Your engineers, admins and managers spend more time chasing registers, sheets and chats than running the facility." data-after="One platform for tickets, assets, people and vendors. Everyone works from the same live data, so the day goes into running the facility, not hunting for it.">Every disconnected tool adds friction. Your engineers, admins and managers spend more time chasing registers, sheets and chats than running the facility.</p>
@@ -45,6 +45,7 @@
   #fe-friction *{box-sizing:border-box}
   #fe-friction .ff-card{max-width:1040px;margin:0 auto;background:#fff;border-radius:4px;padding:0 48px 48px;position:relative}
   #fe-friction .ff-h{margin:24px 0 0;padding-top:16px;text-align:center;font-size:clamp(28px,4vw,42px);line-height:1.15;font-weight:500;letter-spacing:-.02em;color:var(--ff-ink)}
+  #fe-friction .ff-keep{white-space:nowrap}
   #fe-friction .ff-h em{position:relative;display:inline-block;color:var(--ff-ink);transition:color .5s,opacity .35s}
   #fe-friction .ff-h em::after{content:"";position:absolute;left:2%;right:4%;bottom:-.06em;height:.16em;border-radius:99px;background:var(--ff-red);transform:rotate(-1deg);transition:background .5s}
   #fe-friction.after .ff-h em{color:var(--ff-purple)}
@@ -161,7 +162,7 @@
     #fe-friction .ff-feats{justify-content:flex-start}
     #fe-friction .ff-cta{justify-content:flex-start}
     #fe-friction .ff-btn{width:auto}
-    #fe-friction .ff-h em{display:table;margin:2px auto 0}
+    #fe-friction .ff-h em{display:inline-block;margin:2px 0 0}
   }
   @media (prefers-reduced-motion:reduce){
     #fe-friction *,#fe-friction *::before{animation:none!important;transition:none!important}
