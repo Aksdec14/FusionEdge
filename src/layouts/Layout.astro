@@ -189,7 +189,7 @@ img{max-width:100%;height:auto}
 @media (max-width:480px){
   .hero{padding-left:16px;padding-right:16px}
   .hero .tag em::after{height:.14em}
-  .video h2 em{border-bottom-width:4px}
+  .video h2 em,.touch h2 em{border-bottom-width:4px}
 }
 
 /* --- Large screens (>=1600px): keep content centered --- */
@@ -233,9 +233,9 @@ img{max-width:100%;height:auto}
 .logo-track{display:flex;width:max-content;animation:logo-marquee 28s linear infinite}
 .logo-row{display:flex;align-items:center;gap:52px;list-style:none;margin:0;padding:0 26px;flex:none}
 .logo-row li{display:flex;align-items:center;color:#8b939e}
-.logo-row svg{display:block;height:38px;width:auto}
+.logo-row img{display:block;height:72px;width:auto}
 @keyframes logo-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-@media (max-width:760px){.customers{padding-left:16px;padding-right:16px}.logo-row{gap:36px;padding:0 18px}.logo-row svg{height:32px}}
+@media (max-width:760px){.customers{padding-left:16px;padding-right:16px}.logo-row{gap:36px;padding:0 18px}.logo-row img{height:56px}}
 @media (prefers-reduced-motion:reduce){.logo-track{animation:none;flex-wrap:wrap;justify-content:center;width:auto}.marquee{width:auto;margin-left:auto;margin-right:auto;overflow:visible}}
 .usecases{padding:clamp(64px,9vh,112px) 0 clamp(72px,10vh,120px);background:#fff}
 .uc-top{max-width:1180px;margin:0 auto;padding:0 5vw;text-align:center}
@@ -282,6 +282,42 @@ img{max-width:100%;height:auto}
 .story ul{margin:8px 0 0;padding-left:1.2em}
 .story li{margin-top:8px;font-family:"Public Sans",system-ui,sans-serif;font-size:16px;line-height:1.65;color:#1a1424}
 @media (max-width:760px){.story{padding-left:16px;padding-right:16px}}
+.touch{background:#fff;padding:clamp(56px,8vh,96px) 5vw clamp(64px,9vh,104px);font-family:"Public Sans",system-ui,sans-serif;color:#1a1424}
+.touch-wrap{max-width:1080px;margin:0 auto}
+.touch h2{margin:0;max-width:none;font-family:"Public Sans",system-ui,sans-serif;font-style:italic;font-weight:600;font-size:clamp(28px,3vw,40px);line-height:1.2;letter-spacing:-.03em;color:#1a1424}
+.touch h2 em{font-style:inherit;text-decoration:none;border-bottom:5px solid #00BF88;padding-bottom:1px}
+.touch h3{margin:0;font-family:"Public Sans",system-ui,sans-serif;font-style:normal;font-weight:600;font-size:16px;line-height:1.3;letter-spacing:-.02em;color:#1a1424}
+.touch p{max-width:460px;margin:10px 0 0;font-size:14px;line-height:1.5;color:#6b7280}
+.touch-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(240px,.75fr);gap:clamp(32px,5vw,72px);margin-top:clamp(28px,4vh,40px);align-items:start}
+.touch-form{display:flex;flex-direction:column;gap:0}
+.touch-form p{margin:8px 0 22px}
+.touch-row{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.touch-form input,.touch-form select,.touch-form textarea{width:100%;border:0;border-bottom:1px solid #e3e7ec;background:transparent;border-radius:0;padding:14px 0;font:inherit;font-size:14px;color:#1a1424;outline:0}
+.touch-form input::placeholder,.touch-form textarea::placeholder{color:#8b919a}
+.touch-form select{appearance:none;color:#1a1424;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'><path d='M1 1.5l5 5 5-5' fill='none' stroke='%235D1F72' stroke-width='1.4' stroke-linecap='round'/></svg>") no-repeat right 2px center/12px}
+.touch-form select:has(option[value=""]:checked){color:#8b919a}
+.touch-form textarea{resize:vertical;min-height:72px}
+.touch-form button{align-self:flex-end;display:inline-flex;align-items:center;gap:8px;margin-top:18px;height:44px;padding:0 22px;border:1px solid #5D1F72;border-radius:12px;background:#5D1F72;color:#fff;font:500 14px "Public Sans",sans-serif;letter-spacing:-.02em;cursor:pointer}
+.touch-form button svg{width:14px;height:14px}
+.touch-side{border-left:1px solid #e3e7ec;padding-left:clamp(20px,3vw,36px);display:flex;flex-direction:column;gap:36px}
+.touch-side h3{display:flex;align-items:center;gap:8px}
+.touch-side svg{width:16px;height:16px;color:#5D1F72;flex:none}
+.touch-side a{display:inline-block;margin-top:8px;color:#5D1F72;font-size:14px;font-weight:600;text-decoration:none}
+.touch-side a:hover{text-decoration:underline}
+.touch-faq{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(24px,4vw,64px);margin-top:clamp(56px,8vh,88px);align-items:start}
+.touch-faq-intro span{display:block;margin:0 0 12px;font-size:14px;font-weight:600;letter-spacing:-.02em;color:#5D1F72}
+.touch-faq-intro h2{max-width:10em}
+.touch-faq-list details{border-bottom:1px solid #e3e7ec;padding:16px 0}
+.touch-faq-list summary{display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer;list-style:none;font-weight:600;font-size:14px;letter-spacing:-.02em;color:#1a1424}
+.touch-faq-list summary::-webkit-details-marker{display:none}
+.touch-faq-list summary::after{content:"";width:8px;height:8px;border-radius:50%;border:1.5px solid #5D1F72;flex:none}
+.touch-faq-list details[open] summary::after{background:#5D1F72}
+.touch-faq-list details p{margin:10px 0 4px}
+@media (max-width:760px){
+  .touch{padding-left:16px;padding-right:16px}
+  .touch-grid,.touch-faq,.touch-row{grid-template-columns:1fr}
+  .touch-side{border-left:0;border-top:1px solid #e3e7ec;padding:28px 0 0}
+}
 .signup{background:#5D1F72;padding:clamp(80px,12vh,140px) 5vw}
 .signup-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,400px);gap:clamp(28px,5vw,72px);align-items:center}
 .signup h2{margin:0;max-width:520px;font-family:"Public Sans",system-ui,sans-serif;font-style:italic;font-weight:600;font-size:clamp(32px,3.6vw,48px);line-height:1.15;letter-spacing:-.03em;color:#fff}
