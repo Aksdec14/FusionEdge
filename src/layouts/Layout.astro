@@ -59,17 +59,15 @@ svg.outline path.dim{opacity:.3}
 .board .label.g b,.board .label.g small{color:var(--green)}
 .board.gather .tile.in{opacity:0}
 .board.gather .tile.in.hot{opacity:1;transform:scale(.96)}
-.board .detail{position:absolute;z-index:5;display:flex;flex-direction:column;justify-content:space-between;box-sizing:border-box;overflow:hidden;opacity:0;pointer-events:none;text-align:left;font-family:"Public Sans",sans-serif;font-style:normal}
+.board .detail{position:absolute;z-index:5;display:flex;flex-direction:column;justify-content:flex-start;box-sizing:border-box;overflow:hidden;opacity:0;pointer-events:none;text-align:left;font-family:"Public Sans",sans-serif;font-style:normal;padding-left:var(--detail-x,32px);padding-right:var(--detail-x,32px)}
 .board .detail.on{opacity:1;transition:opacity .45s ease}
-.board .detail b{display:block;font-weight:600;font-size:calc(var(--title,16px) * 1.75);line-height:1.15;letter-spacing:-.03em;color:#1a1424;margin:0 0 8px}
+.board .detail b{display:block;font-weight:600;font-size:calc(var(--title,16px) * 1.75);line-height:1.15;letter-spacing:-.03em;color:#1a1424;margin:0 0 .5em}
 .board .detail.p b{color:#5D1F72}
 .board .detail.g b{color:#00BF88}
-.board .detail .lead{display:block;font-weight:500;font-size:var(--sub,14px);line-height:1.4;color:#444;margin:0}
+.board .detail .lead{display:block;font-weight:500;font-size:var(--sub,14px);line-height:1.4;color:#444;margin:0 0 1.15em}
 .board .detail ul{margin:0;padding:0;list-style:none}
-.board .detail li{position:relative;margin:0 0 8px;padding-left:14px;font-weight:400;font-size:var(--sub,14px);line-height:1.4;color:#444}
+.board .detail li{margin:0 0 8px;font-weight:400;font-size:var(--sub,14px);line-height:1.4;color:#444}
 .board .detail li:last-child{margin:0}
-.board .detail li:before{content:"";position:absolute;left:0;top:.5em;width:6px;height:6px;border-radius:50%;background:#5D1F72}
-.board .detail.g li:before{background:#00BF88}
 #modules.compact .detail{display:none}
 .pointer{position:absolute;z-index:6;max-width:400px;color:#444;font-family:"Public Sans",sans-serif;font-weight:500;font-size:var(--sub,14px);line-height:1.35;text-align:center;pointer-events:none;opacity:0}
 .pointer.on{opacity:1;transition:opacity .4s ease}
