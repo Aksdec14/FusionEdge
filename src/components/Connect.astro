@@ -26,11 +26,11 @@
     --ink:#1d1b26;--muted:#5d5b6c;--line:#8a4aa6;--cat:#6B2288;
     --p:#6B2288;--g:#00BF88;--border:#ebe9f0;
     font-family:"Public Sans",system-ui,sans-serif;background:#fff;
-    padding:clamp(24px,4vw,56px) clamp(16px,3vw,40px);overflow:hidden}
+    padding:var(--section-y) clamp(16px,3vw,40px);overflow:hidden}
   #fe-connect *{box-sizing:border-box}
 
   #fe-connect .fc-h{margin:0 auto clamp(16px,2vw,32px);max-width:900px;text-align:center;
-    font-family:"Public Sans",system-ui,sans-serif;font-style:italic;font-weight:600;font-size:clamp(28px,3vw,40px);line-height:1.2;letter-spacing:-.03em;color:#1a1424}
+    font-family:"Public Sans",system-ui,sans-serif;font-style:italic;font-weight:600;font-size:var(--type-h);line-height:1.2;letter-spacing:-.03em;color:#1a1424}
 
   /* Stage: wide + centered, grows on big screens */
   #fe-connect .fc-stage{position:relative;width:100%;max-width:1180px;margin:0 auto;aspect-ratio:1200/500}
@@ -63,7 +63,7 @@
 
   /* Legend */
   #fe-connect .fc-legend{list-style:none;margin:clamp(40px,4.5vw,64px) 0 0;padding:0;display:flex;flex-wrap:wrap;
-    justify-content:center;gap:10px 28px;font-size:13px;color:var(--muted)}
+    justify-content:center;gap:10px 28px;font-size:var(--type-body);color:var(--muted)}
   #fe-connect .fc-legend li{display:flex;align-items:center;gap:8px}
   #fe-connect .fc-legend i{width:10px;height:10px;border-radius:3px}
   #fe-connect .fc-legend .m{background:var(--p)}
@@ -73,7 +73,7 @@
 
   /* Mobile / small tablet: vertical layout */
   @media (max-width:900px){
-    #fe-connect{padding:20px 8px 28px}
+    #fe-connect{padding:var(--section-y) 8px}
     #fe-connect.fc-vert .fc-stage{max-width:none;aspect-ratio:auto}
     #fe-connect.fc-vert .fc-hub{padding:8px 12px;border-radius:12px}
     #fe-connect.fc-vert .fc-hub img{height:30px}
