@@ -15,7 +15,7 @@ const { title = "Fusionedge" } = Astro.props;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 html{color-scheme:light;background:#fff}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;overflow-x:hidden}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;overflow-x:clip}
 .btn{border-radius:99px;font:inherit;cursor:pointer}
 p{font-size:var(--type-body);line-height:1.5;color:var(--muted);max-width:480px;margin:0 auto 30px}
 .wrap{max-width:none;margin:0 auto}
@@ -109,7 +109,7 @@ svg.pointers path{fill:none;stroke-width:2px;stroke-linecap:round;stroke-linejoi
   #cap .one,#cap .legend{animation:none}
 }
 html,body{background:#fff!important}
-nav.top{position:sticky;top:0;z-index:20;background:#fff;align-items:center;padding:18px 5vw;border-bottom:1px solid #eef1f3}
+nav.top{position:sticky;top:0;z-index:600;isolation:isolate;background:#fff;align-items:center;padding:18px 5vw;border-bottom:1px solid #eef1f3}
 nav.top .links{display:flex;gap:30px;list-style:none;padding:0}
 nav.top .links a{font-size:var(--type-body);font-weight:500;color:var(--ink);text-decoration:none;cursor:pointer}
 nav.top .links a:hover{color:var(--teal)}
@@ -267,17 +267,17 @@ img{max-width:100%;height:auto}
 @keyframes logo-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media (max-width:760px){.customers{padding-left:16px;padding-right:16px}.logo-row{gap:40px;padding:0 20px}.logo-row img{height:20px}.logo-row img.is-mark{height:34px}}
 @media (prefers-reduced-motion:reduce){.logo-track{animation:none;flex-wrap:wrap;justify-content:center;width:auto}.marquee{width:auto;margin-left:auto;margin-right:auto;overflow:visible}}
-.usecases{box-sizing:border-box;display:flex;flex-direction:column;min-height:calc(100dvh - 80px);padding:clamp(16px,2.2vh,28px) 0;overflow:visible;background:#5D1F72}
+.usecases{position:relative;z-index:0;box-sizing:border-box;display:flex;flex-direction:column;min-height:calc(100dvh - 80px);padding:clamp(16px,2.2vh,28px) 0;overflow:visible;background:#5D1F72}
 .uc-top{flex:none;max-width:1180px;margin:0 auto;padding:32px 5vw 32px;text-align:center;opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,1,.36,1)}
 .usecases.is-in .uc-top{opacity:1;transform:none}
 .usecases h2{margin:0 auto;max-width:16em;text-align:center;font-family:"Public Sans",system-ui,sans-serif;font-style:italic;font-weight:600;font-size:var(--type-h);line-height:1.2;letter-spacing:-.03em;color:#fff}
 .uc-lead{margin:8px auto 0;max-width:520px;font-family:"Public Sans",system-ui,sans-serif;font-size:var(--type-body);line-height:1.5;color:rgba(255,255,255,.8)}
-.cs{flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;overflow:hidden;user-select:none;-webkit-user-select:none}
+.cs{flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;overflow:clip;user-select:none;-webkit-user-select:none}
 .cs__stage{position:relative;z-index:1;flex:none;width:100%;max-width:1280px;height:430px;display:flex;align-items:center;justify-content:center}
 .cs__stage:focus-visible{outline:2px solid #fff;outline-offset:4px}
 .cs__drag{position:absolute;inset:0;z-index:500;cursor:grab;touch-action:pan-y}
 .cs__drag:active{cursor:grabbing}
-.cs-card{position:absolute;width:220px;height:330px;border-radius:0;overflow:hidden;background:#fff;pointer-events:none;will-change:transform,opacity;box-shadow:0 24px 44px -20px rgba(0,0,0,.45)}
+.cs-card{position:absolute;width:220px;height:330px;border-radius:0;overflow:hidden;background:#fff;pointer-events:none;box-shadow:0 24px 44px -20px rgba(0,0,0,.45)}
 .cs-card::before{content:"";position:absolute;inset:0;background:radial-gradient(120% 70% at 85% 0%, rgba(93,31,114,.06), transparent 60%);pointer-events:none}
 .cs-card__dim{position:absolute;inset:0;background:#2b0d36;pointer-events:none}
 .cs-card__body{position:relative;z-index:1;height:100%;box-sizing:border-box;display:flex;flex-direction:column;padding:16px 14px 14px}
