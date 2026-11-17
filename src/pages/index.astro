@@ -867,6 +867,7 @@ new IntersectionObserver((ents,obs)=>{if(ents.some(e=>e.isIntersecting)){enter()
   const total = cards.length;
   if (!total) return;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  const phone = matchMedia('(max-width: 760px)');
   const getConfig = w =>
     w < 640  ? { distanceDivisor: 120, velocityDivisor: 500, sensitivity: 180, xMultiplier: 90,  yMultiplier: 20, rotationMultiplier: 8,  scaleReduction: .06 } :
     w < 1024 ? { distanceDivisor: 160, velocityDivisor: 650, sensitivity: 220, xMultiplier: 130, yMultiplier: 30, rotationMultiplier: 10, scaleReduction: .09 } :
@@ -883,7 +884,7 @@ new IntersectionObserver((ents,obs)=>{if(ents.some(e=>e.isIntersecting)){enter()
     return output[output.length - 1];
   };
   let progress = 0;
-  let reveal = reduce.matches ? 1 : 0;
+  let reveal = reduce.matches || phone.matches ? 1 : 0;
   function render() {
     cards.forEach((c, index) => {
       let diff = (index - progress) % total;
@@ -918,7 +919,7 @@ new IntersectionObserver((ents,obs)=>{if(ents.some(e=>e.isIntersecting)){enter()
     };
     raf = requestAnimationFrame(step);
   }
-  let dragging = false, startX = 0, startY = 0, lastX = 0, startProgress = 0, samples = [];
+  let dragging = false, armed = false, startX = 0, startY = 0, lastX = 0, startProgress = 0, samples = [];
   const linkAt = (x, y) => {
     const link = stage.querySelector('.cs-card.is-front .cs-card__more');
     if (!link) return null;
@@ -927,11 +928,24 @@ new IntersectionObserver((ents,obs)=>{if(ents.some(e=>e.isIntersecting)){enter()
     return x >= r.left - pad && x <= r.right + pad && y >= r.top - pad && y <= r.bottom + pad ? link : null;
   };
   drag.addEventListener('pointerdown', e => {
-    dragging = true; cancelAnimationFrame(raf); velocity = 0;
+    if (e.button != null && e.button !== 0) return;
+    armed = true;
+    dragging = !phone.matches;
+    cancelAnimationFrame(raf); velocity = 0;
     startX = lastX = e.clientX; startY = e.clientY; startProgress = progress; samples = [[performance.now(), e.clientX]];
-    drag.setPointerCapture(e.pointerId);
+    if (!phone.matches) { try { drag.setPointerCapture(e.pointerId); } catch (err) {} }
   });
   drag.addEventListener('pointermove', e => {
+    if (phone.matches && armed && !dragging) {
+      const dx = e.clientX - startX, dy = e.clientY - startY;
+      if (Math.hypot(dx, dy) < 10) return;
+      armed = false;
+      if (Math.abs(dy) >= Math.abs(dx)) return;
+      dragging = true;
+      lastX = e.clientX;
+      samples = [[performance.now(), e.clientX]];
+      try { drag.setPointerCapture(e.pointerId); } catch (err) {}
+    }
     if (!dragging) { drag.style.cursor = linkAt(e.clientX, e.clientY) ? 'pointer' : ''; return; }
     progress += -(e.clientX - lastX) / config.sensitivity;
     lastX = e.clientX;
@@ -939,6 +953,7 @@ new IntersectionObserver((ents,obs)=>{if(ents.some(e=>e.isIntersecting)){enter()
     render();
   });
   const endDrag = e => {
+    armed = false;
     if (!dragging) return; dragging = false;
     const dragDistance = e.clientX - startX;
     if (Math.abs(dragDistance) < 10 && Math.abs(e.clientY - startY) < 10) {
@@ -961,7 +976,7 @@ new IntersectionObserver((ents,obs)=>{if(ents.some(e=>e.isIntersecting)){enter()
   const section = stage.closest('.usecases');
   let revealRaf = 0;
   function playReveal(to) {
-    if (reduce.matches) { reveal = 1; render(); return; }
+    if (reduce.matches || phone.matches) { reveal = 1; render(); return; }
     if (Math.abs(reveal - to) < .001) return;
     cancelAnimationFrame(revealRaf);
     const start = performance.now();
@@ -986,11 +1001,11 @@ new IntersectionObserver((ents,obs)=>{if(ents.some(e=>e.isIntersecting)){enter()
       if (on && !entered) {
         entered = true;
         section.classList.add('is-in');
-        playReveal(1);
+        if (!phone.matches) playReveal(1);
       } else if (!on && entered && !exited) {
         exited = true;
         section.classList.remove('is-in');
-        playReveal(0);
+        if (!phone.matches) playReveal(0);
       } else if (on && exited) {
         cancelAnimationFrame(revealRaf);
         reveal = 1;
@@ -1003,6 +1018,12 @@ new IntersectionObserver((ents,obs)=>{if(ents.some(e=>e.isIntersecting)){enter()
       }
     }, { threshold: 0.45 });
     once.observe(card);
+    phone.addEventListener('change', () => {
+      if (!phone.matches) return;
+      cancelAnimationFrame(revealRaf);
+      reveal = 1;
+      render();
+    });
   }
   render();
 })();
