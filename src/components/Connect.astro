@@ -5,7 +5,7 @@
     <svg class="fc-lines" id="fcLines" viewBox="0 0 1200 500" preserveAspectRatio="none" aria-hidden="true">
       <defs>
         <marker id="fcArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-          <path d="M1 1l7 4-7 4" fill="none" stroke="#8a4aa6" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M1 1l7 4-7 4" fill="none" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/>
         </marker>
       </defs>
     </svg>
@@ -23,14 +23,14 @@
 
 <style is:global>
   #fe-connect{
-    --ink:#1d1b26;--muted:#5d5b6c;--line:#8a4aa6;--cat:#6B2288;
-    --p:#6B2288;--g:#00BF88;--border:#ebe9f0;
-    font-family:"Public Sans",system-ui,sans-serif;background:#fff;
+    --ink:#fff;--muted:#fff;--line:#fff;--cat:#fff;
+    --p:#fff;--g:#00BF88;--border:#ebe9f0;
+    font-family:"Public Sans",system-ui,sans-serif;background:#5D1F72;color:#fff;
     padding:var(--section-y) clamp(16px,3vw,40px);overflow:hidden}
   #fe-connect *{box-sizing:border-box}
 
   #fe-connect .fc-h{margin:0 auto clamp(16px,2vw,32px);max-width:900px;text-align:center;
-    font-family:"Public Sans",system-ui,sans-serif;font-style:italic;font-weight:600;font-size:var(--type-h);line-height:1.2;letter-spacing:-.03em;color:#1a1424}
+    font-family:"Public Sans",system-ui,sans-serif;font-style:italic;font-weight:600;font-size:var(--type-h);line-height:1.2;letter-spacing:-.03em;color:#fff}
 
   /* Stage: wide + centered, grows on big screens */
   #fe-connect .fc-stage{position:relative;width:100%;max-width:1180px;margin:0 auto;aspect-ratio:1200/500}
@@ -59,7 +59,7 @@
   #fe-connect .fc-tile.on span{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);white-space:nowrap;
     font-size:clamp(10px,.95vw,13px);font-weight:500;color:var(--muted);pointer-events:none}
   #fe-connect .fc-tile.on:hover span{color:var(--ink)}
-  #fe-connect .fc-tile.ghost{border:1px dashed #e4e1ea;opacity:.6}
+  #fe-connect .fc-tile.ghost{border:1px dashed rgba(255,255,255,.5);opacity:.7}
 
   /* Legend */
   #fe-connect .fc-legend{list-style:none;margin:clamp(40px,4.5vw,64px) 0 0;padding:0;display:flex;flex-wrap:wrap;
@@ -79,7 +79,7 @@
     #fe-connect.fc-vert .fc-hub img{height:30px}
     #fe-connect.fc-vert .fc-tile.on span{
       white-space:normal;width:max-content;max-width:var(--lw,64px);
-      background:#fff;padding:1px 3px;
+      background:transparent;padding:1px 3px;
       font-size:10.5px;line-height:1.25;text-align:center;
       overflow-wrap:normal;word-break:keep-all;hyphens:none;
       top:calc(100% + 8px)}
@@ -161,7 +161,7 @@
     Object.entries({x,y,'text-anchor':anchor,'dominant-baseline':'middle','font-size':size}).forEach(([k,v])=>t.setAttribute(k,v));
     t.textContent=text; g.appendChild(t); svg.appendChild(g);
     const b=t.getBBox(), r=document.createElementNS(NS,'rect');
-    Object.entries({x:b.x-pad,y:b.y-2,width:b.width+pad*2,height:b.height+4,rx:4,fill:'#fff'}).forEach(([k,v])=>r.setAttribute(k,v));
+    Object.entries({x:b.x-pad,y:b.y-2,width:b.width+pad*2,height:b.height+4,rx:4,fill:'#5D1F72'}).forEach(([k,v])=>r.setAttribute(k,v));
     g.insertBefore(r,t);
   };
   const tile=(key,left,top,width,short,lw)=>{

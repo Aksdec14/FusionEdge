@@ -75,60 +75,62 @@ import DigitalTwin from "../components/DigitalTwin.astro";
 <div class="uc-top">
 <h2 id="usecases-title">Use cases for the sites you run</h2>
 <p class="uc-lead">One connected system for facilities, assets, and the teams on site.</p>
-<div class="uc-nav">
-<button class="uc-prev" type="button" aria-label="Previous stories">←</button>
-<button class="uc-next" type="button" aria-label="Next stories">→</button>
+</div>
+<div class="cs" aria-roledescription="carousel" aria-label="Use cases">
+<div class="cs__stage" id="csStage" tabindex="0">
+<article class="cs-card">
+<div class="cs-card__dim"></div>
+<div class="cs-card__body">
+<span class="cs-card__badge">Assets</span>
+<div class="cs-card__text">
+<p class="cs-card__title"><span class="uc-p">50,000+</span> assets traced. A full audit now takes <span class="uc-g">30 minutes.</span></p>
+<p class="cs-card__desc">Every asset was mapped to one purchase order and invoice, then tagged with RFID.</p>
+<dl class="cs-stats">
+<div><b class="uc-p">50,000+</b><span>assets digitized and RFID-tagged</span></div>
+<div><b class="uc-g">30 min</b><span>full audit, down from 15 days</span></div>
+<div><b class="uc-p">60%</b><span>lower warehouse rental</span></div>
+<div><b class="uc-g">4,120</b><span>ghost assets removed from the books</span></div>
+</dl>
+<a class="cs-card__more" href="/stories/asset-management">Read the case study →</a>
 </div>
 </div>
-<div class="uc-row">
-<article class="uc-card">
-<h3><span class="uc-p">50,000+</span> assets traced. A full audit<br>now takes <span class="uc-g">30 minutes.</span></h3>
-<ul class="uc-points">
-<li>The only record was the finance system, built from purchase orders and invoices, not from what was on the ground.</li>
-<li>An on-site check found ghost assets, duplicate invoices, and equipment that had never been recorded.</li>
-<li>Every asset was mapped to one purchase order and invoice, then tagged with RFID.</li>
-<li>A handheld reader now sweeps the register in one pass, and warehouse rent is 60% lower.</li>
-</ul>
-<dl class="uc-stats">
-<div><dt class="uc-p">50,000+</dt><dd>assets digitized and RFID-tagged</dd></div>
-<div><dt class="uc-g">30 min</dt><dd>full audit, down from 15 days</dd></div>
-<div><dt class="uc-p">60%</dt><dd>lower warehouse rental</dd></div>
-<div><dt class="uc-g">4,120</dt><dd>ghost assets removed from the books</dd></div>
-</dl>
-<a class="uc-more" href="/stories/asset-management">Read the full case study →</a>
 </article>
-<article class="uc-card">
-<h3><span class="uc-p">14 campuses.</span> One way of working,<br>and more of the <span class="uc-g">power cost recovered.</span></h3>
-<ul class="uc-points">
-<li>Each campus had its own cleaning routine, and almost half of planned maintenance was late or missed.</li>
-<li>Breakdowns were often fixed locally, with the central team never told.</li>
-<li>Meter readings were on paper, so tenant power used after hours was never billed.</li>
-<li>FusionEdge put the same SOPs, asset history, and timed readings on every campus.</li>
-</ul>
-<dl class="uc-stats">
-<div><dt class="uc-p">96%</dt><dd>PPM tasks done on time, up from 52%</dd></div>
-<div><dt class="uc-g">45%</dt><dd>fewer unplanned breakdowns</dd></div>
-<div><dt class="uc-p">18%</dt><dd>more electricity cost recovered</dd></div>
-<div><dt class="uc-g">5 days</dt><dd>to set up a new campus, down from 3 weeks</dd></div>
+<article class="cs-card">
+<div class="cs-card__dim"></div>
+<div class="cs-card__body">
+<span class="cs-card__badge">Campuses</span>
+<div class="cs-card__text">
+<p class="cs-card__title"><span class="uc-p">14 campuses.</span> One way of working, and more of the <span class="uc-g">power cost recovered.</span></p>
+<p class="cs-card__desc">The same SOPs, asset history, and timed readings now run on every campus.</p>
+<dl class="cs-stats">
+<div><b class="uc-p">96%</b><span>PPM tasks done on time, up from 52%</span></div>
+<div><b class="uc-g">45%</b><span>fewer unplanned breakdowns</span></div>
+<div><b class="uc-p">18%</b><span>more electricity cost recovered</span></div>
+<div><b class="uc-g">5 days</b><span>to set up a new campus, down from 3 weeks</span></div>
 </dl>
-<a class="uc-more" href="/stories/facility-operations">Read the full case study →</a>
+<a class="cs-card__more" href="/stories/facility-operations">Read the case study →</a>
+</div>
+</div>
 </article>
-<article class="uc-card">
-<h3>Pantry orders that took <span class="uc-p">22 minutes</span><br>now arrive in <span class="uc-g">8.</span></h3>
-<ul class="uc-points">
-<li>More than 300 orders a day came in by phone, and almost a third arrived late.</li>
-<li>Nobody could see which order was waiting, so complaints went straight to senior managers.</li>
-<li>A QR code at each pantry and meeting room replaced the call. No app to download.</li>
-<li>Late orders escalate on their own, and each room level shows its own menu.</li>
-</ul>
-<dl class="uc-stats">
-<div><dt class="uc-p">8 min</dt><dd>average delivery, down from 22 minutes</dd></div>
-<div><dt class="uc-g">97%</dt><dd>orders delivered on time, up from 68%</dd></div>
-<div><dt class="uc-p">92%</dt><dd>fewer escalations to management</dd></div>
-<div><dt class="uc-g">4.6</dt><dd>employee satisfaction, up from 3.1 out of 5</dd></div>
+<article class="cs-card">
+<div class="cs-card__dim"></div>
+<div class="cs-card__body">
+<span class="cs-card__badge">Pantry</span>
+<div class="cs-card__text">
+<p class="cs-card__title">Pantry orders that took <span class="uc-p">22 minutes</span> now arrive in <span class="uc-g">8.</span></p>
+<p class="cs-card__desc">A QR code at each pantry and meeting room replaced the call. No app to download.</p>
+<dl class="cs-stats">
+<div><b class="uc-p">8 min</b><span>average delivery, down from 22 minutes</span></div>
+<div><b class="uc-g">97%</b><span>orders delivered on time, up from 68%</span></div>
+<div><b class="uc-p">92%</b><span>fewer escalations to management</span></div>
+<div><b class="uc-g">4.6</b><span>employee satisfaction, up from 3.1 out of 5</span></div>
 </dl>
-<a class="uc-more" href="/stories/pantry">Read the full case study →</a>
+<a class="cs-card__more" href="/stories/pantry">Read the case study →</a>
+</div>
+</div>
 </article>
+<div class="cs__drag" id="csDrag" aria-hidden="true"></div>
+</div>
 </div>
 </section>
 <section class="esg-banner" aria-labelledby="esg-title">
@@ -853,30 +855,156 @@ build();
 addEventListener('resize',build);
 new IntersectionObserver((ents,obs)=>{if(ents.some(e=>e.isIntersecting)){enter();obs.disconnect();}},{threshold:.2})
   .observe(modules);
-(function(){
-const row=document.querySelector(".uc-row");
-if(!row)return;
-const cards=[...row.querySelectorAll(".uc-card")];
-const prev=document.querySelector(".uc-prev"),next=document.querySelector(".uc-next");
-let page=0,shown=-1;
-const per=()=>1;
-const reduce=matchMedia("(prefers-reduced-motion: reduce)");
-function count(dt){
-if(!dt.dataset.n)dt.dataset.n=dt.textContent.trim();
-const m=dt.dataset.n.match(/^(.*?)([\d,.]+)(.*)$/);
-if(!m||reduce.matches){dt.textContent=dt.dataset.n;return}
-if(dt._raf)cancelAnimationFrame(dt._raf);
-const raw=m[2].replace(/,/g,""),decimals=(raw.split(".")[1]||"").length,target=parseFloat(raw),commas=m[2].includes(","),start=performance.now();
-const text=v=>{const num=decimals?v.toFixed(decimals):(commas?Math.round(v).toLocaleString("en-US"):String(Math.round(v)));return m[1]+num+m[3]};
-const tick=now=>{const t=Math.min(1,(now-start)/900),eased=1-Math.pow(1-t,3);dt.textContent=t<1?text(target*eased):dt.dataset.n;if(t<1)dt._raf=requestAnimationFrame(tick)};
-dt.textContent=text(0);
-dt._raf=requestAnimationFrame(tick);
-}
-const show=()=>{const n=per(),max=Math.max(0,Math.ceil(cards.length/n)-1);if(page>max)page=max;const fresh=page!==shown;shown=page;cards.forEach((card,i)=>{const on=i>=page*n&&i<page*n+n;card.classList.toggle("is-off",!on);if(on&&fresh)card.querySelectorAll("dt").forEach(count)});prev.disabled=page===0;next.disabled=page>=max};
-prev.addEventListener("click",()=>{page--;show()});
-next.addEventListener("click",()=>{page++;show()});
-addEventListener("resize",show);
-show();
+(() => {
+  const stage = document.getElementById('csStage');
+  const drag = document.getElementById('csDrag');
+  if (!stage || !drag) return;
+  const cards = [...stage.querySelectorAll('.cs-card')].map(el => ({
+    el,
+    dim: el.querySelector('.cs-card__dim'),
+    text: el.querySelector('.cs-card__text')
+  }));
+  const total = cards.length;
+  if (!total) return;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  const getConfig = w =>
+    w < 640  ? { distanceDivisor: 120, velocityDivisor: 500, sensitivity: 180, xMultiplier: 90,  yMultiplier: 20, rotationMultiplier: 8,  scaleReduction: .06 } :
+    w < 1024 ? { distanceDivisor: 160, velocityDivisor: 650, sensitivity: 220, xMultiplier: 130, yMultiplier: 30, rotationMultiplier: 10, scaleReduction: .09 } :
+               { distanceDivisor: 200, velocityDivisor: 800, sensitivity: 250, xMultiplier: 170, yMultiplier: 40, rotationMultiplier: 12, scaleReduction: .12 };
+  let config = getConfig(innerWidth);
+  const lerpRange = (v, input, output) => {
+    if (v <= input[0]) return output[0];
+    for (let i = 1; i < input.length; i++) {
+      if (v <= input[i]) {
+        const t = (v - input[i - 1]) / (input[i] - input[i - 1]);
+        return output[i - 1] + t * (output[i] - output[i - 1]);
+      }
+    }
+    return output[output.length - 1];
+  };
+  let progress = 0;
+  let reveal = reduce.matches ? 1 : 0;
+  function render() {
+    cards.forEach((c, index) => {
+      let diff = (index - progress) % total;
+      if (diff > total / 2) diff -= total;
+      if (diff < -total / 2) diff += total;
+      const abs = Math.abs(diff);
+      const x = diff * config.xMultiplier * (1 + (1 - reveal) * .12);
+      const rot = (abs < .05 ? 0 : diff * config.rotationMultiplier) * reveal;
+      const y = (abs < .05 ? 0 : abs * config.yMultiplier) + (1 - reveal) * 48;
+      const scale = (1 - abs * config.scaleReduction) * (.94 + .06 * reveal);
+      c.el.style.transform = `translate(${x}px, ${y}px) rotate(${rot}deg) scale(${scale})`;
+      c.el.style.opacity = String(lerpRange(diff, [-total / 2, -total / 2 + .5, 0, total / 2 - .5, total / 2], [0, 1, 1, 1, 0]) * reveal);
+      c.el.style.zIndex = String(Math.round(100 - abs * 10));
+      c.el.classList.toggle('is-front', abs < .5);
+      if (c.dim) c.dim.style.opacity = String(lerpRange(diff, [-2, -.5, 0, .5, 2], [.5, .2, 0, .2, .5]));
+      if (c.text) c.text.style.opacity = String(lerpRange(diff, [-.5, 0, .5], [0, 1, 0]));
+    });
+  }
+  let raf = 0, velocity = 0;
+  function springTo(target) {
+    if (reduce.matches) { progress = target; velocity = 0; render(); return; }
+    cancelAnimationFrame(raf);
+    let last = performance.now();
+    const step = now => {
+      const dt = Math.min(.032, (now - last) / 1000); last = now;
+      const force = -200 * (progress - target) - 30 * velocity;
+      velocity += force * dt;
+      progress += velocity * dt;
+      render();
+      if (Math.abs(progress - target) > .0005 || Math.abs(velocity) > .0005) raf = requestAnimationFrame(step);
+      else { progress = target; velocity = 0; render(); }
+    };
+    raf = requestAnimationFrame(step);
+  }
+  let dragging = false, startX = 0, startY = 0, lastX = 0, startProgress = 0, samples = [];
+  const linkAt = (x, y) => {
+    const link = stage.querySelector('.cs-card.is-front .cs-card__more');
+    if (!link) return null;
+    const r = link.getBoundingClientRect();
+    const pad = 8;
+    return x >= r.left - pad && x <= r.right + pad && y >= r.top - pad && y <= r.bottom + pad ? link : null;
+  };
+  drag.addEventListener('pointerdown', e => {
+    dragging = true; cancelAnimationFrame(raf); velocity = 0;
+    startX = lastX = e.clientX; startY = e.clientY; startProgress = progress; samples = [[performance.now(), e.clientX]];
+    drag.setPointerCapture(e.pointerId);
+  });
+  drag.addEventListener('pointermove', e => {
+    if (!dragging) { drag.style.cursor = linkAt(e.clientX, e.clientY) ? 'pointer' : ''; return; }
+    progress += -(e.clientX - lastX) / config.sensitivity;
+    lastX = e.clientX;
+    samples.push([performance.now(), e.clientX]); if (samples.length > 6) samples.shift();
+    render();
+  });
+  const endDrag = e => {
+    if (!dragging) return; dragging = false;
+    const dragDistance = e.clientX - startX;
+    if (Math.abs(dragDistance) < 10 && Math.abs(e.clientY - startY) < 10) {
+      const link = linkAt(e.clientX, e.clientY);
+      if (link) { location.href = link.href; return; }
+    }
+    const [t0, x0] = samples[0], [t1, x1] = samples[samples.length - 1];
+    const vel = t1 > t0 ? (x1 - x0) / ((t1 - t0) / 1000) : 0;
+    let shift = Math.round(-dragDistance / config.distanceDivisor + -vel / config.velocityDivisor);
+    shift = Math.max(-3, Math.min(3, shift));
+    springTo(Math.round(startProgress) + shift);
+  };
+  drag.addEventListener('pointerup', endDrag);
+  drag.addEventListener('pointercancel', endDrag);
+  stage.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') { e.preventDefault(); springTo(Math.round(progress) + 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); springTo(Math.round(progress) - 1); }
+  });
+  addEventListener('resize', () => { config = getConfig(innerWidth); render(); });
+  const section = stage.closest('.usecases');
+  let revealRaf = 0;
+  function playReveal(to) {
+    if (reduce.matches) { reveal = 1; render(); return; }
+    if (Math.abs(reveal - to) < .001) return;
+    cancelAnimationFrame(revealRaf);
+    const start = performance.now();
+    const from = reveal;
+    const step = now => {
+      const t = Math.min(1, (now - start) / (to ? 900 : 700));
+      const eased = 1 - Math.pow(1 - t, 3);
+      reveal = from + (to - from) * eased;
+      render();
+      if (t < 1) revealRaf = requestAnimationFrame(step);
+    };
+    revealRaf = requestAnimationFrame(step);
+  }
+  const card = stage.querySelector('.cs-card');
+  const top = section.querySelector('.uc-top');
+  if (reduce.matches) section.classList.add('is-in');
+  else {
+    let entered = false;
+    let exited = false;
+    const once = new IntersectionObserver(ents => {
+      const on = ents.some(e => e.isIntersecting);
+      if (on && !entered) {
+        entered = true;
+        section.classList.add('is-in');
+        playReveal(1);
+      } else if (!on && entered && !exited) {
+        exited = true;
+        section.classList.remove('is-in');
+        playReveal(0);
+      } else if (on && exited) {
+        cancelAnimationFrame(revealRaf);
+        reveal = 1;
+        render();
+        top.style.transition = 'none';
+        section.classList.add('is-in');
+        void top.offsetWidth;
+        top.style.transition = '';
+        once.disconnect();
+      }
+    }, { threshold: 0.45 });
+    once.observe(card);
+  }
+  render();
 })();
 </script>
 <script is:inline>
