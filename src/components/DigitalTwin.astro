@@ -7,8 +7,6 @@
   .twin {
     /* brand colours */
     --brand: #5D1F72;        /* main purple: headline, charts, active states */
-    --brand-mid: #A27BB3;
-    --brand-light: #D9C8E2;
     --tint: #F4EEF6;         /* chart tracks, toggle background */
     --line: #EEE5F2;         /* card borders, axis lines */
     --text: #3A1347;         /* body text: deep brand ink */
@@ -305,13 +303,6 @@
     animation-delay: calc(var(--d) * .15s);
   }
   .kpi__label { font-size: 11px; color: var(--muted); }
-  .kpi__value { font-size: clamp(20px, 2vw, 26px); font-weight: 600; letter-spacing: -.02em; line-height: 1.2; margin-top: 4px; font-variant-numeric: tabular-nums; }
-  .kpi__value small { font-size: 13px; font-weight: 500; color: var(--muted); letter-spacing: 0; }
-  .kpi__sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
-  .kpi__bar { height: 4px; border-radius: 4px; background: #f0f1f4; margin-top: 10px; overflow: hidden; }
-  .kpi__bar i { display: block; height: 100%; width: var(--w); background: var(--text); border-radius: inherit; transform-origin: left; animation: bar-cycle var(--loop) ease-out infinite; animation-delay: calc(var(--d) * .15s); }
-  .live { display: inline-flex; align-items: center; gap: 6px; }
-  .live::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--text); animation: blink 1.6s ease-in-out infinite; }
   /* ---------- mini charts ---------- */
   .kpi__label { margin-bottom: 8px; }
   .chart { display: block; width: 100%; height: auto; overflow: visible; }
@@ -358,12 +349,6 @@
     23%, 86%  { opacity: 1; translate: 0 0; }
     90%, 100% { opacity: 0; translate: 0 10px; }
   }
-  @keyframes bar-cycle {
-    0%, 36%   { transform: scaleX(0); }
-    46%, 100% { transform: scaleX(1); }
-  }
-  @keyframes blink { 50% { opacity: .25; } }
-
   /* portrait tablet & narrow screens: building on top, cards in a 3-column grid below */
   @media (max-width: 1024px) and (orientation: portrait), (max-width: 860px) {
     .twin { --width: clamp(220px, min(80vw, calc((100svh - 535px) * .92)), 460px); }
@@ -418,7 +403,6 @@
   /* phone held sideways: very short screen, go back to side-by-side and trim text */
   @media (orientation: landscape) and (max-height: 500px) {
     .twin { --width: clamp(160px, calc((100svh - 140px) * .92), 340px); }
-    .kpi__sub { display: none; }
     .viewbar { margin-bottom: 4px; }
     .toggle button { min-width: 72px; padding: 4px 10px; font-size: 11px; }
     .twin__head { margin-bottom: 8px; }
