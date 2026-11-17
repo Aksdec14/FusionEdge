@@ -15,7 +15,8 @@ const { title = "Fusionedge" } = Astro.props;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 html{color-scheme:light;background:#fff}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;overflow-x:clip}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;overflow-x:clip;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+input,textarea,select{user-select:text;-webkit-user-select:text}
 .btn{border-radius:99px;font:inherit;cursor:pointer}
 p{font-size:var(--type-body);line-height:1.5;color:var(--muted);max-width:480px;margin:0 auto 30px}
 .wrap{max-width:none;margin:0 auto}
@@ -552,6 +553,16 @@ img{max-width:100%;height:auto}
 </div>
 </div>
 </footer>
+<script is:inline>
+document.addEventListener("contextmenu",e=>e.preventDefault());
+document.addEventListener("dragstart",e=>e.preventDefault());
+document.addEventListener("keydown",e=>{
+  const k=e.key.toLowerCase();
+  const form=e.target.closest&&e.target.closest("input,textarea,select");
+  if(form&&(k==="c"||k==="a"||k==="v"||k==="x"))return;
+  if(k==="f12"||(e.ctrlKey&&e.shiftKey&&["i","j","c"].includes(k))||(e.ctrlKey&&["u","s","c","a","p"].includes(k))||(e.metaKey&&["c","a","s","u","p"].includes(k)))e.preventDefault();
+});
+</script>
 <script is:inline>
 let navY=scrollY;
 addEventListener("scroll",()=>{const y=scrollY,nav=document.querySelector("nav.top");if(!nav)return;if(y<=8)nav.classList.remove("hide");else if(y>navY+6)nav.classList.add("hide");else if(y<navY-6)nav.classList.remove("hide");navY=y},{passive:true});
