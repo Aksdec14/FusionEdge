@@ -129,6 +129,91 @@ import DigitalTwin from "../components/DigitalTwin.astro";
 </div>
 </div>
 </article>
+<article class="cs-card">
+<div class="cs-card__dim"></div>
+<div class="cs-card__body">
+<span class="cs-card__badge">Energy</span>
+<div class="cs-card__text">
+<p class="cs-card__title">Energy cost is down <span class="uc-g">12%.</span> After-hours power is <span class="uc-p">billed to the tenant.</span></p>
+<p class="cs-card__desc">Meter readings left paper and now run at set times through the day.</p>
+<dl class="cs-stats">
+<div><b class="uc-g">12%</b><span>lower energy bills once spikes were fixed</span></div>
+<div><b class="uc-p">9 pm</b><span>cutoff, so after-hours use is measured</span></div>
+<div><b class="uc-g">100%</b><span>of meter readings were on paper before</span></div>
+<div><b class="uc-p">0%</b><span>of after-hours tenant power was billed before</span></div>
+</dl>
+<a class="cs-card__more" href="/stories/facility-operations">Read the case study →</a>
+</div>
+</div>
+</article>
+<article class="cs-card">
+<div class="cs-card__dim"></div>
+<div class="cs-card__body">
+<span class="cs-card__badge">Checklists</span>
+<div class="cs-card__text">
+<p class="cs-card__title">Cleaning compliance rose from <span class="uc-p">61%</span> to <span class="uc-g">95%.</span></p>
+<p class="cs-card__desc">Every campus follows the same schedule, and each task closes with a photo.</p>
+<dl class="cs-stats">
+<div><b class="uc-g">95%</b><span>checklist compliance, up from 61%</span></div>
+<div><b class="uc-p">1 SOP</b><span>replacing 14 different campus routines</span></div>
+<div><b class="uc-g">Photo</b><span>proof on every closed task</span></div>
+<div><b class="uc-p">10 wks</b><span>to roll the same standard out</span></div>
+</dl>
+<a class="cs-card__more" href="/stories/facility-operations">Read the case study →</a>
+</div>
+</div>
+</article>
+<article class="cs-card">
+<div class="cs-card__dim"></div>
+<div class="cs-card__body">
+<span class="cs-card__badge">Orders</span>
+<div class="cs-card__text">
+<p class="cs-card__title"><span class="uc-p">300+</span> pantry calls a day fell to <span class="uc-g">almost none.</span></p>
+<p class="cs-card__desc">Every order is logged, and a late one escalates on its own.</p>
+<dl class="cs-stats">
+<div><b class="uc-p">450+</b><span>pantry orders a day across 6 pantries</span></div>
+<div><b class="uc-g">3</b><span>escalations a month, down from 40</span></div>
+<div><b class="uc-p">18</b><span>meeting rooms, each with its own menu</span></div>
+<div><b class="uc-g">25%</b><span>less wastage of milk, snacks and fruit</span></div>
+</dl>
+<a class="cs-card__more" href="/stories/pantry">Read the case study →</a>
+</div>
+</div>
+</article>
+<article class="cs-card">
+<div class="cs-card__dim"></div>
+<div class="cs-card__body">
+<span class="cs-card__badge">Register</span>
+<div class="cs-card__text">
+<p class="cs-card__title"><span class="uc-p">1,860</span> missing assets found. <span class="uc-g">37</span> were billed more than once.</p>
+<p class="cs-card__desc">The books were reconciled to what was actually on the floor.</p>
+<dl class="cs-stats">
+<div><b class="uc-p">1,860</b><span>assets on site with no record at all</span></div>
+<div><b class="uc-g">37</b><span>assets linked to more than one invoice</span></div>
+<div><b class="uc-p">1,140</b><span>idle assets cleared for donation or scrap</span></div>
+<div><b class="uc-g">8 wks</b><span>from first audit to a clean register</span></div>
+</dl>
+<a class="cs-card__more" href="/stories/asset-management">Read the case study →</a>
+</div>
+</div>
+</article>
+<article class="cs-card">
+<div class="cs-card__dim"></div>
+<div class="cs-card__body">
+<span class="cs-card__badge">Visibility</span>
+<div class="cs-card__text">
+<p class="cs-card__title"><span class="uc-p">32,000+</span> assets, and every breakdown reaches <span class="uc-g">the central team.</span></p>
+<p class="cs-card__desc">Before, only 1 in 3 breakdowns was reported beyond the campus.</p>
+<dl class="cs-stats">
+<div><b class="uc-p">32,000+</b><span>assets with a service history</span></div>
+<div><b class="uc-g">6</b><span>cities on one view of the campuses</span></div>
+<div><b class="uc-p">1 in 3</b><span>breakdowns were reported before</span></div>
+<div><b class="uc-g">10 wks</b><span>to put every campus on the system</span></div>
+</dl>
+<a class="cs-card__more" href="/stories/facility-operations">Read the case study →</a>
+</div>
+</div>
+</article>
 <div class="cs__drag" id="csDrag" aria-hidden="true"></div>
 </div>
 </div>
@@ -349,7 +434,6 @@ import DigitalTwin from "../components/DigitalTwin.astro";
 </div>
 <div class="touch-faq">
 <div class="touch-faq-intro">
-<span>FAQ</span>
 <h2>Frequently asked questions.</h2>
 </div>
 <div class="touch-faq-list">
@@ -884,19 +968,18 @@ new IntersectionObserver((ents,obs)=>{if(ents.some(e=>e.isIntersecting)){enter()
     return output[output.length - 1];
   };
   let progress = 0;
-  let reveal = reduce.matches || phone.matches ? 1 : 0;
   function render() {
     cards.forEach((c, index) => {
       let diff = (index - progress) % total;
       if (diff > total / 2) diff -= total;
       if (diff < -total / 2) diff += total;
       const abs = Math.abs(diff);
-      const x = diff * config.xMultiplier * (1 + (1 - reveal) * .12);
-      const rot = (abs < .05 ? 0 : diff * config.rotationMultiplier) * reveal;
-      const y = (abs < .05 ? 0 : abs * config.yMultiplier) + (1 - reveal) * 48;
-      const scale = (1 - abs * config.scaleReduction) * (.94 + .06 * reveal);
+      const x = diff * config.xMultiplier;
+      const rot = abs < .05 ? 0 : diff * config.rotationMultiplier;
+      const y = abs < .05 ? 0 : abs * config.yMultiplier;
+      const scale = 1 - abs * config.scaleReduction;
       c.el.style.transform = `translate(${x}px, ${y}px) rotate(${rot}deg) scale(${scale})`;
-      c.el.style.opacity = String(lerpRange(diff, [-total / 2, -total / 2 + .5, 0, total / 2 - .5, total / 2], [0, 1, 1, 1, 0]) * reveal);
+      c.el.style.opacity = String(lerpRange(abs, [0, 2, 2.35], [1, 1, 0]));
       c.el.style.zIndex = String(Math.round(100 - abs * 10));
       c.el.classList.toggle('is-front', abs < .5);
       if (c.dim) c.dim.style.opacity = String(lerpRange(diff, [-2, -.5, 0, .5, 2], [.5, .2, 0, .2, .5]));
@@ -920,6 +1003,18 @@ new IntersectionObserver((ents,obs)=>{if(ents.some(e=>e.isIntersecting)){enter()
     raf = requestAnimationFrame(step);
   }
   let dragging = false, armed = false, startX = 0, startY = 0, lastX = 0, startProgress = 0, samples = [];
+  let auto = 0;
+  let inView = false;
+  const arm = () => {
+    clearInterval(auto);
+    if (reduce.matches || !inView) return;
+    auto = setInterval(() => { if (!dragging) springTo(Math.round(progress) + 1); }, 3000);
+  };
+  const showSwipe = () => {
+    if (reduce.matches || dragging) return;
+    springTo(Math.round(progress) + 1);
+    arm();
+  };
   const linkAt = (x, y) => {
     const link = stage.querySelector('.cs-card.is-front .cs-card__more');
     if (!link) return null;
@@ -927,13 +1022,19 @@ new IntersectionObserver((ents,obs)=>{if(ents.some(e=>e.isIntersecting)){enter()
     const pad = 8;
     return x >= r.left - pad && x <= r.right + pad && y >= r.top - pad && y <= r.bottom + pad ? link : null;
   };
+  const hold = () => {
+    clearInterval(auto);
+    cancelAnimationFrame(raf); velocity = 0;
+    startProgress = progress;
+  };
   drag.addEventListener('pointerdown', e => {
     if (e.button != null && e.button !== 0) return;
     armed = true;
-    dragging = !phone.matches;
-    cancelAnimationFrame(raf); velocity = 0;
-    startX = lastX = e.clientX; startY = e.clientY; startProgress = progress; samples = [[performance.now(), e.clientX]];
-    if (!phone.matches) { try { drag.setPointerCapture(e.pointerId); } catch (err) {} }
+    startX = lastX = e.clientX; startY = e.clientY; samples = [[performance.now(), e.clientX]];
+    if (phone.matches) return;
+    dragging = true;
+    hold();
+    try { drag.setPointerCapture(e.pointerId); } catch (err) {}
   });
   drag.addEventListener('pointermove', e => {
     if (phone.matches && armed && !dragging) {
@@ -942,6 +1043,7 @@ new IntersectionObserver((ents,obs)=>{if(ents.some(e=>e.isIntersecting)){enter()
       armed = false;
       if (Math.abs(dy) >= Math.abs(dx)) return;
       dragging = true;
+      hold();
       lastX = e.clientX;
       samples = [[performance.now(), e.clientX]];
       try { drag.setPointerCapture(e.pointerId); } catch (err) {}
@@ -952,11 +1054,22 @@ new IntersectionObserver((ents,obs)=>{if(ents.some(e=>e.isIntersecting)){enter()
     samples.push([performance.now(), e.clientX]); if (samples.length > 6) samples.shift();
     render();
   });
-  const endDrag = e => {
+  const endDrag = (e, allowLink) => {
+    const movedX = Math.abs(e.clientX - startX);
+    const movedY = Math.abs(e.clientY - startY);
+    const tapped = movedX < 10 && movedY < 10;
     armed = false;
-    if (!dragging) return; dragging = false;
+    if (!dragging) {
+      if (allowLink && tapped) {
+        const link = linkAt(e.clientX, e.clientY);
+        if (link) { location.href = link.href; return; }
+      }
+      if (!phone.matches) arm();
+      return;
+    }
+    dragging = false;
     const dragDistance = e.clientX - startX;
-    if (Math.abs(dragDistance) < 10 && Math.abs(e.clientY - startY) < 10) {
+    if (allowLink && tapped) {
       const link = linkAt(e.clientX, e.clientY);
       if (link) { location.href = link.href; return; }
     }
@@ -965,67 +1078,23 @@ new IntersectionObserver((ents,obs)=>{if(ents.some(e=>e.isIntersecting)){enter()
     let shift = Math.round(-dragDistance / config.distanceDivisor + -vel / config.velocityDivisor);
     shift = Math.max(-3, Math.min(3, shift));
     springTo(Math.round(startProgress) + shift);
+    arm();
   };
-  drag.addEventListener('pointerup', endDrag);
-  drag.addEventListener('pointercancel', endDrag);
+  drag.addEventListener('pointerup', e => endDrag(e, true));
+  drag.addEventListener('pointercancel', e => endDrag(e, false));
   stage.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight') { e.preventDefault(); springTo(Math.round(progress) + 1); }
-    if (e.key === 'ArrowLeft') { e.preventDefault(); springTo(Math.round(progress) - 1); }
+    if (e.key === 'ArrowRight') { e.preventDefault(); springTo(Math.round(progress) + 1); arm(); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); springTo(Math.round(progress) - 1); arm(); }
   });
   addEventListener('resize', () => { config = getConfig(innerWidth); render(); });
-  const section = stage.closest('.usecases');
-  let revealRaf = 0;
-  function playReveal(to) {
-    if (reduce.matches || phone.matches) { reveal = 1; render(); return; }
-    if (Math.abs(reveal - to) < .001) return;
-    cancelAnimationFrame(revealRaf);
-    const start = performance.now();
-    const from = reveal;
-    const step = now => {
-      const t = Math.min(1, (now - start) / (to ? 900 : 700));
-      const eased = 1 - Math.pow(1 - t, 3);
-      reveal = from + (to - from) * eased;
-      render();
-      if (t < 1) revealRaf = requestAnimationFrame(step);
-    };
-    revealRaf = requestAnimationFrame(step);
-  }
-  const card = stage.querySelector('.cs-card');
-  const top = section.querySelector('.uc-top');
-  if (reduce.matches) section.classList.add('is-in');
-  else {
-    let entered = false;
-    let exited = false;
-    const once = new IntersectionObserver(ents => {
-      const on = ents.some(e => e.isIntersecting);
-      if (on && !entered) {
-        entered = true;
-        section.classList.add('is-in');
-        if (!phone.matches) playReveal(1);
-      } else if (!on && entered && !exited) {
-        exited = true;
-        section.classList.remove('is-in');
-        if (!phone.matches) playReveal(0);
-      } else if (on && exited) {
-        cancelAnimationFrame(revealRaf);
-        reveal = 1;
-        render();
-        top.style.transition = 'none';
-        section.classList.add('is-in');
-        void top.offsetWidth;
-        top.style.transition = '';
-        once.disconnect();
-      }
-    }, { threshold: 0.45 });
-    once.observe(card);
-    phone.addEventListener('change', () => {
-      if (!phone.matches) return;
-      cancelAnimationFrame(revealRaf);
-      reveal = 1;
-      render();
-    });
-  }
   render();
+  new IntersectionObserver(ents => {
+    const on = ents.some(e => e.isIntersecting);
+    if (on === inView) return;
+    inView = on;
+    if (on) showSwipe();
+    else clearInterval(auto);
+  }, { threshold: 0.45 }).observe(stage);
 })();
 </script>
 <script is:inline>
