@@ -289,20 +289,63 @@ computeScatter=function(){
 };
 function drawAltNotes(){
   handG.innerHTML='';
-  const ys=T.map(([id])=>SCATTER[id][1]),mid=(Math.min(...ys)+Math.max(...ys))/2;
+  const tiles=T.map(([id])=>SCATTER[id]);
+  const ys=tiles.map(p=>p[1]),mid=(Math.min(...ys)+Math.max(...ys))/2,notes=[];
   T.forEach(([id],i)=>{
     if(!ALT[id])return;
     const [tx,ty]=SCATTER[id],g=el('g',{class:'hand'},handG);g.dataset.i=i;
     g.style.setProperty('--note',GROUPS[GROUP_OF[id]].c);
     const up=ty<mid,dir=up?-1:1;
     const w=ALT[id].split(' '),lines=ALT[id].length>11&&w.length>1?[w.slice(0,Math.ceil(w.length/2)).join(' '),w.slice(Math.ceil(w.length/2)).join(' ')]:[ALT[id]];
-    const ay=ty+dir*66,by=ty+dir*112,ly=up?by-8-(lines.length-1)*21:by+24;
+    const ly=up?ty-120-(lines.length-1)*21:ty+136;
     const t=el('text',{x:tx,y:ly,'text-anchor':'middle'},g);
-    lines.forEach((l,k)=>{el('tspan',{x:tx,dy:k?21:0},t).textContent=l});
-    const ax=tx-2,bx=tx+2;
-    el('path',{d:`M${ax} ${ay} C${tx+14} ${ay+dir*16}, ${tx+14} ${by-dir*18}, ${bx} ${by}`,pathLength:1},g);
-    const h=8;
-    el('path',{d:`M${bx-6} ${by-dir*h} L${bx} ${by} L${bx+6} ${by-dir*h}`,pathLength:1},g);
+    lines.forEach((l,k)=>el('tspan',{x:tx,dy:k?21:0},t).textContent=l);
+    notes.push({g,t,tx,ty,x:tx,y:ly,dir});
+  });
+  const place=n=>{n.t.setAttribute('x',n.x);n.t.setAttribute('y',n.y);n.t.querySelectorAll('tspan').forEach(s=>s.setAttribute('x',n.x))};
+  const box=n=>{const b=n.t.getBBox();return {x:b.x,y:b.y,r:b.x+b.width,b:b.y+b.height,cx:b.x+b.width/2,cy:b.y+b.height/2}};
+  const inHex=(px,py,cx,cy)=>{const x=Math.abs(px-cx)/86,y=Math.abs(py-cy)/86;return x<=1&&y<=.866&&.866*x+.5*y<=.866};
+  const hit=b=>{
+    const q=[[b.x,b.y],[b.r,b.y],[b.x,b.b],[b.r,b.b],[b.cx,b.y],[b.cx,b.b],[b.cx,b.cy]];
+    for(const [x,y] of tiles){
+      if(b.x<x&&x<b.r&&b.y<y&&y<b.b)return {x,y};
+      for(const [px,py] of q)if(inHex(px,py,x,y))return {x,y};
+    }
+    return null;
+  };
+  const clearHex=steps=>{
+    for(let pass=0;pass<steps;pass++){
+      let moved=false;
+      for(const n of notes){
+        if(!hit(box(n)))continue;
+        n.y+=n.dir*14;place(n);moved=true;
+      }
+      if(!moved)break;
+    }
+  };
+  const separate=()=>{
+    for(let pass=0;pass<14;pass++){
+      let moved=false;
+      const boxes=notes.map(box);
+      for(let a=0;a<notes.length;a++)for(let c=a+1;c<notes.length;c++){
+        const A=boxes[a],B=boxes[c];
+        const ox=Math.min(A.r,B.r)-Math.max(A.x,B.x),oy=Math.min(A.b,B.b)-Math.max(A.y,B.y);
+        if(ox+16<=0||oy+8<=0)continue;
+        const s=A.cx<=B.cx?-1:1,p=(ox+16)/2;
+        notes[a].x+=s*p;notes[c].x-=s*p;moved=true;
+      }
+      notes.forEach(place);
+      if(!moved)break;
+    }
+  };
+  clearHex(18);separate();clearHex(8);separate();
+  notes.forEach(n=>{
+    const b=box(n),by=n.ty<b.y?b.y-6:b.b+6,bx=n.x;
+    const ang=Math.atan2(by-n.ty,bx-n.tx),sector=Math.PI/3,a=((ang%sector)+sector)%sector;
+    const rim=72*Math.cos(Math.PI/6)/Math.cos(a-Math.PI/6)+3;
+    const ax=n.tx+Math.cos(ang)*rim,ay=n.ty+Math.sin(ang)*rim,dir=by<ay?-1:1,f=v=>v.toFixed(1);
+    el('path',{d:`M${f(ax)} ${f(ay)} C ${f(ax+12)} ${f(ay+dir*14)}, ${f(bx+8)} ${f(by-dir*16)}, ${f(bx)} ${f(by)}`,pathLength:1},n.g);
+    el('path',{d:`M${f(bx-6)} ${f(by-dir*8)} L${f(bx)} ${f(by)} L${f(bx+6)} ${f(by-dir*8)}`,pathLength:1},n.g);
   });
 }
 function showAltNotes(on){[...handG.children].forEach(g=>{clearTimeout(g._t);if(on)g._t=setTimeout(()=>g.classList.add('on'),reduced?0:700+g.dataset.i*45);else g.classList.remove('on')})}
