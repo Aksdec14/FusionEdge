@@ -171,36 +171,35 @@ img{max-width:100%;height:auto}
 @keyframes logo-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media (max-width:760px){.customers{padding-left:16px;padding-right:16px}.logo-row{gap:40px;padding:0 20px}.logo-row img{height:20px}.logo-row img.is-mark{height:34px}}
 @media (prefers-reduced-motion:reduce){.logo-track{animation:none;flex-wrap:wrap;justify-content:center;width:auto}.marquee{width:auto;margin-left:auto;margin-right:auto;overflow:visible}}
-.usecases{position:relative;z-index:0;box-sizing:border-box;display:flex;flex-direction:column;min-height:calc(100dvh - 80px);padding:clamp(16px,2.2vh,28px) 0;overflow:visible;background:#5D1F72}
-.uc-top{flex:none;max-width:1180px;margin:0 auto;padding:32px 5vw 32px;text-align:center}
+.usecases{position:relative;z-index:0;box-sizing:border-box;display:flex;flex-direction:column;height:100dvh;padding:clamp(8px,1.4vh,16px) 0 0;overflow:hidden;background:#5D1F72}
+.uc-top{flex:none;max-width:1180px;margin:0 auto;padding:18px 5vw 0;text-align:center}
 .usecases h2{margin:0 auto;max-width:16em;text-align:center;font-family:"Public Sans",system-ui,sans-serif;font-style:italic;font-weight:600;font-size:var(--type-h);line-height:1.2;letter-spacing:-.03em;color:#fff}
-.uc-lead{margin:8px auto 0;max-width:520px;font-family:"Public Sans",system-ui,sans-serif;font-size:var(--type-body);line-height:1.5;color:rgba(255,255,255,.8)}
-.cs{flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;overflow:clip;user-select:none;-webkit-user-select:none}
-.cs__stage{position:relative;z-index:1;flex:none;width:100%;max-width:1280px;height:430px;display:flex;align-items:center;justify-content:center}
+.uc-lead{margin:4px auto 0;max-width:520px;font-family:"Public Sans",system-ui,sans-serif;font-size:var(--type-body);line-height:1.5;color:rgba(255,255,255,.8)}
+.cs{flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;width:100%;overflow:clip;user-select:none;-webkit-user-select:none}
+.cs__stage{position:relative;z-index:1;flex:none;width:100%;max-width:1280px;height:340px;display:flex;align-items:center;justify-content:center}
 .cs__stage:focus-visible{outline:2px solid #fff;outline-offset:4px}
 .cs__drag{position:absolute;inset:0;z-index:500;cursor:grab;touch-action:pan-y}
 .cs__drag:active{cursor:grabbing}
-.cs-card{position:absolute;width:223px;height:333px;border-radius:0;overflow:hidden;background:#fff;pointer-events:none;box-shadow:0 24px 44px -20px rgba(0,0,0,.45)}
-.cs-card::before{content:"";position:absolute;inset:0;background:radial-gradient(120% 70% at 85% 0%, rgba(93,31,114,.06), transparent 60%);pointer-events:none}
-.cs-card__dim{position:absolute;inset:0;background:#2b0d36;pointer-events:none}
-.cs-card__body{position:relative;z-index:1;height:100%;box-sizing:border-box;display:flex;flex-direction:column;padding:16px 14px 14px}
+.cs-card{position:absolute;width:223px;height:333px;border-radius:0;overflow:hidden;background:#fff url(/card-wave-white.svg?v=1) center/cover no-repeat;pointer-events:none;box-shadow:0 24px 44px -20px rgba(0,0,0,.45)}
+.cs-card:nth-child(even){background:#fdfcf7 url(/card-wave.svg?v=alt) center/cover no-repeat}
+.cs-card::before{content:"";position:absolute;inset:0;background:none;pointer-events:none}
+.cs-card__dim{position:absolute;inset:0;background:#f4f4f4;pointer-events:none}
+.cs-card:nth-child(even) .cs-card__dim{background:#f7f2e4}
+.cs-card__body{position:relative;z-index:1;height:100%;box-sizing:border-box;display:flex;flex-direction:column;padding:16px 14px 14px;color:#5D1F72}
 .cs-card__badge{align-self:flex-start;padding:2px 8px;border-radius:999px;border:1px solid #5D1F72;background:transparent;font-family:"Public Sans",system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#5D1F72}
 .cs-card__text{display:flex;flex-direction:column;justify-content:space-between;flex:1;min-height:0;margin-top:16px;text-align:left}
 .cs-card__title{margin:0;max-width:none;font-family:"Public Sans",system-ui,sans-serif;font-style:italic;font-weight:600;font-size:15px;line-height:1.25;letter-spacing:-.02em;color:#5D1F72}
-.cs-card__title .uc-g{color:#00BF88}
+.cs-card__title .uc-g{color:#00A276}
 .cs-card__desc{margin:0;max-width:none;font-family:"Public Sans",system-ui,sans-serif;font-size:12px;font-style:italic;font-weight:500;line-height:1.4;color:#6f5a78}
 .cs-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px 10px;margin:0;padding:0}
 .cs-stats div{min-width:0}
 .cs-stats b{display:block;font-family:"Public Sans",system-ui,sans-serif;font-style:italic;font-weight:600;font-size:16px;line-height:1.15;letter-spacing:-.02em;color:#5D1F72}
-.cs-stats b.uc-g{color:#00BF88}
+.cs-stats b.uc-g{color:#00A276}
 .cs-stats span{display:block;margin-top:2px;font-family:"Public Sans",system-ui,sans-serif;font-size:10px;font-style:normal;font-weight:500;line-height:1.3;color:#6f5a78}
-.cs-card__more{display:block;margin:16px -14px -14px;padding:12px 14px;background:#F3EEF6;color:#5D1F72;font-family:"Public Sans",system-ui,sans-serif;font-size:12px;font-weight:600;text-align:center;text-decoration:none}
-.cs-card__more:hover{text-decoration:underline}
 @media (min-width:640px){
-  .cs__stage{height:510px}
+  .cs__stage{height:386px}
   .cs-card{width:303px;height:373px}
   .cs-card__body{padding:18px 22px 16px}
-  .cs-card__more{margin:16px -22px -16px;padding:12px 22px}
   .cs-card__badge{padding:4px 12px;font-size:11px}
   .cs-card__title{font-size:16px}
   .cs-stats{gap:6px 8px}
@@ -208,19 +207,17 @@ img{max-width:100%;height:auto}
   .cs-stats span{font-size:11px}
 }
 @media (min-width:1024px){
-  .cs__stage{height:500px}
+  .cs__stage{height:378px}
   .cs-card{width:343px;height:370px}
   .cs-card__body{padding:20px 26px 18px}
-  .cs-card__more{margin:16px -26px -18px;padding:14px 26px}
   .cs-card__title{font-size:17px}
 }
 @media (max-width:760px){
-  .uc-top{padding:28px 16px 28px}
+  .uc-top{padding:16px 16px 0}
   .usecases h2{max-width:none}
 }
 @media (max-width:639px){
   .cs-card__body{padding:14px 16px 12px}
-  .cs-card__more{margin:12px -16px -12px;padding:11px 16px}
   .cs-card__text{margin-top:12px}
   .cs-card__title{font-size:13px;line-height:1.2}
   .cs-stats{gap:4px 6px}

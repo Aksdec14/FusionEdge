@@ -71,7 +71,7 @@ import Honeycomb from "../components/Honeycomb.astro";
 </div>
 <div class="cs" aria-roledescription="carousel" aria-label="Use cases">
 <div class="cs__stage" id="csStage" tabindex="0">
-<article class="cs-card">
+<article class="cs-card" data-href="/stories/asset-management">
 <div class="cs-card__dim"></div>
 <div class="cs-card__body">
 <span class="cs-card__badge">Assets</span>
@@ -84,11 +84,10 @@ import Honeycomb from "../components/Honeycomb.astro";
 <div><b class="uc-p">60%</b><span>lower warehouse rental</span></div>
 <div><b class="uc-g">4,120</b><span>ghost assets removed from the books</span></div>
 </dl>
-<a class="cs-card__more" href="/stories/asset-management">Read the case study →</a>
 </div>
 </div>
 </article>
-<article class="cs-card">
+<article class="cs-card" data-href="/stories/facility-operations">
 <div class="cs-card__dim"></div>
 <div class="cs-card__body">
 <span class="cs-card__badge">Campuses</span>
@@ -101,11 +100,10 @@ import Honeycomb from "../components/Honeycomb.astro";
 <div><b class="uc-p">18%</b><span>more electricity cost recovered</span></div>
 <div><b class="uc-g">5 days</b><span>to set up a new campus, down from 3 weeks</span></div>
 </dl>
-<a class="cs-card__more" href="/stories/facility-operations">Read the case study →</a>
 </div>
 </div>
 </article>
-<article class="cs-card">
+<article class="cs-card" data-href="/stories/pantry">
 <div class="cs-card__dim"></div>
 <div class="cs-card__body">
 <span class="cs-card__badge">Pantry</span>
@@ -118,11 +116,10 @@ import Honeycomb from "../components/Honeycomb.astro";
 <div><b class="uc-p">92%</b><span>fewer escalations to management</span></div>
 <div><b class="uc-g">4.6</b><span>employee satisfaction, up from 3.1 out of 5</span></div>
 </dl>
-<a class="cs-card__more" href="/stories/pantry">Read the case study →</a>
 </div>
 </div>
 </article>
-<article class="cs-card">
+<article class="cs-card" data-href="/stories/facility-operations">
 <div class="cs-card__dim"></div>
 <div class="cs-card__body">
 <span class="cs-card__badge">Energy</span>
@@ -135,11 +132,10 @@ import Honeycomb from "../components/Honeycomb.astro";
 <div><b class="uc-g">100%</b><span>of meter readings were on paper before</span></div>
 <div><b class="uc-p">0%</b><span>of after-hours tenant power was billed before</span></div>
 </dl>
-<a class="cs-card__more" href="/stories/facility-operations">Read the case study →</a>
 </div>
 </div>
 </article>
-<article class="cs-card">
+<article class="cs-card" data-href="/stories/facility-operations">
 <div class="cs-card__dim"></div>
 <div class="cs-card__body">
 <span class="cs-card__badge">Checklists</span>
@@ -152,11 +148,10 @@ import Honeycomb from "../components/Honeycomb.astro";
 <div><b class="uc-g">Photo</b><span>proof on every closed task</span></div>
 <div><b class="uc-p">10 wks</b><span>to roll the same standard out</span></div>
 </dl>
-<a class="cs-card__more" href="/stories/facility-operations">Read the case study →</a>
 </div>
 </div>
 </article>
-<article class="cs-card">
+<article class="cs-card" data-href="/stories/pantry">
 <div class="cs-card__dim"></div>
 <div class="cs-card__body">
 <span class="cs-card__badge">Orders</span>
@@ -169,11 +164,10 @@ import Honeycomb from "../components/Honeycomb.astro";
 <div><b class="uc-p">18</b><span>meeting rooms, each with its own menu</span></div>
 <div><b class="uc-g">25%</b><span>less wastage of milk, snacks and fruit</span></div>
 </dl>
-<a class="cs-card__more" href="/stories/pantry">Read the case study →</a>
 </div>
 </div>
 </article>
-<article class="cs-card">
+<article class="cs-card" data-href="/stories/asset-management">
 <div class="cs-card__dim"></div>
 <div class="cs-card__body">
 <span class="cs-card__badge">Register</span>
@@ -186,11 +180,10 @@ import Honeycomb from "../components/Honeycomb.astro";
 <div><b class="uc-p">1,140</b><span>idle assets cleared for donation or scrap</span></div>
 <div><b class="uc-g">8 wks</b><span>from first audit to a clean register</span></div>
 </dl>
-<a class="cs-card__more" href="/stories/asset-management">Read the case study →</a>
 </div>
 </div>
 </article>
-<article class="cs-card">
+<article class="cs-card" data-href="/stories/facility-operations">
 <div class="cs-card__dim"></div>
 <div class="cs-card__body">
 <span class="cs-card__badge">Visibility</span>
@@ -203,7 +196,6 @@ import Honeycomb from "../components/Honeycomb.astro";
 <div><b class="uc-p">1 in 3</b><span>breakdowns were reported before</span></div>
 <div><b class="uc-g">10 wks</b><span>to put every campus on the system</span></div>
 </dl>
-<a class="cs-card__more" href="/stories/facility-operations">Read the case study →</a>
 </div>
 </div>
 </article>
@@ -470,9 +462,9 @@ import Honeycomb from "../components/Honeycomb.astro";
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
   const phone = matchMedia('(max-width: 760px)');
   const getConfig = w =>
-    w < 640  ? { distanceDivisor: 120, velocityDivisor: 500, sensitivity: 180, xMultiplier: 90,  yMultiplier: 20, rotationMultiplier: 8,  scaleReduction: .06 } :
-    w < 1024 ? { distanceDivisor: 160, velocityDivisor: 650, sensitivity: 220, xMultiplier: 130, yMultiplier: 30, rotationMultiplier: 10, scaleReduction: .09 } :
-               { distanceDivisor: 200, velocityDivisor: 800, sensitivity: 250, xMultiplier: 170, yMultiplier: 40, rotationMultiplier: 12, scaleReduction: .12 };
+    w < 640  ? { distanceDivisor: 120, velocityDivisor: 500, sensitivity: 180, xMultiplier: 90,  yMultiplier: 6, rotationMultiplier: 4, scaleReduction: .06 } :
+    w < 1024 ? { distanceDivisor: 160, velocityDivisor: 650, sensitivity: 220, xMultiplier: 130, yMultiplier: 10, rotationMultiplier: 5, scaleReduction: .09 } :
+               { distanceDivisor: 200, velocityDivisor: 800, sensitivity: 250, xMultiplier: 170, yMultiplier: 10, rotationMultiplier: 6, scaleReduction: .12 };
   let config = getConfig(innerWidth);
   const lerpRange = (v, input, output) => {
     if (v <= input[0]) return output[0];
@@ -532,12 +524,11 @@ import Honeycomb from "../components/Honeycomb.astro";
     springTo(Math.round(progress) + 1);
     arm();
   };
-  const linkAt = (x, y) => {
-    const link = stage.querySelector('.cs-card.is-front .cs-card__more');
-    if (!link) return null;
-    const r = link.getBoundingClientRect();
-    const pad = 8;
-    return x >= r.left - pad && x <= r.right + pad && y >= r.top - pad && y <= r.bottom + pad ? link : null;
+  const frontCardAt = (x, y) => {
+    const card = stage.querySelector('.cs-card.is-front');
+    if (!card) return null;
+    const r = card.getBoundingClientRect();
+    return x >= r.left && x <= r.right && y >= r.top && y <= r.bottom ? card : null;
   };
   const hold = () => {
     clearInterval(auto);
@@ -565,7 +556,7 @@ import Honeycomb from "../components/Honeycomb.astro";
       samples = [[performance.now(), e.clientX]];
       try { drag.setPointerCapture(e.pointerId); } catch (err) {}
     }
-    if (!dragging) { drag.style.cursor = linkAt(e.clientX, e.clientY) ? 'pointer' : ''; return; }
+    if (!dragging) { drag.style.cursor = frontCardAt(e.clientX, e.clientY) ? 'pointer' : ''; return; }
     progress += -(e.clientX - lastX) / config.sensitivity;
     lastX = e.clientX;
     samples.push([performance.now(), e.clientX]); if (samples.length > 6) samples.shift();
@@ -578,8 +569,8 @@ import Honeycomb from "../components/Honeycomb.astro";
     armed = false;
     if (!dragging) {
       if (allowLink && tapped) {
-        const link = linkAt(e.clientX, e.clientY);
-        if (link) { location.href = link.href; return; }
+        const card = frontCardAt(e.clientX, e.clientY);
+        if (card) { location.href = card.dataset.href; return; }
       }
       if (!phone.matches) arm();
       return;
@@ -587,8 +578,8 @@ import Honeycomb from "../components/Honeycomb.astro";
     dragging = false;
     const dragDistance = e.clientX - startX;
     if (allowLink && tapped) {
-      const link = linkAt(e.clientX, e.clientY);
-      if (link) { location.href = link.href; return; }
+      const card = frontCardAt(e.clientX, e.clientY);
+      if (card) { location.href = card.dataset.href; return; }
     }
     const [t0, x0] = samples[0], [t1, x1] = samples[samples.length - 1];
     const vel = t1 > t0 ? (x1 - x0) / ((t1 - t0) / 1000) : 0;
@@ -602,6 +593,10 @@ import Honeycomb from "../components/Honeycomb.astro";
   stage.addEventListener('keydown', e => {
     if (e.key === 'ArrowRight') { e.preventDefault(); springTo(Math.round(progress) + 1); arm(); }
     if (e.key === 'ArrowLeft') { e.preventDefault(); springTo(Math.round(progress) - 1); arm(); }
+    if (e.key === 'Enter') {
+      const card = stage.querySelector('.cs-card.is-front');
+      if (card && card.dataset.href) location.href = card.dataset.href;
+    }
   });
   addEventListener('resize', () => { config = getConfig(innerWidth); render(); });
   render();

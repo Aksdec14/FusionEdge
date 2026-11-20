@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 560" fill="none">
+  <defs>
+    <linearGradient id="bands" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="260" y2="150" spreadMethod="repeat">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.28" stop-color="#ffffff"/>
+      <stop offset="0.4" stop-color="#f1f2f4"/>
+      <stop offset="0.52" stop-color="#ffffff"/>
+      <stop offset="0.7" stop-color="#ffffff"/>
+      <stop offset="0.82" stop-color="#f6f7f8"/>
+      <stop offset="0.92" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#ffffff"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="560" fill="url(#bands)"/>
+</svg>

@@ -322,6 +322,7 @@ computeScatter=function(){
   const x0=Math.min(...xs)-90,x1=Math.max(...xs)+90,y0=Math.min(...ys)-(d?180:90),y1=Math.max(...ys)+160;
   VB_SC=`${x0} ${y0} ${x1-x0} ${y1-y0}`;
 };
+const shown=s=>s==='google forms'?'Google Forms':s.charAt(0).toUpperCase()+s.slice(1);
 function mobLines(s){
   const w=s.split(' ');
   if(w.length<2)return [s];
@@ -331,7 +332,6 @@ function mobLines(s){
   return [a,b];
 }
 function drawMobNotes(){
-  const shown=s=>s==='google forms'?'Google Forms':s.charAt(0).toUpperCase()+s.slice(1);
   ORDER.forEach((id,i)=>{
     if(!ALT[id])return;
     const [tx,ty]=SCATTER[id],g=el('g',{class:'hand'},handG);g.dataset.i=i;
@@ -354,7 +354,7 @@ function drawAltNotes(){
     const [tx,ty]=SCATTER[id],g=el('g',{class:'hand'},handG);g.dataset.i=i;
     g.style.setProperty('--note',GROUPS[GROUP_OF[id]].c);
     const up=ty<mid,dir=up?-1:1;
-    const w=ALT[id].split(' '),lines=ALT[id].length>11&&w.length>1?[w.slice(0,Math.ceil(w.length/2)).join(' '),w.slice(Math.ceil(w.length/2)).join(' ')]:[ALT[id]];
+    const label=shown(ALT[id]),w=label.split(' '),lines=label.length>11&&w.length>1?[w.slice(0,Math.ceil(w.length/2)).join(' '),w.slice(Math.ceil(w.length/2)).join(' ')]:[label];
     const ly=up?ty-120-(lines.length-1)*21:ty+136;
     const t=el('text',{x:tx,y:ly,'text-anchor':'middle'},g);
     lines.forEach((l,k)=>el('tspan',{x:tx,dy:k?21:0},t).textContent=l);
