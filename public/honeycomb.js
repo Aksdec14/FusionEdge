@@ -92,7 +92,7 @@ GROUPS.forEach(gr=>{
   gr.title=t;
 });
 function lattice(x0,y0,cols,rows=3){const s=[];for(let c=0;c<cols;c++)for(let r=0;r<rows;r++)s.push([x0+123*c,y0+142*r+(c%2?71:0),c,r]);return s}
-let IND_SLOTS,ROLE_SLOTS,VB_FULL,VB_CL,LAY='',CENTER=[949,410];
+let IND_SLOTS,ROLE_SLOTS,VB_FULL,VB_CL,LAY='',CENTER=[949,410],computeScatter;
 const legendEl=$('#legend');
 GROUPS.forEach(gr=>{const sp=document.createElement('span');sp.textContent=gr.k;sp.style.setProperty('--group',gr.c);legendEl.appendChild(sp);gr.chip=sp});
 const ORDER=GROUPS.flatMap(g=>g.ids);
@@ -254,13 +254,12 @@ function setChaos(on){
   clearTimeout(oneT);
   run++;tab('software');setMode('software');softwareStep(0,true);
   svg.classList.toggle('chaos',on);
-  show('#stats',on);titlesOn(!on);
+  show('#stats',false);titlesOn(false);
   if(on){
-    scatterAll();
+    computeScatter();scatterAll();svg.setAttribute('viewBox',VB_SC);drawAltNotes();showAltNotes(true);
     countUp();status.textContent='Imagine without FusionEdge';
   }else{
-    homeAll();
-    titlesOn(false);
+    showAltNotes(false);svg.setAttribute('viewBox',VB_FULL);homeAll();
     oneT=setTimeout(()=>titlesOn(true),reduced?0:2400);
     status.textContent='With FusionEdge';
   }
@@ -272,6 +271,13 @@ document.querySelectorAll('#modules .tabs button').forEach(b=>b.addEventListener
 },true));
 const handG=$('#hand');let VB_SC;
 computeScatter=function(){
+  if(LAY==='mob'){
+    const dx=168,dy=284;
+    ORDER.forEach((id,i)=>{const c=i%3,r=Math.floor(i/3);SCATTER[id]=[c*dx,r*dy,0]});
+    const rows=Math.ceil(ORDER.length/3);
+    VB_SC=`-108 -96 ${2*dx+216} ${(rows-1)*dy+230}`;
+    return;
+  }
   const d=LAY==='desk';
   T.forEach(([id],i)=>{const [x,y]=HOME[id];
     SCATTER[id]=[CENTER[0]+(x-CENTER[0])*(d?1.1:1.12)+(rnd(i)-.5)*(d?30:18),CENTER[1]+(y-CENTER[1])*(d?1.55:1.75)+(rnd(i+40)-.5)*(d?24:14),(rnd(i+80)-.5)*(d?16:12)]});
@@ -279,8 +285,31 @@ computeScatter=function(){
   const x0=Math.min(...xs)-90,x1=Math.max(...xs)+90,y0=Math.min(...ys)-(d?180:90),y1=Math.max(...ys)+160;
   VB_SC=`${x0} ${y0} ${x1-x0} ${y1-y0}`;
 };
+function mobLines(s){
+  const w=s.split(' ');
+  if(w.length<2)return [s];
+  const n=Math.ceil(w.length/2);
+  let a=w.slice(0,n).join(' '),b=w.slice(n).join(' ');
+  if(a.length>14&&w.length>2){a=w[0];b=w.slice(1).join(' ')}
+  return [a,b];
+}
+function drawMobNotes(){
+  const shown=s=>s==='google forms'?'Google Forms':s.charAt(0).toUpperCase()+s.slice(1);
+  ORDER.forEach((id,i)=>{
+    if(!ALT[id])return;
+    const [tx,ty]=SCATTER[id],g=el('g',{class:'hand'},handG);g.dataset.i=i;
+    g.style.setProperty('--note',GROUPS[GROUP_OF[id]].c);
+    const lines=mobLines(shown(ALT[id]));
+    const tip=ty+112,y=tip+24,t=el('text',{x:tx,y,'text-anchor':'middle'},g);
+    lines.forEach((l,k)=>el('tspan',{x:tx,dy:k?24:0},t).textContent=l);
+    const ay=ty+66,bend=(i%2?1:-1)*18,f=v=>v.toFixed(1);
+    el('path',{d:`M${f(tx)} ${f(ay)} C ${f(tx+bend)} ${f(ay+20)}, ${f(tx+bend*.35)} ${f(tip-14)}, ${f(tx)} ${f(tip)}`,pathLength:1},g);
+    el('path',{d:`M${f(tx-7)} ${f(tip-9)} L${f(tx)} ${f(tip)} L${f(tx+7)} ${f(tip-9)}`,pathLength:1},g);
+  });
+}
 function drawAltNotes(){
   handG.innerHTML='';
+  if(LAY==='mob'){drawMobNotes();return}
   const tiles=T.map(([id])=>SCATTER[id]);
   const ys=tiles.map(p=>p[1]),mid=(Math.min(...ys)+Math.max(...ys))/2,notes=[];
   T.forEach(([id],i)=>{
@@ -341,11 +370,6 @@ function drawAltNotes(){
   });
 }
 function showAltNotes(on){[...handG.children].forEach(g=>{clearTimeout(g._t);if(on)g._t=setTimeout(()=>g.classList.add('on'),reduced?0:700+g.dataset.i*45);else g.classList.remove('on')})}
-const _setChaos=setChaos;
-setChaos=function(on){_setChaos(on);
-  show('#stats',false);
-  if(on){computeScatter();scatterAll();svg.setAttribute('viewBox',VB_SC);drawAltNotes();showAltNotes(true)}
-  else{showAltNotes(false);svg.setAttribute('viewBox',VB_FULL)}};
 const _apply=applyPositions;applyPositions=function(){_apply();if(chaosOn&&VB_SC){svg.setAttribute('viewBox',VB_SC);drawAltNotes();showAltNotes(true)}};
 document.querySelectorAll('#modules .tabs button').forEach(b=>b.addEventListener('click',()=>showAltNotes(false),true));
 function setVH(){const h=Math.min(window.innerHeight,(screen&&screen.availHeight)||9999,1100);document.documentElement.style.setProperty('--vh',h+'px')}
