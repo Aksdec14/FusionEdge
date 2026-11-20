@@ -166,9 +166,29 @@ function placeArrows(ids){
     nr.style.right='auto';
   }
 }
+function twoRowPos(n){
+  const dx=123,dy=142,shift=71,cols=Math.ceil(n/2),botN=n-cols,s=[];
+  if(botN===cols&&cols>=3){
+    for(let c=0;c<cols;c++)s.push([c*dx,c%2?shift:0]);
+    for(let c=0;c<cols;c++)s.push([c*dx,dy+(c%2?shift:0)]);
+    return s;
+  }
+  const gap=168,x0=((cols-1)*gap-(botN-1)*gap)/2;
+  for(let c=0;c<cols;c++)s.push([c*gap,0]);
+  for(let c=0;c<botN;c++)s.push([x0+c*gap,dy]);
+  return s;
+}
+function onFrame(pts,frame){
+  const mid=a=>{let x0=Infinity,x1=-Infinity,y0=Infinity,y1=-Infinity;a.forEach(([x,y])=>{x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y)});return[(x0+x1)/2,(y0+y1)/2]};
+  const [fx,fy]=mid(frame),[px,py]=mid(pts);
+  return pts.map(([x,y])=>[x+fx-px,y+fy-py]);
+}
 function cluster(ids,kind){
   lastCl=[ids,kind];const slots=kind==='ind'?IND_SLOTS:ROLE_SLOTS;
-  const sel=new Map(ids.map((id,k)=>[id,slots[k]]));
+  const mobRole=LAY==='mob'&&kind==='role';
+  const frame=mobRole?twoRowPos(Math.max(...ROLES.map(d=>d[1].length))):null;
+  const grid=mobRole?onFrame(twoRowPos(ids.length),frame):null;
+  const sel=new Map(ids.map((id,k)=>[id,grid?grid[k]:slots[k]]));
   T.forEach(([id])=>{
     const {g}=TILE[id],s=sel.get(id);
     if(s){g.style.transform=`translate(${s[0]}px,${s[1]}px)`;g.className.baseVal='tile '+g.dataset.c}
@@ -176,7 +196,8 @@ function cluster(ids,kind){
   });
   if(kind==='role')placeArrows(ids);
   if(LAY!=='desk'){
-    const pts=ids.map((_,k)=>slots[k]).filter(Boolean);
+    const span=kind==='role'?Math.max(...ROLES.map(d=>d[1].length)):ids.length;
+    const pts=frame||Array.from({length:span},(_,k)=>slots[k]).filter(Boolean);
     let minX=Infinity,maxX=-Infinity,minY=Infinity,maxY=-Infinity;
     pts.forEach(([x,y])=>{minX=Math.min(minX,x);maxX=Math.max(maxX,x);minY=Math.min(minY,y);maxY=Math.max(maxY,y)});
     const x0=minX-100,y0=minY-96,x1=maxX+100,y1=maxY+110;
