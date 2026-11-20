@@ -18,7 +18,6 @@ html{color-scheme:light;background:#fff}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;overflow-x:clip}
 .btn{border-radius:99px;font:inherit;cursor:pointer}
 p{font-size:var(--type-body);line-height:1.5;color:var(--muted);max-width:480px;margin:0 auto 30px}
-.wrap{max-width:none;margin:0 auto}
 html,body{background:#fff!important}
 nav.top{position:sticky;top:0;z-index:600;isolation:isolate;background:#fff;align-items:center;padding:18px 5vw;border-bottom:1px solid #eef1f3}
 nav.top .links{display:flex;gap:30px;list-style:none;padding:0}
@@ -35,7 +34,6 @@ nav.top .btn{justify-self:end}
 nav.top .btn{background:#5D1F72;color:#fff;border:1px solid #5D1F72;transition:background .3s,color .3s}
 body,button,input{font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
 nav.top{padding-top:16px;padding-bottom:16px}
-.wrap{padding:var(--section-y) 3vw}
 .hero{position:relative;max-width:none;display:flex;align-items:center;justify-content:center;padding:var(--section-y) 24px;background:#fff}
 .hero-copy{position:relative;z-index:1;width:min(1080px,calc(100vw - 10vw));max-width:1080px;margin:0 auto;text-align:center}
 .hero h1{margin:calc(clamp(18px,3vh,32px) - 3px) 0 0;padding:calc(clamp(10px,2vh,18px) - 2px) 0 0;font-family:"Public Sans",system-ui,sans-serif;font-style:italic;font-weight:600;font-size:clamp(40px,5vw,64px);line-height:1.15;letter-spacing:-.03em;color:#1a1424}
@@ -91,11 +89,6 @@ img{max-width:100%;height:auto}
   .touch h2 em{border-bottom-width:4px}
 }
 
-/* --- Large screens (>=1600px): keep content centered --- */
-@media (min-width:1600px){
-  .wrap{max-width:1800px;margin-left:auto;margin-right:auto}
-}
-.wrap{padding-bottom:clamp(8px,2vh,20px)}
 .certs{background:#5D1F72;padding:var(--section-y) 16px;text-align:center;color:#fff}
 .certs h2{margin:0;padding-bottom:36px;font-family:"Public Sans",system-ui,sans-serif;font-style:italic;font-weight:600;font-size:var(--type-h);line-height:1.2;letter-spacing:-.03em;color:#fff}
 .certs ul{list-style:none;display:flex;flex-wrap:nowrap;justify-content:center;gap:16px;max-width:1100px;margin:28px auto 0;padding:0}

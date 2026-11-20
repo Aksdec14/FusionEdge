@@ -125,7 +125,6 @@ function titlesOn(on){show('#titles',false);show('#legend',on)}
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const show=(id,on)=>$(id).classList.toggle('hidden',!on);
 function setMode(m){
-  svg.classList.remove('focusing');
   svg.classList.toggle('clustered',m!=='software');
   svg.setAttribute('viewBox',m==='software'?VB_FULL:VB_CL);
   titlesOn(m==='software');
@@ -134,7 +133,6 @@ function setMode(m){
 }
 function homeAll(){T.forEach(([id])=>{const {g,ring,extra}=TILE[id];extra.forEach(r2=>r2.classList.remove('on'));g.style.transform=`translate(${HOME[id][0]}px,${HOME[id][1]}px)`;g.className.baseVal='tile '+g.dataset.c;ring.classList.remove('on')})}
 function softwareStep(i,final){
-  svg.classList.toggle('focusing',!final&&i>=0);
   T.forEach(([id])=>{
     const gi=GROUP_OF[id],{g,ring}=TILE[id];
     g.className.baseVal='tile '+g.dataset.c+(final||gi<=i?'':' lo');
@@ -229,13 +227,13 @@ async function playOnly(v){const tok=++run;try{await VIEWS[v](tok);if(tok===run&
 const fit=()=>{const r=$('#modules').getBoundingClientRect();if(LAY==='desk'&&(r.top<-4||r.bottom>innerHeight+4))$('#modules').scrollIntoView({behavior:reduced?'auto':'smooth',block:'center'})};
 document.querySelectorAll('#modules .tabs button,#modules #switch').forEach(b=>b.addEventListener('click',fit));
 document.querySelectorAll('#modules .tabs button').forEach(b=>b.addEventListener('click',()=>playOnly(b.dataset.v)));
-const ALT={tick:'Zendesk',prev:'UpKeep',chk:'Paper forms',insp:'iAuditor',inc:'Email threads',read:'Excel logbook',
- comp:'Shared calendar',sla:'Freshservice',desk:'Robin',vis:'Visitor register',mail:'Courier notebook',att:'Keka',
- pan:'WhatsApp orders',shop:'Shared drive',fb:'Google Forms',cxo:'Power BI',ten:'Yardi',caf:'Petpooja',dar:'Asset Panda',
- aud:'Clipboard audits',amc:'Google Sheets',hlth:'Vendor portal',dash:'Excel pivots',po:'Tally',inv:'Zoho Inventory',ven:'Phone calls'};
+const ALT={tick:'mail',prev:'paper sheets',chk:'Printed checklists',insp:'paper clipboard',inc:'WhatsApp group',read:'excel',
+ comp:'excel',sla:'email',desk:'excel',vis:'paper visitor book',mail:'paper register',att:'attendance register',
+ pan:'sticky notes',fb:'google forms',caf:'paper sheets',dar:'paper register',
+ aud:'Printed Asset List',amc:'email',hlth:'preprinted history card',po:'mail',inv:'Excel'};
 const rnd=i=>{const x=Math.sin(i*127.1+311.7)*43758.5453;return x-Math.floor(x)};
 const SCATTER={};
-T.forEach(([id])=>{const w=ALT[id].split(' '),lines=ALT[id].length>10&&w.length>1?[w.slice(0,Math.ceil(w.length/2)).join(' '),w.slice(Math.ceil(w.length/2)).join(' ')]:[ALT[id]];
+T.forEach(([id])=>{if(!ALT[id])return;const w=ALT[id].split(' '),lines=ALT[id].length>10&&w.length>1?[w.slice(0,Math.ceil(w.length/2)).join(' '),w.slice(Math.ceil(w.length/2)).join(' ')]:[ALT[id]];
   const t=el('text',{class:'alt',x:0,y:lines.length>1?-4:6},TILE[id].g);
   lines.forEach((l,i)=>{el('tspan',{x:0,dy:i?20:0},t).textContent=l})});
 function computeScatter(){
@@ -293,7 +291,9 @@ function drawAltNotes(){
   handG.innerHTML='';
   const ys=T.map(([id])=>SCATTER[id][1]),mid=(Math.min(...ys)+Math.max(...ys))/2;
   T.forEach(([id],i)=>{
+    if(!ALT[id])return;
     const [tx,ty]=SCATTER[id],g=el('g',{class:'hand'},handG);g.dataset.i=i;
+    g.style.setProperty('--note',GROUPS[GROUP_OF[id]].c);
     const up=ty<mid,dir=up?-1:1;
     const w=ALT[id].split(' '),lines=ALT[id].length>11&&w.length>1?[w.slice(0,Math.ceil(w.length/2)).join(' '),w.slice(Math.ceil(w.length/2)).join(' ')]:[ALT[id]];
     const ay=ty+dir*66,by=ty+dir*112,ly=up?by-8-(lines.length-1)*21:by+24;
