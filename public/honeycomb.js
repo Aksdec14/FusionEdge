@@ -233,14 +233,6 @@ const ALT={tick:'mail',prev:'paper sheets',chk:'Printed checklists',insp:'paper 
  aud:'Printed Asset List',amc:'email',hlth:'preprinted history card',po:'mail',inv:'Excel'};
 const rnd=i=>{const x=Math.sin(i*127.1+311.7)*43758.5453;return x-Math.floor(x)};
 const SCATTER={};
-T.forEach(([id])=>{if(!ALT[id])return;const w=ALT[id].split(' '),lines=ALT[id].length>10&&w.length>1?[w.slice(0,Math.ceil(w.length/2)).join(' '),w.slice(Math.ceil(w.length/2)).join(' ')]:[ALT[id]];
-  const t=el('text',{class:'alt',x:0,y:lines.length>1?-4:6},TILE[id].g);
-  lines.forEach((l,i)=>{el('tspan',{x:0,dy:i?20:0},t).textContent=l})});
-function computeScatter(){
-  const d=LAY==='desk';
-  T.forEach(([id],i)=>{const [x,y]=HOME[id];
-    SCATTER[id]=[CENTER[0]+(x-CENTER[0])*(d?1.06:1.03)+(rnd(i)-.5)*(d?50:28),(d?CENTER[1]+30:CENTER[1])+(y-CENTER[1])*(d?1.05:1.06)+(rnd(i+40)-.5)*(d?40:26),(rnd(i+80)-.5)*(d?26:18)]});
-}
 function scatterAll(){T.forEach(([id])=>{const [x,y,r]=SCATTER[id];TILE[id].g.style.transform=`translate(${x}px,${y}px) rotate(${r}deg)`})}
 function applyPositions(){
   if(chaosOn)scatterAll();
