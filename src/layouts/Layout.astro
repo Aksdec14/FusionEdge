@@ -255,27 +255,26 @@ img{max-width:100%;height:auto}
 .touch-side svg{width:16px;height:16px;color:#5D1F72;flex:none}
 .touch-side a{display:inline-block;margin-top:8px;color:#5D1F72;font-size:var(--type-body);font-weight:600;text-decoration:none}
 .touch-side a:hover{text-decoration:underline}
-.touch-faq{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:clamp(24px,4vw,48px);margin-top:0;align-items:start}
-.touch-faq-intro h2{max-width:10em}
-.touch-faq-list{position:relative;z-index:1;background:#5D1F72;color:#fff;padding:16px 28px}
-.touch-faq-list::before{content:"";position:absolute;z-index:-1;top:0;bottom:0;left:0;width:100vw;background:#5D1F72}
-.touch-faq-list details{border-bottom:1px solid rgba(255,255,255,.35);padding:16px 0}
-.touch-faq-list details:last-child{padding-bottom:32px;margin-bottom:28px}
-.touch-faq-list summary{display:flex;align-items:center;justify-content:space-between;gap:16px;cursor:pointer;list-style:none;font-weight:600;font-size:var(--type-body);letter-spacing:-.02em;color:#fff}
+.touch-faq{width:100vw;margin-left:calc(50% - 50vw);margin-top:clamp(64px,10vh,120px);padding:clamp(48px,7vh,80px) max(20px,calc((100vw - 1080px) / 2));background:#F3EEF6;color:#1a1424}
+.touch-faq-head{display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:32px}
+.touch-faq h2{margin:0;max-width:14em;font-family:"Public Sans",system-ui,sans-serif;font-style:italic;font-weight:600;font-size:var(--type-h);line-height:1.2;letter-spacing:-.03em;color:#1a1424}
+.touch-faq-cta{display:flex;flex-direction:row;align-items:center;gap:18px;flex:none}
+.touch-faq-cta p{margin:0;max-width:190px;font-size:var(--type-body);line-height:1.5;color:#6b7280}
+.touch-faq-btn{display:inline-flex;align-items:center;justify-content:center;height:36px;padding:0 16px;border-radius:99px;background:#111;color:#fff;font-family:"Public Sans",system-ui,sans-serif;font-size:var(--type-body);font-weight:600;text-decoration:none;white-space:nowrap}
+.touch-faq-btn:hover{background:#000}
+.touch-faq-list{margin-top:clamp(28px,4vh,40px);padding:0;background:transparent;color:#1a1424}
+.touch-faq-list details{border:0;padding:16px 0}
+.touch-faq-list summary{display:flex;align-items:center;justify-content:space-between;gap:24px;cursor:pointer;list-style:none;font-family:"Public Sans",system-ui,sans-serif;font-style:normal;font-weight:500;font-size:var(--type-body);letter-spacing:-.02em;color:#1a1424}
 .touch-faq-list summary::-webkit-details-marker{display:none}
-.touch-faq-list summary::after{content:"";width:8px;height:8px;border-radius:50%;border:1.5px solid #fff;flex:none}
-.touch-faq-list details[open] summary::after{background:#fff}
-.touch-faq-list details p{margin:10px 0 4px;font-size:13px;color:#fff}
+.touch-faq-list summary::after{content:"+";border:0;width:auto;height:auto;border-radius:0;font-size:1.25em;font-weight:400;line-height:1;color:#1a1424;flex:none}
+.touch-faq-list details[open] summary::after{content:"−";background:none}
+.touch-faq-list details p{margin:10px 0 0;max-width:640px;font-size:var(--type-body);line-height:1.5;color:#6b7280}
 @media (min-width:761px){
   .touch{background:#fff}
   .touch-grid{width:100vw;margin-left:calc(50% - 50vw);grid-template-columns:60vw 40vw;gap:0}
   .touch-form{padding-left:max(5vw,calc((100vw - 1080px) / 2));padding-right:clamp(32px,5vw,72px)}
   .touch-side{padding-right:max(5vw,calc((100vw - 1080px) / 2))}
-  .touch-faq{position:relative;z-index:1;width:100vw;margin-left:calc(50% - 50vw);grid-template-columns:40vw 60vw;gap:0;align-items:center;background:linear-gradient(90deg,#F3EEF6 40vw,#fff 40vw)}
-  .touch-faq-intro{padding:32px 48px;text-align:center}
-  .touch-faq-intro h2{margin-left:auto;margin-right:auto}
-  .touch-faq-list{padding:48px 48px 20px 36px}
-  .touch-faq::before{content:none}
+  .touch-faq{background:#F3EEF6}
 }
 @media (max-width:760px){
   .touch{padding-left:16px;padding-right:16px}
@@ -286,12 +285,11 @@ img{max-width:100%;height:auto}
   .touch-form textarea{min-height:56px}
   .touch-form button{align-self:flex-start;margin-top:14px}
   .touch-side{border-left:0;border-top:1px solid #e3e7ec;padding:28px 0 0}
-  .touch-faq{margin-top:40px;margin-left:-16px;margin-right:-16px;padding:28px 16px 0;background:#F3EEF6}
-  .touch-faq-intro{text-align:left}
-  .touch-faq-intro h2{margin-left:0;margin-right:0}
-  .touch-faq-list{margin-left:-16px;margin-right:-16px;padding:24px 28px 16px}
-  .touch-faq-list::before{left:0;width:100%}
-  .touch-faq-list details:last-child{padding-bottom:24px;margin-bottom:12px}
+  .touch-faq{margin-top:48px;padding:36px 16px;background:#F3EEF6}
+  .touch-faq-head{flex-direction:column;align-items:flex-start;gap:16px}
+  .touch-faq-cta{flex-direction:column;align-items:flex-start}
+  .touch-faq-cta p{max-width:none}
+  .touch-faq-list details{padding:14px 0}
 }
 .wall{--brand:#5D1F72;--ink:#2a2230;min-height:100vh;min-height:100svh;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;padding:clamp(20px,4vh,56px) 20px;background:#f4f4f4;font-family:"Public Sans",system-ui,sans-serif;overflow:visible}
 .wall p{max-width:none;margin:0;color:inherit}
