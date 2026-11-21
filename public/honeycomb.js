@@ -23,7 +23,7 @@ const GROUPS=[
  {k:'CMMS',n:'Computerized Maintenance Management System',c:'#2f6fe0',tx:397,ty:130,ids:['tick','prev','chk','inc','read','sla']},
  {k:'IWMS',n:'Integrated Workplace Management System',c:'#12a873',tx:949,ty:130,ids:['desk','vis','mail','pan','shop','fb','ten','caf','att']},
  {k:'CAMS',n:'Computer-Aided Maintenance System',c:'#ec7c1c',tx:1502,ty:130,ids:['hlth','amc','dash']},
- {k:'Project Management',n:'Plan, schedule and track project work',c:'#d6437a',tx:397,ty:611,ids:['insp','comp']},
+ {k:'Project Management',n:'Plan, schedule and track project work',c:'#b8860b',tx:397,ty:611,ids:['insp','comp']},
  {k:'EAM',n:'Enterprise Asset Management',c:'#6a2a8a',tx:949,ty:611,ids:['dar','aud','cxo']},
  {k:'ERP',n:'Enterprise Resource Planning',c:'#0e9bb0',tx:1502,ty:611,ids:['inv','ven','po']}
 ];
