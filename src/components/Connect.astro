@@ -39,9 +39,9 @@
 
   #fe-connect .fc-lines{position:absolute;inset:0;width:100%;height:100%;overflow:visible;z-index:1}
   #fe-connect .fc-line{fill:none;stroke:var(--line);stroke-width:1.2;stroke-linecap:round;opacity:.45;vector-effect:non-scaling-stroke}
-  #fe-connect .fc-pulse{fill:none;stroke:var(--p);stroke-width:2.2;stroke-linecap:round;vector-effect:non-scaling-stroke;
-    stroke-dasharray:36 1600;stroke-dashoffset:36;animation:fcPulse 3.6s linear infinite;animation-delay:var(--d)}
-  @keyframes fcPulse{to{stroke-dashoffset:-1600}}
+  #fe-connect .fc-pulse{fill:none;stroke:#5D1F72;stroke-width:2.6;stroke-linecap:round;vector-effect:non-scaling-stroke;
+    stroke-dasharray:16 84;stroke-dashoffset:0;animation:fcPulse 2.4s linear infinite;animation-delay:var(--d)}
+  @keyframes fcPulse{to{stroke-dashoffset:-100}}
   #fe-connect .fc-cat text{font-weight:600;fill:var(--cat);letter-spacing:-.01em}
 
   /* Hub */
@@ -154,6 +154,7 @@
   const clear=()=>{ [...svg.children].forEach(n=>{ if(n.tagName!=='defs') n.remove(); }); wrap.innerHTML=''; };
   const path=(d,cls,delay)=>{ const p=document.createElementNS(NS,'path'); p.setAttribute('d',d); p.setAttribute('class',cls);
     if(cls==='fc-line') p.setAttribute('marker-end','url(#fcArrow)');
+    if(cls==='fc-pulse') p.setAttribute('pathLength','100');
     if(delay!=null) p.style.setProperty('--d',delay+'s'); svg.appendChild(p); };
   const label=(text,x,y,{anchor='start',size=13,pad=6}={})=>{
     const g=document.createElementNS(NS,'g'); g.setAttribute('class','fc-cat');
@@ -214,7 +215,9 @@
     hub.style.left='50%'; hub.style.top='28px';
     const BUS=70, xOf=i=>SIDE+(i+.5)*colW;
     path(`M ${W/2} 50 L ${W/2} ${BUS}`,'fc-line');
+    path(`M ${W/2} 50 L ${W/2} ${BUS}`,'fc-pulse',0);
     path(`M ${xOf(0)} ${BUS} L ${xOf(n-1)} ${BUS}`,'fc-line');
+    path(`M ${xOf(0)} ${BUS} L ${xOf(n-1)} ${BUS}`,'fc-pulse',0.4);
     groups.forEach((g,i)=>{
       const x=xOf(i), last=TOP+(g.keys.length-1)*ROWH+T/2, d=`M ${x} ${BUS} L ${x} ${last}`;
       path(d,'fc-line'); path(d,'fc-pulse',i*0.45);
