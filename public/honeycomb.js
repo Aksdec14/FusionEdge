@@ -322,7 +322,7 @@ computeScatter=function(){
   const x0=Math.min(...xs)-90,x1=Math.max(...xs)+90,y0=Math.min(...ys)-(d?180:90),y1=Math.max(...ys)+160;
   VB_SC=`${x0} ${y0} ${x1-x0} ${y1-y0}`;
 };
-const shown=s=>s==='google forms'?'Google Forms':s.charAt(0).toUpperCase()+s.slice(1);
+const shown=s=>s.split(' ').map(w=>w.charAt(0).toUpperCase()+w.slice(1)).join(' ');
 function mobLines(s){
   const w=s.split(' ');
   if(w.length<2)return [s];
