@@ -453,15 +453,18 @@ import Honeycomb from "../components/Honeycomb.astro";
 </aside>
 </div>
 <div class="touch-faq">
-<div class="touch-faq-head">
-<h2>Have a question?<br>We are here to answer.</h2>
-<div class="touch-faq-cta">
-<p>Still confused? No need to worry, just contact us</p>
-<a class="touch-faq-btn" href="#touch-title">Contact us</a>
+<div class="touch-faq-intro">
+<p class="touch-faq-kicker"><span aria-hidden="true"></span>FAQs</p>
+<h2>Frequently Asked Questions</h2>
+<div class="touch-faq-card">
+<span class="touch-faq-avatar"><img src="/ceo-portrait.png" alt="Rana Rajvinder Singh, Founder & CEO of Fusionedge" width="64" height="64"></span>
+<h3>Book a demo</h3>
+<p>See the modules for the sites you run. No card and no setup fee.</p>
+<a class="touch-faq-btn" href="#touch-title">Book a demo</a>
 </div>
 </div>
 <div class="touch-faq-list">
-<details>
+<details open>
 <summary>How quickly can we go live with FusionEdge?</summary>
 <p>Most teams launch their first module within weeks, with guided onboarding and data migration included.</p>
 </details>
@@ -486,6 +489,18 @@ import Honeycomb from "../components/Honeycomb.astro";
 </div>
 </section>
 
+<script is:inline>
+(function(){
+  var list=document.querySelector(".touch-faq-list");
+  if(!list)return;
+  list.addEventListener("toggle",function(e){
+    var item=e.target;
+    if(!item.open)return;
+    var all=list.querySelectorAll("details");
+    for(var i=0;i<all.length;i++) if(all[i]!==item) all[i].open=false;
+  },true);
+})();
+</script>
 <script is:inline>
 (function(){
   var root=document.querySelector('.esg-banner');
