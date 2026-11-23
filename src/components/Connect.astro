@@ -103,6 +103,7 @@
         hub=root.querySelector('.fc-hub'), stage=root.querySelector('.fc-stage'), NS='http://www.w3.org/2000/svg';
   const ic=(c,p)=>`<svg viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
   const P='#6B2288', G='#00BF88';
+  const PULSE=['#00BF88','#0e9bb0','#5D1F72','#2f6fe0','#ec7c1c'];
 
   const I={
     asset:['m','Assets',ic(P,'<rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 9h18M8 13h3M8 16h6"/>')],
@@ -150,10 +151,12 @@
   const mq=matchMedia('(max-width:900px)');
 
   const clear=()=>{ [...svg.children].forEach(n=>{ if(n.tagName!=='defs') n.remove(); }); wrap.innerHTML=''; };
-  const path=(d,cls,delay)=>{ const p=document.createElementNS(NS,'path'); p.setAttribute('d',d); p.setAttribute('class',cls);
+  const path=(d,cls,delay,color)=>{ const p=document.createElementNS(NS,'path'); p.setAttribute('d',d); p.setAttribute('class',cls);
     if(cls==='fc-line') p.setAttribute('marker-end','url(#fcArrow)');
     if(cls==='fc-pulse') p.setAttribute('pathLength','100');
-    if(delay!=null) p.style.setProperty('--d',delay+'s'); svg.appendChild(p); };
+    if(delay!=null) p.style.setProperty('--d',delay+'s');
+    if(color) p.style.stroke=color;
+    svg.appendChild(p); };
   const label=(text,x,y,{anchor='start',size=13,pad=6}={})=>{
     const g=document.createElementNS(NS,'g'); g.setAttribute('class','fc-cat');
     const t=document.createElementNS(NS,'text');
@@ -191,7 +194,7 @@
       if(y===HY) d=`M${HX+90} ${HY} L ${endX-30} ${HY}`;
       else{ const s=y<HY?-1:1;
         d=`M${HX+90} ${HY} L ${BUS-R} ${HY} Q ${BUS} ${HY} ${BUS} ${HY+s*R} L ${BUS} ${y-s*R} Q ${BUS} ${y} ${BUS+R} ${y} L ${endX-30} ${y}`; }
-      path(d,'fc-line'); path(d,'fc-pulse',i*0.55);
+      path(d,'fc-line'); path(d,'fc-pulse',i*0.55,PULSE[i]);
       label(g.cat, BUS+22, y);
       g.keys.forEach((k,j)=>tile(k,pct(X0+j*STEP,W),pct(y,H),pct(T,W)));
       ghost(pct(endX+10,W),pct(y,H),pct(T*.8,W));
@@ -218,7 +221,7 @@
     path(`M ${xOf(0)} ${BUS} L ${xOf(n-1)} ${BUS}`,'fc-pulse',0.4);
     groups.forEach((g,i)=>{
       const x=xOf(i), last=TOP+(g.keys.length-1)*ROWH+T/2, d=`M ${x} ${BUS} L ${x} ${last}`;
-      path(d,'fc-line'); path(d,'fc-pulse',i*0.45);
+      path(d,'fc-line'); path(d,'fc-pulse',i*0.45,PULSE[i]);
       label(SHORT_CAT[g.cat]||g.cat,x,BUS+20,{anchor:'middle',size:10,pad:3});
       g.keys.forEach((k,j)=>tile(k,(x/W*100)+'%',(TOP+j*ROWH+T/2)+'px',T+'px',true,colW-2));
     });

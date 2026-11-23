@@ -1,4 +1,6 @@
-<section class="twin" aria-label="Your building’s operational digital twin">
+<section class="twin" aria-labelledby="twin-title">
+  <div class="twin-frame">
+  <h2 id="twin-title">India’s First Operational Digital Twin</h2>
   <video
     autoplay
     muted
@@ -14,6 +16,7 @@
     />
     <source src="/twin-video/digital-twin-fusionedge-2200x800.mp4" type="video/mp4" />
   </video>
+  </div>
 </section>
 <script>
   const video = document.querySelector<HTMLVideoElement>(".twin video");
@@ -48,22 +51,43 @@
     padding: clamp(28px, 4vh, 48px) 5vw;
     box-sizing: border-box;
   }
+  .twin-frame {
+    background: #5D1F72;
+    border-radius: 22px;
+    box-shadow: 0 12px 32px rgba(26, 20, 36, 0.08);
+    padding: clamp(20px, 2.2vw, 36px);
+  }
+  .twin h2 {
+    margin: 0 auto 18px;
+    max-width: none;
+    text-align: center;
+    font-family: "Public Sans", system-ui, sans-serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: var(--type-h);
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+    color: #fff;
+  }
   .twin video {
     display: block;
-    width: min(100%, 960px);
+    width: 100%;
     height: auto;
     aspect-ratio: 2200 / 800;
-    margin-inline: auto;
-    background: #000;
+    margin: 0;
+    background: #fff;
+    border-radius: 12px;
+    object-fit: contain;
   }
   @media (min-width: 1025px) {
-    .twin { padding-left: 0; padding-right: 0; }
-    .twin video { width: 100%; }
+    .twin { padding-left: 24px; padding-right: 24px; }
   }
   @media (max-width: 1024px) {
     .twin video { aspect-ratio: 1080 / 1350; }
   }
   @media (max-width: 760px) {
     .twin { padding-left: 16px; padding-right: 16px; }
+    .twin-frame { padding: 16px; border-radius: 16px; }
+    .twin h2 { margin-bottom: 12px; }
   }
 </style>

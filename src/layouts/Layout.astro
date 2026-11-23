@@ -88,12 +88,12 @@ img{max-width:100%;height:auto}
   .touch h2 em{border-bottom-width:4px}
 }
 
-.certs{background:#5D1F72;padding:var(--section-y) 5vw;text-align:center;color:#fff}
-.certs h2{margin:0;padding-bottom:36px;font-family:"Public Sans",system-ui,sans-serif;font-style:italic;font-weight:600;font-size:var(--type-h);line-height:1.2;letter-spacing:-.03em;color:#fff}
+.certs{background:#fff;padding:var(--section-y) 5vw;text-align:center;color:#1a1424}
+.certs h2{margin:0;padding-bottom:36px;font-family:"Public Sans",system-ui,sans-serif;font-style:italic;font-weight:600;font-size:var(--type-h);line-height:1.2;letter-spacing:-.03em;color:#1a1424}
 .certs ul{list-style:none;display:flex;flex-wrap:nowrap;justify-content:center;gap:16px;max-width:none;margin:28px auto 0;padding:0}
 .certs li{flex:1 1 0;min-width:0;text-align:center}
 .certs svg{width:80px;height:80px;display:block;margin:0 auto;background:#fff;border:1px solid #e3e7ec;border-radius:12px}
-.certs p{max-width:none;margin:10px 0 0;font-family:"Public Sans",system-ui,sans-serif;font-weight:600;font-size:var(--type-body);line-height:1.35;color:#fff}
+.certs p{max-width:none;margin:10px 0 0;font-family:"Public Sans",system-ui,sans-serif;font-weight:600;font-size:var(--type-body);line-height:1.35;color:#1a1424}
 .esg-banner{position:relative;background:#fff;padding:8px 5vw;overflow:hidden;font-family:"Public Sans",system-ui,sans-serif}
 .esg-banner::before{content:"";position:absolute;inset:0;z-index:0;background:url("/image.png") center 58% / cover no-repeat;opacity:.05;pointer-events:none}
 .esg-banner .card{position:relative;z-index:1;display:flex;justify-content:center;width:100%;max-width:none;margin:0;height:auto;background:transparent;border:0;border-radius:0;overflow:visible}
@@ -292,8 +292,7 @@ img{max-width:100%;height:auto}
 .wall__board .note:nth-child(11){left:73%;top:47%;--rot:6deg;z-index:11}
 .wall__board .note:hover,.wall__board .note:focus-visible,.wall__board .note:focus{z-index:50;transform:rotate(0deg) translateY(-6px) scale(1.08);outline:none;box-shadow:0 2px 2px rgba(0,0,0,.06),0 30px 40px -16px rgba(0,0,0,.35)}
 .wall .note__quote{margin:0;max-width:none;color:var(--ink);font-size:clamp(18px,min(1.75vw,3vh),25px);line-height:1.18}
-.wall .note__who{margin:0;font-family:"Public Sans",system-ui,sans-serif;font-size:11px;line-height:1.35;color:rgba(42,34,48,.7)}
-.wall .note__who b{display:block;color:var(--ink);font-weight:600;font-size:12px}
+.wall .note__who{margin:auto 0 0;width:100%;text-align:right;font-family:"Public Sans",system-ui,sans-serif;font-size:12px;font-weight:600;line-height:1.3;color:rgba(42,34,48,.72)}
 .wall .c1{--bg:#f3ecf7}.wall .c2{--bg:#fff6c9}.wall .c3{--bg:#e7f8f1}.wall .c4{--bg:#ffe6ec}.wall .c5{--bg:#e9effd}
 .wall .f1{font-family:"Caveat",cursive;font-weight:700}
 .wall .f2{font-family:"Kalam",cursive}
@@ -323,6 +322,7 @@ img{max-width:100%;height:auto}
   .wall__board{height:calc(100svh - 150px)}
   .wall .note{width:50%;height:auto;min-height:30vw;padding:12px;gap:6px}
   .wall .note__quote,.wall .f1 .note__quote,.wall .f3 .note__quote,.wall .f5 .note__quote,.wall .f7 .note__quote,.wall .f8 .note__quote{font-size:15.5px;line-height:1.18}
+  .wall .note__who{font-size:11px}
   .wall__board .note:nth-child(1){left:0%;top:0%;--rot:-5deg}
   .wall__board .note:nth-child(2){left:48%;top:4%;--rot:5deg}
   .wall__board .note:nth-child(3){left:4%;top:22%;--rot:3deg}
