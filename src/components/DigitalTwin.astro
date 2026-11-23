@@ -1,22 +1,46 @@
 <section class="twin" aria-label="Your building’s operational digital twin">
   <video
-    src="/twin-video/digital-twin-fusionedge-1600x800.mp4"
-    width="1600"
-    height="800"
     autoplay
     muted
     loop
     playsinline
     preload="auto"
     aria-label="Your building’s operational digital twin"
-  ></video>
+  >
+    <source
+      src="/twin-video/digital-twin-fusionedge-mobile-1080x1350.mp4"
+      type="video/mp4"
+      media="(max-width: 1024px)"
+    />
+    <source src="/twin-video/digital-twin-fusionedge-2200x800.mp4" type="video/mp4" />
+  </video>
 </section>
 <script>
   const video = document.querySelector<HTMLVideoElement>(".twin video");
-  if (video && matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    video.removeAttribute("autoplay");
-    video.pause();
-    video.controls = true;
+  if (video) {
+    const desktop = "/twin-video/digital-twin-fusionedge-2200x800.mp4";
+    const mobile = "/twin-video/digital-twin-fusionedge-mobile-1080x1350.mp4";
+    const small = matchMedia("(max-width: 1024px)");
+    const reduce = matchMedia("(prefers-reduced-motion: reduce)");
+
+    const hold = () => {
+      if (!reduce.matches) return;
+      video.removeAttribute("autoplay");
+      video.pause();
+      video.controls = true;
+    };
+
+    const useClip = () => {
+      const next = small.matches ? mobile : desktop;
+      if (!video.currentSrc.endsWith(next)) {
+        video.src = next;
+        if (!reduce.matches) video.play().catch(() => {});
+      }
+      hold();
+    };
+
+    hold();
+    small.addEventListener("change", useClip);
   }
 </script>
 <style>
@@ -28,8 +52,16 @@
     display: block;
     width: min(100%, 960px);
     height: auto;
+    aspect-ratio: 2200 / 800;
     margin-inline: auto;
     background: #000;
+  }
+  @media (min-width: 1025px) {
+    .twin { padding-left: 0; padding-right: 0; }
+    .twin video { width: 100%; }
+  }
+  @media (max-width: 1024px) {
+    .twin video { aspect-ratio: 1080 / 1350; }
   }
   @media (max-width: 760px) {
     .twin { padding-left: 16px; padding-right: 16px; }
