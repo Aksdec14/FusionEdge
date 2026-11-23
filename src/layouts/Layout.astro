@@ -176,8 +176,9 @@ img{max-width:100%;height:auto}
 .usecases h2{margin:0 auto;max-width:16em;text-align:center;font-family:"Public Sans",system-ui,sans-serif;font-style:italic;font-weight:600;font-size:var(--type-h);line-height:1.2;letter-spacing:-.03em;color:#1a1424}
 .uc-lead{margin:8px auto 0;max-width:520px;font-family:"Public Sans",system-ui,sans-serif;font-size:var(--type-body);line-height:1.5;color:#6b7280}
 .uc-fan{--fan:1280px;position:relative;width:var(--fan);height:calc(592px * min(1, 100cqw / var(--fan)));margin:36px 0 0 calc((100% - var(--fan)) / 2);transform:scale(min(1, 100cqw / var(--fan)));transform-origin:top center}
-.uc-card{position:absolute;left:50%;top:20px;width:234px;height:500px;box-sizing:border-box;padding:8px;border-radius:22px;background:#fff;box-shadow:0 16px 34px rgba(26,20,36,.16);text-decoration:none;transform:translateX(calc(-50% + var(--x))) translateY(var(--y)) rotate(var(--r));z-index:var(--z);transition:transform .25s ease}
-.uc-card:hover,.uc-card:focus-visible{z-index:12;transform:translateX(calc(-50% + var(--x))) translateY(calc(var(--y) - 14px)) rotate(var(--r))}
+@property --spread{syntax:"<number>";inherits:true;initial-value:0}
+.uc-card{--spread:0;position:absolute;left:50%;top:20px;width:234px;height:500px;box-sizing:border-box;padding:8px;border-radius:22px;background:#fff;box-shadow:0 16px 34px rgba(26,20,36,.16);text-decoration:none;transform:translateX(calc(-50% + var(--x) * var(--spread))) translateY(calc(var(--y) * var(--spread))) rotate(calc(var(--r) * var(--spread)));z-index:var(--z);transition:--spread .7s cubic-bezier(.22,.8,.32,1)}
+.uc-fan.is-in .uc-card{--spread:1}
 .uc-card:focus-visible{outline:3px solid #00BF88;outline-offset:3px}
 .uc-face{display:flex;height:100%;box-sizing:border-box;flex-direction:column;align-items:flex-start;gap:12px;padding:16px 14px 14px;border-radius:15px;background:#fbf7f2;text-align:left;overflow:hidden}
 .uc-pill{display:inline-flex;align-items:center;height:26px;padding:0 10px;border:1.5px solid #5D1F72;border-radius:99px;font-family:"Public Sans",system-ui,sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#5D1F72}
@@ -203,10 +204,9 @@ img{max-width:100%;height:auto}
   .uc-fan.is-drag{cursor:grabbing}
   .uc-fan.is-drag .uc-card,.uc-fan.is-jump .uc-card{transition:none}
   .uc-card{position:relative;left:auto;top:auto;flex:0 0 100%;width:100%;height:auto;margin:0;transform:translateX(calc(var(--uc, 0) * -100% + var(--drag, 0px)));transition:transform .45s ease}
-  .uc-fan .uc-card:hover,.uc-fan .uc-card:focus-visible{z-index:auto;transform:translateX(calc(var(--uc, 0) * -100% + var(--drag, 0px)))}
   .uc-face{height:100%}
 }
-@media (prefers-reduced-motion:reduce){.uc-card{transition:none}}
+@media (prefers-reduced-motion:reduce){.uc-card{--spread:1;transition:none}}
 .story{max-width:720px;margin:0 auto;padding:var(--section-y) 5vw}
 .story-back{margin:0 0 18px;max-width:none}
 .story-back a{color:#5D1F72;font-size:var(--type-body);font-weight:500;text-decoration:none}

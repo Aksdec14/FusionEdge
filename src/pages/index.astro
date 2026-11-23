@@ -250,6 +250,15 @@ import Honeycomb from "../components/Honeycomb.astro";
   });
   place(0, 0);
   start();
+  if (reduce.matches) fan.classList.add("is-in");
+  else {
+    var seen = new IntersectionObserver(function(entries){
+      if (!entries[0].isIntersecting) return;
+      fan.classList.add("is-in");
+      seen.disconnect();
+    }, {threshold: 0.35});
+    seen.observe(fan);
+  }
 })();
 </script>
 <section class="esg-banner" aria-labelledby="esg-title">
