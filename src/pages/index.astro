@@ -181,14 +181,29 @@ import Honeycomb from "../components/Honeycomb.astro";
   var fan = document.querySelector(".uc-fan");
   if (!fan || fan.dataset.ucReady) return;
   fan.dataset.ucReady = "1";
-  var cards = fan.querySelectorAll(".uc-card");
-  var n = cards.length;
+  var originals = Array.prototype.slice.call(fan.querySelectorAll(".uc-card"));
+  var n = originals.length;
   var mq = window.matchMedia("(max-width: 760px)");
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var holdMs = 2000;
+  var slideMs = 700;
+  var phase = "hold";
+  var fromOff = 0;
+  var toOff = 0;
+  var holdAt = 0;
+  var slideAt = 0;
   var i = 0;
   var timer = 0;
   var drag = null;
   var moved = false;
+  var offset = 0;
+  var raf = 0;
+  var lastT = 0;
+  var arcDrag = null;
+  var hovering = false;
+  var seen = true;
+  var clones = [];
+
   function place(index, px){
     var next = (index % n + n) % n;
     var wrap = !px && ((next === 0 && i === n - 1) || (next === n - 1 && i === 0));
@@ -201,64 +216,240 @@ import Honeycomb from "../components/Honeycomb.astro";
   function stop(){ clearInterval(timer); timer = 0; }
   function start(){
     stop();
-    if (!mq.matches || reduce.matches) return;
+    if (!mq.matches || reduce.matches || document.hidden) return;
     timer = setInterval(function(){ place(i + 1, 0); }, 3000);
   }
+  function clearClones(){
+    clones.forEach(function(el){ el.remove(); });
+    clones = [];
+  }
+  function clearArcInline(){
+    originals.forEach(function(card){
+      card.style.transform = "";
+      card.style.zIndex = "";
+      card.style.opacity = "";
+      card.style.pointerEvents = "";
+    });
+    fan.style.height = "";
+  }
+  function pose(slot){
+    var a = Math.abs(slot);
+    var scale, x;
+    if (a <= 1) {
+      scale = 1 + (0.94 - 1) * a;
+      x = 300 * a;
+    } else if (a <= 2) {
+      var t = a - 1;
+      scale = 0.94 + (0.88 - 0.94) * t;
+      x = 300 + 250 * t;
+    } else {
+      var t = Math.min(a - 2, 1.2);
+      scale = Math.max(0.84, 0.88 - 0.04 * t);
+      x = 550 + 140 * t;
+    }
+    var fade = a <= 2.25 ? 1 : Math.max(0, 1 - (a - 2.25) / 0.65);
+    return { x: slot < 0 ? -x : x, scale: scale, z: 300 - Math.round(a * 40), fade: fade };
+  }
+  function layoutCover(){
+    for (var c = 0; c < n; c++) {
+      var slot = c - offset;
+      slot = ((slot % n) + n) % n;
+      if (slot > n / 2) slot -= n;
+      var p = pose(slot);
+      var card = originals[c];
+      card.style.transform = "translate3d(calc(-50% + " + p.x.toFixed(2) + "px),0,0) scale(" + p.scale.toFixed(4) + ")";
+      card.style.zIndex = String(p.z);
+      card.style.opacity = p.fade < 0.02 ? "0" : p.fade.toFixed(3);
+      card.style.pointerEvents = p.fade < 0.25 ? "none" : "";
+    }
+  }
+  function ease(p){
+    return p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+  }
+  var pauseAt = 0;
+  function frame(now){
+    var frozen = arcDrag || hovering || !seen || reduce.matches || document.hidden;
+    if (frozen) {
+      if (!pauseAt) pauseAt = now;
+      layoutCover();
+      raf = requestAnimationFrame(frame);
+      return;
+    }
+    if (pauseAt) {
+      var drift = now - pauseAt;
+      pauseAt = 0;
+      if (phase === "slide") slideAt += drift;
+      else if (holdAt) {
+        var elapsed = now - drift - holdAt;
+        if (elapsed >= holdMs) holdAt = now - holdMs;
+        else holdAt += drift;
+      }
+    }
+    if (phase === "hold") {
+      offset = toOff;
+      if (!holdAt) holdAt = now;
+      if (now - holdAt >= holdMs) {
+        phase = "slide";
+        fromOff = toOff;
+        toOff = toOff + 1;
+        slideAt = now;
+      }
+    } else {
+      var p = Math.min(1, (now - slideAt) / slideMs);
+      offset = fromOff + (toOff - fromOff) * ease(p);
+      if (p >= 1) {
+        toOff = ((toOff % n) + n) % n;
+        fromOff = toOff;
+        offset = toOff;
+        phase = "hold";
+        holdAt = now;
+      }
+    }
+    layoutCover();
+    raf = requestAnimationFrame(frame);
+  }
+  function stopArc(){
+    if (raf) cancelAnimationFrame(raf);
+    raf = 0;
+    lastT = 0;
+  }
+  function startArc(){
+    stopArc();
+    clearClones();
+    toOff = ((Math.round(offset) % n) + n) % n;
+    fromOff = toOff;
+    offset = toOff;
+    phase = "hold";
+    holdAt = 0;
+    layoutCover();
+    if (!reduce.matches) raf = requestAnimationFrame(frame);
+  }
+  function enable(){
+    arcDrag = null;
+    drag = null;
+    fan.classList.remove("is-drag");
+    if (mq.matches) {
+      stopArc();
+      clearClones();
+      clearArcInline();
+      place(i, 0);
+      start();
+    } else {
+      stop();
+      fan.style.removeProperty("--uc");
+      fan.style.removeProperty("--drag");
+      startArc();
+    }
+  }
+
   fan.addEventListener("pointerdown", function(e){
-    if (!mq.matches || e.button > 0) return;
-    drag = {x: e.clientX, i: i, t: performance.now()};
+    if (e.button > 0) return;
     moved = false;
-    fan.classList.add("is-drag");
-    stop();
+    if (mq.matches) {
+      drag = {x: e.clientX, i: i, t: performance.now()};
+      fan.classList.add("is-drag");
+      stop();
+    } else {
+      arcDrag = {x: e.clientX, offset: offset};
+      fan.classList.add("is-drag");
+    }
     try { fan.setPointerCapture(e.pointerId); } catch (err) {}
   });
   fan.addEventListener("pointermove", function(e){
-    if (!drag) return;
-    var dx = e.clientX - drag.x;
-    if (Math.abs(dx) > 8) moved = true;
-    place(drag.i, dx);
+    if (drag) {
+      var dx = e.clientX - drag.x;
+      if (Math.abs(dx) > 8) moved = true;
+      place(drag.i, dx);
+      return;
+    }
+    if (!arcDrag) return;
+    var adx = e.clientX - arcDrag.x;
+    if (Math.abs(adx) > 8) moved = true;
+    offset = arcDrag.offset - adx / 300;
+    layoutCover();
   });
   function endDrag(e){
-    if (!drag) return;
-    var dx = e.clientX - drag.x;
-    var w = fan.clientWidth || 1;
-    var quick = performance.now() - drag.t < 320;
-    var next = drag.i;
-    if (dx < -w * 0.18 || (quick && dx < -28)) next += 1;
-    else if (dx > w * 0.18 || (quick && dx > 28)) next -= 1;
-    drag = null;
+    if (drag) {
+      var dx = e.clientX - drag.x;
+      var w = fan.clientWidth || 1;
+      var quick = performance.now() - drag.t < 320;
+      var next = drag.i;
+      if (dx < -w * 0.18 || (quick && dx < -28)) next += 1;
+      else if (dx > w * 0.18 || (quick && dx > 28)) next -= 1;
+      drag = null;
+      fan.classList.remove("is-drag");
+      place(next, 0);
+      start();
+      return;
+    }
+    if (!arcDrag) return;
+    arcDrag = null;
     fan.classList.remove("is-drag");
-    place(next, 0);
-    start();
+    toOff = ((Math.round(offset) % n) + n) % n;
+    fromOff = toOff;
+    offset = toOff;
+    phase = "hold";
+    holdAt = 0;
+    layoutCover();
   }
   fan.addEventListener("pointerup", endDrag);
   fan.addEventListener("pointercancel", function(){
-    drag = null;
+    if (mq.matches) {
+      drag = null;
+      fan.classList.remove("is-drag");
+      place(i, 0);
+      start();
+      return;
+    }
+    arcDrag = null;
     fan.classList.remove("is-drag");
-    place(i, 0);
-    start();
+    toOff = ((Math.round(offset) % n) + n) % n;
+    fromOff = toOff;
+    offset = toOff;
+    phase = "hold";
+    holdAt = 0;
+    layoutCover();
   });
   fan.addEventListener("click", function(e){
     if (!moved) return;
     e.preventDefault();
     moved = false;
   }, true);
-  mq.addEventListener("change", function(){ place(0, 0); start(); });
+  var pointerOver = false;
+  var pointerFocus = false;
+  function syncHover(){
+    hovering = pointerOver || pointerFocus;
+    if (hovering) stop();
+    else if (mq.matches) start();
+  }
+  fan.addEventListener("mouseenter", function(){ pointerOver = true; syncHover(); });
+  fan.addEventListener("mouseleave", function(){ pointerOver = false; syncHover(); });
+  fan.addEventListener("focusin", function(){ pointerFocus = true; syncHover(); });
+  fan.addEventListener("focusout", function(e){
+    if (fan.contains(e.relatedTarget)) return;
+    pointerFocus = false;
+    syncHover();
+  });
+  mq.addEventListener("change", enable);
+  window.addEventListener("resize", function(){
+    if (mq.matches) return;
+    layoutCover();
+  });
   document.addEventListener("visibilitychange", function(){
     if (document.hidden) stop();
-    else start();
+    else if (mq.matches) start();
+    holdAt = 0;
+    lastT = 0;
   });
-  place(0, 0);
-  start();
-  if (reduce.matches) fan.classList.add("is-in");
-  else {
-    var seen = new IntersectionObserver(function(entries){
-      if (!entries[0].isIntersecting) return;
-      fan.classList.add("is-in");
-      seen.disconnect();
-    }, {threshold: 0.35});
-    seen.observe(fan);
+  if (!reduce.matches && "IntersectionObserver" in window) {
+    seen = false;
+    var watch = new IntersectionObserver(function(entries){
+      seen = entries[0].isIntersecting;
+      lastT = 0;
+    }, {threshold: 0.15});
+    watch.observe(fan);
   }
+  enable();
 })();
 </script>
 <section class="esg-banner" aria-labelledby="esg-title">

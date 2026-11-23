@@ -70,7 +70,7 @@
   #fe-friction *{box-sizing:border-box}
   #fe-friction .wrap{max-width:none;width:100%;margin:0 auto}
   #fe-friction .hero{display:flex;justify-content:center;align-items:center;gap:0;margin:18px 0 40px;flex-wrap:nowrap;padding:0}
-  #fe-friction .hero h2{margin:0;padding:clamp(32px,5vh,64px) 0;max-width:none;width:100%;text-align:center;white-space:nowrap;font-family:"Public Sans",system-ui,sans-serif;font-style:italic;font-weight:600;font-size:var(--type-h);line-height:1.2;letter-spacing:-.03em;color:#1a1424}
+  #fe-friction .hero h2{margin:0;padding:clamp(32px,5vh,64px) 0;max-width:none;width:100%;text-align:center;white-space:nowrap;font-family:"Public Sans",system-ui,sans-serif;font-style:italic;font-weight:600;font-size:calc(var(--type-h) - 1px);line-height:1.2;letter-spacing:-.03em;color:#1a1424}
   #fe-friction .board{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px 24px;box-shadow:0 10px 30px rgba(20,17,26,.05)}
   #fe-friction .grid{display:grid;grid-template-columns:minmax(170px,16%) 1fr minmax(150px,14%);column-gap:12px;align-items:start}
   #fe-friction .head{padding-bottom:12px;border-bottom:1px dashed #dcd7e3;margin-bottom:6px}
@@ -99,8 +99,8 @@
   #fe-friction .ctas{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
   #fe-friction .cta{border-radius:14px;padding:18px;border:1px solid var(--line);text-decoration:none;color:var(--ink);transition:transform .2s}
   #fe-friction .cta:hover{transform:translateY(-2px)}
-  #fe-friction .cta small{display:block;font-size:10px;font-weight:800;letter-spacing:.08em;margin-bottom:6px}
-  #fe-friction .cta b{font-size:14px;line-height:1.4}
+  #fe-friction .cta small{display:block;font-size:12px;font-weight:800;letter-spacing:.08em;margin-bottom:6px}
+  #fe-friction .cta b{font-size:calc(var(--type-sub) - 1px);line-height:1.4}
   #fe-friction .cta.r{background:#fff7f7;border-color:#f6caca}#fe-friction .cta.r small{color:var(--red)}
   #fe-friction .cta.a{background:#fffaf0;border-color:#f3dcae}#fe-friction .cta.a small{color:#b07400}
   #fe-friction .cta.g{background:var(--green-bright);border-color:var(--green-bright)}#fe-friction .cta.g small{color:#0b5a3d}
@@ -127,16 +127,16 @@
   #fe-friction .green .stop:nth-child(4){animation:greenTick3 21.5s linear infinite}
   #fe-friction .green .stop:nth-child(5){animation:greenTick4 21.5s linear infinite}
   @media (prefers-reduced-motion:reduce){#fe-friction .streak,#fe-friction .stop{animation:none!important}}
-  #fe-friction .board{background:#fff;box-shadow:none;padding:32px 28px}
-  #fe-friction .times b{font-style:normal;font-weight:700;font-size:15px}
-  #fe-friction .times small,#fe-friction .arr small{font-size:11px}
-  #fe-friction .lbl h3{font-size:var(--type-sub);font-weight:600}
-  #fe-friction .lbl p{font-size:11.5px}
+  #fe-friction .board{background:#fff;box-shadow:none;margin:32px 0;padding:32px 28px}
+  #fe-friction .times b{font-style:normal;font-weight:700;font-size:calc(var(--type-sub) - 1px)}
+  #fe-friction .times small,#fe-friction .arr small{font-size:calc(var(--type-body) - 1px)}
+  #fe-friction .lbl h3{font-size:calc(var(--type-sub) - 1px);font-weight:600}
+  #fe-friction .lbl p{font-size:calc(var(--type-body) - 1px)}
   #fe-friction .stop{width:20px;height:20px;font-size:10px;box-shadow:none!important}
   #fe-friction .track{height:22px}#fe-friction .stops{height:22px}
   #fe-friction .streak{top:9px!important;left:9px!important;height:2px!important;box-shadow:none!important}
-  #fe-friction .notes{font-size:12px;color:var(--muted)!important;font-weight:400!important;margin-top:12px}
-  #fe-friction .badge{display:flex;align-items:center;gap:8px;background:none!important;padding:0;border-radius:0;font-size:12px;font-weight:600;line-height:1.35;margin-top:2px}
+  #fe-friction .notes{font-size:calc(var(--type-body) - 1px);color:var(--muted)!important;font-weight:400!important;margin-top:12px}
+  #fe-friction .badge{display:flex;align-items:center;gap:8px;min-width:0;background:none!important;padding:0;border-radius:0;font-size:calc(var(--type-body) - 1px);font-weight:600;line-height:1.35;margin-top:2px}
   #fe-friction .badge::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:currentColor}
   #fe-friction .red .badge{color:var(--red)}#fe-friction .amber .badge{color:#c27c00}#fe-friction .green .badge{color:var(--green)}
   #fe-friction .row{padding:26px 0}
@@ -147,10 +147,10 @@
     #fe-friction .board{padding:clamp(14px,2.2vh,26px) 24px}
     #fe-friction .head{padding-bottom:clamp(6px,1vh,12px)}
     #fe-friction .row{padding:clamp(10px,2vh,22px) 0}
-    #fe-friction .notes{margin-top:clamp(6px,1vh,10px);font-size:11.5px;line-height:1.4}
+    #fe-friction .notes{margin-top:clamp(6px,1vh,10px);font-size:calc(var(--type-body) - 1px);line-height:1.45}
     #fe-friction .ctas{margin-top:clamp(12px,2.2vh,24px)}
     #fe-friction .cta{padding:clamp(10px,1.6vh,16px) 16px}
-    #fe-friction .cta b{font-size:13px}
+    #fe-friction .cta b{font-size:calc(var(--type-sub) - 1px)}
   }
   #fe-friction .swipe{display:none;font-size:11px;color:var(--muted);margin:0 0 8px 2px}
   @media (max-width:760px){
@@ -160,25 +160,31 @@
     #fe-friction .board .head>div:first-child{margin:0;padding-top:0;padding-bottom:0}
     #fe-friction .badge{white-space:nowrap}
     #fe-friction .hero{margin:14px 0 22px;gap:0}
-    #fe-friction .hero h2{font-size:clamp(15px,4.4vw,22px)}
+    #fe-friction .hero h2{font-size:clamp(14px,4.4vw,21px)}
     #fe-friction .board{padding:18px 0;overflow-x:auto;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity}
     #fe-friction .grid{grid-template-columns:118px 560px 130px;min-width:832px;padding:0 16px}
     #fe-friction .grid>div:first-child{position:sticky;left:0;z-index:5;background:#fff;padding-right:8px;box-shadow:8px 0 8px -6px rgba(0,0,0,.06)}
-    #fe-friction .lbl p{font-size:11px}
+    #fe-friction .times b{font-size:15px}
+    #fe-friction .times small,#fe-friction .arr small,#fe-friction .lbl p{font-size:12px}
+    #fe-friction .notes,#fe-friction .badge{font-size:13px}
+    #fe-friction .swipe{font-size:13px}
     #fe-friction .row{padding:18px 16px}
     #fe-friction .head{padding:0 16px 10px}
     #fe-friction .swipe{display:block}
     #fe-friction .ctas{grid-template-columns:1fr;gap:10px;margin-top:18px}
   }
   @media (min-width:761px){
+    #fe-friction .grid>*{min-width:0}
     #fe-friction .fit{justify-content:flex-start!important;padding:clamp(28px,7vh,80px) 0!important;gap:0}
     #fe-friction .hero{margin-top:0!important;margin-bottom:clamp(20px,4vh,48px)!important}
     #fe-friction .board{flex:1;display:flex;flex-direction:column;padding:clamp(32px,5vh,64px) 28px!important}
     #fe-friction .board .row{flex:1;align-content:center;padding:clamp(36px,6vh,72px) 0!important}
-    #fe-friction .times b{font-size:clamp(15px,2.1vh,20px)!important}
-    #fe-friction .lbl h3{font-size:var(--type-sub)!important;font-weight:600!important;font-style:normal!important}
-    #fe-friction .notes{margin-top:clamp(16px,2.4vh,28px)!important;font-size:clamp(11.5px,1.6vh,14px)!important}
-    #fe-friction .badge{font-size:clamp(12px,1.6vh,14px)!important}
+    #fe-friction .times b{font-size:clamp(15px,2.1vh,19px)!important}
+    #fe-friction .times small,#fe-friction .arr small,#fe-friction .lbl p{font-size:calc(var(--type-body) - 1px)!important}
+    #fe-friction .lbl h3{font-size:calc(var(--type-sub) - 1px)!important;font-weight:600!important;font-style:normal!important}
+    #fe-friction .notes{margin-top:clamp(16px,2.4vh,28px)!important;font-size:calc(var(--type-body) - 1px)!important}
+    #fe-friction .badge{font-size:calc(var(--type-body) - 1px)!important}
+    #fe-friction .cta b{font-size:calc(var(--type-sub) - 1px)!important}
   }
   #fe-friction .cta,#fe-friction .cta.r,#fe-friction .cta.a,#fe-friction .cta.g{background:#fff!important;border:1px solid #f0eef3!important;border-radius:14px!important;padding:18px 20px!important;box-shadow:0 4px 18px rgba(20,17,26,.05)}
   #fe-friction .cta:hover{box-shadow:0 8px 24px rgba(20,17,26,.08)}
