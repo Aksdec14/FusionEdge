@@ -41,9 +41,9 @@
 
 <style is:global>
   #fe-friction{--ff-purple:#5b1d72;--ff-green:#00BF88;--ff-ink:#171624;--ff-text:#55536a;--ff-muted:#9a98ab;--ff-red:#ef3b3b;
-    font-family:"Public Sans",system-ui,sans-serif;color:var(--ff-text);padding:var(--section-y) 16px;margin:0;position:relative;overflow:hidden;background:transparent}
+    font-family:"Public Sans",system-ui,sans-serif;color:var(--ff-text);padding:var(--section-y) 5vw;margin:0;position:relative;overflow:hidden;background:transparent}
   #fe-friction *{box-sizing:border-box}
-  #fe-friction .ff-card{max-width:1040px;margin:0 auto;background:#fff;border-radius:4px;padding:0 48px 48px;position:relative}
+  #fe-friction .ff-card{max-width:none;margin:0 auto;background:#fff;border-radius:4px;padding:0 48px 48px;position:relative}
   #fe-friction .ff-h{margin:0;text-align:center;font-family:"Public Sans",system-ui,sans-serif;font-style:italic;font-weight:600;font-size:var(--type-h);line-height:1.2;letter-spacing:-.03em;color:var(--ff-ink)}
   #fe-friction .ff-keep{white-space:nowrap}
   #fe-friction .ff-h em{position:relative;display:inline-block;color:var(--ff-ink);transition:color .5s,opacity .35s}
@@ -129,7 +129,7 @@
     #fe-friction .ff-stage{height:280px;margin-top:40px}
   }
   @media (max-width:760px){
-    #fe-friction{padding:var(--section-y) 12px;margin:0}
+    #fe-friction{padding:var(--section-y) 16px;margin:0}
     #fe-friction .ff-card{padding:26px 18px 24px;border-radius:14px}
     #fe-friction .ff-stage{height:340px;margin:48px -8px 16px}
     #fe-friction .ff-q{display:none}
@@ -140,7 +140,7 @@
     #fe-friction .ff-stat+.ff-stat{border-left:0;border-top:1px solid #ebe8f0;padding-top:16px}
   }
   @media (max-width:640px){
-    #fe-friction{padding:var(--section-y) 12px}
+    #fe-friction{padding:var(--section-y) 16px}
     #fe-friction .ff-card{padding:0 4px 28px}
     #fe-friction .ff-stage{height:auto;margin:28px 0 20px;padding:8px 0}
     #fe-friction .ff-paths{opacity:.7}

@@ -47,7 +47,7 @@
 <style is:global>
 #modules{
   --purple:#5b1f73;--green:#13b981;--ink:#222;
-  max-width:1760px;margin:-8px auto 0;padding:4px 16px 48px;
+  max-width:none;margin:-8px auto 0;padding:4px 5vw 48px;
   font-family:"Public Sans",system-ui,sans-serif;font-style:normal;color:var(--ink);
 }
 #modules p{max-width:none;margin:0;font-size:inherit;line-height:inherit;color:inherit}
@@ -99,7 +99,7 @@
 #modules[data-lay=desk] .tabs button{font-size:15px;padding:8px 18px;margin-right:6px}
 #modules[data-lay=desk] .imagine{margin:0 0 0 auto;padding:3px}
 #modules[data-lay=desk] .imagine button{font-size:13px;padding:7px 14px}
-#modules[data-lay=desk]{padding:4px 32px 40px}
+#modules[data-lay=desk]{padding:4px 5vw 40px}
 #modules:not([data-lay=desk]) .legend{display:flex}
 #modules:not([data-lay=desk]) .stage>.hidden,#modules:not([data-lay=desk]) .legend.hidden{display:none}
 #modules:not([data-lay=desk]) .stage{display:flex;flex-direction:column}
@@ -155,6 +155,7 @@
 #modules .hand.on text{opacity:1}
 #modules .hand.on path{stroke-dashoffset:0}
 #modules:not([data-lay=desk]) .hand text{font-size:21px}
+@media (max-width:760px){#modules{padding-left:16px;padding-right:16px}}
 @media (prefers-reduced-motion:reduce){#modules .hand text,#modules .hand path{transition:none}}
 #modules .chaos .tile .lbl{opacity:1;fill:#6B2288;font-weight:600}
 #modules[data-lay=desk] .legend{display:flex;position:absolute;top:auto;bottom:3%;left:0;right:0;gap:10px 30px;z-index:2}

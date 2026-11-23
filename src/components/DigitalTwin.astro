@@ -15,7 +15,7 @@
     --width: clamp(220px, min(34vw, calc((100svh - 318px) * .92)), 540px);
     --loop: 24s;             /* one cycle: stacked → open → asset view → heatmap → stacked */
 
-    padding: var(--section-y) 0;
+    padding: var(--section-y) 5vw;
     box-sizing: border-box;
     font-family: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
     color: var(--text);
@@ -25,9 +25,9 @@
   /* ---------- heading ---------- */
   .twin__card {
     width: 100%;
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: clamp(24px, 3vh, 40px) 5vw clamp(28px, 4vh, 48px);
+    max-width: none;
+    margin: 0;
+    padding: clamp(24px, 3vh, 40px) 0 clamp(28px, 4vh, 48px);
     background: #fff;
     border-radius: 16px;
     box-shadow: 0 16px 40px rgba(40,80,120,.18);
@@ -37,7 +37,8 @@
     text-align: center;
   }
   @media (max-width: 760px) {
-    .twin__card { padding-left: 16px; padding-right: 16px; }
+    .twin { padding-left: 16px; padding-right: 16px; }
+    .twin__card { padding-left: 0; padding-right: 0; }
   }
   .twin__title {
     margin: 0 auto;
