@@ -342,29 +342,38 @@ import Honeycomb from "../components/Honeycomb.astro";
     }
   }
 
+  function capture(id){
+    try { fan.setPointerCapture(id); } catch (err) {}
+  }
   fan.addEventListener("pointerdown", function(e){
     if (e.button > 0) return;
     moved = false;
     if (mq.matches) {
-      drag = {x: e.clientX, i: i, t: performance.now()};
-      fan.classList.add("is-drag");
+      drag = {x: e.clientX, i: i, t: performance.now(), id: e.pointerId};
       stop();
     } else {
-      arcDrag = {x: e.clientX, offset: offset};
-      fan.classList.add("is-drag");
+      arcDrag = {x: e.clientX, offset: offset, id: e.pointerId};
     }
-    try { fan.setPointerCapture(e.pointerId); } catch (err) {}
   });
   fan.addEventListener("pointermove", function(e){
     if (drag) {
       var dx = e.clientX - drag.x;
-      if (Math.abs(dx) > 8) moved = true;
-      place(drag.i, dx);
+      if (!moved && Math.abs(dx) > 8) {
+        moved = true;
+        fan.classList.add("is-drag");
+        capture(drag.id);
+      }
+      if (moved) place(drag.i, dx);
       return;
     }
     if (!arcDrag) return;
     var adx = e.clientX - arcDrag.x;
-    if (Math.abs(adx) > 8) moved = true;
+    if (!moved && Math.abs(adx) > 8) {
+      moved = true;
+      fan.classList.add("is-drag");
+      capture(arcDrag.id);
+    }
+    if (!moved) return;
     offset = arcDrag.offset - adx / 300;
     layoutCover();
   });
