@@ -2,84 +2,374 @@
 import Layout from "../../layouts/Layout.astro";
 ---
 <Layout title="Pantry Management & QR Ordering — Fusionedge">
-<article class="story">
-<p class="story-back"><a href="/#usecases-title">Use cases</a></p>
-<h1>Pantry Management &amp; QR Ordering</h1>
-<p class="story-lead">A global logistics leader’s pantry was flooded with 300+ phone orders a day, and many arrived late. FusionEdge replaced the calls with a QR scan, added automatic escalation for late orders, and set up a different menu for each meeting room.</p>
-<ul>
-<li>1,200+ employees served</li>
-<li>6 pantries across 4 floors, and 18 meeting rooms on 3 levels</li>
-<li>450+ pantry orders a day</li>
-<li>Average delivery time: 22 minutes to 8 minutes</li>
-<li>Orders delivered on time: 68% to 97%</li>
-<li>Escalations to management: 40 a month to 3</li>
-<li>Phone calls to the pantry: 300+ a day to almost zero</li>
-<li>Employee satisfaction: 3.1 to 4.6 out of 5</li>
-<li>Rollout time: 3 weeks</li>
-</ul>
-<h2>The client and the challenge</h2>
-<p>The client is one of the world’s leading global logistics companies. One office of more than 1,200 employees has pantries that serve tea, coffee, snacks, and meeting refreshments all day. Every order came in by phone. With hundreds of calls a day, the pantry team could not keep up.</p>
-<ul>
-<li>Calls were missed, or orders were noted down wrong.</li>
-<li>Items reached desks and meeting rooms late, sometimes after the meeting had ended.</li>
-<li>Nobody could see which order was pending, or for how long.</li>
-<li>Unhappy employees complained straight to senior managers.</li>
-<li>Client meetings and internal meetings got the same service, with no difference in what was offered.</li>
-</ul>
-<p>The result was a poor employee experience and an embarrassing gap in front of visiting clients.</p>
-<h2>What we found</h2>
-<p>Before rollout, FusionEdge studied two weeks of pantry activity.</p>
-<ul>
-<li>300+ phone orders to the pantry each day. The team spent most of its time on calls.</li>
-<li>32% of orders delivered late. Almost 1 in 3 missed its time.</li>
-<li>Average delivery time of 22 minutes. A cup of tea took longer than a short meeting.</li>
-<li>40 escalations to management each month.</li>
-<li>0% of orders had any written record, so there was no data to plan stock or staffing.</li>
-</ul>
-<h2>The solution</h2>
-<p>FusionEdge Pantry Management went live across all 6 pantries and 18 meeting rooms in 3 weeks, in four steps.</p>
-<ul>
-<li>Scan a QR code to order. Codes were placed at every pantry, desk area, and meeting room. Employees scan with their phone, pick items from a menu, and tap order. No app download, and no phone call.</li>
-<li>Automatic escalation if an order is late. Every order has a timer. If it is not delivered on time, FusionEdge alerts the right person.</li>
-<li>Pre-schedule orders. Employees can book refreshments in advance, for example coffee for a 3 pm meeting, so the pantry can prepare ahead.</li>
-<li>A menu for every meeting room level. The QR menu changes based on the room it is scanned in. Internal meetings see beverages only. Client meetings get a wider choice.</li>
-</ul>
-<h2>How escalation works</h2>
-<ul>
-<li>At the due time, pantry staff are alerted to deliver now.</li>
-<li>5 minutes late, the pantry supervisor steps in and clears the delay.</li>
-<li>10 minutes late, the facility head is told about the impact on the employee experience.</li>
-</ul>
-<h2>Menus by meeting room</h2>
-<ul>
-<li>Level 1, team rooms, for internal meetings: beverages only, tea, coffee, and water.</li>
-<li>Level 2, conference rooms, for reviews and cross-team meetings: beverages and light snacks.</li>
-<li>Level 3, client and board rooms: the full menu, with beverages, snacks, fruit platters, and working lunches.</li>
-</ul>
-<h2>Before and after</h2>
-<ul>
-<li>How orders are placed: phone calls, 300+ a day, replaced by a QR scan in under 30 seconds.</li>
-<li>Delivery time: 22 minutes on average, then 8 minutes.</li>
-<li>On-time delivery: 68%, then 97%.</li>
-<li>Late orders: noticed only when someone complained, then auto-escalated at 5 and 10 minutes.</li>
-<li>Escalations to management: 40 a month, then 3 a month.</li>
-<li>Meeting refreshments: the same for every meeting, then a menu matched to the room level and meeting type.</li>
-<li>Planning: no order records, then every order logged, with peak hours and top items visible.</li>
-</ul>
-<p>With every order recorded, the facility team now stocks the pantry based on real demand, which cut wastage of milk, snacks, and fruit by about 25%.</p>
-<h2>The five outcomes</h2>
-<ul>
-<li>Faster service. Average delivery time down from 22 to 8 minutes, with 97% of orders on time.</li>
-<li>Accountability. Late orders are escalated automatically at 5 and 10 minutes. Escalations to management are down 92%.</li>
-<li>Better experience. Employee satisfaction up from 3.1 to 4.6 out of 5, and clients get the right refreshments every time.</li>
-<li>Standardization. One ordering process and one menu structure across 6 pantries and 18 meeting rooms.</li>
-<li>Smarter planning. Pre-scheduled orders and order data help plan stock and staff, with about 25% less wastage.</li>
-</ul>
-<h2>Modules used</h2>
-<ul>
-<li>Pantry Management, for QR ordering, menus by room level, and pre-scheduled orders</li>
-<li>Smart Ticketing, for timers and automatic escalations on late orders</li>
-<li>Executive Dashboard, for a live view of orders, delivery times, and pantry performance</li>
-</ul>
+<article class="am am-v3">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400..800;1,400..800&display=swap">
+
+  <p class="am-back"><a href="/#usecases-title">Use cases</a></p>
+
+  <!-- Hero -->
+  <div class="am-hero">
+    <div class="am-hero-top">
+      <h1 class="am-h1">Pantry Management &amp; QR Ordering</h1>
+      <p class="am-lead">A global logistics leader’s pantry was flooded with 300+ phone orders a day, and many arrived late.</p>
+      <p class="am-sub">FusionEdge replaced the calls with a QR scan, added automatic escalation for late orders, and set up a different menu for each meeting room.</p>
+    </div>
+    <div class="am-kpis">
+      <div><strong>8 min</strong><span>average delivery, down from 22</span></div>
+      <div><strong>97%</strong><span>orders delivered on time, up from 68%</span></div>
+      <div><strong>1,200+</strong><span>employees served, 450+ orders a day</span></div>
+      <div><strong>3 weeks</strong><span>rollout time</span></div>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <p class="am-eyebrow">From phone calls to a QR scan</p>
+  <h2 class="am-h2 am-center">The results, at a glance</h2>
+
+  <div class="am-box am-glance">
+    <div class="am-col">
+      <h3 class="am-h3">Average delivery time</h3>
+      <p class="am-cap">Minutes from order to desk or meeting room</p>
+      <div class="am-hb am-n"><span>Before · phone orders</span><div class="am-t"><i class="am-g" style="width:100%"></i></div><b>22 min</b></div>
+      <div class="am-hb am-n"><span>After · QR ordering</span><div class="am-t"><i class="am-ok" style="width:36%"></i></div><b>8 min</b></div>
+      <p class="am-foot">64% faster on average.</p>
+    </div>
+    <div class="am-col">
+      <h3 class="am-h3">Escalations to management</h3>
+      <p class="am-cap">Complaints reaching senior managers, per month</p>
+      <div class="am-vb" role="img" aria-label="Escalations fell from 40 to 3 a month">
+        <div><b>40</b><i class="am-g" style="height:100%"></i><span>Before</span></div>
+        <div><b>3</b><i class="am-ok" style="height:7.5%"></i><span>After</span></div>
+      </div>
+      <p class="am-foot">Down 92%.</p>
+    </div>
+    <div class="am-col">
+      <h3 class="am-h3">Employee satisfaction</h3>
+      <p class="am-cap">Pantry service rating, out of 5</p>
+      <svg class="am-ring" viewBox="0 0 120 120" role="img" aria-label="Satisfaction 4.6 out of 5">
+        <circle cx="60" cy="60" r="44" fill="none" stroke="#f1efea" stroke-width="10"/>
+        <circle cx="60" cy="60" r="44" fill="none" stroke="#2e9e62" stroke-width="10" pathLength="100" stroke-dasharray="92 8" transform="rotate(-90 60 60)" stroke-linecap="round"/>
+        <text x="60" y="67" text-anchor="middle">4.6</text>
+      </svg>
+      <p class="am-foot">Up from 3.1 before rollout.</p>
+    </div>
+  </div>
+
+  <!-- Story -->
+  <div class="am-story">
+  <section class="am-sec">
+    <div class="am-sec-head">
+      <p class="am-kicker">01 · Context</p>
+      <h2 class="am-h2">The client and the challenge</h2>
+      <div class="am-facts">
+        <div><strong>6</strong><span>pantries across 4 floors</span></div>
+        <div><strong>18</strong><span>meeting rooms on 3 levels</span></div>
+      </div>
+    </div>
+    <div class="am-sec-body">
+      <p>The client is one of the world’s leading global logistics companies. One office of more than 1,200 employees has pantries that serve tea, coffee, snacks, and meeting refreshments all day. Every order came in by phone. With hundreds of calls a day, the pantry team could not keep up.</p>
+      <ul class="am-list">
+        <li>Calls were missed, or orders were noted down wrong.</li>
+        <li>Items reached desks and meeting rooms late, sometimes after the meeting had ended.</li>
+        <li>Nobody could see which order was pending, or for how long.</li>
+        <li>Unhappy employees complained straight to senior managers.</li>
+        <li>Client meetings and internal meetings got the same service, with no difference in what was offered.</li>
+      </ul>
+      <p style="margin-top:20px">The result was a poor employee experience and an embarrassing gap in front of visiting clients.</p>
+    </div>
+  </section>
+
+  <section class="am-sec">
+    <div class="am-sec-head">
+      <p class="am-kicker">02 · Findings</p>
+      <h2 class="am-h2">What we found</h2>
+      <div class="am-facts">
+        <div><strong>32%</strong><span>of orders delivered late</span></div>
+        <div><strong>0%</strong><span>of orders had a written record</span></div>
+      </div>
+    </div>
+    <div class="am-sec-body">
+      <p>Before rollout, FusionEdge studied two weeks of pantry activity.</p>
+      <ul class="am-list">
+        <li><b>300+ phone orders a day.</b> The team spent most of its time on calls.</li>
+        <li><b>32% of orders delivered late.</b> Almost 1 in 3 missed its time.</li>
+        <li><b>22-minute average delivery.</b> A cup of tea took longer than a short meeting.</li>
+        <li><b>40 escalations to management each month.</b></li>
+        <li><b>0% of orders had any written record,</b> so there was no data to plan stock or staffing.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="am-sec am-stack">
+    <div class="am-sec-head">
+      <div>
+        <p class="am-kicker">03 · Approach</p>
+        <h2 class="am-h2">The solution</h2>
+      </div>
+      <p style="margin:0;color:var(--mut)">FusionEdge Pantry Management went live across all 6 pantries and 18 meeting rooms in 3 weeks, in four steps.</p>
+    </div>
+    <div class="am-sec-body">
+      <ol class="am-steps2">
+        <li><b>Scan a QR code to order</b><p>Codes were placed at every pantry, desk area, and meeting room. Employees scan with their phone, pick items from a menu, and tap order. No app download, and no phone call.</p></li>
+        <li><b>Automatic escalation if an order is late</b><p>Every order has a timer. If it is not delivered on time, FusionEdge alerts the right person.</p></li>
+        <li><b>Pre-schedule orders</b><p>Employees can book refreshments in advance, for example coffee for a 3 pm meeting, so the pantry can prepare ahead.</p></li>
+        <li><b>A menu for every meeting room level</b><p>The QR menu changes based on the room it is scanned in. Internal meetings see beverages only. Client meetings get a wider choice.</p></li>
+      </ol>
+    </div>
+  </section>
+  </div>
+
+  <h2 class="am-h2">How escalation works</h2>
+  <div class="am-esc">
+    <div style="--c:#2e9e62"><em>On time</em><b>Pantry staff</b><p>At the due time, pantry staff are alerted to deliver now.</p></div>
+    <div style="--c:#e58f35"><em>+5 min</em><b>Pantry supervisor</b><p>The supervisor steps in and clears the delay.</p></div>
+    <div style="--c:#cf4a3c"><em>+10 min</em><b>Facility head</b><p>The facility head is told about the impact on the employee experience.</p></div>
+  </div>
+
+  <h2 class="am-h2">Menus by meeting room</h2>
+  <div class="am-menus">
+    <div class="am-menu"><span class="lv">Level 1</span><b>Team rooms</b><p>Internal meetings</p><div class="am-chips"><span>Tea</span><span>Coffee</span><span>Water</span></div></div>
+    <div class="am-menu"><span class="lv">Level 2</span><b>Conference rooms</b><p>Reviews and cross-team meetings</p><div class="am-chips"><span>Beverages</span><span>Light snacks</span></div></div>
+    <div class="am-menu"><span class="lv">Level 3</span><b>Client and board rooms</b><p>The full menu</p><div class="am-chips"><span>Beverages</span><span>Snacks</span><span>Fruit platters</span><span>Working lunches</span></div></div>
+  </div>
+
+  <h2 class="am-h2">Before and after</h2>
+  <div class="am-box am-tw"><table class="am-table">
+    <thead><tr><th></th><th>Before</th><th>After</th></tr></thead>
+    <tbody>
+      <tr><th>How orders are placed</th><td data-l="Before">Phone calls, 300+ a day</td><td data-l="After">A QR scan in under 30 seconds</td></tr>
+      <tr><th>Delivery time</th><td data-l="Before">22 minutes on average</td><td data-l="After">8 minutes</td></tr>
+      <tr><th>On-time delivery</th><td data-l="Before">68%</td><td data-l="After">97%</td></tr>
+      <tr><th>Late orders</th><td data-l="Before">Noticed only when someone complained</td><td data-l="After">Auto-escalated at 5 and 10 minutes</td></tr>
+      <tr><th>Escalations to management</th><td data-l="Before">40 a month</td><td data-l="After">3 a month</td></tr>
+      <tr><th>Meeting refreshments</th><td data-l="Before">The same for every meeting</td><td data-l="After">A menu matched to the room level and meeting type</td></tr>
+      <tr><th>Planning</th><td data-l="Before">No order records</td><td data-l="After">Every order logged, with peak hours and top items visible</td></tr>
+    </tbody>
+  </table></div>
+  <p class="am-note">With every order recorded, the facility team now stocks the pantry based on real demand, which cut wastage of milk, snacks, and fruit by about 25%.</p>
+
+  <h2 class="am-h2">The five outcomes</h2>
+  <div class="am-oc5">
+    <div><strong>8 min</strong><b>Faster service</b><p>Average delivery time down from 22 to 8 minutes, with 97% of orders on time.</p></div>
+    <div><strong>−92%</strong><b>Accountability</b><p>Late orders are escalated automatically at 5 and 10 minutes. Escalations to management are down 92%.</p></div>
+    <div><strong>4.6 / 5</strong><b>Better experience</b><p>Employee satisfaction up from 3.1, and clients get the right refreshments every time.</p></div>
+    <div><strong>1</strong><b>Standardization</b><p>One ordering process and one menu structure across 6 pantries and 18 meeting rooms.</p></div>
+    <div><strong>−25%</strong><b>Smarter planning</b><p>Pre-scheduled orders and order data help plan stock and staff, with about 25% less wastage.</p></div>
+  </div>
+
+  <h2 class="am-h2">Modules used</h2>
+  <div class="am-mods3">
+    <div><b>Pantry Management</b><p>QR ordering, menus by room level, and pre-scheduled orders.</p></div>
+    <div><b>Smart Ticketing</b><p>Timers and automatic escalations on late orders.</p></div>
+    <div><b>Executive Dashboard</b><p>A live view of orders, delivery times, and pantry performance.</p></div>
+  </div>
 </article>
 </Layout>
+
+<style>
+  /* Container matches the nav: same max width + side padding so the left edge lines up with the logo.
+     If your header uses different values, change these two variables only. */
+  .am{--wrap:1610px;--pad:clamp(20px,4vw,40px);
+    --fg:#1b1530;--mut:#6c6780;--line:#e9e6ee;--ok:#2e9e62;--bad:#cf4a3c;--warn:#e58f35;--g:#e5e1d8;
+    font-family:"Public Sans",sans-serif;box-sizing:border-box;
+    width:100%;max-width:calc(var(--wrap) + var(--pad) * 2);margin:0 auto;padding:16px var(--pad) 96px;
+    color:var(--fg);font-size:15px;line-height:1.6;overflow-wrap:break-word}
+  .am *,.am *::before,.am *::after{box-sizing:border-box;font-family:"Public Sans",sans-serif}
+  .am svg text{font-family:"Public Sans",sans-serif}
+  .am p{margin:0 0 14px;max-width:none}
+
+  .am-back{margin:0 0 14px!important}
+  .am-back a{font-size:13px;color:var(--mut);text-decoration:none}
+  .am-back a:hover{color:#5b1f6e}
+
+  .am-h1,.am-h2{font-style:italic;font-weight:600;letter-spacing:-.02em;color:var(--fg);text-align:left}
+  .am-h2{font-size:clamp(22px,2.4vw,28px);line-height:1.25;margin:72px 0 16px}
+  .am-center{text-align:center;margin:0 0 28px}
+  .am-h3{font-size:14.5px;font-weight:600;margin:0;line-height:1.35}
+
+  /* Hero */
+  .am-hero{display:block;width:100%;border-radius:20px;overflow:hidden;background:linear-gradient(180deg,#f6f1e1 0%,#fbf8ef 60%,#fff 100%)}
+  .am-hero-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr) minmax(0,.9fr);gap:clamp(24px,4vw,56px);align-items:start;padding:clamp(32px,5vw,64px) clamp(20px,3vw,40px)}
+  .am-h1{font-size:clamp(30px,3.6vw,48px);line-height:1.1;margin:0;max-width:9em}
+  .am .am-lead{font-size:clamp(17px,1.7vw,22px);line-height:1.45;color:var(--mut);margin:0}
+  .am .am-sub{font-size:15px;line-height:1.6;margin:0}
+
+  .am-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff}
+  .am-kpis div{padding:22px clamp(14px,2vw,40px)}
+  .am-kpis div+div{border-left:1px solid var(--line)}
+  .am-kpis strong{display:block;font-size:clamp(22px,2.4vw,32px);font-weight:500;letter-spacing:-.01em;line-height:1.2}
+  .am-kpis span{display:block;font-size:13px;color:var(--mut);margin-top:6px;line-height:1.45}
+
+  .am .am-eyebrow{display:flex;align-items:center;gap:12px;margin:56px 0 18px;font:10px "Public Sans",sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
+  .am-eyebrow::before,.am-eyebrow::after{content:"";flex:1;border-top:1px solid var(--line)}
+
+  /* Boxes */
+  .am-box{border:1px solid var(--line);border-radius:12px;background:#fff}
+  .am .am-cap{font-size:12.5px;color:var(--mut);margin:2px 0 16px;line-height:1.4}
+  .am .am-foot{font-size:13px;font-weight:500;margin:auto 0 0;padding-top:20px}
+
+  .am-glance{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+  .am-col{padding:22px clamp(16px,2vw,28px);display:flex;flex-direction:column;min-width:0}
+  .am-col+.am-col{border-left:1px solid var(--line)}
+
+  .am-hb{display:grid;gap:6px;font-size:12.5px;margin-bottom:16px}
+  .am-n{grid-template-columns:1fr auto;column-gap:12px;align-items:center}
+  .am-n span{grid-column:1/-1}
+  .am-hb b{font-size:12.5px;font-weight:500;min-width:40px;text-align:right}
+  .am-t{height:12px;display:flex}
+  .am-t i{display:block;height:100%;border-radius:3px}
+  .am-col .am-t{background:#f1efea;border-radius:3px}
+  .am-g{background:var(--g)}.am-ok{background:var(--ok)}.am-bad{background:var(--bad)}.am-warn{background:var(--warn)}
+
+  .am-vb{display:flex;align-items:flex-end;justify-content:center;gap:20px;height:130px;border-bottom:1px solid var(--line);margin:8px 0 24px}
+  .am-vb div{width:64px;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;position:relative}
+  .am-vb b{font-size:13px;font-weight:600;margin-bottom:4px}
+  .am-vb i{display:block;width:100%;border-radius:2px 2px 0 0}
+  .am-vb span{position:absolute;bottom:-22px;font-size:12px;color:var(--mut)}
+  .am-ring{width:110px;align-self:center;margin:6px 0}
+  .am-ring text{font-size:20px;font-weight:500;fill:var(--fg)}
+
+  .am-found{margin-top:12px;padding:22px clamp(16px,2vw,28px) 8px}
+
+  /* Prose — kept to a readable line length, left edge stays aligned */
+  .am-story{margin-top:96px;border-top:1px solid var(--line)}
+  .am-sec{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:clamp(32px,6vw,96px);padding:clamp(56px,7vw,96px) 0;border-bottom:1px solid var(--line)}
+  .am-sec-head{align-self:start;position:sticky;top:96px}
+  .am-sec-head .am-h2{margin:0 0 28px}
+  .am .am-kicker{font:600 11px "Public Sans",sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#5b1f6e;margin:0 0 12px}
+  .am-facts{display:grid;grid-template-columns:1fr 1fr;gap:20px 24px}
+  .am-facts strong{display:block;font-size:clamp(24px,2.4vw,32px);font-weight:600;letter-spacing:-.02em;line-height:1.15;color:#5b1f6e}
+  .am-facts span{display:block;font-size:13px;color:var(--mut);margin-top:4px;line-height:1.45}
+  .am-sec-body{font-size:16.5px;line-height:1.75;max-width:760px}
+  .am-sec-body p{margin:0 0 20px}
+  .am-sec-body p:last-child{margin-bottom:0}
+  .am-ol{list-style:none;margin:8px 0 0;padding:0;counter-reset:s;display:grid;gap:0}
+  .am-ol li{counter-increment:s;position:relative;padding:20px 0 20px 48px;border-top:1px solid var(--line)}
+  .am-ol li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:24px;font:600 13px "Public Sans",sans-serif;color:#5b1f6e}
+
+  /* Table */
+  .am-tw{overflow-x:auto}
+  .am-table{width:100%;border-collapse:collapse;font-size:14px}
+  .am-table th,.am-table td{text-align:left;padding:14px 16px;vertical-align:top;border:0;border-bottom:1px solid var(--line)}
+  .am-table tbody tr:last-child>*{border-bottom:0}
+  .am-table thead th{font-size:12px;font-weight:500;color:var(--mut)}
+  .am-table tbody th{width:24%;font-weight:600}
+  .am .am-note{font-size:13px;color:var(--mut);margin:10px 0 0}
+
+  /* Outcomes */
+  .am-oc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
+  .am-oc div{padding:18px clamp(14px,2vw,24px) 20px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .am-oc b{display:block;font-size:14.5px}
+  .am-oc p{font-size:13px;color:var(--mut);margin:4px 0 0!important;line-height:1.55}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:1024px){
+    .am-hero-top{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr)}
+    .am-h1{grid-column:1/-1;max-width:none}
+  }
+  @media (max-width:760px){
+    .am-hero-top{grid-template-columns:1fr;gap:16px}
+    .am-kpis{grid-template-columns:1fr 1fr}
+    .am-kpis div:nth-child(3){border-left:0}
+    .am-kpis div:nth-child(n+3){border-top:1px solid var(--line)}
+    .am-glance{grid-template-columns:1fr}
+    .am-col+.am-col{border-left:0;border-top:1px solid var(--line)}
+    .am-oc{grid-template-columns:1fr 1fr}
+    .am-h2{margin-top:56px}
+    .am-story{margin-top:64px}
+    .am-sec{grid-template-columns:1fr;gap:24px;padding:48px 0}
+    .am-sec-head{position:static}
+    .am-sec-body{font-size:15.5px}
+  }
+  @media (max-width:540px){
+    .am-oc{grid-template-columns:1fr}
+    .am-table,.am-table tbody,.am-table tr,.am-table th,.am-table td{display:block;width:100%!important}
+    .am-table thead{display:none}
+    .am-table tbody tr{padding:12px 14px;border-bottom:1px solid var(--line)}
+    .am-table tbody tr:last-child{border-bottom:0}
+    .am-table tbody th,.am-table td{border:0;padding:3px 0}
+    .am-table td::before{content:attr(data-l) ": ";color:var(--mut)}
+  }
+
+  .am-list{list-style:none;margin:0;padding:0}
+  .am-list li{position:relative;padding:14px 0 14px 22px;border-top:1px solid var(--line)}
+  .am-list li:first-child{border-top:0;padding-top:0}
+  .am-list li::before{content:"";position:absolute;left:0;top:25px;width:8px;height:8px;border-radius:50%;background:var(--bad)}
+  .am-list li:first-child::before{top:11px}
+
+  /* ---- v3 layout (pantry page only) ---- */
+  .am-v3 .am-hero{background:linear-gradient(135deg,#e9f6ef 0%,#f4faf6 55%,#fff 100%);display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);align-items:stretch}
+  .am-v3 .am-hero-top{display:block;padding:clamp(32px,5vw,64px) clamp(20px,3vw,48px)}
+  .am-v3 .am-h1{max-width:12em;margin-bottom:24px}
+  .am-v3 .am-lead{margin-bottom:16px!important}
+  .am-v3 .am-kpis{grid-template-columns:1fr 1fr;border:0;border-left:1px solid var(--line);background:rgba(255,255,255,.7)}
+  .am-v3 .am-kpis div{display:flex;flex-direction:column;justify-content:center;padding:28px clamp(18px,2.5vw,36px);border-left:0}
+  .am-v3 .am-kpis div:nth-child(2n){border-left:1px solid var(--line)}
+  .am-v3 .am-kpis div:nth-child(n+3){border-top:1px solid var(--line)}
+  .am-v3 .am-kpis strong{color:#2e9e62;font-weight:600}
+
+  .am-steps2{list-style:none;margin:24px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line);counter-reset:s}
+  .am-steps2 li{counter-increment:s;padding:24px clamp(18px,2.5vw,32px) 26px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .am-steps2 li::before{content:counter(s,decimal-leading-zero);display:block;font-size:13px;font-weight:600;color:#5b1f6e;margin-bottom:10px}
+  .am-steps2 b{display:block;font-size:16px;margin-bottom:6px}
+  .am-steps2 p{margin:0!important;color:var(--mut);font-size:14.5px;line-height:1.6}
+
+  .am-sec.am-stack{grid-template-columns:1fr;gap:8px}
+  .am-sec.am-stack .am-sec-head{position:static;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,80px);align-items:end}
+  .am-sec.am-stack .am-sec-head .am-h2{margin:0}
+  .am-sec.am-stack .am-sec-body{max-width:none}
+
+  /* Escalation timeline */
+  .am-esc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));position:relative;margin-top:8px}
+  .am-esc::before{content:"";position:absolute;left:0;right:0;top:15px;height:2px;background:linear-gradient(90deg,#2e9e62,#e58f35,#cf4a3c)}
+  .am-esc div{position:relative;padding:44px clamp(12px,2vw,32px) 0 0}
+  .am-esc div::before{content:"";position:absolute;top:6px;left:0;width:20px;height:20px;border-radius:50%;background:#fff;border:4px solid var(--c)}
+  .am-esc em{font-style:normal;display:block;font-size:clamp(22px,2.4vw,30px);font-weight:600;letter-spacing:-.02em;color:var(--c);line-height:1.1}
+  .am-esc b{display:block;font-size:15.5px;margin:8px 0 4px}
+  .am-esc p{margin:0!important;color:var(--mut);font-size:14px}
+
+  /* Menus by room */
+  .am-menus{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,24px);align-items:end}
+  .am-menu{border:1px solid var(--line);border-radius:14px;padding:24px clamp(18px,2vw,28px);background:#fff;display:flex;flex-direction:column;gap:6px}
+  .am-menu:nth-child(1){min-height:260px}
+  .am-menu:nth-child(2){min-height:300px;background:#faf8fc}
+  .am-menu:nth-child(3){min-height:340px;background:#f4eff8;border-color:#e3d6ec}
+  .am-menu .lv{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#5b1f6e}
+  .am-menu b{font-size:17px}
+  .am-menu p{margin:0 0 10px!important;color:var(--mut);font-size:14px}
+  .am-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
+  .am-chips span{font-size:12.5px;padding:4px 12px;border-radius:99px;background:#fff;border:1px solid var(--line)}
+
+  .am-oc5{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(20px,3vw,40px)}
+  .am-oc5 div{border-top:3px solid #2e9e62;padding-top:18px}
+  .am-oc5 strong{display:block;font-size:clamp(24px,2.6vw,32px);font-weight:600;letter-spacing:-.02em;line-height:1.1}
+  .am-oc5 b{display:block;margin:10px 0 4px;font-size:15px}
+  .am-oc5 p{margin:0!important;color:var(--mut);font-size:13.5px;line-height:1.55}
+
+  .am-mods3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,24px)}
+  .am-mods3 div{border:1px solid var(--line);border-radius:12px;padding:22px clamp(18px,2vw,26px)}
+  .am-mods3 b{display:block;color:#5b1f6e;font-size:15.5px}
+  .am-mods3 p{margin:6px 0 0!important;color:var(--mut);font-size:14px}
+
+  @media (max-width:1024px){
+    .am-oc5{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .am-v3 .am-hero{grid-template-columns:1fr}
+    .am-v3 .am-kpis{grid-template-columns:repeat(4,minmax(0,1fr));border-left:0;border-top:1px solid var(--line)}
+    .am-v3 .am-kpis div:nth-child(n){border-left:1px solid var(--line);border-top:0}
+    .am-v3 .am-kpis div:first-child{border-left:0}
+  }
+  @media (max-width:760px){
+    .am-v3 .am-kpis{grid-template-columns:1fr 1fr}
+    .am-v3 .am-kpis div:nth-child(odd){border-left:0}
+    .am-v3 .am-kpis div:nth-child(n+3){border-top:1px solid var(--line)}
+    .am-steps2,.am-menus,.am-mods3{grid-template-columns:1fr}
+    .am-menu:nth-child(n){min-height:0}
+    .am-sec.am-stack .am-sec-head{grid-template-columns:1fr;gap:20px}
+    .am-oc5{grid-template-columns:1fr 1fr}
+    .am-esc{grid-template-columns:1fr;gap:28px}
+    .am-esc::before{left:9px;right:auto;top:10px;bottom:10px;width:2px;height:auto;background:linear-gradient(180deg,#2e9e62,#e58f35,#cf4a3c)}
+    .am-esc div{padding:0 0 0 40px}
+  }
+  @media (max-width:540px){.am-oc5{grid-template-columns:1fr}}
+</style>

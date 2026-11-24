@@ -2,61 +2,269 @@
 import Layout from "../../layouts/Layout.astro";
 ---
 <Layout title="Asset Management & Asset Audit — Fusionedge">
-<article class="story">
-<p class="story-back"><a href="/#usecases-title">Use cases</a></p>
-<h1>Asset Management &amp; Asset Audit</h1>
-<p class="story-lead">A leading global organization had no idea which assets were in its offices, which were in storage, or which invoice each one belonged to. Its only record was the finance system.</p>
-<p>FusionEdge digitized its fixed asset register, tagged every asset with RFID, and turned a weeks-long audit into a 30-minute exercise.</p>
-<ul>
-<li>50,000+ assets digitized and RFID-tagged</li>
-<li>Full audit cut from 15 working days to 30 minutes</li>
-<li>Warehouse rental reduced by 60%</li>
-<li>4,120 ghost assets removed from the books</li>
-<li>1,860 unrecorded assets brought onto the register</li>
-<li>37 assets linked to duplicate invoices, one of them billed 4 times</li>
-<li>100% of assets mapped to their purchase order and invoice</li>
-<li>Project duration: 8 weeks</li>
-</ul>
-<h2>The client and the challenge</h2>
-<p>The client is one of the world’s largest global organizations, with high-value IT, AV, and office assets linked to its offices in the US. It held thousands of assets across those offices and a rented warehouse, and had no asset management software.</p>
-<p>Its only view of assets came from the finance system, built from purchase orders raised and invoices received, not from what was actually on the ground. When the organization decided to donate or scrap surplus equipment, the team could not say which assets should go, which invoice and purchase order each one belonged to, which were in the offices, and which were in the warehouse. It also could not confirm that assets shown as live in the books were still there.</p>
-<p>Without those answers, the disposal could not go ahead with a clean audit trail, and the organization kept paying to store equipment it could not identify.</p>
-<h2>What the on-ground audit uncovered</h2>
-<p>FusionEdge’s team physically verified every asset and compared it with the finance records. More than 7% of book records pointed to assets that no longer existed.</p>
-<ul>
-<li>50,000+ asset records in the finance books, built from purchase orders and invoices only</li>
-<li>5,208 records physically found and matched</li>
-<li>4,120 ghost assets, live in the books but missing, which overstated asset value and depreciation</li>
-<li>1,860 assets on site with no record at all</li>
-<li>37 assets linked to more than one invoice. One asset carried 4 separate invoices</li>
-<li>1,140 idle, obsolete, or damaged assets taking up paid warehouse space</li>
-</ul>
-<p>The duplicate billing meant the same asset could be capitalized, depreciated, or written off more than once.</p>
-<h2>The solution</h2>
-<p>FusionEdge delivered near real-time asset management and asset audit in 8 weeks, in four steps.</p>
-<ul>
-<li>Detailed due diligence. Every office and the warehouse was audited, recording each asset’s location, condition, and serial number.</li>
-<li>Reconciliation with finance. Every physical asset was mapped to its purchase order and invoice. Ghost assets, duplicate invoices, and unrecorded items were flagged and resolved with the client’s finance team.</li>
-<li>A clean, digitized fixed asset register. The final list held the assets that exist and work, and separated 1,140 idle or obsolete items for donation or scrapping, each with its purchase order and invoice trail.</li>
-<li>RFID tagging. All 50,000+ assets were tagged. A handheld reader picks up hundreds of tags in a single sweep, and every movement is updated in FusionEdge.</li>
-</ul>
-<h2>Before and after</h2>
-<ul>
-<li>Source of asset data: a finance system built from purchase orders and invoices, replaced by a digitized register verified on the ground.</li>
-<li>Physical audit: 15 working days, 6 people, and printed lists, replaced by 30 minutes, 2 people, and a handheld RFID reader.</li>
-<li>Asset-to-invoice mapping: unknown, and one asset carried 4 invoices, replaced by 100% of assets mapped to one purchase order and invoice.</li>
-<li>Location: no view of offices versus the warehouse, replaced by a near real-time location for every tagged asset.</li>
-<li>Disposal: blocked, with no way to pick scrap or donation items, replaced by 1,140 items identified with a full audit trail.</li>
-<li>Warehouse rental: paying to store unidentified, idle equipment, then 60% lower from the first month.</li>
-</ul>
-<p>The warehouse saving is one the organization could have been making for the previous five years.</p>
-<h2>The five outcomes</h2>
-<ul>
-<li>Traceability. 50,000+ assets carry RFID tags, and every asset can be traced to its location, purchase order, and invoice.</li>
-<li>Digitization. Paper lists and finance-only records were replaced by one digital fixed asset register.</li>
-<li>Cost optimization. 1,140 idle or obsolete assets were cleared for donation or scrap, freeing storage space.</li>
-<li>Savings. Warehouse rental was cut by 60% immediately.</li>
-<li>Process compliance and governance. 4,120 ghost assets and 37 duplicate-invoice cases were resolved. Audits now take 30 minutes and can run at any time.</li>
-</ul>
+<article class="am">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400..800;1,400..800&display=swap">
+
+  <p class="am-back"><a href="/#usecases-title">Use cases</a></p>
+
+  <!-- Hero -->
+  <div class="am-hero">
+    <div class="am-hero-top">
+      <h1 class="am-h1">Asset Management &amp; Asset Audit</h1>
+      <p class="am-lead">A leading global organization had no idea which assets were in its offices, which were in storage, or which invoice each one belonged to. Its only record was the finance system.</p>
+      <p class="am-sub">FusionEdge digitized its fixed asset register, tagged every asset with RFID, and turned a weeks-long audit into a 30-minute exercise.</p>
+    </div>
+    <div class="am-kpis">
+      <div><strong>50,000+</strong><span>assets digitized and RFID-tagged</span></div>
+      <div><strong>60%</strong><span>lower warehouse rental</span></div>
+      <div><strong>30 min</strong><span>full audit, down from 15 working days</span></div>
+      <div><strong>8 weeks</strong><span>project duration</span></div>
+    </div>
+  </div>
+
+  <!-- Savings -->
+  <p class="am-eyebrow">Measure twice. Cut once.</p>
+  <h2 class="am-h2 am-center">The savings, at a glance</h2>
+
+  <div class="am-box am-glance">
+    <div class="am-col">
+      <h3 class="am-h3">Audit time</h3>
+      <p class="am-cap">Working time for a full physical audit</p>
+      <div class="am-hb"><span>Before · 15 working days, 6 people</span><div class="am-t"><i class="am-g" style="width:100%"></i></div></div>
+      <div class="am-hb"><span>After · 30 minutes, 2 people</span><div class="am-t"><i class="am-ok" style="width:1.5%;min-width:4px"></i></div></div>
+      <p class="am-foot">Audits can now run at any time.</p>
+    </div>
+    <div class="am-col">
+      <h3 class="am-h3">Warehouse rental</h3>
+      <p class="am-cap">Monthly rent, indexed to 100</p>
+      <div class="am-vb" role="img" aria-label="Rent fell from 100 to 40">
+        <div><b>100</b><i class="am-g" style="height:100%"></i><span>Before</span></div>
+        <div><b>40</b><i class="am-ok" style="height:40%"></i><span>After</span></div>
+      </div>
+      <p class="am-foot">60% lower from the first month.</p>
+    </div>
+    <div class="am-col">
+      <h3 class="am-h3">Asset-to-invoice mapping</h3>
+      <p class="am-cap">Share of assets mapped to a PO and invoice</p>
+      <svg class="am-ring" viewBox="0 0 120 120" role="img" aria-label="100% of assets mapped">
+        <circle cx="60" cy="60" r="44" fill="none" stroke="#2e9e62" stroke-width="10"/>
+        <text x="60" y="67" text-anchor="middle">100%</text>
+      </svg>
+      <p class="am-foot">Before: unknown, with one asset billed 4 times.</p>
+    </div>
+  </div>
+
+  <div class="am-box am-found">
+    <h3 class="am-h3">What the on-ground audit uncovered</h3>
+    <p class="am-cap">Asset records by finding</p>
+    <div class="am-hb am-n"><span>Records physically found and matched</span><div class="am-t"><i class="am-ok" style="width:100%"></i></div><b>5,208</b></div>
+    <div class="am-hb am-n"><span>Ghost assets (in books, not on site)</span><div class="am-t"><i class="am-bad" style="width:79.1%"></i></div><b>4,120</b></div>
+    <div class="am-hb am-n"><span>Unrecorded assets brought onto register</span><div class="am-t"><i class="am-warn" style="width:35.7%"></i></div><b>1,860</b></div>
+    <div class="am-hb am-n"><span>Idle / obsolete / damaged assets</span><div class="am-t"><i class="am-g" style="width:21.9%"></i></div><b>1,140</b></div>
+    <div class="am-hb am-n"><span>Assets linked to duplicate invoices</span><div class="am-t"><i class="am-bad" style="width:0.7%;min-width:4px"></i></div><b>37</b></div>
+  </div>
+
+  <!-- Story -->
+  <div class="am-story">
+  <section class="am-sec">
+    <div class="am-sec-head">
+      <p class="am-kicker">01 · Context</p>
+      <h2 class="am-h2">The client and the challenge</h2>
+      <div class="am-facts">
+        <div><strong>50,000+</strong><span>records in the finance books</span></div>
+        <div><strong>0</strong><span>asset management software</span></div>
+      </div>
+    </div>
+    <div class="am-sec-body">
+    <p>The client is one of the world’s largest global organizations, with high-value IT, AV, and office assets linked to its offices in the US. It held thousands of assets across those offices and a rented warehouse, and had no asset management software.</p>
+    <p>Its only view of assets came from the finance system, built from purchase orders raised and invoices received, not from what was actually on the ground. When the organization decided to donate or scrap surplus equipment, the team could not say which assets should go, which invoice and purchase order each one belonged to, which were in the offices, and which were in the warehouse. It also could not confirm that assets shown as live in the books were still there.</p>
+    <p>Without those answers, the disposal could not go ahead with a clean audit trail, and the organization kept paying to store equipment it could not identify.</p>
+    </div>
+  </section>
+
+  <section class="am-sec">
+    <div class="am-sec-head">
+      <p class="am-kicker">02 · Findings</p>
+      <h2 class="am-h2">What the on-ground audit uncovered</h2>
+      <div class="am-facts">
+        <div><strong>7%+</strong><span>of book records pointed to assets that no longer existed</span></div>
+        <div><strong>4×</strong><span>the most invoices tied to a single asset</span></div>
+      </div>
+    </div>
+    <div class="am-sec-body">
+    <p>FusionEdge’s team physically verified every asset and compared it with the finance records. More than 7% of book records pointed to assets that no longer existed. The duplicate billing meant the same asset could be capitalized, depreciated, or written off more than once.</p>
+    </div>
+  </section>
+
+  <section class="am-sec">
+    <div class="am-sec-head">
+      <p class="am-kicker">03 · Approach</p>
+      <h2 class="am-h2">The solution</h2>
+      <div class="am-facts">
+        <div><strong>8 weeks</strong><span>start to finish</span></div>
+        <div><strong>4</strong><span>steps</span></div>
+      </div>
+    </div>
+    <div class="am-sec-body">
+    <p>FusionEdge delivered near real-time asset management and asset audit in 8 weeks, in four steps.</p>
+    <ol class="am-ol">
+      <li><b>Detailed due diligence.</b> Every office and the warehouse was audited, recording each asset’s location, condition, and serial number.</li>
+      <li><b>Reconciliation with finance.</b> Every physical asset was mapped to its purchase order and invoice. Ghost assets, duplicate invoices, and unrecorded items were flagged and resolved with the client’s finance team.</li>
+      <li><b>A clean, digitized fixed asset register.</b> The final list held the assets that exist and work, and separated 1,140 idle or obsolete items for donation or scrapping, each with its purchase order and invoice trail.</li>
+      <li><b>RFID tagging.</b> All 50,000+ assets were tagged. A handheld reader picks up hundreds of tags in a single sweep, and every movement is updated in FusionEdge.</li>
+    </ol>
+    </div>
+  </section>
+  </div>
+
+  <h2 class="am-h2">Before and after</h2>
+  <div class="am-box am-tw"><table class="am-table">
+    <thead><tr><th></th><th>Before</th><th>After</th></tr></thead>
+    <tbody>
+      <tr><th>Source of asset data</th><td data-l="Before">Finance system built from purchase orders and invoices</td><td data-l="After">Digitized register verified on the ground</td></tr>
+      <tr><th>Physical audit</th><td data-l="Before">15 working days, 6 people, printed lists</td><td data-l="After">30 minutes, 2 people, handheld RFID reader</td></tr>
+      <tr><th>Asset-to-invoice mapping</th><td data-l="Before">Unknown; one asset carried 4 invoices</td><td data-l="After">100% mapped to one PO and invoice</td></tr>
+      <tr><th>Location</th><td data-l="Before">No view of offices versus warehouse</td><td data-l="After">Near real-time location for every tagged asset</td></tr>
+      <tr><th>Disposal</th><td data-l="Before">Blocked; no way to pick scrap or donation items</td><td data-l="After">1,140 items identified with a full audit trail</td></tr>
+      <tr><th>Warehouse rental</th><td data-l="Before">Paying to store unidentified, idle equipment</td><td data-l="After">60% lower from the first month</td></tr>
+    </tbody>
+  </table></div>
+  <p class="am-note">The warehouse saving is one the organization could have been making for the previous five years.</p>
+
+  <h2 class="am-h2">The five outcomes</h2>
+  <div class="am-oc">
+    <div><b>Traceability</b><p>50,000+ assets carry RFID tags, and every asset can be traced to its location, purchase order, and invoice.</p></div>
+    <div><b>Digitization</b><p>Paper lists and finance-only records were replaced by one digital fixed asset register.</p></div>
+    <div><b>Cost optimization</b><p>1,140 idle or obsolete assets were cleared for donation or scrap, freeing storage space.</p></div>
+    <div><b>Savings</b><p>Warehouse rental was cut by 60% immediately.</p></div>
+    <div><b>Compliance and governance</b><p>4,120 ghost assets and 37 duplicate-invoice cases were resolved. Audits now take 30 minutes and can run at any time.</p></div>
+  </div>
 </article>
 </Layout>
+
+<style>
+  /* Container matches the nav: same max width + side padding so the left edge lines up with the logo.
+     If your header uses different values, change these two variables only. */
+  .am{--wrap:1610px;--pad:clamp(20px,4vw,40px);
+    --fg:#1b1530;--mut:#6c6780;--line:#e9e6ee;--ok:#2e9e62;--bad:#cf4a3c;--warn:#e58f35;--g:#e5e1d8;
+    font-family:"Public Sans",sans-serif;box-sizing:border-box;
+    width:100%;max-width:calc(var(--wrap) + var(--pad) * 2);margin:0 auto;padding:16px var(--pad) 96px;
+    color:var(--fg);font-size:15px;line-height:1.6;overflow-wrap:break-word}
+  .am *,.am *::before,.am *::after{box-sizing:border-box;font-family:"Public Sans",sans-serif}
+  .am svg text{font-family:"Public Sans",sans-serif}
+  .am p{margin:0 0 14px;max-width:none}
+
+  .am-back{margin:0 0 14px!important}
+  .am-back a{font-size:13px;color:var(--mut);text-decoration:none}
+  .am-back a:hover{color:#5b1f6e}
+
+  .am-h1,.am-h2{font-style:italic;font-weight:600;letter-spacing:-.02em;color:var(--fg);text-align:left}
+  .am-h2{font-size:clamp(22px,2.4vw,28px);line-height:1.25;margin:72px 0 16px}
+  .am-center{text-align:center;margin:0 0 28px}
+  .am-h3{font-size:14.5px;font-weight:600;margin:0;line-height:1.35}
+
+  /* Hero */
+  .am-hero{display:block;width:100%;border-radius:20px;overflow:hidden;background:linear-gradient(180deg,#f6f1e1 0%,#fbf8ef 60%,#fff 100%)}
+  .am-hero-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr) minmax(0,.9fr);gap:clamp(24px,4vw,56px);align-items:start;padding:clamp(32px,5vw,64px) clamp(20px,3vw,40px)}
+  .am-h1{font-size:clamp(30px,3.6vw,48px);line-height:1.1;margin:0;max-width:9em}
+  .am .am-lead{font-size:clamp(17px,1.7vw,22px);line-height:1.45;color:var(--mut);margin:0}
+  .am .am-sub{font-size:15px;line-height:1.6;margin:0}
+
+  .am-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff}
+  .am-kpis div{padding:22px clamp(14px,2vw,40px)}
+  .am-kpis div+div{border-left:1px solid var(--line)}
+  .am-kpis strong{display:block;font-size:clamp(22px,2.4vw,32px);font-weight:500;letter-spacing:-.01em;line-height:1.2}
+  .am-kpis span{display:block;font-size:13px;color:var(--mut);margin-top:6px;line-height:1.45}
+
+  .am .am-eyebrow{display:flex;align-items:center;gap:12px;margin:56px 0 18px;font:10px "Public Sans",sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
+  .am-eyebrow::before,.am-eyebrow::after{content:"";flex:1;border-top:1px solid var(--line)}
+
+  /* Boxes */
+  .am-box{border:1px solid var(--line);border-radius:12px;background:#fff}
+  .am .am-cap{font-size:12.5px;color:var(--mut);margin:2px 0 16px;line-height:1.4}
+  .am .am-foot{font-size:13px;font-weight:500;margin:auto 0 0;padding-top:20px}
+
+  .am-glance{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+  .am-col{padding:22px clamp(16px,2vw,28px);display:flex;flex-direction:column;min-width:0}
+  .am-col+.am-col{border-left:1px solid var(--line)}
+
+  .am-hb{display:grid;gap:6px;font-size:12.5px;margin-bottom:16px}
+  .am-n{grid-template-columns:1fr auto;column-gap:12px;align-items:center}
+  .am-n span{grid-column:1/-1}
+  .am-hb b{font-size:12.5px;font-weight:500;min-width:40px;text-align:right}
+  .am-t{height:12px;display:flex}
+  .am-t i{display:block;height:100%;border-radius:3px}
+  .am-col .am-t{background:#f1efea;border-radius:3px}
+  .am-g{background:var(--g)}.am-ok{background:var(--ok)}.am-bad{background:var(--bad)}.am-warn{background:var(--warn)}
+
+  .am-vb{display:flex;align-items:flex-end;justify-content:center;gap:20px;height:130px;border-bottom:1px solid var(--line);margin:8px 0 24px}
+  .am-vb div{width:64px;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;position:relative}
+  .am-vb b{font-size:13px;font-weight:600;margin-bottom:4px}
+  .am-vb i{display:block;width:100%;border-radius:2px 2px 0 0}
+  .am-vb span{position:absolute;bottom:-22px;font-size:12px;color:var(--mut)}
+  .am-ring{width:110px;align-self:center;margin:6px 0}
+  .am-ring text{font-size:20px;font-weight:500;fill:var(--fg)}
+
+  .am-found{margin-top:12px;padding:22px clamp(16px,2vw,28px) 8px}
+
+  /* Prose — kept to a readable line length, left edge stays aligned */
+  .am-story{margin-top:96px;border-top:1px solid var(--line)}
+  .am-sec{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr);gap:clamp(32px,6vw,96px);padding:clamp(56px,7vw,96px) 0;border-bottom:1px solid var(--line)}
+  .am-sec-head{align-self:start;position:sticky;top:96px}
+  .am-sec-head .am-h2{margin:0 0 28px}
+  .am .am-kicker{font:600 11px "Public Sans",sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#5b1f6e;margin:0 0 12px}
+  .am-facts{display:grid;grid-template-columns:1fr 1fr;gap:20px 24px}
+  .am-facts strong{display:block;font-size:clamp(24px,2.4vw,32px);font-weight:600;letter-spacing:-.02em;line-height:1.15;color:#5b1f6e}
+  .am-facts span{display:block;font-size:13px;color:var(--mut);margin-top:4px;line-height:1.45}
+  .am-sec-body{font-size:16.5px;line-height:1.75;max-width:760px}
+  .am-sec-body p{margin:0 0 20px}
+  .am-sec-body p:last-child{margin-bottom:0}
+  .am-ol{list-style:none;margin:8px 0 0;padding:0;counter-reset:s;display:grid;gap:0}
+  .am-ol li{counter-increment:s;position:relative;padding:20px 0 20px 48px;border-top:1px solid var(--line)}
+  .am-ol li::before{content:counter(s,decimal-leading-zero);position:absolute;left:0;top:24px;font:600 13px "Public Sans",sans-serif;color:#5b1f6e}
+
+  /* Table */
+  .am-tw{overflow-x:auto}
+  .am-table{width:100%;border-collapse:collapse;font-size:14px}
+  .am-table th,.am-table td{text-align:left;padding:14px 16px;vertical-align:top;border:0;border-bottom:1px solid var(--line)}
+  .am-table tbody tr:last-child>*{border-bottom:0}
+  .am-table thead th{font-size:12px;font-weight:500;color:var(--mut)}
+  .am-table tbody th{width:24%;font-weight:600}
+  .am .am-note{font-size:13px;color:var(--mut);margin:10px 0 0}
+
+  /* Outcomes */
+  .am-oc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
+  .am-oc div{padding:18px clamp(14px,2vw,24px) 20px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .am-oc b{display:block;font-size:14.5px}
+  .am-oc p{font-size:13px;color:var(--mut);margin:4px 0 0!important;line-height:1.55}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:1024px){
+    .am-hero-top{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr)}
+    .am-h1{grid-column:1/-1;max-width:none}
+  }
+  @media (max-width:760px){
+    .am-hero-top{grid-template-columns:1fr;gap:16px}
+    .am-kpis{grid-template-columns:1fr 1fr}
+    .am-kpis div:nth-child(3){border-left:0}
+    .am-kpis div:nth-child(n+3){border-top:1px solid var(--line)}
+    .am-glance{grid-template-columns:1fr}
+    .am-col+.am-col{border-left:0;border-top:1px solid var(--line)}
+    .am-oc{grid-template-columns:1fr 1fr}
+    .am-h2{margin-top:56px}
+    .am-story{margin-top:64px}
+    .am-sec{grid-template-columns:1fr;gap:24px;padding:48px 0}
+    .am-sec-head{position:static}
+    .am-sec-body{font-size:15.5px}
+  }
+  @media (max-width:540px){
+    .am-oc{grid-template-columns:1fr}
+    .am-table,.am-table tbody,.am-table tr,.am-table th,.am-table td{display:block;width:100%!important}
+    .am-table thead{display:none}
+    .am-table tbody tr{padding:12px 14px;border-bottom:1px solid var(--line)}
+    .am-table tbody tr:last-child{border-bottom:0}
+    .am-table tbody th,.am-table td{border:0;padding:3px 0}
+    .am-table td::before{content:attr(data-l) ": ";color:var(--mut)}
+  }
+</style>
