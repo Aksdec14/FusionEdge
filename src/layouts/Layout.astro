@@ -404,10 +404,35 @@ img{max-width:100%;height:auto}
   .ceo__photo{display:flex;justify-content:center;min-height:0}
   .ceo__photo img{position:static;width:min(100%,260px);height:auto;max-width:260px}
 }
+
+/* ===================== INDUSTRIES DROPDOWN ===================== */
+nav.top .links li.dd{position:relative}
+nav.top .dd-btn{display:inline-flex;align-items:center;gap:6px;margin:0;padding:0;border:0;background:none;font:inherit;font-size:var(--type-body);font-weight:500;color:var(--ink);cursor:pointer}
+nav.top .dd-btn:hover,nav.top .dd.open .dd-btn{color:var(--teal)}
+nav.top .dd-btn svg{width:10px;height:10px;transition:transform .2s ease}
+nav.top .dd.open .dd-btn svg{transform:rotate(180deg)}
+nav.top .dd-menu{position:absolute;top:calc(100% + 14px);left:50%;z-index:700;display:grid;gap:2px;min-width:230px;padding:8px;background:#fff;border:1px solid #eef1f3;border-radius:14px;box-shadow:0 18px 40px rgba(40,30,60,.14);opacity:0;visibility:hidden;transform:translate(-50%,6px);transition:opacity .18s ease,transform .18s ease,visibility .18s}
+nav.top .dd-menu::before{content:"";position:absolute;left:0;right:0;top:-16px;height:16px}
+nav.top .dd-menu a{display:flex;align-items:center;padding:10px 12px;border-radius:8px;font-size:var(--type-body);font-weight:500;color:var(--ink);text-decoration:none;white-space:nowrap}
+nav.top .dd-menu a:hover,nav.top .dd-menu a:focus-visible{background:#f6f1f9;color:#5D1F72;outline:none}
+nav.top .dd-menu a[aria-current="page"]{color:#5D1F72;font-weight:600;background:#f6f1f9}
+nav.top .dd.open .dd-menu{opacity:1;visibility:visible;transform:translate(-50%,0)}
+@media (min-width:901px) and (hover:hover){
+  nav.top .dd:hover .dd-menu{opacity:1;visibility:visible;transform:translate(-50%,0)}
+  nav.top .dd:hover .dd-btn{color:var(--teal)}
+  nav.top .dd:hover .dd-btn svg{transform:rotate(180deg)}
+}
+@media (max-width:900px){
+  nav.top .dd-btn{display:flex;justify-content:space-between;width:100%;min-height:48px;font-size:15px}
+  nav.top .dd-menu{position:static;min-width:0;padding:0 0 8px 12px;border:0;border-radius:0;box-shadow:none;opacity:1;visibility:visible;transform:none;display:none;transition:none}
+  nav.top .dd-menu::before{content:none}
+  nav.top .dd.open .dd-menu{display:grid;transform:none}
+  nav.top .dd-menu a{min-height:44px;padding:0 12px;font-size:15px;color:#444}
+}
 </style>
 </head>
 <body>
-<nav class="top"><a class="brand" href="#"><img src="/logo.png" alt="Fusionedge"></a><ul class="links" id="menu"><li><a href="#">Apps</a></li><li><a href="#">Industries</a></li><li><a href="#">Solutions</a></li><li><a href="#">Resources</a></li><li class="menu-cta"><button class="btn">Book a Demo</button></li></ul><button class="btn nav-demo">Book a Demo</button><button class="burger" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="menu"><span></span></button></nav>
+<nav class="top"><a class="brand" href="#"><img src="/logo.png" alt="Fusionedge"></a><ul class="links" id="menu"><li><a href="#">Apps</a></li><li class="dd"><button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-industries">Industries<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="dd-menu" id="dd-industries"><a href="/industries/construction">Construction</a><a href="/industries/manufacturing">Manufacturing</a><a href="/industries/it-tech-parks">IT &amp; Tech Parks</a><a href="/industries/healthcare">Healthcare</a><a href="/industries/hospitality">Hospitality</a><a href="/industries/retail-malls">Retail &amp; Malls</a><a href="/industries/education">Education</a></div></li><li><a href="#">Solutions</a></li><li><a href="#">Resources</a></li><li class="menu-cta"><button class="btn">Book a Demo</button></li></ul><button class="btn nav-demo">Book a Demo</button><button class="burger" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="menu"><span></span></button></nav>
 <slot />
 <footer class="site-foot">
 <div class="foot-main">
@@ -463,6 +488,18 @@ navEl.querySelectorAll(".links a").forEach(a=>a.addEventListener("click",()=>set
 addEventListener("keydown",e=>{if(e.key==="Escape")setMenu(false)});
 addEventListener("resize",()=>{if(innerWidth>900)setMenu(false)});
 addEventListener("scroll",()=>{if(navEl.classList.contains("hide"))setMenu(false)},{passive:true});
+/* ---- Industries dropdown ---- */
+(function(){
+  const dd=document.querySelector("nav.top .dd");if(!dd)return;
+  const btn=dd.querySelector(".dd-btn");
+  const setDd=o=>{dd.classList.toggle("open",o);btn.setAttribute("aria-expanded",o)};
+  btn.addEventListener("click",e=>{e.stopPropagation();setDd(!dd.classList.contains("open"))});
+  document.addEventListener("click",e=>{if(!dd.contains(e.target))setDd(false)});
+  addEventListener("keydown",e=>{if(e.key==="Escape"){setDd(false)}});
+  burger.addEventListener("click",()=>{if(!navEl.classList.contains("open"))setDd(false)});
+  const here=location.pathname.replace(/\/$/,"");
+  dd.querySelectorAll(".dd-menu a").forEach(a=>{if(a.getAttribute("href")===here)a.setAttribute("aria-current","page")});
+})();
 </script>
 <script is:inline define:vars={{ prod: import.meta.env.PROD }}>
 (function(){
