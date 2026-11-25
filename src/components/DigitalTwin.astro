@@ -39,6 +39,9 @@
 
     const sound = document.querySelector<HTMLButtonElement>(".twin-sound");
     let silenced = false;
+    let busy = false;
+    let tried = false;
+    let pass = 0;
 
     const paint = () => {
       if (!sound) return;
@@ -53,30 +56,53 @@
       return Math.min(r.bottom, innerHeight) - Math.max(r.top, 0) >= 120;
     };
 
+    const playMuted = () => {
+      video.muted = true;
+      if (video.paused) video.play().catch(() => {});
+    };
+
     const applySound = () => {
       if (reduce.matches) {
         paint();
         return;
       }
-      const want = inSight() && !silenced;
-      if (!want) {
+      if (!inSight()) {
+        pass++;
+        busy = false;
+        tried = false;
         video.muted = true;
+        if (!video.paused) video.pause();
         paint();
         return;
       }
+      if (silenced) {
+        playMuted();
+        paint();
+        return;
+      }
+      if (!video.muted && !video.paused) {
+        paint();
+        return;
+      }
+      if (busy || tried) {
+        playMuted();
+        paint();
+        return;
+      }
+      busy = true;
+      tried = true;
+      const mine = ++pass;
+      if (!video.paused) video.pause();
       video.muted = false;
-      if (!video.paused) {
-        paint();
-        return;
-      }
       const pending = video.play();
-      if (pending) {
-        pending.then(paint).catch(() => {
-          video.muted = true;
-          video.play().catch(() => {});
-          paint();
-        });
-      } else paint();
+      const finish = (ok: boolean) => {
+        if (mine !== pass) return;
+        busy = false;
+        if (!ok) playMuted();
+        paint();
+      };
+      if (pending) pending.then(() => finish(!video.muted && !video.paused)).catch(() => finish(false));
+      else finish(!video.muted && !video.paused);
     };
 
     const useClip = () => {
@@ -92,14 +118,19 @@
     addEventListener("resize", applySound);
     addEventListener("pointerdown", (e) => {
       if ((e.target as Element | null)?.closest?.(".twin-sound")) return;
+      tried = false;
       applySound();
     }, true);
+    addEventListener("keydown", () => {
+      tried = false;
+      applySound();
+    });
     applySound();
     sound?.addEventListener("click", () => {
       silenced = !video.muted;
-      video.muted = silenced;
-      if (!silenced && video.paused) video.play().catch(() => {});
-      paint();
+      tried = false;
+      if (!silenced) video.muted = true;
+      applySound();
     });
   }
 </script>

@@ -238,6 +238,9 @@ const u = (id: string, w = 900) => `https://images.unsplash.com/photo-${id}?auto
     var reduce = matchMedia("(prefers-reduced-motion: reduce)");
     var sound = document.querySelector(".video-sound");
     var silenced = false;
+    var busy = false;
+    var tried = false;
+    var pass = 0;
     var hold = function () {
       if (!reduce.matches) return;
       video.removeAttribute("autoplay");
@@ -255,19 +258,38 @@ const u = (id: string, w = 900) => `https://images.unsplash.com/photo-${id}?auto
       var r = video.getBoundingClientRect();
       return Math.min(r.bottom, innerHeight) - Math.max(r.top, 0) >= 120;
     };
+    var playMuted = function () {
+      video.muted = true;
+      if (video.paused) video.play().catch(function () {});
+    };
     var applySound = function () {
       if (reduce.matches) { paint(); return; }
-      var want = inSight() && !silenced;
-      if (!want) { video.muted = true; paint(); return; }
-      video.muted = false;
-      if (!video.paused) { paint(); return; }
-      var pending = video.play();
-      if (pending) pending.then(paint).catch(function () {
+      if (!inSight()) {
+        pass++;
+        busy = false;
+        tried = false;
         video.muted = true;
-        video.play().catch(function () {});
+        if (!video.paused) video.pause();
         paint();
-      });
-      else paint();
+        return;
+      }
+      if (silenced) { playMuted(); paint(); return; }
+      if (!video.muted && !video.paused) { paint(); return; }
+      if (busy || tried) { playMuted(); paint(); return; }
+      busy = true;
+      tried = true;
+      var mine = ++pass;
+      if (!video.paused) video.pause();
+      video.muted = false;
+      var pending = video.play();
+      var finish = function (ok) {
+        if (mine !== pass) return;
+        busy = false;
+        if (!ok) playMuted();
+        paint();
+      };
+      if (pending) pending.then(function () { finish(!video.muted && !video.paused); }).catch(function () { finish(false); });
+      else finish(!video.muted && !video.paused);
     };
     var useClip = function () {
       var next = small.matches ? mobile : desktop;
@@ -281,14 +303,19 @@ const u = (id: string, w = 900) => `https://images.unsplash.com/photo-${id}?auto
     addEventListener("resize", applySound);
     addEventListener("pointerdown", function (e) {
       if (e.target && e.target.closest && e.target.closest(".video-sound")) return;
+      tried = false;
       applySound();
     }, true);
+    addEventListener("keydown", function () {
+      tried = false;
+      applySound();
+    });
     applySound();
     if (sound) sound.addEventListener("click", function () {
       silenced = !video.muted;
-      video.muted = silenced;
-      if (!silenced && video.paused) video.play().catch(function () {});
-      paint();
+      tried = false;
+      if (!silenced) video.muted = true;
+      applySound();
     });
   })();
 </script>
