@@ -33,6 +33,7 @@ nav.top .btn{justify-self:end}
 .brand img{height:44px;width:auto;display:block;mix-blend-mode:multiply}
 @media (max-width:760px){nav.top{grid-template-columns:1fr auto}}
 nav.top .btn{background:#5D1F72;color:#fff;border:1px solid #5D1F72;transition:background .3s,color .3s}
+nav.top a.btn{display:inline-flex;align-items:center;justify-content:center;color:#fff;text-decoration:none}
 body,button,input{font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
 nav.top{padding-top:16px;padding-bottom:16px}
 .hero{position:relative;max-width:none;display:flex;align-items:center;justify-content:center;padding:var(--section-y) 5vw;background:#fff}
@@ -71,6 +72,8 @@ img{max-width:100%;height:auto}
   nav.top .links{display:none!important;position:absolute;left:0;right:0;top:100%;flex-direction:column;gap:0;margin:0!important;padding:8px 4vw 12px;background:#fff;border-bottom:1px solid #eef1f3;box-shadow:0 12px 24px rgba(40,80,120,.12)}
   nav.top.open .links{display:flex!important}
   nav.top .links a{display:flex;align-items:center;min-height:48px;font-size:15px}
+  nav.top .menu-cta a.btn{color:#fff;justify-content:center}
+  nav.top .menu-cta a.btn:hover{color:#5D1F72}
 }
 
 /* --- Phones (<=760px): touch-friendly hero buttons --- */
@@ -450,7 +453,7 @@ nav.top .dd.open .dd-menu{opacity:1;visibility:visible;transform:translate(-50%,
 </style>
 </head>
 <body>
-<nav class="top"><a class="brand" href="/"><img src="/logo.png" alt="Fusionedge"></a><ul class="links" id="menu"><li><a href="#">Apps</a></li><li class="dd"><button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-industries">Industries<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="dd-menu" id="dd-industries"><a href="/industries/construction">Construction</a><a href="/industries/manufacturing">Manufacturing</a><a href="/industries/it-tech-parks">IT &amp; Tech Parks</a><a href="/industries/healthcare">Healthcare</a><a href="/industries/hospitality">Hospitality</a><a href="/industries/retail-malls">Retail &amp; Malls</a><a href="/industries/education">Education</a></div></li><li><a href="#">About us</a></li><li><a href="#">Resources</a></li><li class="menu-cta"><button class="btn">Book a Demo</button></li></ul><button class="btn nav-demo">Book a Demo</button><button class="burger" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="menu"><span></span></button></nav>
+<nav class="top"><a class="brand" href="/"><img src="/logo.png" alt="Fusionedge"></a><ul class="links" id="menu"><li><a href="/#modules">Apps</a></li><li class="dd"><button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-industries">Industries<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="dd-menu" id="dd-industries"><a href="/industries/construction">Construction</a><a href="/industries/manufacturing">Manufacturing</a><a href="/industries/it-tech-parks">IT &amp; Tech Parks</a><a href="/industries/healthcare">Healthcare</a><a href="/industries/hospitality">Hospitality</a><a href="/industries/retail-malls">Retail &amp; Malls</a><a href="/industries/education">Education</a></div></li><li><a href="/about">About us</a></li><li><a href="https://blog.fusionedge.io/">Resources</a></li><li class="menu-cta"><a class="btn" href="/contact">Talk to Us</a></li></ul><a class="btn nav-demo" href="/contact">Talk to Us</a><button class="burger" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="menu"><span></span></button></nav>
 <slot />
 <footer class="site-foot">
 <div class="foot-main">
@@ -463,7 +466,7 @@ nav.top .dd.open .dd-menu{opacity:1;visibility:visible;transform:translate(-50%,
 <a class="foot-in" href="https://www.linkedin.com/company/fusionedgeservices/posts/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src="/icons/linkedIN.png" alt="" width="22" height="22"></a>
 </div>
 <a class="foot-contact" href="mailto:hello@fusionedge.io"><svg viewBox="2 4 20 16" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>hello@fusionedge.io</a>
-<a class="foot-contact" href="#"><svg viewBox="3.6 2.5 18 17.6" aria-hidden="true"><path d="M7 3.5h3.2l1.4 3.4-2 1.2a12 12 0 006.3 6.3l1.2-2 3.4 1.4V17a2 2 0 01-2.2 2A15.5 15.5 0 015 6.7 2 2 0 017 3.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>Book a demo</a>
+<a class="foot-contact" href="/contact"><svg viewBox="3.6 2.5 18 17.6" aria-hidden="true"><path d="M7 3.5h3.2l1.4 3.4-2 1.2a12 12 0 006.3 6.3l1.2-2 3.4 1.4V17a2 2 0 01-2.2 2A15.5 15.5 0 015 6.7 2 2 0 017 3.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>Book a demo</a>
 </div>
 <div class="foot-col">
 <h2>Quick links</h2>
@@ -541,7 +544,7 @@ addEventListener("scroll",()=>{if(navEl.classList.contains("hide"))setMenu(false
   addEventListener("load",land);
   addEventListener("hashchange",jump);
   addEventListener("pageshow",land);
-  document.querySelectorAll(".site-foot a").forEach(a=>{
+  document.querySelectorAll(".site-foot a, nav.top .links a").forEach(a=>{
     a.addEventListener("click",e=>{
       if(a.classList.contains("foot-open-industries"))return;
       const raw=a.getAttribute("href")||"";
