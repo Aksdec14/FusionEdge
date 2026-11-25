@@ -1,28 +1,415 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+const stats = [
+  { num: "26", label: "Apps in one subscription" },
+  { num: "50,000+", label: "Assets traced for a single client" },
+  { num: "32,000+", label: "Assets on one dashboard" },
+  { num: "14", label: "Sites in six cities on one standard" },
+  { num: "30 min", label: "Full asset audit, down from 15 days" },
+  { num: "6", label: "Industries served" },
+];
+
+const clients = [
+  { name: "Incuspaze", src: "/logos-v2/incuspaze.png" },
+  { name: "Siemens", src: "/logos-v2/siemens.png" },
+  { name: "JCB", src: "/logos-v2/jcb.png" },
+  { name: "Concentrix", src: "/logos-v2/concentrix.png" },
+  { name: "Tata", src: "/logos-v2/tata.png", mark: true },
+  { name: "Gates Foundation", src: "/logos-v2/gates-foundation.png" },
+  { name: "NAB", src: "/logos-v2/nab.png", mark: true },
+  { name: "Amdocs", src: "/logos-v2/amdocs.png" },
+  { name: "HDFC Bank", src: "/logos-v2/hdfc-bank.png" },
+  { name: "DP World", src: "/logos-v2/dp-world.png" },
+  { name: "Air India", src: "/logos-v2/air-india.png" },
+  { name: "QCI", src: "/logos-v2/qci.png", mark: true },
+];
+
+const results = [
+  { num: "12%", text: "Lower energy bills, with after-hours use measured and billed to tenants." },
+  { num: "96%", text: "Preventive maintenance tasks done on time, up from 52%." },
+  { num: "5 days", text: "To open a new campus on the platform, down from three weeks." },
+];
+
+const team = [
+  { name: "Rana Rajvinder Singh", role: "CEO & Founder", img: "https://fusionedge.io/rana_sir.png", linkedin: "#" },
+  { name: "Sanjeev Bhandari", role: "CSO & Co-Founder", img: "https://fusionedge.io/Sanjeev_Sir.jpeg", linkedin: "#" },
+  { name: "Arjun Naik", role: "Co-Founder", img: "https://fusionedge.io/Arjun_Sir.jpeg", linkedin: "#" },
+];
+
+const u = (id: string, w = 900) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=70`;
 ---
-<Layout title="About — Fusionedge">
-<article class="story">
-  <h1>About FusionEdge</h1>
-  <p class="story-lead">FusionEdge is a modern facility management and workplace operations platform designed for organisations managing complex, multi-site environments.</p>
-  <p>As businesses grow, operational challenges multiply — disconnected tools, manual tracking, delayed approvals, and limited visibility across locations. FusionEdge addresses this by bringing people, processes, assets, and data together on one integrated platform.</p>
-  <p>By replacing spreadsheets and fragmented systems with real-time visibility and automation, FusionEdge helps organisations operate efficiently, make data-driven decisions, and scale without operational chaos.</p>
+<Layout title="About us — Fusionedge">
+<main class="about">
 
-  <h2>What we've built</h2>
-  <p>FusionEdge is a next-generation integrated facility management and workplace operations solution built to serve as a single source of truth across your organisation. The platform connects attendance, visitor management, asset tracking, maintenance, inventory, approvals, compliance, and analytics, so teams and sites can work from the same information.</p>
+  <!-- 1. Intro -->
+  <section class="block wrap" aria-labelledby="about-title">
+    <header class="intro">
+      <p class="eyebrow">About Fusionedge</p>
+      <h1 class="h1" id="about-title">About us</h1>
+      <p class="lead">FusionEdge is a facility management and workplace operations platform for organisations running complex, multi-site operations. It brings people, processes, assets and data into one integrated system, replacing spreadsheets and fragmented tools with real-time visibility and automation.</p>
+    </header>
 
-  <h2>Mission</h2>
-  <p>To simplify facility and workplace operations through connected systems, intelligent automation, and real-time visibility.</p>
+    <div class="strip">
+      <div class="tile"><img onerror="this.style.display='none'" src="https://fusionedge.io/image.png" alt="FusionEdge platform" loading="eager"></div>
+      <div class="tile"><img onerror="this.style.display='none'" src={u("1551288049-bebda4e38f71", 800)} alt="Analytics dashboard on a laptop screen" loading="eager"></div>
+      <div class="tile"><img onerror="this.style.display='none'" src={u("1581091226825-a6a2a5aee158", 600)} alt="Engineer working with automated equipment" loading="eager"></div>
+    </div>
+  </section>
 
-  <h2>Vision</h2>
-  <p>As businesses grow, problems don't get smaller — systems need to get smarter.</p>
+  <!-- 2. Stats -->
+  <section class="block wrap" aria-labelledby="stats-title">
+    <h2 class="h2 stats-head" id="stats-title">One platform. <span class="hl">One source of truth.</span></h2>
+    <div class="stats">
+      {stats.map((s) => (
+        <div class="stat"><div class="stat__num">{s.num}</div><div class="stat__label">{s.label}</div></div>
+      ))}
+    </div>
+  </section>
 
-  <h2>The team</h2>
-  <p>Leadership at FusionEdge brings together technical, operational, and enterprise experience. The team has built and scaled technology across industries, with a focus on cloud platforms, digital operations, and turning a product vision into something teams can run every day.</p>
-  <ul>
-    <li>Rana Rajvinder Singh, CEO and Founder</li>
-    <li>Sanjeev Bhandari, CSO and Co-Founder</li>
-    <li>Arjun Naik, Co-Founder</li>
-  </ul>
-</article>
+  <!-- 3. Benefits -->
+  <section class="block wrap" aria-labelledby="benefits-title">
+    <h2 class="h2 center" id="benefits-title">See the benefits firsthand</h2>
+    <div class="bento">
+      <div class="bento__col bento__col--a">
+        <div class="tile"><img onerror="this.style.display='none'" src={u("1460925895917-afdab827c52f", 700)} alt="Data dashboard with charts" loading="lazy"></div>
+        <div class="card">
+          <div class="card__num">45%</div>
+          <div class="card__title">Fewer unplanned breakdowns</div>
+          <p class="card__text">Preventive maintenance runs on schedule, with real-time monitoring on every asset.</p>
+        </div>
+      </div>
+
+      <div class="bento__col bento__col--b">
+        <div class="tile bento__tall">
+          <img onerror="this.style.display='none'" src={u("1587582423116-ec07293f0395", 800)} alt="Technician at work on site" loading="lazy">
+          <figure class="quote">
+            <div class="quote__org"><i></i>Customer story</div>
+            <p>“The live DG alerts caught a fault before it became a shutdown.”</p>
+            <figcaption class="quote__who">Maintenance Technician</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="bento__col bento__col--c">
+        <div class="card">
+          <div class="card__num">95%</div>
+          <div class="card__title">Checklist compliance</div>
+          <p class="card__text">Up from 61%, with every check recorded in a digital audit trail.</p>
+        </div>
+        <div class="tile"><img onerror="this.style.display='none'" src={u("1754548930574-6a995e5eb5a7", 700)} alt="Hand marking off items on a checklist" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Who we are + video -->
+  <section class="block wrap" aria-labelledby="mission-title">
+    <div class="split">
+      <div>
+        <p class="eyebrow">Who we are</p>
+        <h2 class="h2" id="mission-title">India’s first operational digital twin</h2>
+      </div>
+      <p class="body">CAFM, IWFM, EAM and CAMS in one platform. Fusionedge connects with ERP/SAP, HRMS, IoT sensors and building management systems through ready connectors and an open API.</p>
+    </div>
+
+    <div class="tile video">
+      <video
+        id="about-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        aria-label="Your building’s operational digital twin"
+      >
+        <source
+          src="/twin-video/digital-twin-fusionedge-mobile-1080x1350.mp4"
+          type="video/mp4"
+          media="(max-width: 1024px)"
+        />
+        <source src="/twin-video/digital-twin-fusionedge-2200x800.mp4" type="video/mp4" />
+      </video>
+    </div>
+    <p class="caption">Real-time asset monitoring, preventive maintenance and multi-site dashboards in one view.</p>
+  </section>
+
+  <!-- 5. Clients -->
+  <section class="clients" aria-label="Clients">
+    <div class="clients__marquee">
+      <div class="clients__track">
+        <ul>
+          {clients.map((c) => (
+            <li><img class:list={{ "is-mark": c.mark }} src={c.src} alt={c.name} /></li>
+          ))}
+        </ul>
+        <ul aria-hidden="true">
+          {clients.map((c) => (
+            <li><img class:list={{ "is-mark": c.mark }} src={c.src} alt="" /></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Mission -->
+  <section class="block wrap" aria-labelledby="began-title">
+    <div class="began">
+      <div class="began__media">
+        <div class="tile"><img onerror="this.style.display='none'" src={u("1758448721149-aa0ce8e1b2c9", 900)} alt="Modern office lobby" loading="lazy"></div>
+      </div>
+      <div>
+        <p class="eyebrow">Our mission</p>
+        <h2 class="h3" id="began-title">Why we began</h2>
+        <p class="body">We built FusionEdge for everyone who keeps an enterprise running: engineers, admins, front desks and leaders. Too often they juggle spreadsheets, phone calls and paper checklists across sites.</p>
+        <p class="body">Our mission is to simplify facility and workplace operations through connected systems, intelligent automation and real-time visibility, because as businesses grow, their systems need to become smarter.</p>
+        <div class="facts">
+          <div class="fact"><div class="fact__num">26</div><div class="fact__label">Apps, one subscription</div></div>
+          <div class="fact"><div class="fact__num">ISO 27001</div><div class="fact__label">2022 certified</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. CTA -->
+  <section class="block wrap" aria-labelledby="cta-title">
+    <div class="cta">
+      <div>
+        <h2 class="h3" id="cta-title">Go digital with Fusionedge</h2>
+        <p class="body">Most teams launch their first module within weeks. Guided onboarding and data migration are included.</p>
+        <p class="body">No card and no setup fee to get a demo.</p>
+        <div class="btns">
+          <a class="btn btn--dark" href="https://fusionedge.io/request-demo/">Book a demo</a>
+          <a class="btn" href="mailto:hello@fusionedge.io">Contact us
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="mosaic">
+        <div class="tile"><img onerror="this.style.display='none'" src={u("1527192491265-7e15c55b1ed2", 500)} alt="Team working in a modern office" loading="lazy"></div>
+        <div class="tile"><img onerror="this.style.display='none'" src={u("1584169417032-d34e8d805e8b", 500)} alt="Server room aisle" loading="lazy"></div>
+        <div class="tile"><img onerror="this.style.display='none'" src={u("1486406146926-c627a92ad1ab", 1000)} alt="High-rise office buildings" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Results -->
+  <section class="block wrap" aria-label="Results">
+    <div class="results">
+      {results.map((r) => (
+        <div class="result"><div class="result__num">{r.num}</div><p>{r.text}</p></div>
+      ))}
+    </div>
+  </section>
+
+  <!-- 9. Team -->
+  <section class="block wrap" aria-labelledby="team-title">
+    <div class="people-head">
+      <h2 class="h2" id="team-title">Meet the team</h2>
+      <p class="lead">Leadership that brings together technical expertise, operational experience and collaborative problem-solving.</p>
+    </div>
+    <div class="people">
+      {team.map((p) => (
+        <article class="tile person">
+          <img onerror="this.style.display='none'" src={p.img} alt={p.name} loading="lazy">
+          <div class="person__overlay">
+            <div>
+              <h3 class="person__name">{p.name}</h3>
+              <p class="person__role">{p.role}</p>
+            </div>
+            <a class="person__in" href={p.linkedin} target="_blank" rel="noopener" aria-label={`${p.name} on LinkedIn`}>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3zM9.5 9.75h3.8v1.6h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5c0-1.2-.02-2.73-1.66-2.73-1.67 0-1.92 1.3-1.92 2.64V21h-4z"/></svg>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+</main>
 </Layout>
+
+<script is:inline>
+  (function () {
+    var video = document.getElementById("about-video");
+    if (!video) return;
+    var desktop = "/twin-video/digital-twin-fusionedge-2200x800.mp4";
+    var mobile = "/twin-video/digital-twin-fusionedge-mobile-1080x1350.mp4";
+    var small = matchMedia("(max-width: 1024px)");
+    var reduce = matchMedia("(prefers-reduced-motion: reduce)");
+    var hold = function () {
+      if (!reduce.matches) return;
+      video.removeAttribute("autoplay");
+      video.pause();
+      video.controls = true;
+    };
+    var useClip = function () {
+      var next = small.matches ? mobile : desktop;
+      if (!video.currentSrc.endsWith(next)) {
+        video.src = next;
+        if (!reduce.matches) video.play().catch(function () {});
+      }
+      hold();
+    };
+    hold();
+    small.addEventListener("change", useClip);
+  })();
+</script>
+
+<style>
+  .about {
+    --text: #1a1424;
+    --muted: #6b6478;
+    --line: rgba(93, 31, 114, .1);
+    --soft: rgba(93, 31, 114, .04);
+    --brand: #5D1F72;
+    --green: #00BF88;
+    --radius: 14px;
+    font-family: "Public Sans", sans-serif;
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+  .about *, .about *::before, .about *::after { box-sizing: border-box; font-family: "Public Sans", sans-serif; }
+  .about h1, .about h2, .about h3, .about p { margin: 0; max-width: none; }
+
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  .block { padding-top: clamp(56px, 9vw, 112px); }
+  .block:last-child { padding-bottom: clamp(56px, 9vw, 112px); }
+
+  .about .eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--brand); }
+  .h1 { font-size: clamp(36px, 5.2vw, 60px); font-weight: 600; font-style: italic; letter-spacing: -.035em; line-height: 1.05; color: var(--text); }
+  .h2 { font-size: clamp(26px, 3.2vw, 40px); font-weight: 600; font-style: italic; letter-spacing: -.028em; line-height: 1.12; text-wrap: balance; color: var(--text); }
+  .h3 { font-size: clamp(20px, 2vw, 26px); font-weight: 600; font-style: italic; letter-spacing: -.02em; line-height: 1.2; color: var(--text); }
+  .hl { color: var(--brand); }
+  .about .lead { font-size: clamp(15px, 1.3vw, 17px); line-height: 1.6; color: var(--muted); text-wrap: pretty; }
+  .about .body { font-size: 15px; line-height: 1.65; color: #4b4357; text-wrap: pretty; }
+  .about .body + .body { margin-top: 14px; }
+
+  /* tiles */
+  .tile { position: relative; overflow: hidden; border-radius: var(--radius); background: linear-gradient(135deg, rgba(93,31,114,.1), rgba(0,191,136,.1)); isolation: isolate; }
+  .tile > img, .tile > video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* 1. intro */
+  .intro { text-align: center; max-width: 720px; margin: 0 auto; }
+  .intro .eyebrow { margin-bottom: 14px; }
+  .intro .lead { margin-top: 18px; }
+  .strip { display: grid; grid-template-columns: 1.55fr 1.2fr .85fr; gap: 14px; margin-top: clamp(36px, 5vw, 56px); height: clamp(200px, 24vw, 280px); }
+  .strip .tile:first-child > img { object-fit: cover; object-position: top center; background: #fff; }
+
+  /* 2. stats */
+  .stats-head { max-width: 620px; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); column-gap: clamp(20px, 4vw, 48px); margin-top: clamp(28px, 4vw, 44px); }
+  .stat { padding: 22px 0 20px; border-bottom: 1px solid var(--line); }
+  .stat__num { font-size: clamp(30px, 3.4vw, 42px); font-weight: 600; letter-spacing: -.03em; line-height: 1; font-variant-numeric: tabular-nums; color: var(--brand); }
+  .stat__label { margin-top: 12px; font-size: 13px; color: var(--muted); }
+
+  /* 3. bento */
+  .center { text-align: center; }
+  .bento { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: clamp(28px, 4vw, 44px); }
+  .bento__col { display: grid; gap: 16px; }
+  .bento__col--a { grid-template-rows: 1.35fr auto; }
+  .bento__col--c { grid-template-rows: auto 1.35fr; }
+  .bento .tile { min-height: 220px; }
+  .bento__tall { min-height: 100%; }
+  .card { border: 1px solid var(--line); border-radius: var(--radius); background: #fff; padding: 22px; }
+  .card__num { font-size: 30px; font-weight: 600; letter-spacing: -.03em; line-height: 1; color: var(--brand); }
+  .card__title { margin-top: 8px; font-size: 14px; font-weight: 600; }
+  .about .card__text { margin-top: 14px; font-size: 13px; line-height: 1.55; color: var(--muted); }
+  .quote { position: absolute; left: 16px; right: 16px; bottom: 16px; z-index: 1; margin: 0; background: #fff; color: var(--text); border-radius: 12px; padding: 18px; box-shadow: 0 10px 30px rgba(93,31,114,.25); }
+  .quote__org { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; color: var(--brand); }
+  .quote__org i { width: 18px; height: 18px; border-radius: 50%; background: var(--brand); }
+  .about .quote p { margin-top: 12px; font-size: 14px; line-height: 1.55; color: #4b4357; }
+  .quote__who { margin-top: 12px; font-size: 13px; font-weight: 600; }
+
+  /* 4. who we are + video */
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 5vw, 72px); align-items: end; }
+  .split .eyebrow { margin-bottom: 12px; }
+  .video { margin-top: clamp(28px, 4vw, 44px); aspect-ratio: 2200 / 800; width: 100%; background: #fff; }
+  .tile.video > video { object-fit: contain; background: #fff; }
+  @media (max-width: 1024px) {
+    .video { aspect-ratio: 1080 / 1350; }
+  }
+  .about .caption { margin-top: 16px; text-align: center; font-size: 13px; color: var(--muted); }
+
+  /* 5. clients */
+  .clients { background: #5D1F72; margin-top: clamp(56px, 9vw, 112px); padding: clamp(40px, 6vw, 64px) 0; }
+  .clients__marquee { overflow: hidden; width: 100%; }
+  .clients__track { display: flex; width: max-content; animation: clients-marquee 28s linear infinite; }
+  .clients__track ul { display: flex; align-items: center; gap: 64px; list-style: none; margin: 0; padding: 0 32px; flex: none; }
+  .clients__track li { display: flex; align-items: center; }
+  .clients__track img { display: block; height: 24px; width: auto; }
+  .clients__track img.is-mark { height: 40px; }
+  @keyframes clients-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @media (max-width: 760px) {
+    .clients__track ul { gap: 40px; padding: 0 20px; }
+    .clients__track img { height: 20px; }
+    .clients__track img.is-mark { height: 34px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .clients__track { animation: none; flex-wrap: wrap; justify-content: center; width: auto; }
+    .clients__marquee { overflow: visible; }
+  }
+
+  /* 6. mission */
+  .began { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(24px, 4vw, 48px); align-items: center; }
+  .began__media .tile { aspect-ratio: 1 / 1; }
+  .began .eyebrow { margin-bottom: 10px; }
+  .began .h3 { margin-bottom: 18px; }
+  .facts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px; }
+  .fact { border: 1px solid var(--line); border-radius: 12px; padding: 18px; text-align: center; }
+  .fact__num { font-size: 26px; font-weight: 600; letter-spacing: -.03em; color: var(--brand); }
+  .fact__label { margin-top: 6px; font-size: 12px; color: var(--muted); }
+
+  /* 7. CTA */
+  .cta { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 56px); align-items: center; }
+  .cta .h3 { margin-bottom: 18px; }
+  .btns { display: flex; gap: 10px; margin-top: 26px; flex-wrap: wrap; }
+  .about a.btn, .about a.btn:visited { display: inline-flex; align-items: center; gap: 8px; height: 42px; padding: 0 20px; border-radius: 99px; font-size: 14px; font-weight: 600; text-decoration: none; cursor: pointer; border: 1px solid var(--brand); background: #fff; color: var(--brand); transition: opacity .2s ease; }
+  .about a.btn:hover { opacity: .88; }
+  .about a.btn--dark, .about a.btn--dark:visited { background: var(--brand); color: #fff; }
+  .btn svg { width: 15px; height: 15px; }
+  .mosaic { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 150px 210px; gap: 12px; }
+  .mosaic .tile:last-child { grid-column: 1 / -1; }
+
+  /* 8. results */
+  .results { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .result { background: var(--soft); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
+  .result__num { font-size: 26px; font-weight: 600; letter-spacing: -.03em; color: var(--brand); }
+  .about .result p { margin-top: 26px; font-size: 13px; line-height: 1.55; color: #4b4357; }
+
+  /* 9. team */
+  .people-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .people-head .lead { max-width: 420px; }
+  .people { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: clamp(28px, 4vw, 44px); }
+  .person { aspect-ratio: 4 / 5; }
+  .person > img { object-position: top center; }
+  .person__overlay { position: absolute; inset: auto 0 0 0; z-index: 1; display: flex; align-items: end; justify-content: space-between; gap: 12px; padding: 56px 18px 18px; background: linear-gradient(to top, rgba(26,20,36,.8), rgba(26,20,36,0)); color: #fff; }
+  .about .person__name { font-size: 16px; font-weight: 600; font-style: normal; letter-spacing: -.01em; color: #fff; }
+  .about .person__role { margin-top: 3px; font-size: 13px; color: rgba(255,255,255,.8); }
+  .person__in { flex: none; width: 36px; height: 36px; border-radius: 9px; display: grid; place-items: center; background: #fff; color: var(--brand); transition: transform .2s ease; }
+  .person__in:hover { transform: translateY(-2px); }
+  .person__in svg { width: 16px; height: 16px; }
+
+  /* responsive */
+  @media (max-width: 900px) {
+    .people { grid-template-columns: 1fr 1fr; }
+    .bento { grid-template-columns: 1fr 1fr; }
+    .bento__col--b { grid-column: 1 / -1; grid-row: 1; }
+    .bento__col--b .tile { min-height: 440px; }
+    .split, .began, .cta { grid-template-columns: 1fr; }
+    .began__media .tile { aspect-ratio: 16 / 10; }
+  }
+  @media (max-width: 680px) {
+    .strip { grid-template-columns: 1fr 1fr; height: auto; }
+    .strip .tile { height: 180px; }
+    .strip .tile:first-child { grid-column: 1 / -1; height: 220px; }
+    .stats { grid-template-columns: 1fr 1fr; }
+    .bento { grid-template-columns: 1fr; }
+    .bento__col--b .tile { min-height: 420px; }
+    .results { grid-template-columns: 1fr; }
+    .mosaic { grid-template-rows: 120px 170px; }
+  }
+  @media (max-width: 560px) {
+    .people { grid-template-columns: 1fr; }
+    .person { aspect-ratio: 4 / 4.4; }
+  }
+</style>
