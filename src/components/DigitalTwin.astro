@@ -11,19 +11,19 @@
     aria-label="Your building’s operational digital twin"
   >
     <source
-      src="/twin-video/digital-twin-fusionedge-mobile-1080x1350.mp4"
+      src="/twin-video/digital-twin-fusionedge-mobile-1080x1350-voiceover.mp4"
       type="video/mp4"
       media="(max-width: 1024px)"
     />
-    <source src="/twin-video/digital-twin-fusionedge-2200x800.mp4" type="video/mp4" />
+    <source src="/twin-video/digital-twin-fusionedge-2200x800-voiceover.mp4" type="video/mp4" />
   </video>
   </div>
 </section>
 <script>
   const video = document.querySelector<HTMLVideoElement>(".twin video");
   if (video) {
-    const desktop = "/twin-video/digital-twin-fusionedge-2200x800.mp4";
-    const mobile = "/twin-video/digital-twin-fusionedge-mobile-1080x1350.mp4";
+    const desktop = "/twin-video/digital-twin-fusionedge-2200x800-voiceover.mp4";
+    const mobile = "/twin-video/digital-twin-fusionedge-mobile-1080x1350-voiceover.mp4";
     const small = matchMedia("(max-width: 1024px)");
     const reduce = matchMedia("(prefers-reduced-motion: reduce)");
 

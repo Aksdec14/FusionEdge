@@ -435,6 +435,18 @@ nav.top .dd.open .dd-menu{opacity:1;visibility:visible;transform:translate(-50%,
   nav.top .dd.open .dd-menu{display:grid;transform:none}
   nav.top .dd-menu a{min-height:44px;padding:0 12px;font-size:15px;color:#444}
 }
+.cc-banner{position:fixed;z-index:500;left:16px;bottom:16px;width:min(400px,calc(100% - 32px));box-sizing:border-box;padding:20px;background:#fff;border:1px solid #e3e7ec;border-radius:16px;box-shadow:0 12px 32px rgba(26,20,36,.08);font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:#1a1424}
+.cc-banner[hidden]{display:none}
+.cc-banner h2{display:flex;align-items:center;gap:8px;margin:0 0 10px;font-family:inherit;font-style:normal;font-weight:600;font-size:16px;line-height:1.3;letter-spacing:normal;color:#1a1424}
+.cc-banner h2 svg{flex:none;width:18px;height:18px}
+.cc-banner p{margin:0 0 12px;max-width:none;font-size:14px;line-height:1.5;color:#1a1424}
+.cc-banner a{color:#1a1424}
+.cc-banner .cc-note a{text-underline-offset:2px}
+.cc-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cc-banner button,.cc-banner .cc-more{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:8px 12px;border:1px solid #e3e7ec;border-radius:10px;background:#fff;color:#1a1424;font:500 15px "Public Sans",system-ui,sans-serif;text-decoration:none;cursor:pointer}
+.cc-banner .cc-more{grid-column:1 / -1;margin-top:10px}
+.cc-banner button:hover,.cc-banner .cc-more:hover{border-color:#5D1F72;color:#5D1F72}
+.cc-banner button:focus-visible,.cc-banner .cc-more:focus-visible{outline:2px solid #5D1F72;outline-offset:2px}
 </style>
 </head>
 <body>
@@ -487,6 +499,26 @@ nav.top .dd.open .dd-menu{opacity:1;visibility:visible;transform:translate(-50%,
 </nav>
 </div>
 </footer>
+<div class="cc-banner" id="cc-banner" role="dialog" aria-labelledby="cc-title">
+<h2 id="cc-title"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h8.2L19.5 9v11.5H6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 3.8V9h5.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>Cookie Consent</h2>
+<p>We use cookies and similar technologies to enhance user experience, analyze usage patterns, and store user preferences. These technologies help us improve functionality and performance. You may choose to manage or disable cookies through your browser settings, though this may impact certain features of the Services.</p>
+<p class="cc-note">For more information see our <a href="/privacy-policy#section-11">Cookie Notice</a>.</p>
+<div class="cc-actions">
+<button type="button" data-cc="accept">Accept all</button>
+<button type="button" data-cc="reject">Reject all</button>
+<a class="cc-more" href="/privacy-policy#section-11">More choices</a>
+</div>
+</div>
+<script is:inline>
+(function(){
+  var box=document.getElementById("cc-banner");
+  if(!box)return;
+  try{if(localStorage.getItem("fe_cookie")){box.hidden=true;return}}catch(e){}
+  function save(v){try{localStorage.setItem("fe_cookie",v)}catch(e){}box.hidden=true}
+  box.querySelector("[data-cc=accept]").addEventListener("click",function(){save("accept")});
+  box.querySelector("[data-cc=reject]").addEventListener("click",function(){save("reject")});
+})();
+</script>
 <script is:inline>
 /* ---- Mobile menu ---- */
 const navEl=document.querySelector("nav.top"),burger=navEl.querySelector(".burger");

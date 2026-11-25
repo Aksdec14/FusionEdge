@@ -122,11 +122,11 @@ const u = (id: string, w = 900) => `https://images.unsplash.com/photo-${id}?auto
         aria-label="Your building’s operational digital twin"
       >
         <source
-          src="/twin-video/digital-twin-fusionedge-mobile-1080x1350.mp4"
+          src="/twin-video/digital-twin-fusionedge-mobile-1080x1350-voiceover.mp4"
           type="video/mp4"
           media="(max-width: 1024px)"
         />
-        <source src="/twin-video/digital-twin-fusionedge-2200x800.mp4" type="video/mp4" />
+        <source src="/twin-video/digital-twin-fusionedge-2200x800-voiceover.mp4" type="video/mp4" />
       </video>
     </div>
     <p class="caption">Real-time asset monitoring, preventive maintenance and multi-site dashboards in one view.</p>
@@ -231,8 +231,8 @@ const u = (id: string, w = 900) => `https://images.unsplash.com/photo-${id}?auto
   (function () {
     var video = document.getElementById("about-video");
     if (!video) return;
-    var desktop = "/twin-video/digital-twin-fusionedge-2200x800.mp4";
-    var mobile = "/twin-video/digital-twin-fusionedge-mobile-1080x1350.mp4";
+    var desktop = "/twin-video/digital-twin-fusionedge-2200x800-voiceover.mp4";
+    var mobile = "/twin-video/digital-twin-fusionedge-mobile-1080x1350-voiceover.mp4";
     var small = matchMedia("(max-width: 1024px)");
     var reduce = matchMedia("(prefers-reduced-motion: reduce)");
     var hold = function () {
