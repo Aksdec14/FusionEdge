@@ -95,10 +95,10 @@ img{max-width:100%;height:auto}
 .certs li{flex:1 1 0;min-width:0;text-align:center}
 .certs svg{width:80px;height:80px;display:block;margin:0 auto;background:#fff;border:1px solid #e3e7ec;border-radius:12px}
 .certs p{max-width:none;margin:10px 0 0;font-family:"Public Sans",system-ui,sans-serif;font-weight:600;font-size:var(--type-body);line-height:1.35;color:#1a1424}
-.esg-banner{position:relative;background:#fff;padding:8px 5vw;overflow:hidden;font-family:"Public Sans",system-ui,sans-serif}
+.esg-banner{position:relative;background:#fff;padding:0 5vw;overflow:hidden;font-family:"Public Sans",system-ui,sans-serif}
 .esg-banner::before{content:"";position:absolute;inset:0;z-index:0;background:url("/image.png") center 58% / cover no-repeat;opacity:.05;pointer-events:none}
-.esg-banner .card{position:relative;z-index:1;display:flex;justify-content:center;width:100%;max-width:none;margin:0;height:auto;background:transparent;border:0;border-radius:0;overflow:visible}
-.esg-banner .esg-fit{position:relative;width:100%;aspect-ratio:1560/600;height:auto}
+.esg-banner .card{position:relative;z-index:1;display:flex;justify-content:center;width:100%;max-width:none;margin:0;height:auto;background:transparent;border:0;border-radius:0;overflow:hidden}
+.esg-banner .esg-fit{position:relative;width:100%;aspect-ratio:1560/600;height:auto;margin:-2% 0 -2.5%}
 .esg-banner .esg-fit>svg{position:absolute;inset:0;width:100%;height:100%}
 .esg-banner .line{stroke-dasharray:3000;stroke-dashoffset:3000}
 .esg-banner.in .line{animation:esg-draw 2.8s ease-out forwards}
@@ -108,6 +108,10 @@ img{max-width:100%;height:auto}
 .esg-banner .kicker{font-size:clamp(9px,.8vw,12px);font-weight:500;letter-spacing:.3em;color:#5D1F72}
 .esg-banner h2{margin:0;margin-top:.35em;max-width:none;font-family:"Public Sans",system-ui,sans-serif;font-style:italic;font-weight:600;font-size:clamp(18px,1.6vw,26px);line-height:1.15;letter-spacing:-.03em;color:#5D1F72}
 .esg-banner h2 span{color:#00BF88;font-weight:500}
+.esg-banner .head p{max-width:26em;margin:.85em 0 0;font-size:clamp(11px,.95vw,14px);line-height:1.45;color:#7d6a86;text-align:left}
+.esg-banner .esg-save{position:relative;z-index:1;margin:0 auto 16px;max-width:none;text-align:center;font-family:"Public Sans",system-ui,sans-serif;font-style:italic;font-weight:600;font-size:clamp(16px,1.7vw,24px);line-height:1.35;color:#5D1F72}
+.esg-banner .esg-save a{color:#5D1F72;text-decoration:none}
+.esg-banner .esg-save span{padding:.04em .5em .18em;border-radius:999px;background:linear-gradient(#f6e445,#f6e445) center top / 100% calc(100% - 5px) no-repeat,linear-gradient(#00BF88,#00BF88) center bottom / 86% 3px no-repeat}
 .esg-banner .cta{display:inline-block;margin-top:1.2em;color:#5D1F72;font-size:clamp(11px,.95vw,14px);font-weight:600;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px}
 .esg-banner .node{position:absolute;transform:translate(-50%,-50%);width:7.6%;aspect-ratio:1;border-radius:50%;background:#fff;box-shadow:0 8px 20px rgba(0,0,0,.08),inset 0 -3px 0 #f3eef6;border:1.5px solid rgba(0,191,136,.35);display:grid;place-items:center;color:#5D1F72;font-size:clamp(12px,1.35vw,20px);font-weight:600;letter-spacing:-.02em;opacity:0}
 .esg-banner.in .node{animation:esg-pop .5s forwards}
@@ -130,6 +134,7 @@ img{max-width:100%;height:auto}
 .esg-banner .v-kicker{margin-top:.9em;font-size:.8em;font-weight:500;letter-spacing:.3em;color:#5D1F72}
 .esg-banner .v-h1{margin-top:.5em;font-size:1.85em;font-weight:400;line-height:1.2;letter-spacing:-.02em;color:#5D1F72}
 .esg-banner .v-h1 span{color:#00BF88;font-weight:500}
+.esg-banner .v-top p{max-width:none;margin:.7em 0 0;font-size:.95em;line-height:1.45;color:#7d6a86;text-align:left}
 .esg-banner .v-cta{display:inline-block;margin-top:.9em;color:#5D1F72;font-size:1em;font-weight:600;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px}
 .esg-banner .v-node{position:absolute;transform:translate(-50%,-50%) scale(.6);width:18%;aspect-ratio:1;border-radius:50%;background:#fff;box-shadow:0 .5em 1.2em rgba(0,0,0,.08),inset 0 -3px 0 #f3eef6;border:1.5px solid rgba(0,191,136,.35);display:grid;place-items:center;color:#5D1F72;font-size:1.45em;font-weight:600;letter-spacing:-.02em;opacity:0;transition:opacity .45s ease,transform .45s ease}
 .esg-banner .v-node.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
@@ -236,12 +241,13 @@ img{max-width:100%;height:auto}
 .touch-faq{display:grid;grid-template-columns:minmax(260px,.85fr) minmax(0,1.2fr);gap:clamp(28px,4vw,64px);align-items:start;margin-left:-5vw;margin-right:-5vw;margin-top:clamp(64px,10vh,120px);padding:clamp(48px,7vh,80px) 5vw;background:linear-gradient(100deg,#fff 0%,#F3EEF6 100%);color:#1a1424}
 .touch-faq p.touch-faq-kicker{display:flex;align-items:center;gap:8px;margin:0;max-width:none;font-family:"Public Sans",system-ui,sans-serif;font-size:13px;font-weight:600;letter-spacing:.01em;line-height:1.2;color:#1a1424}
 .touch-faq-kicker span{width:8px;height:8px;border-radius:50%;background:#5D1F72;flex:none}
-.touch-faq h2{margin:12px 0 0;max-width:8em;font-family:"Public Sans",system-ui,sans-serif;font-style:normal;font-weight:600;font-size:var(--type-h);line-height:1.15;letter-spacing:-.03em;color:#1a1424}
+.touch-faq h2{margin:12px 0 0;max-width:none;font-family:"Public Sans",system-ui,sans-serif;font-style:normal;font-weight:600;font-size:var(--type-h);line-height:1.15;letter-spacing:-.03em;color:#1a1424}
+.touch-faq h2 span{white-space:nowrap}
 .touch-faq-card{margin-top:28px;padding:22px;border-radius:22px;background:#fff;box-shadow:0 16px 34px rgba(26,20,36,.1)}
 .touch-faq-avatar{display:block;width:64px;height:64px;border-radius:50%;overflow:hidden;background:#1a1424}
-.touch-faq-avatar img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 12%;transform:scale(1.75);transform-origin:center 14%}
+.touch-faq-avatar img{display:block;width:100%;height:100%;object-fit:cover}
 .touch-faq-card h3{margin:16px 0 0;font-size:18px;font-weight:600;letter-spacing:-.02em;color:#1a1424}
-.touch-faq-card p{margin:8px 0 0;max-width:none;font-size:var(--type-body);line-height:1.5;color:#6b7280}
+.touch-faq-card p{margin:16px 0 0;max-width:none;font-size:var(--type-body);line-height:1.5;color:#6b7280}
 .touch-faq-btn{display:flex;align-items:center;justify-content:center;height:48px;margin-top:18px;border-radius:99px;background:#5D1F72;color:#fff;font-family:"Public Sans",system-ui,sans-serif;font-size:var(--type-body);font-weight:600;text-decoration:none}
 .touch-faq-btn:hover{background:#43134F}
 .touch-faq-list{display:flex;flex-direction:column;gap:12px;margin:0;padding:0;background:transparent;color:#1a1424}

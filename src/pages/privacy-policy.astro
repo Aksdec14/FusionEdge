@@ -1,0 +1,200 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const sections = [
+  {
+    number: "01",
+    title: "Introduction",
+    content:
+      'Welcome to FusionEdge ("Company", "we", "our", or "us"). This Privacy Policy describes how we collect, use, disclose, and protect your information when you access or use our website (fusionedge.io), mobile applications available on Android and iOS platforms, and our enterprise SaaS platforms and related services (collectively referred to as the "Services"). By using our Services, you agree to the practices outlined in this Privacy Policy.',
+  },
+  {
+    number: "02",
+    title: "Scope of This Policy",
+    content:
+      "This Privacy Policy applies to all users of FusionEdge Services, including website visitors, registered users of our SaaS platforms, mobile application users, and business clients along with their authorized personnel. This policy does not apply to third-party platforms or services that are not owned or controlled by FusionEdge.",
+  },
+  {
+    number: "03",
+    title: "Information We Collect",
+    content:
+      "We collect information necessary to operate, improve, and secure our Services. This includes personal information such as your name, email address, phone number, organization details, and billing information when you register or engage with our Services. We also collect account-related data such as login credentials (stored securely in encrypted form), user roles, preferences, and system configurations.\n\nIn addition, we automatically collect device and technical information including your device type, operating system, browser type, IP address, and unique device identifiers. We also gather usage and analytics data such as pages visited, session activity, feature interactions, logs, diagnostics, and crash reports to better understand system performance and user behavior.\n\nWhere enabled, we may collect location data, which may include approximate location derived from IP addresses or precise location if explicitly permitted by the user. Our Services are not intended for children under the age of 13, and we do not knowingly collect personal data from minors.",
+  },
+  {
+    number: "04",
+    title: "How We Use Your Information",
+    content:
+      "The information we collect is used to provide, maintain, and enhance our Services. This includes managing user accounts, enabling platform functionalities such as dashboards, workflows, and reporting tools, and ensuring seamless operation of enterprise modules.\n\nWe also use the data to improve our products by analyzing usage patterns, identifying performance issues, and developing new features. Communication is another key purpose, allowing us to send system notifications, updates, and respond to support queries.\n\nAdditionally, we process information to maintain security and compliance by detecting unauthorized activities, preventing misuse, and ensuring adherence to applicable laws and regulations. Where applicable, data may also be used to personalize the user experience, including customized dashboards and configurable platform settings.\n\nWe do not sell personal data to any third party.",
+  },
+  {
+    number: "05",
+    title: "Third-Party Services & Integrations",
+    content:
+      "FusionEdge integrates with select third-party service providers to support analytics, communication, system monitoring, and infrastructure management. These may include analytics platforms, crash reporting tools, notification services, and cloud hosting providers. While these partners may process certain data to provide their services, they operate under their own privacy policies, and we ensure that such integrations follow appropriate data protection standards.",
+  },
+  {
+    number: "06",
+    title: "Data Sharing & Disclosure",
+    content:
+      "We may share information with trusted service providers who assist us in operating our platform, including hosting providers, analytics services, and communication tools. We may also disclose information where required by law, regulation, or legal process, or when necessary to protect the rights, safety, and integrity of FusionEdge, its users, or third parties.\n\nIn the event of a business transaction such as a merger, acquisition, or restructuring, user information may be transferred as part of the business assets. Additionally, we may share data with your explicit consent for specific integrations or features. We do not share personal data for advertising or marketing purposes without your consent.",
+  },
+  {
+    number: "07",
+    title: "Data Retention",
+    content:
+      "We retain personal data only for as long as necessary to fulfill the purposes outlined in this Privacy Policy, including providing services, complying with legal obligations, resolving disputes, and enforcing agreements. Once data is no longer required, it is securely deleted or anonymized in accordance with our internal policies.",
+  },
+  {
+    number: "08",
+    title: "Data Security",
+    content:
+      "FusionEdge implements robust technical and organizational measures to protect your data. This includes encryption of data in transit using secure protocols, encryption at rest where applicable, role-based access controls, secure authentication mechanisms, and continuous monitoring of systems. We also conduct regular vulnerability assessments and security reviews to ensure ongoing protection against threats.",
+  },
+  {
+    number: "09",
+    title: "Security Standards & Compliance Readiness",
+    content:
+      "FusionEdge is committed to maintaining a high standard of information security aligned with globally recognized frameworks. Our practices are designed in accordance with the principles of ISO/IEC 27001 and are structured to support SOC 2 readiness. This includes the implementation of internal policies related to access control, data classification, incident management, and risk assessment.\n\nWe follow a least-privilege access model, maintain audit logs for system activities, and incorporate secure development lifecycle practices into our engineering processes. Regular internal reviews and security assessments are conducted to continuously strengthen our security posture and meet the expectations of enterprise clients.",
+  },
+  {
+    number: "10",
+    title: "Your Rights & Controls",
+    content:
+      "You have control over your personal data and may request access to the information we hold about you, seek corrections to inaccurate data, or request deletion of your data where applicable. You may also opt out of non-essential communications and withdraw consent for certain data processing activities.\n\nRequests can be made through available platform settings or by contacting us directly at privacy@fusionedge.io, and we will respond within a reasonable timeframe.",
+  },
+  {
+    number: "11",
+    title: "Cookies & Tracking Technologies",
+    content:
+      "We use cookies and similar technologies to enhance user experience, analyze usage patterns, and store user preferences. These technologies help us improve functionality and performance. You may choose to manage or disable cookies through your browser settings, though this may impact certain features of the Services.",
+  },
+  {
+    number: "12",
+    title: "App Store Compliance",
+    content:
+      "FusionEdge ensures compliance with platform-specific requirements for mobile applications. For Google Play Store, we maintain transparency in data collection and ensure secure handling of user data. For Apple App Store, we respect user privacy choices and request permissions where required by the operating system.",
+  },
+  {
+    number: "13",
+    title: "International Data Transfers",
+    content:
+      "Your information may be processed or stored on servers located in different jurisdictions. In such cases, we take appropriate measures to ensure that your data remains protected and handled in accordance with applicable standards.",
+  },
+  {
+    number: "14",
+    title: "Changes to This Privacy Policy",
+    content:
+      "We may update this Privacy Policy from time to time to reflect changes in our practices, technologies, or legal requirements. Updated versions will be posted on our website, and continued use of the Services after such updates constitutes acceptance of the revised policy.",
+  },
+  {
+    number: "15",
+    title: "Contact Us",
+    content:
+      "If you have any questions, concerns, or requests regarding this Privacy Policy, please contact us at Email: privacy@fusionedge.io.",
+  },
+];
+---
+<Layout title="Privacy Policy — Fusionedge">
+<main class="pp">
+  <!-- Header -->
+  <header class="pp-head">
+    <div class="pp-wrap">
+      <h1>Privacy Policy</h1>
+    </div>
+  </header>
+
+  <!-- Body -->
+  <div class="pp-wrap pp-body">
+    <div class="pp-grid">
+      <!-- Table of contents: inline on mobile, sticky sidebar on tablet and up -->
+      <aside class="pp-toc" aria-label="Table of contents">
+        <p class="pp-toc-label">Contents</p>
+        <ul>
+          {sections.map((section) => (
+            <li>
+              <span>{section.number}</span>
+              <a href={`#section-${section.number}`}>{section.title}</a>
+            </li>
+          ))}
+        </ul>
+      </aside>
+
+      <!-- Sections -->
+      <div class="pp-main">
+        {sections.map((section) => (
+          <section id={`section-${section.number}`} class="pp-sec">
+            <div class="pp-title">
+              <span aria-hidden="true">{section.number}</span>
+              <h2>{section.title}</h2>
+            </div>
+            <div class="pp-text">
+              {section.content.split("\n\n").map((para) => <p>{para}</p>)}
+            </div>
+          </section>
+        ))}
+      </div>
+    </div>
+  </div>
+</main>
+</Layout>
+
+<style>
+  .pp{background:#fff;color:#111;min-height:100vh;font-family:ui-serif,Georgia,Cambria,"Times New Roman",Times,serif}
+  .pp *{box-sizing:border-box}
+  .pp-wrap{max-width:1280px;margin:0 auto;padding:0 20px}
+
+  /* Header */
+  .pp-head{border-bottom:1px solid #111;padding:32px 0}
+  .pp-head h1{margin:0;font-size:30px;font-weight:400;line-height:1.25;letter-spacing:-.025em;color:#111;font-family:inherit}
+
+  /* Body */
+  .pp-body{padding-bottom:64px}
+  .pp-sans{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+
+  /* Table of contents */
+  .pp-toc{border-bottom:1px solid #e8e8e8;padding:32px 0}
+  .pp .pp-toc-label{margin:0 0 16px;max-width:none;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#bbb;line-height:1.5}
+  .pp-toc ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;column-gap:16px}
+  .pp-toc li{display:flex;align-items:baseline;gap:8px}
+  .pp-toc li span{flex:none;width:20px;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:10px;color:#ccc}
+  .pp-toc a{display:block;padding:3px 0;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:12px;line-height:1.5;color:#666;text-decoration:none;transition:color .15s}
+  .pp-toc a:hover{color:#111}
+
+  /* Sections */
+  .pp-main{padding-top:32px}
+  .pp-sec{border-bottom:1px solid #ebebeb;padding:32px 0;scroll-margin-top:24px}
+  .pp-sec:last-child{border-bottom:0}
+  .pp-title{display:flex;align-items:baseline;gap:16px;margin-bottom:12px}
+  .pp-title span{flex:none;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:11px;letter-spacing:.05em;color:#ccc}
+  .pp-title h2{margin:0;font-family:inherit;font-size:18px;font-weight:400;font-style:normal;letter-spacing:-.01em;line-height:1.375;color:#111}
+  .pp-text{padding-left:36px;font-size:15px;line-height:1.8;color:#3a3a3a}
+  /* reset the site-wide paragraph style from Layout.astro */
+  .pp .pp-text p{margin:0;max-width:none;font-size:15px;line-height:1.8;color:#3a3a3a;font-family:inherit}
+  .pp .pp-text p + p{margin-top:16px}
+
+  /* Tablet and up: sticky sidebar */
+  @media (min-width:768px){
+    .pp-wrap{padding:0 32px}
+    .pp-head{padding:40px 0}
+    .pp-head h1{font-size:36px}
+    .pp-body{padding-bottom:80px}
+    .pp-grid{display:grid;grid-template-columns:200px 1fr;column-gap:40px;align-items:start}
+    .pp-toc{position:sticky;top:40px;border-bottom:0;border-right:1px solid #e8e8e8;padding:48px 28px 48px 0}
+    .pp .pp-toc-label{margin-bottom:20px}
+    .pp-toc ul{display:flex;flex-direction:column}
+    .pp-main{padding-top:48px}
+    .pp-sec{padding:52px 0}
+    .pp-title{margin-bottom:16px}
+    .pp-title h2{font-size:20px}
+    .pp-text{padding-left:40px}
+  }
+
+  /* Desktop */
+  @media (min-width:1024px){
+    .pp-wrap{padding:0 48px}
+    .pp-head h1{font-size:48px}
+    .pp-grid{grid-template-columns:260px 1fr;column-gap:64px}
+    .pp-toc{padding-right:40px}
+    .pp-title h2{font-size:22px}
+  }
+</style>
