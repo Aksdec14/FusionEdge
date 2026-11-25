@@ -344,9 +344,14 @@ img{max-width:100%;height:auto}
   .wall .note{animation:none;transition:none}
 }
 .site-foot{background:#fff}
-.foot-main{display:grid;grid-template-columns:minmax(200px,260px) repeat(4,minmax(0,1fr));gap:28px 36px;padding:24px max(5vw,32px) clamp(36px,5vh,56px)}
+.foot-main{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:start;gap:28px 36px;padding:56px max(5vw,32px) 72px}
+.foot-lead{display:flex;align-items:flex-start;gap:48px;min-width:0}
+.foot-solutions{justify-self:center}
+.foot-industries{justify-self:end}
 .foot-brand{display:flex;flex-direction:column;align-items:flex-start;gap:16px}
 .foot-logo img{height:48px;width:auto;display:block;mix-blend-mode:multiply;margin-left:calc(48px * -114 / 636)}
+.foot-brand p{margin:0;max-width:none;font-size:var(--type-body);line-height:1.5;color:#6b7280}
+.foot-brand p span{white-space:nowrap}
 .foot-contact{display:flex;align-items:center;gap:10px;color:#5D1F72;font-size:var(--type-body);font-weight:500;line-height:1;text-decoration:none}
 .foot-contact svg{width:1.5em;height:1.15em;flex:none;display:block}
 .foot-contact:hover{text-decoration:underline}
@@ -354,16 +359,22 @@ img{max-width:100%;height:auto}
 .foot-col h2{margin:0 0 4px;font-family:"Public Sans",system-ui,sans-serif;font-style:normal;font-weight:600;font-size:var(--type-sub);line-height:1.3;letter-spacing:-.02em;color:#1a1424}
 .foot-col a{color:#5D1F72;font-size:var(--type-body);line-height:1.5;text-decoration:none}
 .foot-col a:hover{text-decoration:underline}
-.foot-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;background:#3E1450;padding:16px max(5vw,32px)}
-.foot-social{display:flex;align-items:center;gap:10px;margin-right:16px}
+.foot-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;background:#3E1450;padding:22px max(5vw,32px)}
+.foot-legal{display:flex;align-items:center;justify-content:flex-end;gap:24px}
+.foot-legal a{color:rgba(255,255,255,.62);font-size:var(--type-body);line-height:1.5;text-decoration:none;white-space:nowrap}
+.foot-legal a:hover{text-decoration:underline}
+.foot-social{display:flex;align-items:center;gap:14px;margin:0}
 .foot-bar p{margin:0;max-width:none;font-size:var(--type-body);line-height:1.5;color:rgba(255,255,255,.92)}
-.foot-in{width:36px;height:36px;border-radius:50%;background:#fff;color:#3E1450;display:grid;place-items:center;text-decoration:none;flex:none}
-.foot-in svg{width:16px;height:16px;display:block}
+.foot-in{width:auto;height:auto;border-radius:0;background:none;color:#5D1F72;display:grid;place-items:center;text-decoration:none;flex:none}
+.foot-in img{width:22px;height:22px;display:block}
 @media (min-width:901px){
-  .foot-main{grid-template-columns:repeat(5,max-content);justify-content:space-between}
+  .foot-main{display:flex;justify-content:space-between;align-items:flex-start;gap:32px}
+  .foot-lead{display:contents}
+  .foot-solutions,.foot-industries{justify-self:auto}
   .foot-col h2{padding-top:calc((48px - 15px) / 2)}
 }
-@media (max-width:900px){.foot-main{grid-template-columns:1fr 1fr;padding-left:16px;padding-right:16px}.foot-brand{grid-column:1 / -1}.foot-bar{padding-left:16px;padding-right:16px}}
+@media (max-width:760px){.foot-brand p span{white-space:normal}}
+@media (max-width:900px){.foot-main{grid-template-columns:1fr 1fr;padding-left:16px;padding-right:16px}.foot-lead{display:contents}.foot-brand{grid-column:1 / -1}.foot-solutions,.foot-industries{justify-self:start}.foot-bar{padding-left:16px;padding-right:16px}}
 @media (max-width:480px){.foot-main{grid-template-columns:1fr 1fr;gap:24px 16px}}
 .ceo{
   --purple:#5D1F72;
@@ -439,51 +450,53 @@ nav.top .dd.open .dd-menu{opacity:1;visibility:visible;transform:translate(-50%,
 </style>
 </head>
 <body>
-<nav class="top"><a class="brand" href="#"><img src="/logo.png" alt="Fusionedge"></a><ul class="links" id="menu"><li><a href="#">Apps</a></li><li class="dd"><button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-industries">Industries<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="dd-menu" id="dd-industries"><a href="/industries/construction">Construction</a><a href="/industries/manufacturing">Manufacturing</a><a href="/industries/it-tech-parks">IT &amp; Tech Parks</a><a href="/industries/healthcare">Healthcare</a><a href="/industries/hospitality">Hospitality</a><a href="/industries/retail-malls">Retail &amp; Malls</a><a href="/industries/education">Education</a></div></li><li><a href="#">About us</a></li><li><a href="#">Resources</a></li><li class="menu-cta"><button class="btn">Book a Demo</button></li></ul><button class="btn nav-demo">Book a Demo</button><button class="burger" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="menu"><span></span></button></nav>
+<nav class="top"><a class="brand" href="/"><img src="/logo.png" alt="Fusionedge"></a><ul class="links" id="menu"><li><a href="#">Apps</a></li><li class="dd"><button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-industries">Industries<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="dd-menu" id="dd-industries"><a href="/industries/construction">Construction</a><a href="/industries/manufacturing">Manufacturing</a><a href="/industries/it-tech-parks">IT &amp; Tech Parks</a><a href="/industries/healthcare">Healthcare</a><a href="/industries/hospitality">Hospitality</a><a href="/industries/retail-malls">Retail &amp; Malls</a><a href="/industries/education">Education</a></div></li><li><a href="#">About us</a></li><li><a href="#">Resources</a></li><li class="menu-cta"><button class="btn">Book a Demo</button></li></ul><button class="btn nav-demo">Book a Demo</button><button class="burger" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="menu"><span></span></button></nav>
 <slot />
 <footer class="site-foot">
 <div class="foot-main">
+<div class="foot-lead">
 <div class="foot-brand">
-<a class="foot-logo" href="#"><img src="/Logo-yellow-color.jpg" alt="Fusionedge"></a>
+<a class="foot-logo" href="/"><img src="/Logo-yellow-color.jpg" alt="Fusionedge"></a>
+<p><span>One platform to manage your facilities, assets and operations</span><br><span>with greater visibility, control and efficiency.</span></p>
+<div class="foot-social">
+<a class="foot-in" href="https://www.instagram.com/fusionedgeofficial" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="/icons/instagram.png" alt="" width="22" height="22"></a>
+<a class="foot-in" href="https://www.linkedin.com/company/fusionedgeservices/posts/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><img src="/icons/linkedIN.png" alt="" width="22" height="22"></a>
+</div>
 <a class="foot-contact" href="mailto:hello@fusionedge.io"><svg viewBox="2 4 20 16" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>hello@fusionedge.io</a>
 <a class="foot-contact" href="#"><svg viewBox="3.6 2.5 18 17.6" aria-hidden="true"><path d="M7 3.5h3.2l1.4 3.4-2 1.2a12 12 0 006.3 6.3l1.2-2 3.4 1.4V17a2 2 0 01-2.2 2A15.5 15.5 0 015 6.7 2 2 0 017 3.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>Book a demo</a>
 </div>
 <div class="foot-col">
 <h2>Quick links</h2>
-<a href="#">Apps</a>
-<a href="#">Solutions</a>
-<a href="#">Resources</a>
-<a href="#">Book a Demo</a>
+<a href="/#modules">Apps</a>
+<a href="/about">About Us</a>
+<a href="/#esg">ESG</a>
+<a href="/careers">Careers</a>
+<a href="/contact">Contact</a>
 </div>
-<div class="foot-col">
-<h2>Products</h2>
-<a href="#">CAFM</a>
-<a href="#">IWFM</a>
-<a href="#">EAM</a>
-<a href="#">CAMS</a>
 </div>
-<div class="foot-col">
+<div class="foot-col foot-solutions">
 <h2>Solutions</h2>
-<a href="#">Facility Management</a>
-<a href="#">Workplace</a>
-<a href="#">Asset Management</a>
+<a href="/#usecases">Asset Management</a>
+<a href="https://pantrymanagement.fusionedge.io/" target="_blank" rel="noopener noreferrer">Pantry Management</a>
+<a href="/#usecases">Warehouse Management</a>
+<a href="https://visitormanagement.fusionedge.io/" target="_blank" rel="noopener noreferrer">Visitor Management</a>
+<a href="/#usecases">Explore More</a>
 </div>
-<div class="foot-col">
-<h2>Industries we serve</h2>
-<a href="#">Real Estate</a>
-<a href="#">Manufacturing</a>
-<a href="#">Corporate</a>
-<a href="#">Hospitality</a>
-<a href="#">Retail</a>
-<a href="#">Healthcare</a>
+<div class="foot-col foot-industries">
+<h2>Industries</h2>
+<a href="/industries/it-tech-parks">IT and Tech Parks</a>
+<a href="/industries/manufacturing">Manufacturing</a>
+<a href="/industries/healthcare">Healthcare</a>
+<a href="/industries/construction">Construction</a>
+<a href="#dd-industries" class="foot-open-industries">Explore More</a>
 </div>
 </div>
 <div class="foot-bar">
 <p>© 2026 Fusionedge</p>
-<div class="foot-social">
-<a class="foot-in" href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="3.6" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></svg></a>
-<a class="foot-in" href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.5 9H4V20h2.5V9zM5.2 4A1.6 1.6 0 103.6 5.6 1.6 1.6 0 005.2 4zM20 20h-2.5v-5.6c0-1.6-.6-2.6-2-2.6a2.2 2.2 0 00-2 1.5 2.7 2.7 0 00-.1 1v5.7H11V9h2.4v1.5a3.4 3.4 0 013-1.7c2.2 0 3.6 1.4 3.6 4.5V20z"/></svg></a>
-</div>
+<nav class="foot-legal" aria-label="Legal">
+<a href="#">Terms of Service</a>
+<a href="/privacy-policy">Privacy Policy</a>
+</nav>
 </div>
 </footer>
 <script is:inline>
@@ -501,11 +514,54 @@ addEventListener("scroll",()=>{if(navEl.classList.contains("hide"))setMenu(false
   const btn=dd.querySelector(".dd-btn");
   const setDd=o=>{dd.classList.toggle("open",o);btn.setAttribute("aria-expanded",o)};
   btn.addEventListener("click",e=>{e.stopPropagation();setDd(!dd.classList.contains("open"))});
-  document.addEventListener("click",e=>{if(!dd.contains(e.target))setDd(false)});
+  document.addEventListener("click",e=>{if(e.target.closest(".foot-open-industries"))return;if(!dd.contains(e.target))setDd(false)});
   addEventListener("keydown",e=>{if(e.key==="Escape"){setDd(false)}});
   burger.addEventListener("click",()=>{if(!navEl.classList.contains("open"))setDd(false)});
-  const here=location.pathname.replace(/\/$/,"");
+  const here=location.pathname.replace(/\/$/,"")||"/";
   dd.querySelectorAll(".dd-menu a").forEach(a=>{if(a.getAttribute("href")===here)a.setAttribute("aria-current","page")});
+  document.querySelectorAll(".foot-open-industries").forEach(a=>{
+    a.addEventListener("click",e=>{
+      e.preventDefault();
+      scrollTo({top:0,behavior:"smooth"});
+      if(innerWidth<=900){navEl.classList.add("open");burger.setAttribute("aria-expanded","true")}
+      setDd(true);
+    });
+  });
+})();
+(function(){
+  const pathOf=p=>(p||"/").replace(/\/$/,"")||"/";
+  function jump(){
+    const id=decodeURIComponent(location.hash.replace(/^#/,""));
+    if(!id)return;
+    const el=document.getElementById(id);
+    if(!el)return;
+    if(Math.abs(el.getBoundingClientRect().top)>8)el.scrollIntoView({block:"start"});
+  }
+  function land(){jump();requestAnimationFrame(jump);setTimeout(jump,400)}
+  addEventListener("load",land);
+  addEventListener("hashchange",jump);
+  addEventListener("pageshow",land);
+  document.querySelectorAll(".site-foot a").forEach(a=>{
+    a.addEventListener("click",e=>{
+      if(a.classList.contains("foot-open-industries"))return;
+      const raw=a.getAttribute("href")||"";
+      if(!raw||raw==="#"||raw.startsWith("mailto:")||raw.startsWith("tel:")||/^https?:/i.test(raw))return;
+      const url=new URL(a.href,location.href);
+      if(url.origin!==location.origin)return;
+      const same=pathOf(url.pathname)===pathOf(location.pathname);
+      const id=decodeURIComponent(url.hash.replace(/^#/,""));
+      if(same&&id&&document.getElementById(id)){
+        e.preventDefault();
+        history.pushState(null,"",url.pathname+url.hash);
+        document.getElementById(id).scrollIntoView({behavior:"smooth",block:"start"});
+        return;
+      }
+      if(!same){
+        e.preventDefault();
+        location.assign(url.pathname+url.search+url.hash);
+      }
+    });
+  });
 })();
 </script>
 <script is:inline define:vars={{ prod: import.meta.env.PROD }}>
