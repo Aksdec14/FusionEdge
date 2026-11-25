@@ -1,6 +1,7 @@
 <section class="twin" aria-labelledby="twin-title">
   <div class="twin-frame">
   <h2 id="twin-title">India’s First Operational Digital Twin</h2>
+  <p class="twin-lead">Explore every floor, monitor every asset and understand your building in real time.</p>
   <video
     autoplay
     muted
@@ -58,7 +59,7 @@
     padding: clamp(20px, 2.2vw, 36px);
   }
   .twin h2 {
-    margin: 0 auto 18px;
+    margin: 0 auto;
     max-width: none;
     text-align: center;
     font-family: "Public Sans", system-ui, sans-serif;
@@ -67,6 +68,18 @@
     font-size: var(--type-h);
     line-height: 1.2;
     letter-spacing: -0.03em;
+    color: #fff;
+  }
+  .twin .twin-lead {
+    margin: 6px auto 26px;
+    max-width: 640px;
+    text-align: center;
+    font-family: "Public Sans", system-ui, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 1.5;
+    letter-spacing: normal;
     color: #fff;
   }
   .twin video {
@@ -88,6 +101,7 @@
   @media (max-width: 760px) {
     .twin { padding-left: 16px; padding-right: 16px; }
     .twin-frame { padding: 16px; border-radius: 16px; }
-    .twin h2 { margin-bottom: 12px; }
+    .twin h2 { margin-bottom: 0; }
+    .twin .twin-lead { margin-bottom: 20px; }
   }
 </style>
