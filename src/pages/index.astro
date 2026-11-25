@@ -730,7 +730,6 @@ import Honeycomb from "../components/Honeycomb.astro";
       n.classList.toggle('on',on);
       if(vlbls[i])vlbls[i].classList.toggle('on',on);
     });
-    root.classList.toggle('grown',p>.92);
   }
   function apply(){
     if(phone.matches){
@@ -739,7 +738,6 @@ import Honeycomb from "../components/Honeycomb.astro";
       measure();
       onScroll();
     }else{
-      root.classList.remove('grown');
       vnodes.forEach(function(n,i){n.classList.remove('on');if(vlbls[i])vlbls[i].classList.remove('on')});
       armDesktop();
     }
