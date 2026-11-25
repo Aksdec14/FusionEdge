@@ -57,7 +57,7 @@ img{max-width:100%;height:auto}
 @media (max-width:900px){
   nav.top{grid-template-columns:1fr auto!important;gap:12px;padding:12px 4vw}
   .brand img{height:36px}
-  nav.top .nav-demo{display:none}
+  nav.top a.nav-demo{display:none}
   .menu-cta{display:block;list-style:none;padding-top:8px}
   .menu-cta .btn{width:100%;min-height:48px;padding:0 18px;border-radius:8px;font-size:15px}
   .burger{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border:1px solid #e3e7ec;border-radius:10px;background:#fff;cursor:pointer;-webkit-tap-highlight-color:transparent}
@@ -280,7 +280,10 @@ img{max-width:100%;height:auto}
   .touch-form textarea{min-height:56px}
   .touch-form button{align-self:flex-start;margin-top:14px}
   .touch-side{border-left:0;border-top:1px solid #e3e7ec;padding:28px 0 0}
-  .touch-faq{margin-top:48px;margin-left:-16px;margin-right:-16px;padding:36px 16px}
+  .touch-faq{margin-top:48px;margin-left:-16px;margin-right:-16px;padding:36px 16px;min-width:0}
+  .touch-faq-intro,.touch-faq-list{min-width:0}
+  .touch-faq h2{font-size:clamp(22px,7.2vw,28px)}
+  .touch-faq h2 span{white-space:nowrap}
   .touch-faq-list details{padding:16px}
 }
 .wall{--brand:#5D1F72;--ink:#2a2230;min-height:100vh;min-height:100svh;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;padding:clamp(20px,4vh,56px) 5vw;background:#f4f4f4;font-family:"Public Sans",system-ui,sans-serif;overflow:visible}
@@ -381,6 +384,7 @@ img{max-width:100%;height:auto}
 }
 @media (max-width:760px){.foot-brand p span{white-space:normal}}
 @media (max-width:900px){.foot-main{grid-template-columns:1fr 1fr;padding-left:16px;padding-right:16px}.foot-lead{display:contents}.foot-brand{grid-column:1 / -1}.foot-solutions,.foot-industries{justify-self:start}.foot-bar{padding-left:16px;padding-right:16px}}
+@media (max-width:640px){.foot-bar{flex-wrap:wrap;align-items:flex-start;row-gap:8px}.foot-bar p,.foot-legal a{font-size:13px}.foot-bar p{flex:1 0 100%;white-space:nowrap}.foot-legal{justify-content:flex-start;gap:20px}}
 @media (max-width:480px){.foot-main{grid-template-columns:1fr 1fr;gap:24px 16px}}
 .ceo{
   --purple:#5D1F72;
