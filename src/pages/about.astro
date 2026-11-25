@@ -128,6 +128,7 @@ const u = (id: string, w = 900) => `https://images.unsplash.com/photo-${id}?auto
         />
         <source src="/twin-video/digital-twin-fusionedge-2200x800-voiceover.mp4" type="video/mp4" />
       </video>
+      <button type="button" class="video-sound" aria-pressed="false">Silence</button>
     </div>
     <p class="caption">Real-time asset monitoring, preventive maintenance and multi-site dashboards in one view.</p>
   </section>
@@ -235,22 +236,60 @@ const u = (id: string, w = 900) => `https://images.unsplash.com/photo-${id}?auto
     var mobile = "/twin-video/digital-twin-fusionedge-mobile-1080x1350-voiceover.mp4";
     var small = matchMedia("(max-width: 1024px)");
     var reduce = matchMedia("(prefers-reduced-motion: reduce)");
+    var sound = document.querySelector(".video-sound");
+    var silenced = false;
     var hold = function () {
       if (!reduce.matches) return;
       video.removeAttribute("autoplay");
       video.pause();
       video.controls = true;
     };
+    var paint = function () {
+      if (!sound) return;
+      var hearing = !video.muted;
+      sound.textContent = hearing ? "Silence" : "Sound";
+      sound.setAttribute("aria-pressed", hearing ? "false" : "true");
+      sound.setAttribute("aria-label", hearing ? "Silence the video" : "Turn on the video sound");
+    };
+    var inSight = function () {
+      var r = video.getBoundingClientRect();
+      return Math.min(r.bottom, innerHeight) - Math.max(r.top, 0) >= 120;
+    };
+    var applySound = function () {
+      if (reduce.matches) { paint(); return; }
+      var want = inSight() && !silenced;
+      if (!want) { video.muted = true; paint(); return; }
+      video.muted = false;
+      if (!video.paused) { paint(); return; }
+      var pending = video.play();
+      if (pending) pending.then(paint).catch(function () {
+        video.muted = true;
+        video.play().catch(function () {});
+        paint();
+      });
+      else paint();
+    };
     var useClip = function () {
       var next = small.matches ? mobile : desktop;
-      if (!video.currentSrc.endsWith(next)) {
-        video.src = next;
-        if (!reduce.matches) video.play().catch(function () {});
-      }
+      if (!video.currentSrc.endsWith(next)) video.src = next;
       hold();
+      applySound();
     };
     hold();
     small.addEventListener("change", useClip);
+    addEventListener("scroll", applySound, { passive: true });
+    addEventListener("resize", applySound);
+    addEventListener("pointerdown", function (e) {
+      if (e.target && e.target.closest && e.target.closest(".video-sound")) return;
+      applySound();
+    }, true);
+    applySound();
+    if (sound) sound.addEventListener("click", function () {
+      silenced = !video.muted;
+      video.muted = silenced;
+      if (!silenced && video.paused) video.play().catch(function () {});
+      paint();
+    });
   })();
 </script>
 
@@ -323,6 +362,8 @@ const u = (id: string, w = 900) => `https://images.unsplash.com/photo-${id}?auto
   .split .eyebrow { margin-bottom: 12px; }
   .video { margin-top: clamp(28px, 4vw, 44px); aspect-ratio: 2200 / 800; width: 100%; background: #fff; }
   .tile.video > video { object-fit: contain; background: #fff; }
+  .video-sound { position: absolute; right: 12px; bottom: 12px; z-index: 2; min-height: 36px; padding: 0 14px; border: 1px solid var(--brand); border-radius: 10px; background: var(--brand); color: #fff; font: 500 14px "Public Sans", system-ui, sans-serif; cursor: pointer; }
+  .video-sound:hover { background: #fff; color: var(--brand); }
   @media (max-width: 1024px) {
     .video { aspect-ratio: 1080 / 1350; }
   }

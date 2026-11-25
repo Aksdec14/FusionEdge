@@ -2,6 +2,7 @@
   <div class="twin-frame">
   <h2 id="twin-title">India’s First Operational Digital Twin</h2>
   <p class="twin-lead">Explore every floor, monitor every asset and understand your building in real time.</p>
+  <div class="twin-video">
   <video
     autoplay
     muted
@@ -17,6 +18,8 @@
     />
     <source src="/twin-video/digital-twin-fusionedge-2200x800-voiceover.mp4" type="video/mp4" />
   </video>
+  <button type="button" class="twin-sound" aria-pressed="false">Silence</button>
+  </div>
   </div>
 </section>
 <script>
@@ -34,17 +37,70 @@
       video.controls = true;
     };
 
+    const sound = document.querySelector<HTMLButtonElement>(".twin-sound");
+    let silenced = false;
+
+    const paint = () => {
+      if (!sound) return;
+      const hearing = !video.muted;
+      sound.textContent = hearing ? "Silence" : "Sound";
+      sound.setAttribute("aria-pressed", hearing ? "false" : "true");
+      sound.setAttribute("aria-label", hearing ? "Silence the video" : "Turn on the video sound");
+    };
+
+    const inSight = () => {
+      const r = video.getBoundingClientRect();
+      return Math.min(r.bottom, innerHeight) - Math.max(r.top, 0) >= 120;
+    };
+
+    const applySound = () => {
+      if (reduce.matches) {
+        paint();
+        return;
+      }
+      const want = inSight() && !silenced;
+      if (!want) {
+        video.muted = true;
+        paint();
+        return;
+      }
+      video.muted = false;
+      if (!video.paused) {
+        paint();
+        return;
+      }
+      const pending = video.play();
+      if (pending) {
+        pending.then(paint).catch(() => {
+          video.muted = true;
+          video.play().catch(() => {});
+          paint();
+        });
+      } else paint();
+    };
+
     const useClip = () => {
       const next = small.matches ? mobile : desktop;
-      if (!video.currentSrc.endsWith(next)) {
-        video.src = next;
-        if (!reduce.matches) video.play().catch(() => {});
-      }
+      if (!video.currentSrc.endsWith(next)) video.src = next;
       hold();
+      applySound();
     };
 
     hold();
     small.addEventListener("change", useClip);
+    addEventListener("scroll", applySound, { passive: true });
+    addEventListener("resize", applySound);
+    addEventListener("pointerdown", (e) => {
+      if ((e.target as Element | null)?.closest?.(".twin-sound")) return;
+      applySound();
+    }, true);
+    applySound();
+    sound?.addEventListener("click", () => {
+      silenced = !video.muted;
+      video.muted = silenced;
+      if (!silenced && video.paused) video.play().catch(() => {});
+      paint();
+    });
   }
 </script>
 <style>
@@ -82,6 +138,22 @@
     letter-spacing: normal;
     color: #fff;
   }
+  .twin-video { position: relative; }
+  .twin-sound {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+    z-index: 2;
+    min-height: 36px;
+    padding: 0 14px;
+    border: 1px solid #5D1F72;
+    border-radius: 10px;
+    background: #5D1F72;
+    color: #fff;
+    font: 500 14px "Public Sans", system-ui, sans-serif;
+    cursor: pointer;
+  }
+  .twin-sound:hover { background: #fff; color: #5D1F72; }
   .twin video {
     display: block;
     width: 100%;
