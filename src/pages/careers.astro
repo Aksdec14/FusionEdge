@@ -1,16 +1,176 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+// Email for applications. fusionedge.io hides its careers address, so please confirm this one.
+const careersEmail = "hello@fusionedge.io";
+
+const benefits = [
+  { title: "Growth", text: "Hands-on work on live facility management products used by large campuses, hospitals and commercial portfolios, with mentoring and exposure to AI-driven product development." },
+  { title: "Collaborative culture", text: "Small, close-knit teams where engineers, designers and FM experts work side by side." },
+  { title: "Global exposure", text: "Work with teams and clients across Singapore and India." },
+  { title: "Work-life balance", text: "Flexible working and respect for personal commitments." },
+];
+
+// Open roles. Add a role like this and it appears in its department automatically:
+// { title: "Front End Developer", dept: "Engineering", location: "Noida", type: "Full time", link: "mailto:..." },
+const roles: { title: string; dept: string; location: string; type: string; link?: string }[] = [];
+
+const depts = [...new Set(roles.map((r) => r.dept))];
+const mailFor = (title: string) => `mailto:${careersEmail}?subject=${encodeURIComponent("Application: " + title)}`;
 ---
 <Layout title="Careers — Fusionedge">
-<article class="story">
-  <h1>Careers</h1>
-  <p class="story-lead">We're building solutions that solve real operational problems, and we're looking for people who want to make an impact.</p>
-  <p>FusionEdge teams work across product, engineering, and customer operations. The work is practical: facility software that people use on site, every day.</p>
-  <h2>Open roles</h2>
-  <p>Roles are shared as they open. Send a note with what you want to work on and where you're based.</p>
-  <p><a href="mailto:hello@fusionedge.io">hello@fusionedge.io</a></p>
-</article>
+<main class="cr">
+  <div class="cr-bg" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+
+  <!-- Hero -->
+  <section class="cr-hero cr-wrap">
+    <p class="cr-pill">Careers</p>
+    <h1>Join the FusionEdge team</h1>
+    <p class="cr-lead">We’re a growing team across Singapore and India, building the platform that runs facilities for large campuses, hospitals and commercial portfolios. Come and help us reimagine facility management with AI.</p>
+    <a class="cr-btn" href="#open-positions">Join us</a>
+    <div class="cr-img"><img src="https://images.unsplash.com/photo-1531973576160-7125cd663d86?auto=format&fit=crop&w=1600&q=70" alt="Team collaborating in a bright, modern office" loading="eager" onerror="this.style.display='none'"></div>
+  </section>
+
+  <!-- Why join -->
+  <section class="cr-sec cr-wrap" aria-labelledby="why-title">
+    <div class="cr-center">
+      <p class="cr-pill cr-pill--g">Benefits</p>
+      <h2 id="why-title">Why work with us</h2>
+    </div>
+    <div class="cr-benefits">
+      {benefits.map((b) => (
+        <div class="cr-b">
+          <h3>{b.title}<span class="cr-tick" aria-hidden="true">✓</span></h3>
+          <p>{b.text}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Open positions -->
+  <section class="cr-sec cr-wrap" id="open-positions" aria-labelledby="open-title">
+    <div class="cr-center">
+      <p class="cr-pill">Open positions</p>
+      <h2 id="open-title">Want to join Team FusionEdge?</h2>
+      <p class="cr-sub">{roles.length ? "Browse our open roles below and apply by clicking on one." : "Here’s how to reach us about a role."}</p>
+    </div>
+
+    <div class="cr-list">
+      {depts.map((d) => (
+        <div class="cr-group">
+          <p class="cr-dept">{d}</p>
+          {roles.filter((r) => r.dept === d).map((r) => (
+            <a class="cr-role" href={r.link ?? mailFor(r.title)}>
+              <span class="cr-role-t">{r.title}</span>
+              <span class="cr-role-m">{r.location}, {r.type}<span aria-hidden="true">›</span></span>
+            </a>
+          ))}
+        </div>
+      ))}
+
+      <div class="cr-open">
+        <div class="cr-open-img"><img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=900&q=70" alt="Person working at a desk with several monitors" loading="lazy" onerror="this.style.display='none'"></div>
+        <div class="cr-open-txt">
+        {roles.length > 0 && <h3>Don’t see the right role?</h3>}
+        <p>{roles.length
+          ? "Send us your resume and we’ll get in touch when there’s a match."
+          : "We’re always happy to meet good people. Send us your resume and we’ll get in touch when there’s a match."}</p>
+        <p class="cr-mail">Email <a href={`mailto:${careersEmail}`}>{careersEmail}</a></p>
+        </div>
+      </div>
+    </div>
+
+    <p class="cr-more">Want to know more about the company? <a href="/about">Read about us</a></p>
+  </section>
+
+</main>
 </Layout>
+
 <style>
-  .story p a{color:#5D1F72}
+  .cr{--brand:#5D1F72;--green:#00BF88;--ink:#1a1424;--mut:#6b6478;--line:rgba(93,31,114,.1);--soft:rgba(93,31,114,.06);
+    font-family:"Public Sans",sans-serif;color:var(--ink);padding-bottom:clamp(72px,10vw,120px)}
+  .cr *,.cr *::before,.cr *::after{box-sizing:border-box;font-family:"Public Sans",sans-serif}
+  .cr h1,.cr h2,.cr h3,.cr p{margin:0;max-width:none}
+  .cr-wrap{max-width:1000px;margin:0 auto;padding:0 24px}
+  .cr-center{text-align:center}
+
+  .cr .cr-pill{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--brand);background:var(--soft);padding:4px 12px;border-radius:99px}
+  .cr .cr-pill--g{color:#008a62;background:rgba(0,191,136,.1)}
+
+  /* Hero */
+  .cr-hero{text-align:center;padding-top:clamp(64px,9vw,112px)}
+  .cr-hero h1{margin-top:16px;font-size:clamp(34px,4.6vw,52px);line-height:1.1;letter-spacing:-.03em;font-weight:600;font-style:italic;color:var(--ink)}
+  .cr .cr-lead{max-width:620px;margin:18px auto 30px;font-size:clamp(15px,1.5vw,17px);line-height:1.65;color:var(--mut)}
+  .cr a.cr-btn,.cr a.cr-btn:visited{display:inline-flex;align-items:center;justify-content:center;height:46px;padding:0 30px;border-radius:99px;background:var(--brand);color:#fff;font-size:15px;font-weight:600;text-decoration:none;box-shadow:0 10px 24px -10px rgba(93,31,114,.5);transition:transform .15s,opacity .15s}
+  .cr a.cr-btn:hover{transform:translateY(-1px);opacity:.92}
+  .cr a.cr-btn--line,.cr a.cr-btn--line:visited{background:#fff;color:var(--brand);border:1px solid var(--brand);box-shadow:none}
+
+  /* Sections */
+  .cr-sec{padding-top:clamp(72px,10vw,120px)}
+  .cr-sec h2{margin-top:14px;font-size:clamp(26px,3.2vw,36px);line-height:1.15;letter-spacing:-.025em;font-weight:600;font-style:italic;color:var(--ink)}
+  .cr .cr-sub{margin-top:12px;font-size:15px;color:var(--mut)}
+
+  /* Benefits */
+  .cr-benefits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(28px,4vw,44px) clamp(32px,6vw,80px);margin-top:clamp(36px,5vw,56px);max-width:820px;margin-left:auto;margin-right:auto}
+  .cr-b h3{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:600;color:var(--ink)}
+  .cr-tick{width:20px;height:20px;border-radius:50%;background:rgba(0,191,136,.12);color:#008a62;font-size:11px;font-weight:700;display:grid;place-items:center;flex:none}
+  .cr .cr-b p{margin-top:8px;font-size:15px;line-height:1.65;color:var(--mut)}
+
+  /* Positions */
+  .cr-list{max-width:720px;margin:clamp(36px,5vw,52px) auto 0;display:grid;gap:clamp(28px,4vw,40px)}
+  .cr-group{display:grid;gap:12px}
+  .cr .cr-dept{justify-self:start;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--brand);background:var(--soft);padding:4px 12px;border-radius:6px}
+  .cr a.cr-role,.cr a.cr-role:visited{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 24px;border-radius:14px;background:#fff;border:1px solid var(--line);box-shadow:0 10px 30px -18px rgba(93,31,114,.25);text-decoration:none;color:var(--ink);transition:transform .15s,box-shadow .15s,border-color .15s}
+  .cr a.cr-role:hover{transform:translateY(-2px);border-color:rgba(93,31,114,.3);box-shadow:0 16px 36px -18px rgba(93,31,114,.35)}
+  .cr-role-t{font-size:16px;font-weight:600}
+  .cr-role-m{display:inline-flex;align-items:center;gap:10px;font-size:14px;color:var(--mut);white-space:nowrap}
+  .cr-role-m span{font-size:20px;color:var(--brand)}
+  .cr-open{text-align:center;padding:clamp(28px,4vw,40px);border-radius:16px;border:1px solid rgba(93,31,114,.12);background:#fff;box-shadow:0 16px 40px -24px rgba(93,31,114,.25)}
+  .cr-open h3{font-size:20px;font-weight:600;color:var(--ink)}
+  .cr .cr-open p{margin:0 auto 14px;max-width:460px;font-size:15px;line-height:1.6;color:var(--mut)}
+  .cr .cr-open .cr-mail{margin:0 auto;font-size:15px;text-align:center}
+  .cr-mail a,.cr-more a{color:var(--brand);font-weight:600;text-decoration:none}
+  .cr-mail a:hover,.cr-more a:hover{text-decoration:underline}
+  .cr .cr-more{margin-top:clamp(32px,4vw,48px);text-align:center;font-size:15px;color:var(--mut)}
+
+
+  /* very light layered-squares background */
+  .cr{position:relative;isolation:isolate;overflow:hidden;background:#fefefe}
+  .cr-bg{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+  .cr-bg span{position:absolute;width:var(--s);height:var(--s);border-radius:6px;transform:rotate(45deg);background:#fff;
+    box-shadow:-5px 5px 16px rgba(26,20,36,.018),-1px 1px 2px rgba(26,20,36,.015)}
+  .cr-bg span:nth-child(1){--s:520px;left:-260px;top:-160px}
+  .cr-bg span:nth-child(2){--s:300px;left:8%;top:120px}
+  .cr-bg span:nth-child(3){--s:180px;left:22%;top:40px}
+  .cr-bg span:nth-child(4){--s:440px;right:-200px;top:-120px}
+  .cr-bg span:nth-child(5){--s:260px;right:12%;top:200px}
+  .cr-bg span:nth-child(6){--s:150px;right:28%;top:60px}
+  .cr-bg span:nth-child(7){--s:360px;left:-160px;top:38%}
+  .cr-bg span:nth-child(8){--s:220px;left:14%;top:46%}
+  .cr-bg span:nth-child(9){--s:480px;right:-220px;top:42%}
+  .cr-bg span:nth-child(10){--s:200px;right:18%;top:56%}
+  .cr-bg span:nth-child(11){--s:420px;left:-180px;bottom:-160px}
+  .cr-bg span:nth-child(12){--s:260px;left:30%;bottom:6%}
+  .cr-bg span:nth-child(13){--s:380px;right:-150px;bottom:-120px}
+  .cr-bg span:nth-child(14){--s:160px;right:26%;bottom:14%}
+  @media (max-width:760px){.cr-bg span:nth-child(3n){display:none}}
+
+  /* hero image */
+  .cr-img{position:relative;margin:clamp(40px,6vw,64px) auto 0;max-width:1000px;aspect-ratio:21/9;border-radius:20px;overflow:hidden;
+    background:linear-gradient(135deg,rgba(93,31,114,.08),rgba(0,191,136,.08));box-shadow:0 30px 60px -30px rgba(93,31,114,.35)}
+  .cr-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  @media (max-width:640px){.cr-img{aspect-ratio:4/3;border-radius:14px}}
+
+
+  /* application card with photo */
+  .cr .cr-open{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);align-items:center;gap:0;padding:0;overflow:hidden;text-align:center}
+  .cr-open-img{position:relative;align-self:stretch;min-height:240px;background:linear-gradient(135deg,rgba(93,31,114,.08),rgba(0,191,136,.08))}
+  .cr-open-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+  .cr-open-txt{padding:clamp(24px,3.5vw,40px)}
+  @media (max-width:640px){.cr .cr-open{grid-template-columns:1fr}.cr-open-img{min-height:200px}}
+
+  @media (max-width:640px){
+    .cr-benefits{grid-template-columns:1fr}
+    .cr a.cr-role{flex-direction:column;align-items:flex-start;gap:6px;padding:18px}
+  }
 </style>
