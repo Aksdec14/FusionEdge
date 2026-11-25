@@ -75,7 +75,12 @@
   #fe-friction .times{display:grid;grid-template-columns:repeat(5,1fr)}
   #fe-friction .times b{display:block;font-size:17px;font-style:italic;font-weight:800}
   #fe-friction .times small{font-size:10.5px;color:var(--muted)}
-  #fe-friction .row{padding:22px 0;border-bottom:1px solid var(--line)}
+  #fe-friction .row{position:relative;padding:22px 0;border-bottom:1px solid var(--line)}
+  #fe-friction .row::before{content:"";position:absolute;left:0;top:0;bottom:0;width:var(--wash,0px);opacity:var(--wash-o,1);z-index:0;pointer-events:none}
+  #fe-friction .row>*{position:relative;z-index:1}
+  #fe-friction .row.red::before{background:#fff5f5}
+  #fe-friction .row.amber::before{background:#fff8ee}
+  #fe-friction .row.green::before{background:#f3fbf7}
   #fe-friction .row:last-child{border-bottom:none}
   #fe-friction .lbl h3{margin:0;font-family:"Public Sans",system-ui,sans-serif;font-size:var(--type-sub);font-weight:600;font-style:normal;line-height:1.3;letter-spacing:-.02em;color:#1a1424}
   #fe-friction .lbl p{font-size:10.5px;color:var(--muted);margin:2px 0 0;max-width:none}
@@ -119,7 +124,7 @@
   #fe-friction .green .stop:nth-child(3){animation:greenTick2 21.5s linear infinite}
   #fe-friction .green .stop:nth-child(4){animation:greenTick3 21.5s linear infinite}
   #fe-friction .green .stop:nth-child(5){animation:greenTick4 21.5s linear infinite}
-  @media (prefers-reduced-motion:reduce){#fe-friction .streak,#fe-friction .stop{animation:none!important}}
+  @media (prefers-reduced-motion:reduce){#fe-friction .streak,#fe-friction .stop{animation:none!important}#fe-friction .row::before{width:100%}}
   #fe-friction .board{background:#fff;box-shadow:none;margin:32px 0;padding:32px 28px}
   #fe-friction .times b{font-style:normal;font-weight:700;font-size:calc(var(--type-sub) - 1px)}
   #fe-friction .times small{font-size:calc(var(--type-body) - 1px)}
@@ -199,3 +204,31 @@
   @keyframes greenTick3{0%,6.651%{transform:scale(1)}7.256%{transform:scale(1.35)}8.326%,97.674%{transform:scale(1)}100%{transform:scale(1)}}
   @keyframes greenTick4{0%,8.884%{transform:scale(1)}9.488%{transform:scale(1.35)}10.558%,97.674%{transform:scale(1)}100%{transform:scale(1)}}
 </style>
+<script>
+  const board = document.getElementById("fe-friction");
+  const calm = matchMedia("(prefers-reduced-motion: reduce)");
+  const rows = board ? [...board.querySelectorAll<HTMLElement>(".row")] : [];
+  function follow() {
+    if (calm.matches) return;
+    for (const row of rows) {
+      const line = row.querySelector(".streak");
+      const stops = row.querySelectorAll(".stop");
+      if (!line || stops.length < 2) continue;
+      const first = stops[0].getBoundingClientRect();
+      const last = stops[stops.length - 1].getBoundingClientRect();
+      const origin = first.left + first.width / 2;
+      const finish = last.left + last.width / 2;
+      const tip = line.getBoundingClientRect().right;
+      let progress = (tip - origin) / (finish - origin);
+      if (progress < 0) progress = 0;
+      if (progress > 1) progress = 1;
+      const box = row.getBoundingClientRect();
+      const pad = getComputedStyle(row);
+      const inner = box.width - parseFloat(pad.paddingLeft) - parseFloat(pad.paddingRight);
+      row.style.setProperty("--wash", progress * inner + "px");
+      row.style.setProperty("--wash-o", getComputedStyle(line).opacity);
+    }
+    requestAnimationFrame(follow);
+  }
+  if (!calm.matches) requestAnimationFrame(follow);
+</script>
