@@ -49,10 +49,11 @@ const topics = ["Request a Demo", "Need Brochure", "Connect with the Team"];
     </div>
 
     <!-- Right: form -->
-    <form class="ct-form" action="#" method="post" novalidate>
+    <form class="ct-form" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="3f951b76-ae31-4fcf-9b95-c6c507352a96">
       <div class="ct-row">
         <label class="ct-field"><span>First name</span><input type="text" name="first_name" placeholder="First name" autocomplete="given-name" required></label>
-        <label class="ct-field"><span>Last name</span><input type="text" name="last_name" placeholder="Last name" autocomplete="family-name"></label>
+        <label class="ct-field"><span>Last name</span><input type="text" name="last_name" placeholder="Last name" autocomplete="family-name" required></label>
       </div>
       <label class="ct-field"><span>Company email</span><input type="email" name="email" placeholder="you@company.com" autocomplete="email" required></label>
       <label class="ct-field"><span>Phone number</span>
@@ -64,7 +65,7 @@ const topics = ["Request a Demo", "Need Brochure", "Connect with the Team"];
             <option value="+971">UAE (+971)</option>
             <option value="+65">SG (+65)</option>
           </select>
-          <input type="tel" name="phone" placeholder="Phone number" autocomplete="tel-national">
+          <input type="tel" name="phone" placeholder="Phone number" autocomplete="tel-national" required>
         </span>
       </label>
       <label class="ct-field"><span>How can we help?</span>

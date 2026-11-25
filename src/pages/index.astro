@@ -603,15 +603,16 @@ import Honeycomb from "../components/Honeycomb.astro";
 <div class="touch-wrap">
 <h2 id="touch-title">Ready to rethink <em>facility management?</em></h2>
 <div class="touch-grid">
-<form class="touch-form" action="#" onsubmit="return false">
+<form class="touch-form" action="https://api.web3forms.com/submit" method="POST">
+<input type="hidden" name="access_key" value="3f951b76-ae31-4fcf-9b95-c6c507352a96">
 <h3>Send a Message</h3>
 <p>Tell us what you need. We'll help you find the right solution for your facilities.</p>
 <div class="touch-row">
-<input type="text" name="name" placeholder="Name" aria-label="Name" autocomplete="name">
-<input type="email" name="email" placeholder="Email Address" aria-label="Email Address" autocomplete="email">
+<input type="text" name="name" placeholder="Name" aria-label="Name" autocomplete="name" required>
+<input type="email" name="email" placeholder="Email Address" aria-label="Email Address" autocomplete="email" required>
 </div>
 <div class="touch-row">
-<select name="interest" aria-label="Interested in">
+<select name="interest" aria-label="Interested in" required>
 <option value="" selected>Interested in</option>
 <option>A demo</option>
 <option>CMMS</option>
@@ -621,7 +622,7 @@ import Honeycomb from "../components/Honeycomb.astro";
 <option>ERP</option>
 <option>Project Management</option>
 </select>
-<input type="tel" name="phone" placeholder="Phone Number" aria-label="Phone Number" autocomplete="tel">
+<input type="tel" name="phone" placeholder="Phone Number" aria-label="Phone Number" autocomplete="tel" required>
 </div>
 <textarea name="message" placeholder="Message" aria-label="Message" rows="3"></textarea>
 <button type="submit"><span>Submit</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
